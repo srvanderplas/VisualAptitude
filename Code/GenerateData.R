@@ -1,6 +1,6 @@
 linear.trend <- function(n=30, a=sample(c(-1, 1), 1)*rnorm(1, 3), b=rnorm(1), n.outliers=0){
   df <- data.frame(x=seq(-n/10, n/10, length.out=n))
-  df$y <- a*df$x+b+rnorm(n, sd=sqrt(abs(a)/2))
+  df$y <- a*df$x+b+rnorm(n, sd=sqrt(2*abs(a)))
   df$outlier <- FALSE
   df$group <- as.numeric((df$x+rnorm(n, sd=1/sqrt(n/10)))>0)+1   
   if(n.outliers>0){
