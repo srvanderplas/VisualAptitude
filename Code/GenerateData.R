@@ -1,3 +1,4 @@
+require(plyr)
 linear.trend <- function(n=30, a=sample(c(-1, 1), 1)*rnorm(1, 3), b=rnorm(1), n.outliers=0){
   df <- data.frame(x=seq(-n/10, n/10, length.out=n))
   df$y <- a*df$x+b+rnorm(n, sd=sqrt(2*abs(a)))
@@ -14,4 +15,15 @@ linear.trend <- function(n=30, a=sample(c(-1, 1), 1)*rnorm(1, 3), b=rnorm(1), n.
   }
 
   return(df)
+}
+
+permute.groups2 <- function(lineupdata, ngroups=3, pos=sample(1:20, 1)){
+  ddply(lineupdata, .(.sample), function(df){
+    if(sum(df$.sample==pos)==0){
+      df$group.k = kmeans(df[,1:2], centers=1+nrow(dframe)/(ngroups+1))$cluster%%ngroups+1
+    } else {
+      df$group.k = kmeans(df[,1:2], centers=ngroups)$cluster
+    }
+    df
+  })
 }
