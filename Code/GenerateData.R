@@ -1,6 +1,6 @@
 linear.trend <- function(n=30, a=sample(c(-1, 1), 1)*rnorm(1, 3), b=rnorm(1), n.outliers=0){
   df <- data.frame(x=seq(-n/10, n/10, length.out=n))
-  df$y <- a*x+b+rnorm(n)
+  df$y <- a*df$x+b+rnorm(n)
   df$outlier <- FALSE
   # select outlier from the first 1/5 of the dataset or the last 1/5 of the dataset
   outlier.vals <- c(1:n)
