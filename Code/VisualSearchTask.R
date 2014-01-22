@@ -71,8 +71,8 @@ for(i in 1:25){
           plot.background=element_blank(),
           axis.text.x = element_blank(),
           axis.text.y = element_blank())
-  ggsave(paste("./Stimuli/VST/VST-", i, ".pdf"), width=8, height=8, units="in", dpi=100)
+  ggsave(paste("./Images/VisualSearch/VST-", i, ".pdf"), width=8, height=8, units="in", dpi=100)
 }
 
 key <- ddply(overall, .(trial), summarize, ans=unique(ans))
-write.csv(key, "./Stimuli/VST/VST-Key.csv", row.names=FALSE)
+write.csv(key, "./Images/VisualSearch/VST-Key.csv", row.names=FALSE)
