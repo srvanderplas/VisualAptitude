@@ -11,7 +11,7 @@ dframe <- linear.trend()
 pos.x <- sample(1:20, 1)
 lineupdata <- lineup(null_permute("y"), dframe, pos=pos.x)
 ggplot(data=lineupdata) + 
-  geom_point(aes(x=x, y=y)) + 
+  geom_point(aes(x=x, y=y), size=3) + 
   facet_wrap(~.sample) + 
   theme_lineup()
 
@@ -19,7 +19,7 @@ ggplot(data=lineupdata) +
 pos.x <- sample(1:20, 1)
 lineupdata <- lineup(null_permute("group"), dframe, pos=pos.x)
 ggplot(data=lineupdata) + 
-  geom_point(aes(x=x, y=y, color=factor(group))) + 
+  geom_point(aes(x=x, y=y, color=factor(group)), size=3) + 
   facet_wrap(~.sample) + 
   theme_lineup()
 
@@ -30,17 +30,17 @@ lineupdata <- permute.groups2(lineup(null_permute("x"), dframe, pos=pos.x),
                               ngroups=3, pos=pos.y)
 
 ggplot(data=lineupdata) + 
-  geom_point(aes(x=x, y=y, color=factor(group.k))) + 
+  geom_point(aes(x=x, y=y, color=factor(group.k)), size=3) + 
   facet_wrap(~.sample) + 
   theme_lineup()
 
 
-dframe <- linear.trend(n=50, n.outliers=3, sd=6)
+dframe <- linear.trend(n=50, n.outliers=3, sd=4)
 # Slope alone
 pos.x <- sample(1:20, 1)
 lineupdata <- lineup(null_permute("y"), dframe, pos=pos.x)
 ggplot(data=lineupdata) + 
-  geom_point(aes(x=x, y=y)) + 
+  geom_point(aes(x=x, y=y), size=3) + 
   facet_wrap(~.sample) + 
   theme_lineup()
 
@@ -48,7 +48,7 @@ ggplot(data=lineupdata) +
 pos.x <- sample(1:20, 1)
 lineupdata <- lineup(null_permute("group"), dframe, pos=pos.x)
 ggplot(data=lineupdata) + 
-  geom_point(aes(x=x, y=y, color=factor(group))) + 
+  geom_point(aes(x=x, y=y, color=factor(group)), size=3) + 
   facet_wrap(~.sample) + 
   theme_lineup()
 
