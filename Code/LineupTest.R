@@ -35,7 +35,7 @@ ggplot(data=lineupdata) +
   theme_lineup()
 
 
-dframe <- linear.trend(n=50, n.outliers=3)
+dframe <- linear.trend(n=50, n.outliers=3, sd=6)
 # Slope alone
 pos.x <- sample(1:20, 1)
 lineupdata <- lineup(null_permute("y"), dframe, pos=pos.x)
@@ -59,7 +59,7 @@ lineupdata <- permute.groups2(lineup(null_permute("y"), dframe, pos=pos.x),
                               ngroups=4, pos=pos.y)
 
 ggplot(data=lineupdata) + 
-  geom_point(aes(x=x, y=y, color=factor(group.k))) + 
+  geom_point(aes(x=x, y=y, color=factor(group.k)), size=3) + 
   facet_wrap(~.sample) + 
   theme_lineup()
 
