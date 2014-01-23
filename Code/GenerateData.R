@@ -7,6 +7,7 @@ linear.trend <- function(n=30, sd.data=5, n.outliers=0){
   df$outlier <- FALSE
   df$group <- as.numeric((df$x+rnorm(n, sd=sd.data/5))>0)+1   
   df$x <- df$x+rnorm(n, sd=0.01)
+  df$z <- rnorm(1, 1)*df$x+rnorm(1, 1)*df$y+rnorm(n, sd=0.01)
   if(n.outliers>0){
     # select outlier from the first 1/5 of the dataset or the last 1/5 of the dataset
     idx <- c(1:n)
@@ -25,9 +26,9 @@ linear.trend <- function(n=30, sd.data=5, n.outliers=0){
 
 permute.groups2 <- function(lineupdata, ngroups=3, pos=sample(1:20, 1)){
   ddply(lineupdata, .(.sample), function(df){
-    dst <- dist(df[,c("x", "y")])
+    dst <- dist(df[,c("x", "y", "z")])
     if(sum(df$.sample==pos)==0){
-      df$group.k = cutree(hclust(dst, method="complete"), round(nrow(df)/(ngroups+1)))%%ngroups+1
+      df$group.k = cutree(hclust(dst, method="complete"), round(nrow(df)/(ngroups)))%%ngroups+1
     } else {
       df$group.k = cutree(hclust(dst, method="complete"), ngroups)
     }
