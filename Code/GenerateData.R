@@ -1,10 +1,12 @@
 require(plyr)
-linear.trend <- function(n=30, a=sample(c(-1, 1), 1)*rnorm(1, 3), b=rnorm(1), n.outliers=0){
-  sd=sqrt(n/5)
-  df <- data.frame(x=seq(-n/10, n/10, length.out=n))
-  df$y <- rnorm(n, a*df$x+b+rnorm(n, sd=sd))
+linear.trend <- function(n=30, sd.data=5, n.outliers=0){
+  a <- sample(c(-1, 1), 1)*rnorm(1, 3)
+  b <- rnorm(1)
+  df <- data.frame(x=seq(-5, 5, length.out=n))
+  df$y <- rnorm(n, a*df$x+b+rnorm(n, sd=sd.data))
   df$outlier <- FALSE
-  df$group <- as.numeric((df$x+rnorm(n, sd=1/sqrt(n/10)))>0)+1   
+  df$group <- as.numeric((df$x+rnorm(n, sd=sd.data/5))>0)+1   
+  df$x <- df$x+rnorm(n, sd=0.01)
   if(n.outliers>0){
     # select outlier from the first 1/5 of the dataset or the last 1/5 of the dataset
     idx <- c(1:n)
@@ -14,7 +16,7 @@ linear.trend <- function(n=30, a=sample(c(-1, 1), 1)*rnorm(1, 3), b=rnorm(1), n.
     replace.vals <- idx[(cutoff!="low" & idx<=n/5) | (cutoff!="high" & idx>=4*n/5)]
     replace <- sample(replace.vals, n.outliers)
     df$outlier[outlier] <- TRUE
-    df$y[outlier] <- rnorm(n.outliers, df$y[replace], sd=sd/3)
+    df$y[outlier] <- jitter(df$y[replace])
     df$group[outlier] <- 3
   }
 
@@ -25,7 +27,7 @@ permute.groups2 <- function(lineupdata, ngroups=3, pos=sample(1:20, 1)){
   ddply(lineupdata, .(.sample), function(df){
     dst <- dist(df[,c("x", "y")])
     if(sum(df$.sample==pos)==0){
-      df$group.k = cutree(hclust(dst, method="complete"), round(nrow(df)/(ngroups+1)+1))%%ngroups+1
+      df$group.k = cutree(hclust(dst, method="complete"), round(nrow(df)/(ngroups+1)))%%ngroups+1
     } else {
       df$group.k = cutree(hclust(dst, method="complete"), ngroups)
     }
