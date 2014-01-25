@@ -18,7 +18,7 @@ seeds <- c(699181, 190785, 746705, 938857, 256246,
 # seeds <- sample(0:1e6, N) + sample(0:1e3, N) + sample(0:100, N)
 answers <- data.frame()
 
-colors <- c("#781c81", "#D92120", "#6DB388", "#3F4EA1", 
+colors <- c("#B178A6", "#D92120", "#6DB388", "#3F4EA1", 
             "#E7742F", "#57A3AD", "#B1B343", "#4683C1", "#DFA53A")
 
 for(i in 1:N){
