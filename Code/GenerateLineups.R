@@ -18,6 +18,9 @@ seeds <- c(699181, 190785, 746705, 938857, 256246,
 # seeds <- sample(0:1e6, N) + sample(0:1e3, N) + sample(0:100, N)
 answers <- data.frame()
 
+colors <- c("#781c81", "#D92120", "#6DB388", "#3F4EA1", 
+            "#E7742F", "#57A3AD", "#B1B343", "#4683C1", "#DFA53A")
+
 for(i in 1:N){
   set.seed(seeds[i])
   dframe <- linear.trend()
@@ -28,7 +31,7 @@ for(i in 1:N){
   lineupdata <- lineup(null_permute("y"), dframe, pos=pos.x)
   ggplot(data=lineupdata) + 
     geom_point(aes(x=x, y=y), size=3) + 
-    facet_wrap(~.sample) + 
+    facet_wrap(~.sample) +
     theme_lineup()
   ggsave(filename, width=10, height=8, dpi=300, units="in")
   answers <- rbind(answers, data.frame(name=filename, target1=pos.x, target2=NA, seed=seeds[i], idx=i))
@@ -40,6 +43,7 @@ for(i in 1:N){
   ggplot(data=lineupdata) + 
     geom_point(aes(x=x, y=y, color=factor(group)), size=3) + 
     facet_wrap(~.sample) + 
+    scale_color_manual(values=colors[c(2,8)]) +
     theme_lineup()
   ggsave(filename, width=10, height=8, dpi=300, units="in")
   answers <- rbind(answers, data.frame(name=filename, target1=NA, target2=pos.x, seed=seeds[i], idx=i))
@@ -54,6 +58,7 @@ for(i in 1:N){
   ggplot(data=lineupdata) + 
     geom_point(aes(x=x, y=y, color=factor(group.k)), size=3) + 
     facet_wrap(~.sample) + 
+    scale_color_manual(values=colors[c(1,5,6)]) +
     theme_lineup()
   ggsave(filename, width=10, height=8, dpi=300, units="in")
   answers <- rbind(answers, data.frame(name=filename, target1=pos.x, target2=pos.y, seed=seeds[i], idx=i))
