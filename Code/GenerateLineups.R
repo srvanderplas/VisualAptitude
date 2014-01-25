@@ -20,7 +20,7 @@ answers <- data.frame()
 
 colors <- c("#882E72", "#D92120", "#4EB265", "#3F4EA1", 
             "#E7742F", "#1965B0", "#B1B343", "#4683C1", "#DFA53A")
-
+permute.var <- c("x", "y")
 for(i in 1:N){
   set.seed(seeds[i])
   dframe <- linear.trend()
@@ -28,31 +28,34 @@ for(i in 1:N){
   # Slope alone
   pos.x <- sample(1:20, 1)
   filename <- paste("./Images/Lineups/NoOutliers-", i, "-Slope.png", sep="")
-  lineupdata <- lineup(null_permute("y"), dframe, pos=pos.x)
+  pv <- sample(permute.var, 1)
+  lineupdata <- lineup(null_permute(pv), dframe, pos=pos.x)
   ggplot(data=lineupdata) + 
     geom_point(aes(x=x, y=y), size=3) + 
     facet_wrap(~.sample) +
     theme_lineup()
   ggsave(filename, width=10, height=8, dpi=300, units="in")
-  answers <- rbind(answers, data.frame(name=filename, target1=pos.x, target2=NA, seed=seeds[i], idx=i))
+  answers <- rbind(answers, data.frame(name=filename, target1=pos.x, target2=NA, seed=seeds[i], idx=i, permute.var=pv))
   
   # Color alone
   pos.x <- sample(1:20, 1)
+  pv <- "group"
   filename <- paste("./Images/Lineups/NoOutliers-", i, "-Color.png", sep="")
-  lineupdata <- lineup(null_permute("group"), dframe, pos=pos.x)
+  lineupdata <- lineup(null_permute(pv), dframe, pos=pos.x)
   ggplot(data=lineupdata) + 
     geom_point(aes(x=x, y=y, color=factor(group)), size=3) + 
     facet_wrap(~.sample) + 
     scale_color_manual(values=colors[c(2,8)]) +
     theme_lineup()
   ggsave(filename, width=10, height=8, dpi=300, units="in")
-  answers <- rbind(answers, data.frame(name=filename, target1=NA, target2=pos.x, seed=seeds[i], idx=i))
+  answers <- rbind(answers, data.frame(name=filename, target1=NA, target2=pos.x, seed=seeds[i], idx=i, permute.var=pv))
   
   # Slope vs. Color
   pos.x <- sample(1:20, 1)
   pos.y <- sample(c(1:20)[which(1:20!=pos.x)], 1)
+  pv <- sample(permute.var, 1)
   filename <- paste("./Images/Lineups/NoOutliers-", i, "-SlopeColor.png", sep="")
-  lineupdata <- permute.groups2(lineup(null_permute("x"), dframe, pos=pos.x), 
+  lineupdata <- permute.groups2(lineup(null_permute(pv), dframe, pos=pos.x), 
                                 ngroups=3, pos=pos.y)
   
   ggplot(data=lineupdata) + 
@@ -61,7 +64,7 @@ for(i in 1:N){
     scale_color_manual(values=colors[c(3,5,6)]) +
     theme_lineup()
   ggsave(filename, width=10, height=8, dpi=300, units="in")
-  answers <- rbind(answers, data.frame(name=filename, target1=pos.x, target2=pos.y, seed=seeds[i], idx=i))
+  answers <- rbind(answers, data.frame(name=filename, target1=pos.x, target2=pos.y, seed=seeds[i], idx=i, permute.var=pv))
 }
 
 write.csv(answers, "./Images/Lineups/NoOutliersKey.csv", row.names=FALSE)
