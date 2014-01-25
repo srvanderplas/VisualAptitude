@@ -5,11 +5,17 @@ library(plyr)
 source("./Code/theme_lineup.R")
 source("./Code/GenerateData.R")
 
-set.seed(31415926535)
+set.seed(31415926)
 
 # Linear trend alone - no outliers
 N <- 30
-seeds <- sample(0:1e6, N) + sample(0:1e3, N) + sample(0:100, N)
+seeds <- c(699181, 190785, 746705, 938857, 256246, 
+           130991, 829750, 107019, 310685, 968407, 
+           982098, 247471, 658815, 828038, 956567, 
+           706934,  74904, 743373, 955470, 339582, 
+           230370, 594429, 959280, 677468, 301141, 
+           523820, 397938, 952596, 726989, 247199)
+# seeds <- sample(0:1e6, N) + sample(0:1e3, N) + sample(0:100, N)
 answers <- data.frame()
 
 for(i in 1:N){
@@ -53,4 +59,4 @@ for(i in 1:N){
   answers <- rbind(answers, data.frame(name=filename, target1=pos.x, target2=pos.y, seed=seeds[i], idx=i))
 }
 
-write.csv(answers, "Key.csv", row.names=FALSE)
+write.csv(answers, "./Images/Lineups/NoOutliersKey.csv", row.names=FALSE)
