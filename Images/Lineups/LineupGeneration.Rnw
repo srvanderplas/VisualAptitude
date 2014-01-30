@@ -1,6 +1,14 @@
+\documentclass{article}
+\usepackage{fullpage}
+
+\begin{document}
+
+<<setup, out.width="5in", out.height="4in", fig.width=10, fig.height=8, fig.align="center", echo=FALSE, results='asis', cache=TRUE, message=FALSE, warning=TRUE>>=
+setwd("../../")
 library(nullabor)
 library(ggplot2)
 library(plyr)
+library(Hmisc)
 
 source("./Code/theme_lineup.R")
 source("./Code/GenerateData.R")
@@ -21,7 +29,13 @@ answers <- data.frame()
 colors <- c("#882E72", "#D92120", "#4EB265", "#3F4EA1", 
             "#E7742F", "#1965B0", "#B1B343", "#4683C1", "#DFA53A")
 
-names <- data.frame(filename = sample(paste("./Images/Lineups/", rep(1:3, each=N*2), "-", rep(1:(N*2), times=3), ".png", sep=""), 6*N), idx=1:(6*N), stringsAsFactors=FALSE)
+pics.set <- as.character(1:(N*2))
+pics.set[nchar(pics.set)==1] <- paste("0", pics.set[nchar(pics.set)==1], sep="")
+names <- data.frame(filename = sample(paste("./Images/Lineups/", rep(1:3, each=N*2), "-", rep(pics.set, times=3), ".png", sep=""), 6*N), idx=1:(6*N), stringsAsFactors=FALSE)
+names$title <- gsub(".png", "", gsub("./Images/Lineups/", "", names$filename, fixed=TRUE), fixed=TRUE)
+
+plots <- as.list(rep(NA, length(names$filename)))
+names(plots) <- names$filename
 
 permute.var <- c("x", "y")
 for(i in 1:N){
@@ -34,11 +48,11 @@ for(i in 1:N){
   filename <- names$filename[j]
   pv <- sample(permute.var, 1)
   lineupdata <- lineup(null_permute(pv), dframe, pos=pos.x)
-  ggplot(data=lineupdata) + 
-    geom_point(aes(x=x, y=y), size=3) + 
-    facet_wrap(~.sample) +
-    theme_lineup()
-  ggsave(filename, width=10, height=8, dpi=300, units="in")
+  plots[[j]] <- ggplot(data=lineupdata) + 
+                  geom_point(aes(x=x, y=y), size=3) + 
+                  facet_wrap(~.sample) +
+                  theme_lineup() + 
+                  ggtitle(names$title[j])
   answers <- rbind(answers, data.frame(name=filename, target1=pos.x, target2=NA, seed=seeds[i], idx=i, permute.var=pv, group="NoOutliers", type="Slope"))
   
   # Color alone
@@ -46,12 +60,12 @@ for(i in 1:N){
   pv <- "group"
   filename <- names$filename[j+1]
   lineupdata <- lineup(null_permute(pv), dframe, pos=pos.x)
-  ggplot(data=lineupdata) + 
-    geom_point(aes(x=x, y=y, color=factor(group)), size=3) + 
-    facet_wrap(~.sample) + 
-    scale_color_manual(values=colors[c(2,8)]) +
-    theme_lineup()
-  ggsave(filename, width=10, height=8, dpi=300, units="in")
+  plots[[j+1]] <- ggplot(data=lineupdata) + 
+                  geom_point(aes(x=x, y=y, color=factor(group)), size=3) + 
+                  facet_wrap(~.sample) + 
+                  scale_color_manual(values=colors[c(2,8)]) +
+                  theme_lineup()+ 
+                  ggtitle(names$title[j+1])
   answers <- rbind(answers, data.frame(name=filename, target1=NA, target2=pos.x, seed=seeds[i], idx=i, permute.var=pv, group="NoOutliers", type="Color"))
   
   # Slope vs. Color
@@ -62,12 +76,12 @@ for(i in 1:N){
   lineupdata <- permute.groups2(lineup(null_permute(pv), dframe, pos=pos.x), 
                                 ngroups=3, pos=pos.y)
   
-  ggplot(data=lineupdata) + 
-    geom_point(aes(x=x, y=y, color=factor(group.k)), size=3) + 
-    facet_wrap(~.sample) + 
-    scale_color_manual(values=colors[c(3,5,6)]) +
-    theme_lineup()
-  ggsave(filename, width=10, height=8, dpi=300, units="in")
+plots[[j+2]] <- ggplot(data=lineupdata) + 
+                geom_point(aes(x=x, y=y, color=factor(group.k)), size=3) + 
+                facet_wrap(~.sample) + 
+                scale_color_manual(values=colors[c(3,5,6)]) +
+                theme_lineup() + 
+                ggtitle(names$title[j+2])
   answers <- rbind(answers, data.frame(name=filename, target1=pos.x, target2=pos.y, seed=seeds[i], idx=i, permute.var=pv, group="NoOutliers", type="ShapeColor"))
 }
 
@@ -98,11 +112,11 @@ for(i in 1:N){
   filename <- names$filename[j]
   pv <- sample(permute.var, 1)
   lineupdata <- lineup(null_permute(pv), dframe, pos=pos.x)
-  ggplot(data=lineupdata) + 
-    geom_point(aes(x=x, y=y), size=3) + 
-    facet_wrap(~.sample) +
-    theme_lineup()
-  ggsave(filename, width=10, height=8, dpi=300, units="in")
+  plots[[j]] <- ggplot(data=lineupdata) + 
+                  geom_point(aes(x=x, y=y), size=3) + 
+                  facet_wrap(~.sample) +
+                  theme_lineup() + 
+                  ggtitle(names$title[j])
   answers <- rbind(answers, data.frame(name=filename, target1=pos.x, target2=NA, seed=seeds[i], idx=i, permute.var=pv, group="Outliers", type="Shape"))
   
   # Color alone
@@ -110,12 +124,12 @@ for(i in 1:N){
   pv <- "group"
   filename <- names$filename[j+1]
   lineupdata <- lineup(null_permute(pv), dframe, pos=pos.x)
-  ggplot(data=lineupdata) + 
-    geom_point(aes(x=x, y=y, color=factor(group)), size=3) + 
-    facet_wrap(~.sample) + 
-    scale_color_manual(values=colors[c(3,5,6)]) +
-    theme_lineup()
-  ggsave(filename, width=10, height=8, dpi=300, units="in")
+  plots[[j+1]] <- ggplot(data=lineupdata) + 
+                    geom_point(aes(x=x, y=y, color=factor(group)), size=3) + 
+                    facet_wrap(~.sample) + 
+                    scale_color_manual(values=colors[c(3,5,6)]) +
+                    theme_lineup()+ 
+                    ggtitle(names$title[j+1])
   answers <- rbind(answers, data.frame(name=filename, target1=NA, target2=pos.x, seed=seeds[i], idx=i, permute.var=pv, group="Outliers", type="Color"))
   
   # Slope vs. Color
@@ -126,13 +140,23 @@ for(i in 1:N){
   lineupdata <- permute.groups2(lineup(null_permute(pv), dframe, pos=pos.x), 
                                 ngroups=4, pos=pos.y)
   
-  ggplot(data=lineupdata) + 
-    geom_point(aes(x=x, y=y, color=factor(group.k)), size=3) + 
-    facet_wrap(~.sample) + 
-    scale_color_manual(values=colors[c(3,5,6,1)]) +
-    theme_lineup()
-  ggsave(filename, width=10, height=8, dpi=300, units="in")
+  plots[[j+2]] <- ggplot(data=lineupdata) + 
+                    geom_point(aes(x=x, y=y, color=factor(group.k)), size=3) + 
+                    facet_wrap(~.sample) + 
+                    scale_color_manual(values=colors[c(3,5,6,1)]) +
+                    theme_lineup() +
+                    ggtitle(names$title[j+2])
   answers <- rbind(answers, data.frame(name=filename, target1=pos.x, target2=pos.y, seed=seeds[i], idx=i, permute.var=pv, group="Outliers", type="ShapeColor"))
 }
+plots <- plots[order(names(plots), decreasing=F)]
+answers$name <- as.character(answers$name)
+answers <- answers[order(answers$name, decreasing=F),]
 
-write.csv(answers, "./Images/Lineups/LineupKey.csv", row.names=FALSE)
+for(i in 1:length(plots)){
+  print(plots[[i]])
+#   cat("/clearpage")
+}
+@
+
+
+\end{document}
