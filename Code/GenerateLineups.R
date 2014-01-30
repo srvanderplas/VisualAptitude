@@ -21,7 +21,7 @@ answers <- data.frame()
 colors <- c("#882E72", "#D92120", "#4EB265", "#3F4EA1", 
             "#E7742F", "#1965B0", "#B1B343", "#4683C1", "#DFA53A")
 
-names <- data.frame(filename = sample(paste("./Images/Lineups/", rep(1:3, each=N*2), "-", rep(1:N*2, times=3), ".png", sep=""), 6*N), idx=1:(6*N), stringsAsFactors=FALSE)
+names <- data.frame(filename = sample(paste("./Images/Lineups/", rep(1:3, each=N*2), "-", rep(1:(N*2), times=3), ".png", sep=""), 6*N), idx=1:(6*N), stringsAsFactors=FALSE)
 
 permute.var <- c("x", "y")
 for(i in 1:N){
