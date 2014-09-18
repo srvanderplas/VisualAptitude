@@ -1,0 +1,151 @@
+\documentclass{article}
+%---------------------------------------------------
+\usepackage{color}
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{wrapfig,float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{ulem}
+\usepackage[section]{placeins}
+\usepackage{sidecap}
+\usepackage{multirow}
+\usepackage{bbm}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{rotating}
+
+% Bibliography without numbers or labels
+\usepackage{natbib}
+\bibliographystyle{apa}
+
+%Optional Package to add PDF bookmarks and hypertext links
+\usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue,bookmarksnumbered=true,pdfview=FitB}
+%---------------------------------------------------
+
+%---------------------------------------------------
+%                 Editing Commands
+\newcommand{\done}[2][inline]{\todo[color=SpringGreen, #1]{#2}}  % for todos that have been seen and dealt with
+\newcommand{\meh}[2][inline]{\todo[color=White, #1]{#2}}   % for todos that may no longer be relevant 
+\newcommand{\comment}[2][inline]{\todo[color=SkyBlue, #1]{#2}} % for comments that may not be "to-do"s
+\newcommand{\mcomment}[1]{\todo[color=SkyBlue]{#1}} % for margin comments
+\newcommand{\newtext}[1]{\todo[inline, color=White]{ \color{OliveGreen}{#1}}} % new text - not necessarily something to be done
+\newcommand{\move}[1]{\todo[inline, color=Lime]{#1}} % new to do item
+%
+%---------------------------------------------------
+
+%---------------------------------------------------
+%             Set Picture Locations
+\graphicspath{{Figure/}{Images/}}
+%
+%---------------------------------------------------
+
+<<VisualAptitude-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE>>=
+rm(list=ls())
+wd <- getwd()
+
+opts_chunk$set(fig.path='Figure/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
+datadir <- "../../Data/"
+imgdir <- "Figure/"
+codedir <- "../../Code/"
+
+options(replace.assign=TRUE,width=70,scipen=3)
+require(knitr)
+
+library(reshape2)
+suppressMessages(library(ggplot2))
+library(plyr)
+suppressMessages(library(gridExtra))
+source(paste(codedir, "Analysis.R", sep=""))
+@
+
+\title{Spatial Reasoning and Statistical Graphics}
+\author{Susan VanderPlas, Heike Hofmann} % , Stephanie De Graaf, Hillary Cheney ??
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Relevant literature: 
+\begin{itemize}
+\item \citet{shah1995conceptual} showed that spatial ability was not correlated with accuracy on a simple two-dimensional line graph description task, but that mathematical ability was correlated with accuracy. 
+\item \citet{just1985cognitive} showed that high-spatial-ability viewers used different rotation strategies than low-spatial-ability viewers when asked to whether three-dimensional alphabet cubes were the same. 
+\item \citet{hofmann2012graphical} for lineup stimuli and general lineup performance
+\end{itemize}
+
+Lineups depend on the ability to search for a signal amid distractors (Visual Search Task) and the ability to infer patterns from stimuli (Pattern Recognition task). Some lineups (polar coords) also depend on the ability to mentally rotate stimuli (spatial rotation task) and mentally manipulate graphs (paper folding task). By breaking the lineup task down into component parts, we can correlate lineup performance with similar cognitive factor tests to determine where additional variation in skill level factors into performance differences. In addition, we can correlate previous experiences (science-based major, research experience, Auto-CAD skills) with performance to explore the effect that participant experience has on lineup performance. 
+
+\section{Methods}
+Participants will complete the following tasks (sample pictures included, full stimuli set will be added to the appendix once testing is complete). Tasks are designed so that participants are under time pressure; they are not expected to complete all of the problems in each section. This provides more discrimination between high scorers and prevents score compression at the top of the range. 
+\begin{itemize}
+\item Visual Search Task: designed to test participants' ability to find a target stimulus in a field of distractors. An example is shown in figure \ref{fig:VST}. 
+\begin{figure}[htbp]\centering
+\includegraphics[width=.7\textwidth]{VisualSearch}
+\caption[Visual Search Task]{Visual Search Task. Participants are instructed to find the plot numbered 1-24 which matches the plot labeled "Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
+\end{figure}
+\item Paper Folding Task: tests participants' ability to visualize and mentally manipulate figures in three dimensions. Associated with the ability to extrapolate symmetry and reflection over multiple steps. An example is shown in figure \ref{fig:paperfolding}.
+\begin{figure}[htbp]\centering
+\includegraphics[width=.9\textwidth]{paperfolding}
+\caption[Paper Folding Task]{Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown in the left-hand figure. Participants will complete up to 20 of these tasks in 6 minutes.}\label{fig:paperfolding}
+\end{figure}
+\item Card Rotation Task: tests participant's ability to rotate objects in two dimensions to distinguish between left-hand and right-hand versions of the same figure. Tests spatial reasoning ability and mental rotation skills. An example is shown in figure \ref{fig:cardrotation}.
+\begin{figure}[htbp]\centering
+\includegraphics[width=.9\textwidth]{cardrotation}
+\caption[Card Rotation Task]{Card Rotation Task. Participants mark each figure on the right hand side as either the same or different than the figure on the left hand side of the dividing line. Participants will complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.}\label{fig:cardrotation}
+\end{figure}
+\item Figure Classification Task: tests participant's ability to extrapolate rules from provided figures. This task is associated with visual reasoning capabilities and we expect that it should correlate with the ability to pick out a signal plot from a lineup. An example is shown in figure \ref{fig:figureclassification}. 
+\begin{figure}[htbp]\centering
+\includegraphics[width=.9\textwidth]{figureclassification}
+\caption[Figure Classification Task]{Figure Classification Task. Participants classify each figure in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.}\label{fig:figureclassification}
+\end{figure}
+\end{itemize}
+
+Between cognitive tasks, participants will also complete three blocks of 20 lineups each. These lineups have been previously tested \citep{hofmann2012graphical} and include some null lineups (i.e. lineups without a target plot). Participants will have 5 minutes to complete each block of 20 lineups. Figure \ref{fig:lineup} shows a sample lineup of box plots. 
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=.9\textwidth]{lineup}
+\caption[Sample Lineup]{A sample lineup. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 13 is the target. }\label{fig:lineup}
+\end{figure}
+
+In addition to these tests, participants will complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
+
+\section{Results}
+We have tested 18 students, and plan to increase sample size once the summer semester begins. Preliminary results are presented graphically in figures \ref{fig:visualaptitudects} and \ref{fig:visualaptitudecat}. Scoring for all of the tests was calculated such that with random guessing, the expected score on a problem would be 0; thus, for a test with possible answers A, B, C, D, and E, the score would be calculated by subtracting $1/4*\text{\# wrong answers}$ from the total number of correct answers. This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses.  
+
+<<VisReasoningAnalysis,echo=FALSE, include=FALSE, fig.width=8,fig.height=4>>=
+lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Video Game Hrs/Wk", "Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
+lineup.summary$variable <- factor(lineup.summary$variable, levels=c("Card Rotation", "Figure Classification", "Paper Folding", "Visual Search", "Video Game Hrs/Wk"))
+ 
+qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x", ncol=3) + xlab("Value") + ylab("Lineup Score (# Correct - 1/19 # Incorrect)") + geom_smooth(method="lm") + theme_bw()
+ggsave(paste(imgdir, "fig-VisReasoningAnalysisCts.png", sep=""), width=6, height=4)
+
+lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
+lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
+lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience"))
+lineup.summary.categorical$value[lineup.summary.categorical$value=="f"] <- "Female"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="m"] <- "Male"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="y"] <- "TRUE"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="n"] <- "FALSE"
+
+
+qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x", ncol=3) + xlab("Value") + ylab("Lineup Score (# Correct - 1/19 # Incorrect)") + theme_bw()
+ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=6, height=6)
+@
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\textwidth]{fig-VisReasoningAnalysisCts}
+\caption[Visual Aptitude Study Results]{Preliminary results of continuous variables compared to lineup score.}\label{fig:visualaptitudects}
+\end{figure}
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\textwidth]{fig-VisReasoningAnalysisCat}
+\caption[Visual Aptitude Study Results]{Preliminary results of categorical variables compared to lineup score.}\label{fig:visualaptitudecat}
+\end{figure}
+
+
+
+
+\end{document}
