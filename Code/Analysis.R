@@ -66,7 +66,7 @@ ans.summary <- merge(ans[,1:19], ans.summary)
 ans.summary2 <- dcast(longform.sum, id~testtype+testnum, value.var = "value")
 ans.summary2 <- merge(ans[,1:19], ans.summary2)
 pct.ans <- dcast(longform.sum, id~testtype+testnum, value.var="pct.answered")
-
+ans.summary$log_vidgame_hrs <- log10(ans.summary$vidgame_hrs+1)
 # 
 # qplot(data=ans.summary, x=card_rot, y=lineup, geom="point")
 # 
@@ -77,7 +77,7 @@ pct.ans <- dcast(longform.sum, id~testtype+testnum, value.var="pct.answered")
 # qplot(data=ans.summary, x=vis_search, y=lineup, geom="point")
 # 
 
-lineup.summary <- melt(ans.summary, id.vars=c(1:17, 19, 23))
+lineup.summary <- melt(ans.summary, id.vars=c(1:19, 23))
 
 
 # qplot(data=lineup.summary, x=value, y=lineup, geom="point") + facet_wrap(~variable, scales="free")
