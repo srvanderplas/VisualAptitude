@@ -1,6 +1,7 @@
 \documentclass{article}
 %---------------------------------------------------
 \usepackage{color}
+\usepackage{fullpage}
 \usepackage[dvipsnames,svgnames]{xcolor}
 \usepackage{wrapfig,float}
 \usepackage{caption}
@@ -145,7 +146,7 @@ ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=6, height
 \caption[Visual Aptitude Study Results]{Preliminary results of categorical variables compared to lineup score.}\label{fig:visualaptitudecat}
 \end{figure}
 
-
+\bibliography{references}
 
 
 \end{document}
