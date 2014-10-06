@@ -148,5 +148,13 @@ ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=6, height
 
 \bibliography{references}
 
+\section*{Appendix}
+T-tests of results for Hillary and Stephanie: 
+<<ttest, echo=T, include=T>>=
+t.test(ans.summary$card_rot[1:18], ans.summary$card_rot[-c(1:18)])
+t.test(ans.summary$folding[1:18], ans.summary$folding[-c(1:18)])
+t.test(ans.summary$lineup[1:18], ans.summary$lineup[-c(1:18)])
+t.test(ans.summary$vis_search[1:18], ans.summary$vis_search[-c(1:18)])
+@
 
 \end{document}
