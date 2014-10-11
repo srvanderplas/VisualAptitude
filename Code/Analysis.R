@@ -65,8 +65,10 @@ longform$penalty[longform$testtype=="card_rot"] <- 1
 longform$penalty[longform$testtype=="folding"] <- 1/4
 longform$penalty[longform$testtype=="fig_class" & longform$qnum<=8] <- 1
 longform$penalty[longform$testtype=="fig_class" & longform$qnum>8] <- 1/2
+ 
+qrange <- ddply(subset(longform, id==1), .(testtype), summarize, min.score=sum(penalty), max.score=length(testtype), n=length(testtype), k=mean(1/penalty+1))
+qrange$var <- with(qrange, n^2/(k-1))
 
-qrange <- ddply(subset(longform, id==1), .(testtype), summarize, min.score=sum(penalty), max.score=length(testtype))
 
 longform.sum <- ddply(longform, .(id, testtype), summarize, 
                       pos.pts = ifelse(is.numeric(value), sum(value, na.rm=T), unique(value)),
@@ -74,7 +76,13 @@ longform.sum <- ddply(longform, .(id, testtype), summarize,
                       pct.answered=sum(!is.na(value))/length(value))
 longform.sum <- merge(longform.sum, qrange)
 
-longform.sum$value <- with(longform.sum, (pos.pts - neg.pts + min.score)/(min.score+max.score)*100)
+longform.sum$value <- with(longform.sum, pos.pts-neg.pts)
+tmp <- ddply(longform.sum, .(testtype), summarize, test.mean = mean(value, na.rm=T))
+longform.sum <- merge(longform.sum, tmp)
+longform.sum$value <- with(longform.sum, value - test.mean)
+longform.sum$value <- with(longform.sum, value/sqrt(var))
+
+# longform.sum$value <- with(longform.sum, (pos.pts - neg.pts + min.score)/(min.score+max.score)*100)
 
 # longform.sum$value[longform.sum$testtype=="lineup" & longform.sum$testnum==3] <- NA
 ans.summary <- dcast(longform.sum, id~testtype, value.var="value", na.rm=TRUE)
