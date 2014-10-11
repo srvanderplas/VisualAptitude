@@ -75,7 +75,9 @@ ans.summary <- merge(ans[,1:19], ans.summary)
 ans.summary2 <- dcast(longform.sum, id~testtype+testnum, value.var = "value")
 ans.summary2 <- merge(ans[,1:19], ans.summary2)
 pct.ans <- dcast(longform.sum, id~testtype+testnum, value.var="pct.answered")
-ans.summary$log_vidgame_hrs <- log10(ans.summary$vidgame_hrs+1)
+
+ans.summary$vidgame_hrs_factor <- ordered(factor(rowSums(sapply(c(-1, 0, 1.99, 4.99), function(i) ans$vidgame_hrs>i)), labels=c("0", "[1, 2)", "[2, 5)", "5+"), levels=1:4))
+# ans.summary$log_vidgame_hrs <- log10(ans.summary$vidgame_hrs+1)
 # 
 # qplot(data=ans.summary, x=card_rot, y=lineup, geom="point")
 # 
