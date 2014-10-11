@@ -143,12 +143,11 @@ ldply(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")]
 
 \comment{
 Split the next sentence up into two paragraph: what is shown in each of the figures, what are the immediate conclusions? chuck out the gaming hours from figure \ref{fig:visualaptitudects}, that's a demograph, so move it to the other plot (I am aware that nine demographics are easier to display than ten, but content trumps). \\
-
-Actually, they were split up like that because of continuous vs. categorical. It's not easy to facet when you have different $x$ scales. I've removed video games entirely for the time being. 
-}
+\textit{Actually, they were split up like that because of continuous vs. categorical. It's not easy to facet when you have different $x$ scales. I've removed video games entirely for the time being. I agree it didn't really belong there, but I can't get it to work with the facetting, either. I will probably just bin it eventually. 
+}}
 
 \comment{What happened to the arts skills? I seem to have a positive association now - why is my data different from yours? \\
-I have the same updated results you do. I see that Stephanie changed the data file (but didn't add any more rows)... is it possible something changed there? Otherwise, maybe my dropbox didn't update correctly the first time?}
+\textit{I have the same updated results you do. I see that Stephanie changed the data file (but didn't add any more rows)... is it possible something changed there? Otherwise, maybe my dropbox didn't update correctly the first time? Or maybe it was figure caching?}}
 Results are presented graphically in figures \ref{fig:visualaptitudects} and \ref{fig:visualaptitudecat}. 
 
 <<VisReasoningAnalysis,echo=FALSE, include=FALSE, fig.width=10,fig.height=5, out.width='\\linewidth'>>=
