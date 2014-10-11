@@ -171,10 +171,10 @@ qplot(data=subset(lineup.summary.categorical, variable!="Log10 Video Game Hours"
 ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=6, height=6)
 @
 
-<<correlations>>=
+<<correlations, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".5\\linewidth", fig.height=4.5, fig.width=7.5, comment="|">>=
 cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")])
 # using scaled version right now, should be changed to unscaled once the scores are internally scaled.
-pca <- prcomp(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")], scale=T)
+pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=T)
 summary(pca)
 screeplot(pca)
 @
