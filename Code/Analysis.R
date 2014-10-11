@@ -1,6 +1,6 @@
 # setwd("~/Dropbox/GraphicsGroup/TestingVisualAptitude/")
 
-ans <- read.csv(paste(datadir, "VisualGraphicsData.csv", sep=""), stringsAsFactors=F)
+ans <- read.csv(paste0(datadir, "VisualGraphicsData.csv"), na.strings=c(" ", ""), stringsAsFactors=F)
 ans$id <- 1:nrow(ans)
 
 key <- ans[1,]
@@ -45,7 +45,8 @@ key[,377:396] <- c("a", "d", "b", "d", "b",
                    "a", "e", "d", "d", "c")
 
 library(plyr)
-scored <- ddply(ans, .(id), function(j) j==key)
+scored <- ddply(ans, .(id), function(j) as.numeric(j==key) + c(0, NA)[1+is.na(j)])
+names(scored) <- names(ans)
 scored[,1:19] <- ans[,1:19]
 # scored[,357:376] <- NA # can't find answers for Lineup3?
 scored[,20:396] <- apply(scored[,20:396], 2, as.numeric)
@@ -65,16 +66,22 @@ longform$penalty[longform$testtype=="folding"] <- 1/4
 longform$penalty[longform$testtype=="fig_class" & longform$qnum<=8] <- 1
 longform$penalty[longform$testtype=="fig_class" & longform$qnum>8] <- 1/2
 
+qrange <- ddply(subset(longform, id==1), .(testtype), summarize, min.score=sum(penalty), max.score=length(testtype))
 
-longform.sum <- ddply(longform, .(id, testtype, testnum), summarize, 
-                      value=ifelse(is.numeric(value), sum(value, na.rm=T)-sum(!value,na.rm=T)*penalty, unique(value)), 
+longform.sum <- ddply(longform, .(id, testtype), summarize, 
+                      pos.pts = ifelse(is.numeric(value), sum(value, na.rm=T), unique(value)),
+                      neg.pts = ifelse(is.numeric(value), sum((1-value)*penalty, na.rm=T), unique(value)),
                       pct.answered=sum(!is.na(value))/length(value))
+longform.sum <- merge(longform.sum, qrange)
+
+longform.sum$value <- with(longform.sum, (pos.pts - neg.pts + min.score)/(min.score+max.score)*100)
+
 # longform.sum$value[longform.sum$testtype=="lineup" & longform.sum$testnum==3] <- NA
-ans.summary <- dcast(longform.sum, id~testtype, value.var="value", fun.aggregate = sum, na.rm=TRUE)
+ans.summary <- dcast(longform.sum, id~testtype, value.var="value", na.rm=TRUE)
 ans.summary <- merge(ans[,1:19], ans.summary)
-ans.summary2 <- dcast(longform.sum, id~testtype+testnum, value.var = "value")
-ans.summary2 <- merge(ans[,1:19], ans.summary2)
-pct.ans <- dcast(longform.sum, id~testtype+testnum, value.var="pct.answered")
+# ans.summary2 <- dcast(longform.sum, id~testtype+testnum, value.var = "value")
+# ans.summary2 <- merge(ans[,1:19], ans.summary2)
+pct.ans <- dcast(longform.sum, id~testtype, value.var="pct.answered")
 
 ans.summary$vidgame_hrs_factor <- ordered(factor(rowSums(sapply(c(-1, 0, 1.99, 4.99), function(i) ans$vidgame_hrs>i)), labels=c("0", "[1, 2)", "[2, 5)", "5+"), levels=1:4))
 # ans.summary$log_vidgame_hrs <- log10(ans.summary$vidgame_hrs+1)
