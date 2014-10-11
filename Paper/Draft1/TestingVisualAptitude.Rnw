@@ -192,7 +192,7 @@ In figure~\ref{fig:visualaptitudects}, we see that participant performance on li
 \caption[Visual Aptitude Study Results]{Preliminary results of categorical variables compared to lineup score.}\label{fig:visualaptitudecat}
 \end{figure}
 
-\newtext{All results and data shown here are done in accordance with IRB \# XXX?}
+All results and data shown here are done in accordance with IRB \# 13-581.
 
 \bibliography{references}
 
