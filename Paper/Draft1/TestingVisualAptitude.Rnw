@@ -141,8 +141,11 @@ ldply(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")]
 
 \comment{If test scores have the same ranges, we could include a mini table of means and standard deviations of the four tests, and discuss whether these findings are consistent to how people usually score (except for the females we have about the same population). }
 
+\comment{
+Split the next sentence up into two paragraph: what is shown in each of the figures, what are the immediate conclusions? chuck out the gaming hours from figure \ref{fig:visualaptitudects}, that's a demograph, so move it to the other plot (I am aware that nine demographics are easier to display than ten, but content trumps). \\
 
-\comment{Split the next sentence up into two paragraph: what is shown in each of the figures, what are the immediate conclusions? chuck out the gaming hours from figure \ref{fig:visualaptitudects}, that's a demograph, so move it to the other plot (I am aware that nine demographics are easier to display than ten, but content trumps). What happened to the arts skills? I seem to have a positive association now - why is my data different from yours?}
+Actually, they were split up like that because of continuous vs. categorical. It's not easy to facet when you have different $x$ scales. I've removed video games entirely for the time being. 
+}
 Results are presented graphically in figures \ref{fig:visualaptitudects} and \ref{fig:visualaptitudecat}. 
 
 <<VisReasoningAnalysis,echo=FALSE, include=FALSE, fig.width=10,fig.height=5, out.width='\\linewidth'>>=
