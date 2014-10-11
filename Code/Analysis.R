@@ -83,9 +83,9 @@ ans.summary$log_vidgame_hrs <- log10(ans.summary$vidgame_hrs+1)
 # qplot(data=ans.summary, x=vis_search, y=lineup, geom="point")
 # 
 
-lineup.summary <- melt(ans.summary, id.vars=c(1:19, 23))
+lineup.summary <- melt(ans.summary, id.vars=c(1:19, 23, 25))
 
 
 # qplot(data=lineup.summary, x=value, y=lineup, geom="point") + facet_wrap(~variable, scales="free")
 
-lineup.summary.categorical <- melt(ans.summary[,c(1:3, 12:17, 19, 23)], id.vars=c("id", "lineup"))
+lineup.summary.categorical <- melt(ans.summary[,c(1:3, 12:17, 19, 23, 25)], id.vars=c("id", "lineup"))
