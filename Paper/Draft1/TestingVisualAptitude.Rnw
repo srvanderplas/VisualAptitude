@@ -104,7 +104,8 @@ Participants will complete the following tasks (sample pictures included, full s
 \end{figure}
 \end{itemize}
 
-Between cognitive tasks, participants will also complete three blocks of 20 lineups each. These lineups have been previously tested \citep{hofmann2012graphical} and include some null lineups (i.e. lineups without a target plot). Participants will have 5 minutes to complete each block of 20 lineups. Figure \ref{fig:lineup} shows a sample lineup of box plots. 
+Between cognitive tasks, participants will also complete three blocks of 20 lineups each. These lineups have been previously tested \citep{hofmann2012graphical} and include some null lineups (i.e. lineups without a target plot). Participants %will 
+have 5 minutes to complete each block of 20 lineups. Figure \ref{fig:lineup} shows a sample lineup of box plots. 
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.9\textwidth]{lineup}
@@ -114,7 +115,20 @@ Between cognitive tasks, participants will also complete three blocks of 20 line
 In addition to these tests, participants will complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
 
 \section{Results}
-We have tested 18 students, and plan to increase sample size once the summer semester begins. Preliminary results are presented graphically in figures \ref{fig:visualaptitudects} and \ref{fig:visualaptitudecat}. Scoring for all of the tests was calculated such that with random guessing, the expected score on a problem would be 0; thus, for a test with possible answers A, B, C, D, and E, the score would be calculated by subtracting $1/4*\text{\# wrong answers}$ from the total number of correct answers. This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. The scoring mechanism is also used on many standardized tests (the SAT, ACT, and the battery of psychological tests which certain sections of this test are drawn from); the ability to combine both accuracy and number of questions attempted into a single number makes comparing test scores much easier. In general, the formula for computing the score would be $$1/(n-1)*(\text{\# wrong answers}) + (\text{\# correct answers})$$ where $n$ is the total number of possible answers. 
+\newtext{Results are based on evaluation of \Sexpr{nrow(lineup.summary)} undergraduate students at Iowa State University. }
+%We have tested students, and plan to increase sample size once the summer semester begins. 
+Preliminary results are presented graphically in figures \ref{fig:visualaptitudects} and \ref{fig:visualaptitudecat}. 
+\comment{No woulds, shoulds or coulds}
+Scoring for all of the tests was calculated such that with random guessing, the expected score on a problem would be 0; thus, for a test with possible answers A, B, C, D, and E, the score would be calculated by subtracting $1/4*\text{\# wrong answers}$ from the total number of correct answers. 
+\comment{re-phrasing the above sentence:}
+\newtext{Scoring of all test results was done such that random guessing will lead to an expected value of 0; thus for a test consisting of multiple choice questions with $k$ possible answers and one correct answer each, the score is calculated as}
+\begin{eqnarray}\label{eq.scoring}
+\# \text{total correct answers } - 1/k \cdot \text{\#wrong answers}.
+\end{eqnarray}
+
+This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. This scoring mechanism is also used on many standardized tests, such as the  SAT, ACT, and the battery of psychological tests which \newtext{parts} of this test are drawn from.
+The ability to combine both accuracy and number of questions attempted into a single number makes comparing test scores much easier. 
+%In general, the formula for computing the score would be $$1/(n-1)*(\text{\# wrong answers}) + (\text{\# correct answers})$$ where $n$ is the total number of possible answers. 
 
 <<VisReasoningAnalysis,echo=FALSE, include=FALSE, fig.width=10,fig.height=5, out.width='\\linewidth'>>=
 lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Card Rotation", "Figure Classification", "Paper Folding", "Visual Search", "Log10 Video Game Hrs/Wk"))
@@ -145,6 +159,8 @@ ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=6, height
 \includegraphics[width=\textwidth]{fig-VisReasoningAnalysisCat}
 \caption[Visual Aptitude Study Results]{Preliminary results of categorical variables compared to lineup score.}\label{fig:visualaptitudecat}
 \end{figure}
+
+\newtext{All results and data shown here are done in accordance with IRB \# XXX?}
 
 \bibliography{references}
 
