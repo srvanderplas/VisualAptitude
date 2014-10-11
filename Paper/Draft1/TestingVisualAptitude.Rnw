@@ -160,7 +160,7 @@ Results are presented graphically in figures \ref{fig:visualaptitudects} and \re
 <<VisReasoningAnalysis,echo=FALSE, include=FALSE, fig.width=8,fig.height=8, out.width='0.9\\textwidth'>>=
 lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
  
-qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x") + xlab("Value") + ylab("Lineup Score (# Correct - 1/19 # Incorrect)") + geom_smooth(method="lm") + theme_bw()
+qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x") + xlab("Scaled Score") + ylab("Scaled Lineup Score") + geom_smooth(method="lm") + theme_bw()
 # same aspect ratio
 ggsave(paste(imgdir, "fig-VisReasoningAnalysisCts.png", sep=""), width=6, height=6)
 
@@ -173,7 +173,7 @@ lineup.summary.categorical$value[lineup.summary.categorical$value=="y"] <- "TRUE
 lineup.summary.categorical$value[lineup.summary.categorical$value=="n"] <- "FALSE"
 
 
-qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + facet_wrap(~variable, scales="free_x") + xlab("Value") + ylab("Lineup Score (# Correct - 1/19 # Incorrect)") + theme_bw() + geom_point(aes(x=value, y=lineup), shape=1, size=3)
+qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + facet_wrap(~variable, scales="free_x") + xlab("") + ylab("Scaled Lineup Score") + theme_bw() + geom_point(aes(x=value, y=lineup), shape=1, size=3)
 ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=6, height=6)
 @
 
@@ -199,6 +199,23 @@ In figure~\ref{fig:visualaptitudects}, we see that participant performance on li
 \caption[Visual Aptitude Study Results]{Preliminary results of categorical variables compared to lineup score.}\label{fig:visualaptitudecat}
 \end{figure}
 
+Figure \ref{fig:visualaptitudecat} shows participants' responses to the questionnaire given at the beginning of the study; these demographic questions allow us to compare the participants in our study to the undergraduate population of Iowa State as well as to explore relationships between demographic characteristics (major, research experience, etc.) and score on various sections of this test. There is little difference in lineup performance for participants of different age, self-assessed skill rating, previous participation in math or science research or completion of a statistics class. There is a significant difference between male and female performance on lineups; this is not particularly surprising, since men perform better on many spatial tests \citep{voyer1995magnitude} and performance on spatial tests is correlated with phase of the menstrual cycle in women \citep{hausmann2000sex}. In addition, completion of Calculus I is associated with increased performance on lineups (though completion of calculus is also associated with sex). AutoCAD experience is also not significantly associated with lineup performance; there is a difference in the medians, but it does not rise to the level of significance. There is also a significant association between hours of video games played per week and score on lineups, however, this association is not monotonic and may be at least partially a result of the large difference in performance due to sex. 
+
+
+<<t.test.sex, echo=T, comment="|">>=
+t.test(ans.summary$lineup[ans.summary$sex=="m"], ans.summary$lineup[ans.summary$sex=="f"])
+@
+<<t.test.calculus, echo=T, comment="|">>=
+t.test(ans.summary$lineup[ans.summary$calc_1=="y"], ans.summary$lineup[ans.summary$calc_1=="n"])
+@
+<<lm.vid.games, echo=T, comment="|">>=
+ans.summary$vidgame_hrs_factor_new <- factor(ans.summary$vidgame_hrs_factor, ordered=FALSE)
+summary(lm(data=ans.summary, lineup~vidgame_hrs_factor_new))
+# summary(lm(data=ans.summary, lineup~vidgame_hrs))
+@
+<<lm.all, echo=T, comment="|">>=
+summary(lm(data=ans.summary, lineup~sex+calc_1+vidgame_hrs_factor_new))
+@
 All results and data shown here are done in accordance with IRB \# 13-581.
 
 \bibliography{references}
