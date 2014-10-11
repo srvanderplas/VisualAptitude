@@ -69,6 +69,7 @@ source(paste(codedir, "Analysis.R", sep=""))
 \begin{document}
 \maketitle
 
+\comment{The text makes still a lot of references to `preliminary results'. Don't just use copy \& paste for the changes!!!! Go through those sections and adjust. We are working on the final analysis now. Even if numbers might still change, they are not preliminary anymore. }
 \section{Introduction}
 Relevant literature: 
 \begin{itemize}
@@ -118,9 +119,9 @@ In addition to these tests, participants will complete a questionnaire which inc
 \newtext{Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students at Iowa State University. }
 Scoring of all test results was done such that random guessing leads to an expected value of 0; thus for a test consisting of multiple choice questions with $k$ suggested answers with a single correct answer each, the score is calculated as
 \begin{eqnarray}\label{eq.scoring}
-\# \text{total correct answers } - 1/(k-1) \cdot \# \text{wrong answers}.
+\# \text{correct answers } - 1/(k-1) \cdot \# \text{wrong answers}.
 \end{eqnarray}
-This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests which parts of this test are drawn from \citep{diamond1973correction, ekstrom1976manual}.
+This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests \citep{diamond1973correction, ekstrom1976manual} which parts of this test are drawn from.
 
 Additionally, we have to ensure that the ranges and units of test scores are comparable. Assume $n$ questions with $k$ choices (including one correct answer) each. 
 This leads to a theoretical range of $[-n/(k-1), n]$ and, under an additional assumption of random guessing, a variance of 
@@ -131,10 +132,13 @@ This leads to a theoretical range of $[-n/(k-1), n]$ and, under an additional as
 &=& n^2/(k-1)
 \end{eqnarray*}
 
-\comment{\textit{We might need to expand this a bit to account for the figure classification section, which has some questions with 2 answers and some with 3. Or we could leave it as an exercise for the reader :)}}
+\comment{\textit{We might need to expand this a bit to account for the figure classification section, which has some questions with 2 answers and some with 3. Or we could leave it as an exercise for the reader :)}
+It's fairly trivial to apply this to the mixture - the only assumption that goes into the variance discussion is that the questions are independent. We don't need to include it here, but you should apply it to the figure classification set.
+
+}
 
 \comment{\textit{So are we scaling things by the variance/std dev. under random guessing? Or by the theoretical test range?}\\
-Right now, I'm assuming that we're scaling between 0 and 100 by test range $[-a, b]$. So we take the guessing-fixed score and add $a$, then divide by $(a+b)$ and multiply by 100.}
+Let's use the standard deviation, so that all tests have an expected value of 0 and a variance/standard deviation of 1 under random guessing.}
 
 \comment{The next step is an overview of the possible ranges of the test scores in our study, because that is driven by the number of tests shown. It would be good to scale everything, so that we have the same theoretical range. That will actually allow a comparison across different tests.}
 <<means>>=
@@ -149,14 +153,14 @@ Split the next sentence up into two paragraph: what is shown in each of the figu
 \textit{Actually, they were split up like that because of continuous vs. categorical. It's not easy to facet when you have different $x$ scales. I've removed video games entirely for the time being. I agree it didn't really belong there, but I can't get it to work with the facetting, either. I will probably just bin it eventually. 
 }}
 
-\comment{What happened to the arts skills? I seem to have a positive association now - why is my data different from yours? \\
-\textit{I have the same updated results you do. I see that Stephanie changed the data file (but didn't add any more rows)... is it possible something changed there? Otherwise, maybe my dropbox didn't update correctly the first time? Or maybe it was figure caching?}}
+% \comment{What happened to the arts skills? I seem to have a positive association now - why is my data different from yours? \\
+% \textit{I have the same updated results you do. I see that Stephanie changed the data file (but didn't add any more rows)... is it possible something changed there? Otherwise, maybe my dropbox didn't update correctly the first time? Or maybe it was figure caching?}}
 Results are presented graphically in figures \ref{fig:visualaptitudects} and \ref{fig:visualaptitudecat}. 
 
-<<VisReasoningAnalysis,echo=FALSE, include=FALSE, fig.width=10,fig.height=5, out.width='\\linewidth'>>=
+<<VisReasoningAnalysis,echo=FALSE, include=FALSE, fig.width=8,fig.height=8, out.width='0.9\\textwidth'>>=
 lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
  
-qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x") + xlab("Scaled Score") + ylab("Scaled Lineup Score") + geom_smooth(method="lm") + theme_bw()
+qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x") + xlab("Value") + ylab("Lineup Score (# Correct - 1/19 # Incorrect)") + geom_smooth(method="lm") + theme_bw()
 ggsave(paste(imgdir, "fig-VisReasoningAnalysisCts.png", sep=""), width=6, height=4)
 
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
@@ -168,8 +172,8 @@ lineup.summary.categorical$value[lineup.summary.categorical$value=="y"] <- "TRUE
 lineup.summary.categorical$value[lineup.summary.categorical$value=="n"] <- "FALSE"
 
 
-qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + facet_wrap(~variable, scales="free_x") + xlab("") + ylab("Scaled Lineup Score") + theme_bw() + geom_point(aes(x=value, y=lineup), shape=1, size=3)
-ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=8, height=6)
+qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + facet_wrap(~variable, scales="free_x") + xlab("Value") + ylab("Lineup Score (# Correct - 1/19 # Incorrect)") + theme_bw() + geom_point(aes(x=value, y=lineup), shape=1, size=3)
+ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=6, height=6)
 @
 
 <<correlations, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".5\\linewidth", fig.height=4.5, fig.width=7.5, comment="|">>=
@@ -181,8 +185,8 @@ screeplot(pca)
 @
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=\textwidth]{fig-VisReasoningAnalysisCts}
-\caption[Visual Aptitude Study Results]{Preliminary results of continuous variables compared to lineup score.}\label{fig:visualaptitudects}
+\includegraphics[width=0.9\textwidth]{fig-VisReasoningAnalysisCts}
+\caption[Visual Aptitude Study Results]{Scatterplots of all test scores compared to participants' scores in the lineup tests. \comment{What is the main message of these plots? Relatively strong positive correlation to all established test scores?}}\label{fig:visualaptitudects}
 \end{figure}
 
 \comment{\textit{I did change the lineup scoring - for some reason, I was averaging before (and I hadn't included the third battery of lineups b/c of scoring issues). That explains the scale, but not the change in art skills association.}}
@@ -193,20 +197,6 @@ In figure~\ref{fig:visualaptitudects}, we see that participant performance on li
 \includegraphics[width=\textwidth]{fig-VisReasoningAnalysisCat}
 \caption[Visual Aptitude Study Results]{Preliminary results of categorical variables compared to lineup score.}\label{fig:visualaptitudecat}
 \end{figure}
-
-Figure \ref{fig:visualaptitudecat} shows participants' responses to the questionnaire given at the beginning of the study; these demographic questions allow us to compare the participants in our study to the undergraduate population of Iowa State as well as to explore relationships between demographic characteristics (major, research experience, etc.) and score on various sections of this test. There is little difference in lineup performance for participants of different age, self-assessed skill rating, previous participation in math or science research or completion of a statistics class. There is a significant difference between male and female performance on lineups; this is not particularly surprising, since men perform better on many spatial tests \citep{voyer1995magnitude} and performance on spatial tests is correlated with phase of the menstrual cycle in women \citep{hausmann2000sex}. In addition, completion of Calculus I is associated with increased performance on lineups (though completion of calculus is also associated with sex). AutoCAD experience is also not significantly associated with lineup performance; there is a difference in the medians, but it does not rise to the level of significance. There is also a significant association between hours of video games played per week and score on lineups, however, this association is not monotonic and may be at least partially a result of the large difference in performance due to sex. 
-
-
-<<t.test.categorical, echo=T, comment="|">>=
-t.test(ans.summary$lineup[ans.summary$sex=="m"], ans.summary$lineup[ans.summary$sex=="f"])
-
-t.test(ans.summary$lineup[ans.summary$calc_1=="y"], ans.summary$lineup[ans.summary$calc_1=="n"])
-
-ans.summary$vidgame_hrs_factor_new <- factor(ans.summary$vidgame_hrs_factor, ordered=FALSE)
-summary(lm(data=ans.summary, lineup~vidgame_hrs_factor_new))
-
-summary(lm(data=ans.summary, lineup~sex+calc_1+vidgame_hrs_factor_new))
-@
 
 All results and data shown here are done in accordance with IRB \# 13-581.
 
