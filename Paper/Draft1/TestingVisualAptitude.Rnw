@@ -184,6 +184,8 @@ screeplot(pca)
 \caption[Visual Aptitude Study Results]{Preliminary results of continuous variables compared to lineup score.}\label{fig:visualaptitudects}
 \end{figure}
 
+\comment{\textit{I did change the lineup scoring - for some reason, I was averaging before (and I hadn't included the third battery of lineups b/c of scoring issues).}}
+
 In figure~\ref{fig:visualaptitudects}, we see that participant performance on lineups is positively correlated with performance on card rotation, figure classification, and paper folding tasks. This suggests that skills associated with visual reasoning ability are related to lineup performance. As participants must use the same skills in lineups (mental rotation, classification and determining categorization schemes, and multi-step spatial reasoning) as in the factor-referenced tests, this is not particularly surprising. 
 \begin{figure}[htbp]\centering
 \includegraphics[width=\textwidth]{fig-VisReasoningAnalysisCat}
