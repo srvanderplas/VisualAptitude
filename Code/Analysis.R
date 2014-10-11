@@ -66,8 +66,8 @@ longform$penalty[longform$testtype=="fig_class" & longform$qnum>8] <- 1/2
 longform.sum <- ddply(longform, .(id, testtype, testnum), summarize, 
                       value=ifelse(is.numeric(value), sum(value, na.rm=T)-sum(!value,na.rm=T)*penalty, unique(value)), 
                       pct.answered=sum(!is.na(value))/length(value))
-longform.sum$value[longform.sum$testtype=="lineup" & longform.sum$testnum==3] <- NA
-ans.summary <- dcast(longform.sum, id~testtype, value.var="value", fun.aggregate = mean, na.rm=TRUE)
+# longform.sum$value[longform.sum$testtype=="lineup" & longform.sum$testnum==3] <- NA
+ans.summary <- dcast(longform.sum, id~testtype, value.var="value", fun.aggregate = sum, na.rm=TRUE)
 ans.summary <- merge(ans[,1:19], ans.summary)
 ans.summary2 <- dcast(longform.sum, id~testtype+testnum, value.var = "value")
 ans.summary2 <- merge(ans[,1:19], ans.summary2)
