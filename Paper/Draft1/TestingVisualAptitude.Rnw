@@ -122,11 +122,20 @@ Scoring for all of the tests was calculated such that with random guessing, the 
 \comment{re-phrasing the above sentence:}
 \newtext{Scoring of all test results was done such that random guessing leads to an expected value of 0; thus for a test consisting of multiple choice questions with $k$ suggested answers with a single correct answer each, the score is calculated as}
 \begin{eqnarray}\label{eq.scoring}
-\# \text{total correct answers } - 1/k \cdot \# \text{wrong answers}.
+\# \text{total correct answers } - 1/(k-1) \cdot \# \text{wrong answers}.
 \end{eqnarray}
 
 This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. \newtext{Combining accuracy and speed into a single number does not only make a comparison of test scores easier, } this scoring mechanism is also used on many standardized tests, such as the  SAT, ACT, and the battery of psychological tests which \newtext{parts} of this test are drawn from.
 \comment{We need a few citations here. }
+\newtext{Additionally, we have to ensure that the ranges and units of test scores are comparable. Assume $n$ questions with $k$ choices (including one correct answer) each. 
+This leads to a theoretical range of $[-n/(k-1), n]$ and, under an additional assumption of random guessing, a variance of }
+\begin{eqnarray*}
+\text{Var}(X_{n, k}) &=& n^2 \text{Var}(X_{n, k}) = \\
+&=& n^2 (\underbrace{1/k \cdot 1^2}_{\text{correct answer}}+ \underbrace{(-1/(k-1))^2 \cdot (k-1)/k}_{\text{wrong answer}}) = \\
+&=& n^2/(k-1)
+\end{eqnarray*}
+
+
 %The ability to combine both accuracy and number of questions attempted into a single number makes comparing test scores much easier. 
 %In general, the formula for computing the score would be $$1/(n-1)*(\text{\# wrong answers}) + (\text{\# correct answers})$$ where $n$ is the total number of possible answers. 
 \comment{The next step is an overview of the possible ranges of the test scores in our study, because that is driven by the number of tests shown. It would be good to scale everything, so that we have the same theoretical range. That will actually allow a comparison across different tests.}
