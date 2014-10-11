@@ -48,15 +48,20 @@ scored[,1:19] <- ans[,1:19]
 scored[,20:396] <- apply(scored[,20:396], 2, as.numeric)
 
 library(reshape2)
+library(stringr)
 longform <- melt(scored[,c(1, 20:396)], id.vars=1)
 longform$testtype <- gsub("_q[0123456789]+[abcdefgh]?$", "", longform$variable)
 longform$testnum <- as.numeric(gsub("[[:alpha:]_]+", "", longform$testtype))
 longform$testtype <- gsub("[[:digit:]]", "", longform$testtype)
+longform$qnum <- as.numeric(str_replace(str_extract(longform$variable, "q\\d{1,2}"), fixed("q"), ""))
 longform$penalty <- 0
 longform$penalty[longform$testtype=="vis_search"] <- 1/23
 longform$penalty[longform$testtype=="lineup"] <- 1/19
 longform$penalty[longform$testtype=="card_rot"] <- 1
 longform$penalty[longform$testtype=="folding"] <- 1/4
+longform$penalty[longform$testtype=="fig_class" & longform$qnum<=8] <- 1
+longform$penalty[longform$testtype=="fig_class" & longform$qnum>8] <- 1/2
+
 
 longform.sum <- ddply(longform, .(id, testtype, testnum), summarize, 
                       value=ifelse(is.numeric(value), sum(value, na.rm=T)-sum(!value,na.rm=T)*penalty, unique(value)), 
