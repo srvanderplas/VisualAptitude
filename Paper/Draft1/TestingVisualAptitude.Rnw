@@ -168,8 +168,8 @@ lineup.summary.categorical$value[lineup.summary.categorical$value=="y"] <- "TRUE
 lineup.summary.categorical$value[lineup.summary.categorical$value=="n"] <- "FALSE"
 
 
-qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + facet_wrap(~variable, scales="free_x") + xlab("Value") + ylab("Lineup Score (# Correct - 1/19 # Incorrect)") + theme_bw() + geom_point(aes(x=value, y=lineup), shape=1, size=3)
-ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=6, height=6)
+qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + facet_wrap(~variable, scales="free_x") + xlab("") + ylab("Lineup Score (# Correct - 1/19 # Incorrect)") + theme_bw() + geom_point(aes(x=value, y=lineup), shape=1, size=3)
+ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=8, height=6)
 @
 
 <<correlations, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".5\\linewidth", fig.height=4.5, fig.width=7.5, comment="|">>=
