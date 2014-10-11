@@ -69,7 +69,7 @@ source(paste(codedir, "Analysis.R", sep=""))
 \begin{document}
 \maketitle
 
-\comment{The text makes still a lot of references to `preliminary results'. Don't just use copy \& paste for the changes!!!! Go through those sections and adjust. We are working on the final analysis now. Even if numbers might still change, they are not preliminary anymore. }
+% \comment{The text makes still a lot of references to `preliminary results'. Don't just use copy \& paste for the changes!!!! Go through those sections and adjust. We are working on the final analysis now. Even if numbers might still change, they are not preliminary anymore. }
 \section{Introduction}
 Relevant literature: 
 \begin{itemize}
@@ -187,7 +187,7 @@ screeplot(pca)
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=0.75\textwidth]{fig-VisReasoningAnalysisCts}
-\caption[Visual Aptitude Study Results]{Scatterplots of all test scores compared to participants' scores in the lineup tests. \comment{What is the main message of these plots? Relatively strong positive correlation to all established test scores?}}\label{fig:visualaptitudects}
+\caption[Visual Aptitude Study Results]{Scatterplots of all test scores compared to participants' scores in the lineup tests. There is a relatively strong positive correlation between lineup score and scores on visuospatial reasoning tests.}\label{fig:visualaptitudects}
 \end{figure}
 
 \comment{\textit{I did change the lineup scoring - for some reason, I was averaging before (and I hadn't included the third battery of lineups b/c of scoring issues). That explains the scale, but not the change in art skills association.}}
@@ -196,7 +196,7 @@ In figure~\ref{fig:visualaptitudects}, we see that participant performance on li
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=\textwidth]{fig-VisReasoningAnalysisCat}
-\caption[Visual Aptitude Study Results]{Preliminary results of categorical variables compared to lineup score.}\label{fig:visualaptitudecat}
+\caption[Visual Aptitude Study Results]{Demographic characteristics compared with lineup score.}\label{fig:visualaptitudecat}
 \end{figure}
 
 All results and data shown here are done in accordance with IRB \# 13-581.
