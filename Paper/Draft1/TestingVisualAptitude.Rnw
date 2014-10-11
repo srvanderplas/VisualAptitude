@@ -130,6 +130,11 @@ This allows us to compare each participant's score in light of how many problems
 %The ability to combine both accuracy and number of questions attempted into a single number makes comparing test scores much easier. 
 %In general, the formula for computing the score would be $$1/(n-1)*(\text{\# wrong answers}) + (\text{\# correct answers})$$ where $n$ is the total number of possible answers. 
 \comment{The next step is an overview of the possible ranges of the test scores in our study, because that is driven by the number of tests shown. It would be good to scale everything, so that we have the same theoretical range. That will actually allow a comparison across different tests.}
+<<means>>=
+library(plyr)
+ldply(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")], c(mean=mean,sd= sd))
+@
+
 \comment{If test scores have the same ranges, we could include a mini table of means and standard deviations of the four tests, and discuss whether these findings are consistent to how people usually score (except for the females we have about the same population). }
 
 
