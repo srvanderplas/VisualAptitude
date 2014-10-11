@@ -131,30 +131,27 @@ This leads to a theoretical range of $[-n/(k-1), n]$ and, under an additional as
 &=& n^2/(k-1)
 \end{eqnarray*}
 
-\comment{\textit{We might need to expand this a bit to account for the figure classification section, which has some questions with 2 answers and some with 3. Or we could leave it as an exercise for the reader :)}
-It's fairly trivial to apply this to the mixture - the only assumption that goes into the variance discussion is that the questions are independent. We don't need to include it here, but you should apply it to the figure classification set.
-
-}
-
-\comment{\textit{So are we scaling things by the variance/std dev. under random guessing? Or by the theoretical test range?}\\
-Let's use the standard deviation, so that all tests have an expected value of 0 and a variance/standard deviation of 1 under random guessing.}
-
-\comment{The next step is an overview of the possible ranges of the test scores in our study, because that is driven by the number of tests shown. It would be good to scale everything, so that we have the same theoretical range. That will actually allow a comparison across different tests.}
+% \comment{\textit{So are we scaling things by the variance/std dev. under random guessing? Or by the theoretical test range?}\\
+% Let's use the standard deviation, so that all tests have an expected value of 0 and a variance/standard deviation of 1 under random guessing.}
+% 
+% \comment{The next step is an overview of the possible ranges of the test scores in our study, because that is driven by the number of tests shown. It would be good to scale everything, so that we have the same theoretical range. That will actually allow a comparison across different tests.}
 <<means>>=
 library(plyr)
 ldply(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")], c(mean=mean,sd= sd))
 @
 
-\comment{If test scores have the same ranges, we could include a mini table of means and standard deviations of the four tests, and discuss whether these findings are consistent to how people usually score (except for the females we have about the same population). }
+<<correlations, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".5\\linewidth", fig.height=4.5, fig.width=7.5, comment="|", warning=F, message=F>>=
+cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")])
+# using scaled version right now, should be changed to unscaled once the scores are internally scaled.
+pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=T)
+summary(pca)
+screeplot(pca)
+@
 
-\comment{
-Split the next sentence up into two paragraph: what is shown in each of the figures, what are the immediate conclusions? chuck out the gaming hours from figure \ref{fig:visualaptitudects}, that's a demograph, so move it to the other plot (I am aware that nine demographics are easier to display than ten, but content trumps). \\
-\textit{Actually, they were split up like that because of continuous vs. categorical. It's not easy to facet when you have different $x$ scales. I've removed video games entirely for the time being. I agree it didn't really belong there, but I can't get it to work with the facetting, either. I will probably just bin it eventually. 
-}}
+\comment{If test scores have the same ranges, we could include a mini table of means and standard deviations of the four tests, and discuss whether these findings are consistent to how people usually score (except for the females we have about the same population). \textit{I'm not sure where to find the ``normal scores" in the factor-referenced manual. I'll check through it again, but I don't recall seeing it.}}
 
-% \comment{What happened to the arts skills? I seem to have a positive association now - why is my data different from yours? \\
-% \textit{I have the same updated results you do. I see that Stephanie changed the data file (but didn't add any more rows)... is it possible something changed there? Otherwise, maybe my dropbox didn't update correctly the first time? Or maybe it was figure caching?}}
-Results are presented graphically in figures \ref{fig:visualaptitudects} and \ref{fig:visualaptitudecat}. 
+
+In figure~\ref{fig:visualaptitudects}, we see that participant performance on lineups is positively correlated with performance on card rotation, figure classification, and paper folding tasks. This suggests that skills associated with visual reasoning ability are related to lineup performance. As participants must use the same skills in lineups (mental rotation, classification and determining categorization schemes, and multi-step spatial reasoning) as in the factor-referenced tests, this is not particularly surprising. In addition,there seems to be some positive relationship between a participant's score on the visual search task and their score on lineups: the visual search task represents a baseline of a participant's ability to find a matching pattern, while lineups require that task as well as the ability to determine what the pattern is for a particular graph. Even excluding the one low visual search score that is a high-leverage point, there seems to be a positive relationship between a participant's score on lineups and their score for visual search. 
 
 <<VisReasoningAnalysis,echo=FALSE, include=FALSE, fig.width=8,fig.height=8, out.width='0.9\\textwidth', message=F, warning=F>>=
 lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
@@ -176,29 +173,19 @@ qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + face
 ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=6, height=6)
 @
 
-<<correlations, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".5\\linewidth", fig.height=4.5, fig.width=7.5, comment="|", warning=F, message=F>>=
-cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")])
-# using scaled version right now, should be changed to unscaled once the scores are internally scaled.
-pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=T)
-summary(pca)
-screeplot(pca)
-@
-
 \begin{figure}[htbp]\centering
 \includegraphics[width=0.75\textwidth]{fig-VisReasoningAnalysisCts}
 \caption[Visual Aptitude Study Results]{Scatterplots of all test scores compared to participants' scores in the lineup tests. There is a relatively strong positive correlation between lineup score and scores on visuospatial reasoning tests.}\label{fig:visualaptitudects}
 \end{figure}
 
-\comment{\textit{I did change the lineup scoring - for some reason, I was averaging before (and I hadn't included the third battery of lineups b/c of scoring issues). That explains the scale, but not the change in art skills association.}}
-
-In figure~\ref{fig:visualaptitudects}, we see that participant performance on lineups is positively correlated with performance on card rotation, figure classification, and paper folding tasks. This suggests that skills associated with visual reasoning ability are related to lineup performance. As participants must use the same skills in lineups (mental rotation, classification and determining categorization schemes, and multi-step spatial reasoning) as in the factor-referenced tests, this is not particularly surprising. In addition,there seems to be some positive relationship between a participant's score on the visual search task and their score on lineups: the visual search task represents a baseline of a participant's ability to find a matching pattern, while lineups require that task as well as the ability to determine what the pattern is for a particular graph. Even excluding the one low visual search score that is a high-leverage point, there seems to be a positive relationship between a participant's score on lineups and their score for visual search. 
+Figure \ref{fig:visualaptitudecat} shows participants' responses to the questionnaire given at the beginning of the study; these demographic questions allow us to compare the participants in our study to the undergraduate population of Iowa State as well as to explore relationships between demographic characteristics (major, research experience, etc.) and score on various sections of this test. 
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=\textwidth]{fig-VisReasoningAnalysisCat}
 \caption[Visual Aptitude Study Results]{Sample demographic characteristics compared with lineup score. Sex (male), Calculus completion, and hours spent playing video games per week are all associated with a difference in lineup score. }\label{fig:visualaptitudecat}
 \end{figure}
 
-Figure \ref{fig:visualaptitudecat} shows participants' responses to the questionnaire given at the beginning of the study; these demographic questions allow us to compare the participants in our study to the undergraduate population of Iowa State as well as to explore relationships between demographic characteristics (major, research experience, etc.) and score on various sections of this test. There is little difference in lineup performance for participants of different age, self-assessed skill rating, previous participation in math or science research or completion of a statistics class. There is a significant difference between male and female performance on lineups; this is not particularly surprising, since men perform better on many spatial tests \citep{voyer1995magnitude} and performance on spatial tests is correlated with phase of the menstrual cycle in women \citep{hausmann2000sex}. In addition, completion of Calculus I is associated with increased performance on lineups (though completion of calculus is also associated with sex). AutoCAD experience is also not significantly associated with lineup performance; there is a difference in the medians, but it does not rise to the level of significance. There is also a significant association between hours of video games played per week and score on lineups, however, this association is not monotonic and may be at least partially a result of the large difference in performance due to sex. 
+There is no significant difference in lineup performance for participants of different age, self-assessed skill rating, previous participation in math or science research or completion of a statistics class. There is a significant difference between male and female performance on lineups; this is not particularly surprising, since men perform better on many spatial tests \citep{voyer1995magnitude} and performance on spatial tests is correlated with phase of the menstrual cycle in women \citep{hausmann2000sex}. In addition, completion of Calculus I is associated with increased performance on lineups (though completion of calculus is also associated with sex). AutoCAD experience is also not significantly associated with lineup performance; there is a difference in the medians, but it does not rise to the level of significance. There is also a significant association between hours of video games played per week and score on lineups, however, this association is not monotonic and may be at least partially a result of the large difference in performance due to sex. 
 
 
 <<t.test.sex, echo=T, comment="|">>=
