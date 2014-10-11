@@ -69,7 +69,6 @@ source(paste(codedir, "Analysis.R", sep=""))
 \begin{document}
 \maketitle
 
-% \comment{The text makes still a lot of references to `preliminary results'. Don't just use copy \& paste for the changes!!!! Go through those sections and adjust. We are working on the final analysis now. Even if numbers might still change, they are not preliminary anymore. }
 \section{Introduction}
 Relevant literature: 
 \begin{itemize}
