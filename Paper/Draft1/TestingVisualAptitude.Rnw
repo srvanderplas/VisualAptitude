@@ -133,7 +133,8 @@ This leads to a theoretical range of $[-n/(k-1), n]$ and, under an additional as
 
 \comment{\textit{We might need to expand this a bit to account for the figure classification section, which has some questions with 2 answers and some with 3. Or we could leave it as an exercise for the reader :)}}
 
-\comment{\textit{So are we scaling things by the variance/std dev. under random guessing? Or by the theoretical test range?}}
+\comment{\textit{So are we scaling things by the variance/std dev. under random guessing? Or by the theoretical test range?}\\
+Right now, I'm assuming that we're scaling between 0 and 100 by test range $[-a, b]$. So we take the guessing-fixed score and add $a$, then divide by $(a+b)$ and multiply by 100.}
 
 \comment{The next step is an overview of the possible ranges of the test scores in our study, because that is driven by the number of tests shown. It would be good to scale everything, so that we have the same theoretical range. That will actually allow a comparison across different tests.}
 <<means>>=
