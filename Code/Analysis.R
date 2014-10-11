@@ -98,6 +98,6 @@ ans.summary$vidgame_hrs_factor <- ordered(factor(rowSums(sapply(c(-1, 0, 1.99, 4
 lineup.summary <- melt(ans.summary, id.vars=c(1:19, 23, 25))
 
 
-# qplot(data=lineup.summary, x=value, y=lineup, geom="point") + facet_wrap(~variable, scales="free")
+# qplot(data=lineup.summary, x=value, y=lineup, geom="point") + facet_wrap(~variable) + xlim(c(0,100))
 
 lineup.summary.categorical <- melt(ans.summary[,c(1:3, 12:17, 19, 23, 25)], id.vars=c("id", "lineup"))
