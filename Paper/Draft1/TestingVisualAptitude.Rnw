@@ -115,21 +115,23 @@ have 5 minutes to complete each block of 20 lineups. Figure \ref{fig:lineup} sho
 In addition to these tests, participants will complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
 
 \section{Results}
-\newtext{Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students at Iowa State University. }
-Scoring of all test results was done such that random guessing leads to an expected value of 0; thus for a test consisting of multiple choice questions with $k$ suggested answers with a single correct answer each, the score is calculated as
+Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students at Iowa State University. 
+Scoring of all test results was done such that random guessing leads to an expected value of 0; therefore each question answered correctly contributes to the score by 1, while a wrong answer is scored by $-1/(k-1)$. Thus, for a test consisting of multiple choice questions with $k$ suggested answers with a single correct answer each, the score is calculated as
 \begin{eqnarray}\label{eq.scoring}
 \# \text{correct answers } - 1/(k-1) \cdot \# \text{wrong answers}.
 \end{eqnarray}
 This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests \citep{diamond1973correction, ekstrom1976manual} which parts of this test are drawn from.
 
-Additionally, we have to ensure that the ranges and units of test scores are comparable. Assume $n$ questions with $k$ choices (including one correct answer) each. 
-This leads to a theoretical range of $[-n/(k-1), n]$ and, under an additional assumption of random guessing, a variance of 
+Additionally, we have to ensure that the ranges and units of test scores are comparable.  Let $X_{n, k}$ be a participant's score on a test consisting of $n$ questions with $k$ answers each, out of which only one is correct.
+This leads to a theoretical range of $X_{n,k}$ of $[-n/(k-1), n]$ and, under an additional assumption of random guessing, a variance of 
 
 \begin{eqnarray*}
-\text{Var}(X_{n, k}) &=& n^2 \text{Var}(X_{n, k}) = \\
+\text{Var}(X_{n, k}) &=& n^2 \text{Var}(X_{1, k}) = \\
 &=& n^2 (\underbrace{1/k \cdot 1^2}_{\text{correct answer}}+ \underbrace{(-1/(k-1))^2 \cdot (k-1)/k}_{\text{wrong answer}}) = \\
-&=& n^2/(k-1)
+&=& n^2/(k-1).
 \end{eqnarray*}
+
+\newtext{The above consideration only assumes independence between questions, which is granted. While we only consider a test consisting of questions with the same number of choices, $k$, an extension to varied number of answers is trivial and has been done in the adjustment for the figure classification score.}
 
 % \comment{\textit{So are we scaling things by the variance/std dev. under random guessing? Or by the theoretical test range?}\\
 % Let's use the standard deviation, so that all tests have an expected value of 0 and a variance/standard deviation of 1 under random guessing.}
