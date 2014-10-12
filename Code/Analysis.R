@@ -1,8 +1,12 @@
 # setwd("~/Dropbox/GraphicsGroup/TestingVisualAptitude/")
 
+# Read in data
 ans <- read.csv(paste0(datadir, "VisualGraphicsData.csv"), na.strings=c(" ", ""), stringsAsFactors=F)
+# Create anon. IDs that are unique
 ans$id <- 1:nrow(ans)
 
+
+# Create a key that has the same structure as the answers
 key <- ans[1,]
 key[,1:19] <- NA
 # Visual Search
@@ -44,13 +48,17 @@ key[,377:396] <- c("a", "d", "b", "d", "b",
                    "c", "b", "a", "e", "b", 
                    "a", "e", "d", "d", "c")
 
+
 library(plyr)
+# Score each answer by whether it is the same as the key. Make sure NA values stay as NA. 
 scored <- ddply(ans, .(id), function(j) as.numeric(j==key) + c(0, NA)[1+is.na(j)])
 names(scored) <- names(ans)
+# Transfer demographic data
 scored[,1:19] <- ans[,1:19]
 # scored[,357:376] <- NA # can't find answers for Lineup3?
 scored[,20:396] <- apply(scored[,20:396], 2, as.numeric)
 
+# Melt scored data into long format, calculate penalties, and compute scores using ddply
 library(reshape2)
 library(stringr)
 longform <- melt(scored[,c(1, 20:396)], id.vars=1)
@@ -66,46 +74,40 @@ longform$penalty[longform$testtype=="folding"] <- 1/4
 longform$penalty[longform$testtype=="fig_class" & longform$qnum<=8] <- 1
 longform$penalty[longform$testtype=="fig_class" & longform$qnum>8] <- 1/2
  
+# Compute penalty and positive points for each test type, as well as quantities needed for variance calculation
 qrange <- ddply(subset(longform, id==1), .(testtype), summarize, min.score=sum(penalty), max.score=length(testtype), n=length(testtype), k=mean(1/penalty+1))
 qrange$var <- with(qrange, n^2/(k-1))
 
-
+# Compute penalty and positive points for each participant
 longform.sum <- ddply(longform, .(id, testtype), summarize, 
                       pos.pts = ifelse(is.numeric(value), sum(value, na.rm=T), unique(value)),
                       neg.pts = ifelse(is.numeric(value), sum((1-value)*penalty, na.rm=T), unique(value)),
                       pct.answered=sum(!is.na(value))/length(value))
 longform.sum <- merge(longform.sum, qrange)
-
+# Calculate raw score
 longform.sum$value <- with(longform.sum, pos.pts-neg.pts)
-tmp <- ddply(longform.sum, .(testtype), summarize, test.mean = mean(value, na.rm=T))
-longform.sum <- merge(longform.sum, tmp)
-longform.sum$value <- with(longform.sum, value - test.mean)
+
+# Calculate test-wise means (for centering) and center scores
+# tmp <- ddply(longform.sum, .(testtype), summarize, test.mean = mean(value, na.rm=T))
+# longform.sum <- merge(longform.sum, tmp)
+# longform.sum$value <- with(longform.sum, value - test.mean)
+
+# Scale scores
 longform.sum$value <- with(longform.sum, value/sqrt(var))
 
+# Alt. Scaling method by range. 
 # longform.sum$value <- with(longform.sum, (pos.pts - neg.pts + min.score)/(min.score+max.score)*100)
 
-# longform.sum$value[longform.sum$testtype=="lineup" & longform.sum$testnum==3] <- NA
+# Cast back to wide-ish form with just test totals
 ans.summary <- dcast(longform.sum, id~testtype, value.var="value", na.rm=TRUE)
 ans.summary <- merge(ans[,1:19], ans.summary)
-# ans.summary2 <- dcast(longform.sum, id~testtype+testnum, value.var = "value")
-# ans.summary2 <- merge(ans[,1:19], ans.summary2)
 pct.ans <- dcast(longform.sum, id~testtype, value.var="pct.answered")
 
+# Create video game factor variable
 ans.summary$vidgame_hrs_factor <- ordered(factor(rowSums(sapply(c(-1, 0, 1.99, 4.99), function(i) ans$vidgame_hrs>i)), labels=c("0", "[1, 2)", "[2, 5)", "5+"), levels=1:4))
-# ans.summary$log_vidgame_hrs <- log10(ans.summary$vidgame_hrs+1)
-# 
-# qplot(data=ans.summary, x=card_rot, y=lineup, geom="point")
-# 
-# qplot(data=ans.summary, x=folding, y=lineup, geom="point") 
-# 
-# qplot(data=ans.summary, x=fig_class, y=lineup, geom="point")
-# 
-# qplot(data=ans.summary, x=vis_search, y=lineup, geom="point")
-# 
 
+# Create plot-able data frame with test results
 lineup.summary <- melt(ans.summary, id.vars=c(1:19, 23, 25))
 
-
-# qplot(data=lineup.summary, x=value, y=lineup, geom="point") + facet_wrap(~variable) + xlim(c(0,100))
-
+# Create plot-able data frame with demographic data
 lineup.summary.categorical <- melt(ans.summary[,c(1:3, 12:17, 19, 23, 25)], id.vars=c("id", "lineup"))
