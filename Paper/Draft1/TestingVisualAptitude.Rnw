@@ -147,9 +147,16 @@ ldply(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")]
 <<correlations, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".5\\linewidth", fig.height=4.5, fig.width=7.5, comment="|", warning=F, message=F>>=
 cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")])
 # using scaled version right now, should be changed to unscaled once the scores are internally scaled.
-pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=T)
+pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=F)
 summary(pca)
 screeplot(pca)
+pca$rotation
+
+# Just using the 4 cognitive tests and ignoring the lineups...
+pca.cog.tests <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")])
+summary(pca.cog.tests)
+screeplot(pca.cog.tests)
+pca.cog.tests$rotation
 @
 
 \comment{If test scores have the same ranges, we could include a mini table of means and standard deviations of the four tests, and discuss whether these findings are consistent to how people usually score (except for the females we have about the same population). \textit{I'm not sure where to find the ``normal scores" in the factor-referenced manual. I'll check through it again, but I don't recall seeing it.}}
