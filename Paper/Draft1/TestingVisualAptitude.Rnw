@@ -116,7 +116,7 @@ In addition to these tests, participants will complete a questionnaire which inc
 
 \section{Results}
 Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students at Iowa State University. 
-Scoring of all test results was done such that random guessing leads to an expected value of 0; therefore each question answered correctly contributes to the score by 1, while a wrong answer is scored by $-1/(k-1)$. Thus, for a test consisting of multiple choice questions with $k$ suggested answers with a single correct answer each, the score is calculated as
+Scoring of all test results was done such that random guessing leads to an expected value of 0; therefore each question answered correctly contributes to the score by 1, while a wrong answer is scored by $-1/(k-1)$, where $k$ is the total number of possible answers to the question. Thus, for a test consisting of multiple choice questions with $k$ suggested answers with a single correct answer each, the score is calculated as
 \begin{eqnarray}\label{eq.scoring}
 \# \text{correct answers } - 1/(k-1) \cdot \# \text{wrong answers}.
 \end{eqnarray}
@@ -128,10 +128,12 @@ This leads to a theoretical range of $X_{n,k}$ of $[-n/(k-1), n]$ and, under an 
 \begin{eqnarray*}
 \text{Var}(X_{n, k}) &=& n^2 \text{Var}(X_{1, k}) = \\
 &=& n^2 (\underbrace{1/k \cdot 1^2}_{\text{correct answer}}+ \underbrace{(-1/(k-1))^2 \cdot (k-1)/k}_{\text{wrong answer}}) = \\
-&=& n^2/(k-1).
+&=& n^2/(k-1).\\
+\text{Sd}(X_{n, k}) &=& n/sqrt{k-1}
 \end{eqnarray*}
 
 \newtext{The above consideration only assumes independence between questions, which is granted. While we only consider a test consisting of questions with the same number of choices, $k$, an extension to varied number of answers is trivial and has been done in the adjustment for the figure classification score.}
+\newtext{In order to ensure all tests have similar variance, we scaled test scores by the standard deviation under random guessing. This approach also allows us to compare the test scores using similar orders of magnitude.}
 
 % \comment{\textit{So are we scaling things by the variance/std dev. under random guessing? Or by the theoretical test range?}\\
 % Let's use the standard deviation, so that all tests have an expected value of 0 and a variance/standard deviation of 1 under random guessing.}
