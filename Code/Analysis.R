@@ -87,6 +87,9 @@ longform.sum <- merge(longform.sum, qrange)
 # Calculate raw score
 longform.sum$value <- with(longform.sum, pos.pts-neg.pts)
 
+# Save unscaled version
+longform.sum.unscaled <- longform.sum
+
 # Calculate test-wise means (for centering) and center scores
 # tmp <- ddply(longform.sum, .(testtype), summarize, test.mean = mean(value, na.rm=T))
 # longform.sum <- merge(longform.sum, tmp)
@@ -102,6 +105,10 @@ longform.sum$value <- with(longform.sum, value/sqrt(var))
 ans.summary <- dcast(longform.sum, id~testtype, value.var="value", na.rm=TRUE)
 ans.summary <- merge(ans[,1:19], ans.summary)
 pct.ans <- dcast(longform.sum, id~testtype, value.var="pct.answered")
+
+# Cast unscaled version
+ans.summary.unscaled <- dcast(longform.sum.unscaled, id~testtype, value.var="value", na.rm=TRUE)
+ans.summary.unscaled <- merge(ans[,1:19], ans.summary.unscaled)
 
 # Create video game factor variable
 ans.summary$vidgame_hrs_factor <- ordered(factor(rowSums(sapply(c(-1, 0, 1.99, 4.99), function(i) ans$vidgame_hrs>i)), labels=c("0", "[1, 2)", "[2, 5)", "5+"), levels=1:4))
