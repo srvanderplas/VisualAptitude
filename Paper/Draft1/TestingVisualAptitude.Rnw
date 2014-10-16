@@ -122,7 +122,8 @@ Scoring of all test results was done such that random guessing leads to an expec
 \begin{eqnarray}\label{eq.scoring}
 \# \text{correct answers } - 1/(k-1) \cdot \# \text{wrong answers}.
 \end{eqnarray}
-This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests \citep{diamond1973correction, ekstrom1976manual} which parts of this test are drawn from.
+This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests \citep{diamond1973correction, ekstrom1976manual} from which parts of this test are drawn. 
+
 
 \begin{savenotes}
 \begin{table}[ht]
