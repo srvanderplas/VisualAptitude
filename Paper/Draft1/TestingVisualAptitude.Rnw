@@ -50,7 +50,7 @@
 rm(list=ls())
 wd <- getwd()
 
-opts_chunk$set(fig.path='Figure/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=F, concordance=TRUE, autodep=TRUE, root.dir="../")
+opts_chunk$set(fig.path='Figure/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=F, tidy=T, concordance=TRUE, autodep=TRUE, root.dir="../", comment="|")
 datadir <- "../../Data/"
 imgdir <- "Figure/"
 codedir <- "../../Code/"
@@ -62,6 +62,7 @@ library(reshape2)
 suppressMessages(library(ggplot2))
 library(plyr)
 suppressMessages(library(gridExtra))
+library(xtable)
 source(paste(codedir, "Analysis.R", sep=""))
 @
 
