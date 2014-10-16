@@ -124,7 +124,9 @@ Scoring of all test results was done such that random guessing leads to an expec
 \end{eqnarray}
 This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests \citep{diamond1973correction, ekstrom1976manual} from which parts of this test are drawn. 
 
+\newtext{The advantage of using tests from the Kit of Factor Referenced Cognitive tests \citep{ekstrom1976manual} is that the tests are extremely well studied \citep{voyer1995manual} and comparison data are available from the validation of these factors. The card rotation, paper folding, and figure classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students).}
 
+% \comment{If test scores have the same ranges, we could include a mini table of means and standard deviations of the four tests, and discuss whether these findings are consistent to how people usually score (except for the females we have about the same population).}
 \begin{savenotes}
 \begin{table}[ht]
 \centering
@@ -149,16 +151,15 @@ Unscaled Scores & 44.0 (24.6)\footnote{Data from Part I only.}
 \end{table}
 \end{savenotes}
 
-\newtext{Table \ref{tab:scorecomparison} shows mean scores and standard deviation for ISU students and other populations compared using the Kit of Factor-Referenced Cognitive Tests \citet{ekstrom1976manual}. Once values have been adjusted to accommodate different test procedures (some data is reported for a single part of a two-part test, for instance), it is evident that Iowa State undergraduates scored at about the same level as other similar demographics. In fact, both means and standard deviations of ISU students' scores are similar to the comparison groups, which were chosen from available demographic groups based on population similarity.}\footnote{That is, if comparison data was available for 9th grade students and 12th grade students, we have compared Iowa State students' scores with the 12th grade students.}
+\newtext{Table \ref{tab:scorecomparison} shows mean scores and standard deviation for ISU students and other populations. Once values have been adjusted to accommodate different test procedures (some data is reported for a single part of a two-part test, for instance), it is evident that Iowa State undergraduates scored at about the same level as other similar demographics. In fact, both means and standard deviations of ISU students' scores are similar to the comparison groups, which were chosen from available demographic groups based on population similarity.}\footnote{That is, if comparison data was available for 9th grade students and 12th grade students, we have compared Iowa State students' scores with the 12th grade students, as they are closer in age to college students. When data was available from college students and Army enlistees, we have compared ISU students to other college students, as college students are more likely to have similar gender distribution to ISU students.}
 
-\newtext{For the remainder of this analysis, we will scale the test results so that the ranges and units of test scores are comparable.} Let $X_{n, k}$ be a participant's score on a test consisting of $n$ questions with $k$ answers each, out of which only one is correct.
+\newtext{As we have established that the results obtained for the ETS tests are similar to other studies, we will now compare the results to the lineups also tested in this study. To facilitate this goal, for the remainder of this analysis, we will scale the test results so that the ranges and units of test scores are comparable.} Let $X_{n, k}$ be a participant's score on a test consisting of $n$ questions with $k$ answers each, out of which only one is correct.
 This leads to a theoretical range of $X_{n,k}$ of $[-n/(k-1), n]$ and, under an additional assumption of random guessing, a variance of 
 
 \begin{eqnarray*}
 \text{Var}(X_{n, k}) &=& n^2 \text{Var}(X_{1, k}) = \\
 &=& n^2 (\underbrace{1/k \cdot 1^2}_{\text{correct answer}}+ \underbrace{(-1/(k-1))^2 \cdot (k-1)/k}_{\text{wrong answer}}) = \\
-&=& n^2/(k-1).\\
-\text{Sd}(X_{n, k}) &=& n/sqrt{k-1}
+&=& n^2/(k-1).
 \end{eqnarray*}
 
 The above consideration only assumes independence between questions, which is reasonable. While we only consider a test consisting of questions with the same number of choices, $k$, an extension to varied number of answers is trivial and has been done in the adjustment for the figure classification score. In order to ensure all tests have similar variance, we scaled test scores by the standard deviation under random guessing. This approach also allows us to compare the test scores using similar orders of magnitude.
@@ -179,15 +180,23 @@ pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_
 summary(pca)
 screeplot(pca)
 pca$rotation
-
-# Just using the 4 cognitive tests and ignoring the lineups...
-pca.cog.tests <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")])
-summary(pca.cog.tests)
-screeplot(pca.cog.tests)
-pca.cog.tests$rotation
 @
 
-\comment{If test scores have the same ranges, we could include a mini table of means and standard deviations of the four tests, and discuss whether these findings are consistent to how people usually score (except for the females we have about the same population). \textit{I'm not sure where to find the ``normal scores" in the factor-referenced manual. I'll check through it again, but I don't recall seeing it.}}
+<<pca, fig.cap="Plots of the principle components with observations. Visual Search and Paper Folding strongly contribute to both PC1 and PC2, while Figure Classification and Paper Folding strongly contributes to PC3 and Card Rotation strongly contributes to PC4", comment="|", fig.height=4.5, fig.width=4.5, warning=F, message=F, out.width='.45\\textwidth'>>=
+# Just using the 4 cognitive tests and ignoring the lineups...
+pca.cog.tests <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], retx=T)
+summary(pca.cog.tests)
+pca.cog.tests$rotation
+biplot(pca.cog.tests, choices=1:2, pc.biplot=T, cex=c(.5, 1), adj=.75)
+biplot(pca.cog.tests, choices=3:4, pc.biplot=T, cex=c(.5, 1), adj=.75)
+@
+
+<<pca-reg, comment="|", warning=F, message=F>>=
+# Linear regression using PC's. 
+ans.pca <- cbind(ans.summary[,c(1:19)], ans.summary["lineup"], pca.cog.tests$x)
+summary(lm(lineup~PC1+PC2+PC3+PC4, data=ans.pca))
+@
+
 
 
 In figure~\ref{fig:visualaptitudects}, we see that participant performance on lineups is positively correlated with performance on card rotation, figure classification, and paper folding tasks. This suggests that skills associated with visual reasoning ability are related to lineup performance. As participants must use the same skills in lineups (mental rotation, classification and determining categorization schemes, and multi-step spatial reasoning) as in the factor-referenced tests, this is not particularly surprising. In addition,there seems to be some positive relationship between a participant's score on the visual search task and their score on lineups: the visual search task represents a baseline of a participant's ability to find a matching pattern, while lineups require that task as well as the ability to determine what the pattern is for a particular graph. Even excluding the one low visual search score that is a high-leverage point, there seems to be a positive relationship between a participant's score on lineups and their score for visual search. 
