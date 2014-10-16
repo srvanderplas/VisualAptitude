@@ -17,6 +17,8 @@
 \usepackage{bbm}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{rotating}
+\usepackage{footnote} % table footnotes
+\makesavenoteenv{tabular}
 
 % Bibliography without numbers or labels
 \usepackage{natbib}
@@ -48,7 +50,7 @@
 rm(list=ls())
 wd <- getwd()
 
-opts_chunk$set(fig.path='Figure/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=TRUE, concordance=TRUE, autodep=TRUE, root.dir="../")
+opts_chunk$set(fig.path='Figure/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=F, concordance=TRUE, autodep=TRUE, root.dir="../")
 datadir <- "../../Data/"
 imgdir <- "Figure/"
 codedir <- "../../Code/"
@@ -122,7 +124,33 @@ Scoring of all test results was done such that random guessing leads to an expec
 \end{eqnarray}
 This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests \citep{diamond1973correction, ekstrom1976manual} which parts of this test are drawn from.
 
-Additionally, we have to ensure that the ranges and units of test scores are comparable.  Let $X_{n, k}$ be a participant's score on a test consisting of $n$ questions with $k$ answers each, out of which only one is correct.
+\begin{savenotes}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlll}
+  & Card Rotation & Paper Folding & Figure Classification \\\hline
+ISU Students & \Sexpr{round(mean(ans.summary.unscaled$card_rot), 2)} (\Sexpr{round(sd(ans.summary.unscaled$card_rot), 1)}) 
+             & \Sexpr{round(mean(ans.summary.unscaled$folding), 2)} (\Sexpr{round(sd(ans.summary.unscaled$folding), 1)})
+             & \Sexpr{round(mean(ans.summary.unscaled$fig_class), 2)} (\Sexpr{round(sd(ans.summary.unscaled$fig_class), 1)})\footnote{ISU students took only Part I due to time constraints.}\\
+Scaled Scores & 88.0 (\Sexpr{round(sqrt((24.6^2)*2), 1)})
+              & 13.8 (4.5)
+              & \Sexpr{round((120.0*294 + 114.9*323)/617/2, 2)} (\Sexpr{round(sqrt((30^2*294 + 27.8^2*323)/617/2), 1)})\footnote{Averages calculated assuming 294 males and 323 females.}\\
+Unscaled Scores & 44.0 (24.6)\footnote{Data from Part I only.}
+                & 13.8 (4.5)
+                & M:~120.0~(30.0), F:~114.9~(27.8)\\
+{\footnotesize Population}    
+              & \parbox[t]{.2\textwidth}{\footnotesize $\approx$ 550 male Naval recruits} 
+              & \parbox[t]{.2\textwidth}{\footnotesize 46 college students\\(1963~version)}
+              & \parbox[t]{.3\textwidth}{\footnotesize Suburban 11-12th grade students\\(288-300 males, 317-329 females)}\\\hline
+\end{tabular}                
+            
+\caption{Comparison of scores from Iowa State students and scores reported in \citet{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available.\label{tab:scorecomparison}}
+\end{table}
+\end{savenotes}
+
+\newtext{Table \ref{tab:scorecomparison} shows mean scores and standard deviation for ISU students and other populations compared using the Kit of Factor-Referenced Cognitive Tests \citet{ekstrom1976manual}. Once values have been adjusted to accommodate different test procedures (some data is reported for a single part of a two-part test, for instance), it is evident that Iowa State undergraduates scored at about the same level as other similar demographics. In fact, both means and standard deviations of ISU students' scores are similar to the comparison groups, which were chosen from available demographic groups based on population similarity.}\footnote{That is, if comparison data was available for 9th grade students and 12th grade students, we have compared Iowa State students' scores with the 12th grade students.}
+
+\newtext{For the remainder of this analysis, we will scale the test results so that the ranges and units of test scores are comparable.} Let $X_{n, k}$ be a participant's score on a test consisting of $n$ questions with $k$ answers each, out of which only one is correct.
 This leads to a theoretical range of $X_{n,k}$ of $[-n/(k-1), n]$ and, under an additional assumption of random guessing, a variance of 
 
 \begin{eqnarray*}
@@ -132,8 +160,7 @@ This leads to a theoretical range of $X_{n,k}$ of $[-n/(k-1), n]$ and, under an 
 \text{Sd}(X_{n, k}) &=& n/sqrt{k-1}
 \end{eqnarray*}
 
-\newtext{The above consideration only assumes independence between questions, which is granted. While we only consider a test consisting of questions with the same number of choices, $k$, an extension to varied number of answers is trivial and has been done in the adjustment for the figure classification score.}
-\newtext{In order to ensure all tests have similar variance, we scaled test scores by the standard deviation under random guessing. This approach also allows us to compare the test scores using similar orders of magnitude.}
+The above consideration only assumes independence between questions, which is reasonable. While we only consider a test consisting of questions with the same number of choices, $k$, an extension to varied number of answers is trivial and has been done in the adjustment for the figure classification score. In order to ensure all tests have similar variance, we scaled test scores by the standard deviation under random guessing. This approach also allows us to compare the test scores using similar orders of magnitude.
 
 % \comment{\textit{So are we scaling things by the variance/std dev. under random guessing? Or by the theoretical test range?}\\
 % Let's use the standard deviation, so that all tests have an expected value of 0 and a variance/standard deviation of 1 under random guessing.}
