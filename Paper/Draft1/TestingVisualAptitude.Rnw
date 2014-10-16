@@ -132,6 +132,7 @@ This allows us to compare each participant's score in light of how many problems
 \begin{table}[ht]
 \centering
 \begin{tabular}{rlll}
+\hline
   & Card Rotation & Paper Folding & Figure Classification \\\hline
 ISU Students & \Sexpr{round(mean(ans.summary.unscaled$card_rot), 2)} (\Sexpr{round(sd(ans.summary.unscaled$card_rot), 1)}) 
              & \Sexpr{round(mean(ans.summary.unscaled$folding), 2)} (\Sexpr{round(sd(ans.summary.unscaled$folding), 1)})
