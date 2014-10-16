@@ -107,7 +107,8 @@ Participants will complete the following tasks (sample pictures included, full s
 \end{figure}
 \end{itemize}
 
-Between cognitive tasks, participants will also complete three blocks of 20 lineups each. These lineups have been previously tested \citep{hofmann2012graphical} and include some null lineups (i.e. lineups without a target plot). Participants %will 
+Between cognitive tasks, participants will also complete three blocks of 20 lineups each. These lineups have been previously tested \citep{hofmann2012graphical} %and include some null lineups (i.e. lineups without a target plot). 
+. Participants %will 
 have 5 minutes to complete each block of 20 lineups. Figure \ref{fig:lineup} shows a sample lineup of box plots. 
 
 \begin{figure}[htbp]\centering
