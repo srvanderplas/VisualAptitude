@@ -193,10 +193,10 @@ biplot(pca.cog.tests, choices=1:2, pc.biplot=T, cex=c(.5, 1), adj=.75)
 biplot(pca.cog.tests, choices=3:4, pc.biplot=T, cex=c(.5, 1), adj=.75)
 @
 
-<<pca-reg, comment="|", warning=F, message=F>>=
+<<pca-reg, comment="|", warning=F, message=F, results='asis', echo=F>>=
 # Linear regression using PC's. 
 ans.pca <- cbind(ans.summary[,c(1:19)], ans.summary["lineup"], pca.cog.tests$x)
-summary(lm(lineup~PC1+PC2+PC3+PC4, data=ans.pca))
+xtable(summary(lm(lineup~PC1+PC2+PC3+PC4, data=ans.pca)), caption="Lineup score, as predicted by principal components. Only the first principal component is a significant predictor of lineup score.")
 @
 
 
@@ -252,8 +252,7 @@ tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
 
 tmp <- rbind.fill(tmp)
 tmp <- tmp[order(tmp$p.value, decreasing=F),]
-library(xtable)
-print(xtable(tmp, digits=c(1, 1, 0, 3, 3, 2, 3)), include.rownames=F)
+print(xtable(tmp, digits=c(1, 1, 0, 3, 3, 2, 3), caption="Model results of each demographic variable compared with lineup score. Multiple testing issues aside, it appears that very few demographic variables (if any) are significantly associated with score on lineups among Iowa State undergraduate students."), include.rownames=F)
 @
 
 All results and data shown here are done in accordance with IRB \# 13-581.
@@ -263,7 +262,6 @@ All results and data shown here are done in accordance with IRB \# 13-581.
 \section*{Appendix}
 T-tests of results for Hillary and Stephanie: 
 <<ttest, echo=F, include=T, results='asis'>>=
-library(xtable)
 ans.summary$tester <- c(rep("Hillary", 18), rep("Stephanie", nrow(ans.summary)-18))
 card.rotation <- t.test(card_rot~tester, data=ans.summary)
 paper.folding <- t.test(folding~tester, data=ans.summary)
