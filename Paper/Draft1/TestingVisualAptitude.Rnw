@@ -128,7 +128,6 @@ This allows us to compare each participant's score in light of how many problems
 
 The advantage of using tests from the Kit of Factor Referenced Cognitive tests \citep{ekstrom1976manual} is that the tests are extremely well studied \citep{voyer1995magnitude} and comparison data are available from the validation of these factors. The card rotation, paper folding, and figure classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students).
 
-% \comment{If test scores have the same ranges, we could include a mini table of means and standard deviations of the four tests, and discuss whether these findings are consistent to how people usually score (except for the females we have about the same population).}
 \begin{savenotes}
 \begin{table}[ht]
 \centering
@@ -283,6 +282,7 @@ All results and data shown here are done in accordance with IRB \# 13-581.
 \bibliography{references}
 
 \section*{Appendix}
+\subsection{Examining potential testing biases}
 T-tests of results for Hillary and Stephanie: 
 <<ttest, echo=F, include=T, results='asis'>>=
 ans.summary$tester <- c(rep("Hillary", 18), rep("Stephanie", nrow(ans.summary)-18))
@@ -302,5 +302,45 @@ names(res) <- c("Variable", "Mean.Hillary", "Mean.Stephanie", "t", "df", "p-valu
 
 print(xtable(res), include.rownames = F)
 @
+\subsection{Scaling Scores}
+To calculate ``scaled" comparison scores between tests which included different numbers of sections, we scaled the mean in direct proportion to the number of questions (thus, if there were two sections of equivalent size, and the reference score included only one of those sections, we multiplied the reported mean score by two). The variance calculation is a bit more complicated: In the case described above, where the reference section contained half of the questions, the variance is multiplied by two, causing the standard deviation to be multiplied by approximately 1.41. 
+
+\begin{savenotes}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlll}
+\hline
+  & Card Rotation & Paper Folding & Figure Classification \\\hline
+ISU Students & \Sexpr{round(mean(ans.summary.unscaled$card_rot), 1)} (\Sexpr{round(sd(ans.summary.unscaled$card_rot), 1)}) 
+             & \Sexpr{round(mean(ans.summary.unscaled$folding), 1)} (\Sexpr{round(sd(ans.summary.unscaled$folding), 1)})
+             & \Sexpr{round(mean(ans.summary.unscaled$fig_class), 1)} (\Sexpr{round(sd(ans.summary.unscaled$fig_class), 1)})\footnote{ISU students took only Part I due to time constraints.}\\
+Scaled Scores & 88.0 (\Sexpr{round(sqrt((24.6^2)*2), 1)})
+              & 13.8 (4.5)
+              & \Sexpr{round((120.0*294 + 114.9*323)/617/2, 1)} (\Sexpr{round(sqrt((30^2*294 + 27.8^2*323)/617)/2, 1)})\footnote{Averages calculated assuming 294 males and 323 females.}\\
+Unscaled Scores & 44.0 (24.6)\footnote{Data from Part I only.}
+                & 13.8 (4.5)
+                & M:~120.0~(30.0), F:~114.9~(27.8)\\
+{\footnotesize Population}    
+              & \parbox[t]{.2\textwidth}{\footnotesize approx.\ 550 male \\
+naval recruits} 
+              & \parbox[t]{.2\textwidth}{\footnotesize 46 college students\\(1963~version)}
+              & \parbox[t]{.3\textwidth}{\footnotesize suburban 11th \& 12th grade students\\(288-300 males, 317-329 females)}\\\hline
+\end{tabular}                
+            
+\caption{Comparison of scores from Iowa State students and scores reported in \citet{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available.\label{tab:scorecomparison}}
+\end{table}
+\end{savenotes}
+
+This scaling gets slightly more complicated for scores which have two sub-groups, as with the Figure Classification test. To get a single unified score with standard deviation, we did the following calculations: 
+\begin{eqnarray}
+\mu_{all} &= (\mu_{F}N_F + \mu_{M}N_M)/(N_F + N_M)\\
+\sigma_{all} &= \sqrt{\left(N_F\sigma_F^2 + N_M\sigma_M^2\right)/(N_F + N_M)}
+\end{eqnarray}
+Then, in order to account for the fact that ISU students took only part I of two parts to the Figure Classification test (and thus completed half of the questions), we adjusted the transformation as follows
+\begin{eqnarray}
+\mu_{all} &= 1/2 (\mu_{F}N_F + \mu_{M}N_M)/(N_F + N_M)\\
+\sigma_{all} &= \sqrt{\left(N_F\sigma_F^2 + N_M\sigma_M^2\right)/(2(N_F + N_M))}
+\end{eqnarray}
+
 
 \end{document}
