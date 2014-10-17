@@ -126,9 +126,7 @@ Scoring of all test results was done such that random guessing leads to an expec
 \end{eqnarray}
 This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests \citep{diamond1973correction, ekstrom1976manual} from which parts of this test are drawn. 
 
-The advantage of using tests from the Kit of Factor Referenced Cognitive tests \citep{ekstrom1976manual} is that the tests are extremely well studied \citep{voyer1995manual}
-\comment{the bib file is not updated on the repo}
-and comparison data are available from the validation of these factors. The card rotation, paper folding, and figure classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students).
+The advantage of using tests from the Kit of Factor Referenced Cognitive tests \citep{ekstrom1976manual} is that the tests are extremely well studied \citep{voyer1995magnitude} and comparison data are available from the validation of these factors. The card rotation, paper folding, and figure classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students).
 
 % \comment{If test scores have the same ranges, we could include a mini table of means and standard deviations of the four tests, and discuss whether these findings are consistent to how people usually score (except for the females we have about the same population).}
 \begin{savenotes}
