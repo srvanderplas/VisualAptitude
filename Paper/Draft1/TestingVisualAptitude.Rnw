@@ -328,7 +328,7 @@ naval recruits}
               & \parbox[t]{.3\textwidth}{\footnotesize suburban 11th \& 12th grade students\\(288-300 males, 317-329 females)}\\\hline
 \end{tabular}                
             
-\caption{Comparison of scores from Iowa State students and scores reported in \citet{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available.\label{tab:scorecomparison}}
+\caption{Comparison of scores from Iowa State students and scores reported in \citet{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available.\label{tab:scorecomparison2}}
 \end{table}
 \end{savenotes}
 
