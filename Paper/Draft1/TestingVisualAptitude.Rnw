@@ -83,7 +83,8 @@ Relevant literature:
 Lineups depend on the ability to search for a signal amid distractors (Visual Search Task) and the ability to infer patterns from stimuli (Pattern Recognition task). Some lineups (polar coords) also depend on the ability to mentally rotate stimuli (spatial rotation task) and mentally manipulate graphs (paper folding task). By breaking the lineup task down into component parts, we can correlate lineup performance with similar cognitive factor tests to determine where additional variation in skill level factors into performance differences. In addition, we can correlate previous experiences (science-based major, research experience, Auto-CAD skills) with performance to explore the effect that participant experience has on lineup performance. 
 
 \section{Methods}
-\comment{Besides pointing out what we asked participants to do, we also need some why, and also why in particular these tests were selected. part of the validity consideration can go in here - and the classification from the naval test of the tests we picked into different classes (maybe already with a hint that for our data these weren't actually orthogonal classes, because we found a really high correlation between card rotation and paper folding.)}
+\comment{Besides pointing out what we asked participants to do, we also need some why, and also why in particular these tests were selected. part of the validity consideration can go in here - and the classification from the naval test of the tests we picked into different classes (maybe already with a hint that for our data these weren't actually orthogonal classes, because we found a really high correlation between card rotation and paper folding.)\\
+\textit{I don't know if the tests are supposed to be orthogonal. It would be hard to construct a set of tests that was orthogonal, because the abilities themselves aren't easily separable - math reasoning and spatial reasoning are related, for instance, and verbal abilities are correlated with creativity too.}}
 Participants will complete the following tasks (sample pictures included, full stimuli set will be added to the appendix once testing is complete). Tasks are designed so that participants are under time pressure; they are not expected to complete all of the problems in each section. This provides more discrimination between high scorers and prevents score compression at the top of the range. 
 \begin{itemize}
 \item Visual Search Task: designed to test participants' ability to find a target stimulus in a field of distractors. An example is shown in figure \ref{fig:VST}. 
@@ -108,9 +109,7 @@ Participants will complete the following tasks (sample pictures included, full s
 \end{figure}
 \end{itemize}
 
-Between cognitive tasks, participants will also complete three blocks of 20 lineups each. These lineups have been previously tested \citep{hofmann2012graphical} %and include some null lineups (i.e. lineups without a target plot). 
-. Participants %will 
-have 5 minutes to complete each block of 20 lineups. Figure \ref{fig:lineup} shows a sample lineup of box plots. 
+Between cognitive tasks, participants will also complete three blocks of 20 lineups each. These lineups have been previously tested \citep{hofmann2012graphical}. Participants have 5 minutes to complete each block of 20 lineups. Figure \ref{fig:lineup} shows a sample lineup of box plots. 
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.9\textwidth]{lineup}
@@ -129,7 +128,7 @@ Scoring of all test results was done such that random guessing leads to an expec
 This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests \citep{diamond1973correction, ekstrom1976manual} from which parts of this test are drawn. 
 
 \comment{could we also refer to the fact that these tests have been long established (maybe with references to earlier tests or updates?) \textit{Yes, definitely. I'll pull up some references for that too...}}
-The advantage of using tests from the Kit of Factor Referenced Cognitive tests \citep{ekstrom1976manual} is that the tests are extremely well studied \citep{voyer1995magnitude} and comparison data are available from the validation of these factors.
+The advantage of using tests from the Kit of Factor Referenced Cognitive tests \citep{ekstrom1976manual} is that the tests are extremely well studied \citep{voyer1995magnitude,schaie1998longitudinal,hampson1990variations} and comparison data are available from the validation of these factors.
 \comment{the well studied reference list needs to be a bit more extensive ... do you know this book by Michel Hersen?\\\textit{I was working on it yesterday along with trying to validate the general idea that reading graphics requires certain spatial abilities. It's definitely a work in progress. I haven't seen that book before, but I'm not at all surprised it exists.}}
 The card rotation, paper folding, and figure classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students).
 
@@ -263,7 +262,7 @@ Figure \ref{fig:visualaptitudecat} shows participants' responses to the question
 \end{figure}
 
 There is no significant difference in lineup performance for participants of different age, self-assessed skill rating, previous participation in math or science research, completion of a statistics class, or experience with AutoCAD.
-% There is a significant difference between male and female performance on lineups; this is not particularly surprising, since men perform better on many spatial tests \citep{voyer1995magnitude} and performance on spatial tests is correlated with phase of the menstrual cycle in women \citep{hausmann2000sex}.
+There is a significant difference between male and female performance on lineups; this is not particularly surprising, since men perform better on many spatial tests \citep{voyer1995magnitude} and performance on spatial tests is correlated with phase of the menstrual cycle in women \citep{hausmann2000sex}.
 Completion of Calculus I is associated with increased performance on lineups. This may be related to general math education level, or it may be that success in both lineups and calculus requires certain visual skills. \newtext{This result is consistent with \citep{shah1995conceptual}, who found an association between  mathematical ability and performance on simple graph description tasks.}  There is also a significant association between hours of video games played per week and score on lineups, however, this association is not monotonic and the groups do not have equal sample size, so the conclusion may be suspect. 
 
 <<ttests.categ, echo=F, results='asis'>>=
