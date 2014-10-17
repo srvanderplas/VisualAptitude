@@ -147,10 +147,10 @@ Unscaled Scores & 44.0 (24.6)\footnote{Data from Part I only.}
                 & 13.8 (4.5)
                 & M:~120.0~(30.0), F:~114.9~(27.8)\\
 {\footnotesize Population}    
-              & \parbox[t]{.2\textwidth}{\footnotesize approx, 550 male \\
-Naval recruits} 
+              & \parbox[t]{.2\textwidth}{\footnotesize approx. 550 male \\
+naval recruits} 
               & \parbox[t]{.2\textwidth}{\footnotesize 46 college students\\(1963~version)}
-              & \parbox[t]{.3\textwidth}{\footnotesize Suburban 11-12th grade students\\(288-300 males, 317-329 females)}\\\hline
+              & \parbox[t]{.3\textwidth}{\footnotesize suburban 11th \& 12th grade students\\(288-300 males, 317-329 females)}\\\hline
 \end{tabular}                
             
 \caption{Comparison of scores from Iowa State students and scores reported in \citet{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available.\label{tab:scorecomparison}}
@@ -161,7 +161,7 @@ Table \ref{tab:scorecomparison} shows mean scores and standard deviation for ISU
 \comment{Could you include some more details on how to get from the Unscaled scores to the scaled versions? I'm assuming that for the Card Rotation, the two parts have equal size, explaining the doubled score, but why not double the standard deviation? $\text{Var}(aX) = a^2 \text{Var}(X)$  ok I got the first one - because it is $X_1 + X_2$ not $2 X_1$. still working on understanding the second one, though ... it would be worthwhile to include a bit more detail and maybe put that in an appendix to the paper. If you want to, you could instead extend the footnotes a bit for now. ... so just let me try this: Let's assume that $X_M$ and $X_F$ are the scores based on 294 men, and 323 women (are those midscore s of the intervals reported?). with corresponding $s_M$ and $s_F$ for the reported standard deviation of the full test. Then half of the test would have half of the scores with half of the standard deviation. we have a breakdown of 17 girls and 19 boys. $
 X = (X_M/2 \cdot 294 + X_F/2 \cdot 323) /(294+323) = \Sexpr{round(120.0/2*294/617 + 114.9/2*323/617, 1)}
 $. For the Variance of $X$ we then have:
-$\text{Var}(X) = \text{Var}(X_M)/2^2 \cdot (294/617)^2 + \text{Var}(X_F)/2^2 \cdot (323/617)^2 = \Sexpr{round(sqrt(30^2/2^2 * (294/617)^2 + 27.8^2/2^2 * (323/617)^2),1)}^2$
+$\text{Var}(X) = \text{Var}(X_{M_1} + X_{M_2}) \cdot (294/617)^2 + \text{Var}(X_{F_1} + X_{F_2}) \cdot (323/617)^2 = \Sexpr{round(sqrt(30^2/2 * (294/617)^2 + 27.8^2/2 * (323/617)^2),1)}^2$
 }
 As we have established that the results obtained for the ETS tests are similar to other studies, we will now compare the results to the lineups also tested in this study. To facilitate this goal, for the remainder of this analysis, we will scale the test results so that the ranges and units of test scores are comparable.
 Let $X_{n, k}$ be a participant's score on a test consisting of $n$ questions with $k$ answers each, out of which only one is correct.
