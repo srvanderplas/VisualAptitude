@@ -147,7 +147,7 @@ Unscaled Scores & 44.0 (24.6)\footnote{Data from Part I only.}
                 & 13.8 (4.5)
                 & M:~120.0~(30.0), F:~114.9~(27.8)\\
 {\footnotesize Population}    
-              & \parbox[t]{.2\textwidth}{\footnotesize approx. 550 male \\
+              & \parbox[t]{.2\textwidth}{\footnotesize approx.\ 550 male \\
 naval recruits} 
               & \parbox[t]{.2\textwidth}{\footnotesize 46 college students\\(1963~version)}
               & \parbox[t]{.3\textwidth}{\footnotesize suburban 11th \& 12th grade students\\(288-300 males, 317-329 females)}\\\hline
@@ -163,26 +163,42 @@ X = (X_M/2 \cdot 294 + X_F/2 \cdot 323) /(294+323) = \Sexpr{round(120.0/2*294/61
 $. For the Variance of $X$ we then have:
 $\text{Var}(X) = \text{Var}(X_{M_1} + X_{M_2}) \cdot (294/617)^2 + \text{Var}(X_{F_1} + X_{F_2}) \cdot (323/617)^2 = \Sexpr{round(sqrt(30^2/2 * (294/617)^2 + 27.8^2/2 * (323/617)^2),1)}^2$
 }
-As we have established that the results obtained for the ETS tests are similar to other studies, we will now compare the results to the lineups also tested in this study. To facilitate this goal, for the remainder of this analysis, we will scale the test results so that the ranges and units of test scores are comparable.
-Let $X_{n, k}$ be a participant's score on a test consisting of $n$ questions with $k$ answers each, out of which only one is correct.
-This leads to a theoretical range of $X_{n,k}$ of $[-n/(k-1), n]$ and, under an additional assumption of random guessing, a variance of 
+As we have established that the results obtained for the ETS tests are similar to other studies, we will now compare the results to the lineups also tested in this study. To facilitate this goal, for the remainder of this analysis, we will scale the test results \newtext{by a factor of $1/n \sqrt{k-1}$, where $n$ is the number of questions in a test and $k$ is the number of offered answers on each questions (out of which only one is correct). This scaling ensures that test scores across different types are comparable. All test scores are now normalized such that they have under the assumption of random guessing an expected value of zero and a standard deviation of 1. In particular, this leads to a theoretical range of a normalized test score $Z_{n, k}$ of $[-\sqrt{k-1}, \sqrt{k-1}]$. } 
+%so that the ranges and units of test scores are comparable across the different types of tests.
+%Let $X_{n, k}$ be a participant's score on a test consisting of $n$ questions with $k$ answers each, out of which only one is correct.
+%This leads to a theoretical range of $X_{n,k}$ of $[-n/(k-1), n]$ and, under an additional assumption of random guessing, a variance of 
 
+\paragraph{Variance consideration of scaled test score:}
+Let $X_{n, k}$ be a participant's (unscaled) score on a test consisting of $n$ questions with $k$ answers each, out of which only one is correct.
 \begin{eqnarray*}
 \text{Var}(X_{n, k}) &=& n^2 \text{Var}(X_{1, k}) = \\
 &=& n^2 (\underbrace{1/k \cdot 1^2}_{\text{correct answer}}+ \underbrace{(-1/(k-1))^2 \cdot (k-1)/k}_{\text{wrong answer}}) = \\
 &=& n^2/(k-1).
 \end{eqnarray*}
+\newtext{The scaled test score $Z_{n,k}$ is $1/n \sqrt{(k-1)} X_{n,k}$ and the statement for the variance of $Z_{n,k}$ follows directly.}
 
-The above consideration only assumes independence between questions, which is reasonable. While we only consider a test consisting of questions with the same number of choices, $k$, an extension to varied number of answers is trivial and has been done in the adjustment for the figure classification score. In order to ensure all tests have similar variance, we scaled test scores by the standard deviation under random guessing. This approach also allows us to compare the test scores using similar orders of magnitude.
+The above consideration only assumes independence between questions, which is reasonable. While we only consider a test consisting of questions with the same number of choices $k$, an extension to varied number of answers is trivial and has been done in the adjustment for the figure classification score. 
 
-% \comment{\textit{So are we scaling things by the variance/std dev. under random guessing? Or by the theoretical test range?}\\
-% Let's use the standard deviation, so that all tests have an expected value of 0 and a variance/standard deviation of 1 under random guessing.}
-% 
-% \comment{The next step is an overview of the possible ranges of the test scores in our study, because that is driven by the number of tests shown. It would be good to scale everything, so that we have the same theoretical range. That will actually allow a comparison across different tests.}
-<<means>>=
-library(plyr)
-ldply(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")], c(mean=mean,sd= sd))
-@
+%In order to ensure all tests have similar variance, we scaled test scores by the standard deviation under random guessing. This approach also allows us to compare the test scores using similar orders of magnitude.
+
+\comment{OK, so on to the next steps ... we would like to figure out, how the lineups play into the established test scores. I think we need to talk about how to best talk through the visual search score. We have a lot of information on the other three scores - is there an established test in the naval test that is `like' the visual search? - i.e. could we use those scores to compare to? 
+
+so outline for the next few steps:
+\begin{enumerate}
+\item some general words on behavior of lineup scores by themselves - I think the whole discussion that is at the moment  at the end of the paper should move up here. The levels of the video gaming are a bit messed up - they should be ordered according to number of games played rather than alphabetically :) - and I think that then the relationship actually is a monotonic one ...
+ In any case, sort the figures in the table according to their $p$-values in the table. Gender shows up as significantly different in my table of $p$ values, but in the text you say that it is not. 
+ The table with the t-tests should probably go into an appendix .... 
+\item figure 8 with either three or four scatterplots depending on how the visual search scores fit in
+\item a paragraph on discussing the multicollinearity between the test scores based on correlations (either, again, including visual search or not) - this should lead to the conclusion that we cannot directly use a linear model of lineup in test scores.
+\item PCA of test scores, with a bit of discussion
+\item linear model of lineup scores in PCA with discussion and tying it back to raw scores (figure classification really is the best predictor for lineups, but it only explains some of the variance).
+\end{enumerate}
+ }
+
+% <<means>>=
+% library(plyr)
+% ldply(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")], c(mean=mean,sd= sd))
+% @
 
 <<correlations, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".5\\linewidth", fig.height=4.5, fig.width=7.5, comment="|", warning=F, message=F>>=
 cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")])
