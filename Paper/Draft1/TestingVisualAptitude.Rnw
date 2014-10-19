@@ -135,23 +135,26 @@ The card rotation, paper folding, and figure classification tests have been vali
 \begin{savenotes}
 \begin{table}[ht]
 \centering
-\begin{tabular}{rlll}
+\begin{tabular}{rllll}
 \hline
-  & Card Rotation & Paper Folding & Figure Classification \\\hline
+  & Card Rotation & Paper Folding & Figure Classification & Visual Search  \\\hline
 ISU Students & \Sexpr{round(mean(ans.summary.unscaled$card_rot), 1)} (\Sexpr{round(sd(ans.summary.unscaled$card_rot), 1)}) 
              & \Sexpr{round(mean(ans.summary.unscaled$folding), 1)} (\Sexpr{round(sd(ans.summary.unscaled$folding), 1)})
-             & \Sexpr{round(mean(ans.summary.unscaled$fig_class), 1)} (\Sexpr{round(sd(ans.summary.unscaled$fig_class), 1)})\footnote{ISU students took only Part I due to time constraints.}\\
+             & \Sexpr{round(mean(ans.summary.unscaled$fig_class), 1)} (\Sexpr{round(sd(ans.summary.unscaled$fig_class), 1)})\footnote{ISU students took only Part I due to time constraints.}
+             & \Sexpr{round(mean(ans.summary.unscaled$vis_search), 1)} (\Sexpr{round(sd(ans.summary.unscaled$vis_search), 1)})\\
 Scaled Scores & 88.0 (\Sexpr{round(sqrt((24.6^2)*2), 1)})
               & 13.8 (4.5)
-              & \Sexpr{round((120.0*294 + 114.9*323)/617/2, 1)} (\Sexpr{round(sqrt((30^2*294 + 27.8^2*323)/617)/2, 1)})\footnote{Averages calculated assuming 294 males and 323 females.}\\
+              & \Sexpr{round((120.0*294 + 114.9*323)/617/2, 1)} (\Sexpr{round(sqrt((30^2*294 + 27.8^2*323)/617)/2, 1)})\footnote{Averages calculated assuming 294 males and 323 females.}
+              & N/A \\
 Unscaled Scores & 44.0 (24.6)\footnote{Data from Part I only.}
                 & 13.8 (4.5)
-                & M:~120.0~(30.0), F:~114.9~(27.8)\\
+                & M:~120.0~(30.0), F:~114.9~(27.8)
+                & N/A\\
 {\footnotesize Population}    
-              & \parbox[t]{.2\textwidth}{\footnotesize approx.\ 550 male \\
-naval recruits} 
-              & \parbox[t]{.2\textwidth}{\footnotesize 46 college students\\(1963~version)}
-              & \parbox[t]{.3\textwidth}{\footnotesize suburban 11th \& 12th grade students\\(288-300 males, 317-329 females)}\\\hline
+              & \parbox[t]{.15\textwidth}{\footnotesize approx.\ 550 male\\ naval recruits} 
+              & \parbox[t]{.15\textwidth}{\footnotesize 46 college students\\(1963~version)}
+              & \parbox[t]{.3\textwidth}{\footnotesize suburban 11th \& 12th grade students\\(288-300 males, 317-329 females)}
+              & N/A\\\hline
 \end{tabular}                
             
 \caption{Comparison of scores from Iowa State students and scores reported in \citet{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available. The Visual Search task \citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological} is not part of the Kit of Factor Referenced Cognitive Test data, and thus we do not have comparison data for the form used in this experiment. \label{tab:scorecomparison}}
@@ -228,8 +231,6 @@ biplot(pca.cog.tests, choices=3:4, pc.biplot=T, cex=c(.5, 1), adj=.75)
 ans.pca <- cbind(ans.summary[,c(1:19)], ans.summary["lineup"], pca.cog.tests$x)
 xtable(summary(lm(lineup~PC1+PC2+PC3+PC4, data=ans.pca)), caption="Lineup score, as predicted by principal components. Only the first principal component is a significant predictor of lineup score.")
 @
-
-
 
 In figure~\ref{fig:visualaptitudects}, we see that participant performance on lineups is positively correlated with performance on card rotation, figure classification, and paper folding tasks. This suggests that skills associated with visual reasoning ability are related to lineup performance. As participants must use the same skills in lineups (mental rotation, classification and determining categorization schemes, and multi-step spatial reasoning) as in the factor-referenced tests, this is not particularly surprising. In addition,there seems to be some positive relationship between a participant's score on the visual search task and their score on lineups: the visual search task represents a baseline of a participant's ability to find a matching pattern, while lineups require that task as well as the ability to determine what the pattern is for a particular graph. Even excluding the one low visual search score that is a high-leverage point, there seems to be a positive relationship between a participant's score on lineups and their score for visual search. 
 
