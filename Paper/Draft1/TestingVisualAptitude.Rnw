@@ -291,6 +291,7 @@ All results and data shown here are done in accordance with IRB \# 13-581.
 \bibliography{references}
 
 \section*{Appendix}
+\renewcommand{\thesubsection}{\Alph{subsection}}
 \subsection{Examining potential testing biases}
 T-tests of results for Hillary and Stephanie: 
 <<ttest, echo=F, include=T, results='asis'>>=
@@ -311,7 +312,7 @@ names(res) <- c("Variable", "Mean.Hillary", "Mean.Stephanie", "t", "df", "p-valu
 
 print(xtable(res), include.rownames = F)
 @
-\subsection{Scaling Scores}
+\subsection{Scaling Scores}\label{app:ScoreAdj}
 To calculate ``scaled" comparison scores between tests which included different numbers of sections, we scaled the mean in direct proportion to the number of questions (thus, if there were two sections of equivalent size, and the reference score included only one of those sections, we multiplied the reported mean score by two). The variance calculation is a bit more complicated: In the case described above, where the reference section contained half of the questions, the variance is multiplied by two, causing the standard deviation to be multiplied by approximately 1.41. 
 
 \begin{savenotes}
