@@ -378,5 +378,23 @@ Then, in order to account for the fact that ISU students took only part I of two
 \sigma_{all} &= \sqrt{\left(N_F\sigma_F^2 + N_M\sigma_M^2\right)/(2(N_F + N_M))}
 \end{eqnarray}
 
+\subsection{Lineup Performance and Demographic Characteristics}\label{app:categoricalresults}
+
+<<ttests.categ, echo=F, results='asis'>>=
+tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
+    tmp <- anova(lm(lineup~factor(value, ordered=F), data=df))
+    coefs <- as.data.frame(tmp)[1,]
+    coefs$level <- gsub("factor(value, ordered = F)", unique(df$variable), rownames(coefs), fixed=T)
+    rownames(coefs) <- NULL
+    coefs <- coefs[,c(6, 1:5)]
+    names(coefs) <- c("Variable", "DF", "Sum.of.Squares", "Mean.Squared", "F.value", "p.value")
+    coefs
+})
+
+tmp <- rbind.fill(tmp)
+tmp <- tmp[order(tmp$p.value, decreasing=F),]
+print(xtable(tmp, digits=c(1, 1, 0, 3, 3, 2, 3), caption="Model results of each demographic variable compared with lineup score. Multiple testing issues aside, it appears that very few demographic variables (if any) are significantly associated with score on lineups among Iowa State undergraduate students."), include.rownames=F)
+@
+
 
 \end{document}
