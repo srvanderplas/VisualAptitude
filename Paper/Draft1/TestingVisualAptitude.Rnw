@@ -180,10 +180,10 @@ The card rotation, paper folding, and figure classification tests have been vali
 \begin{tabular}{rllll}
 \hline
   & Card Rotation & Paper Folding & Figure Classification & Visual Search  \\\hline
-ISU Students & \Sexpr{round(mean(ans.summary.unscaled$card_rot), 1)} (\Sexpr{round(sd(ans.summary.unscaled$card_rot), 1)}) 
-             & \Sexpr{round(mean(ans.summary.unscaled$folding), 1)} (\Sexpr{round(sd(ans.summary.unscaled$folding), 1)})
-             & \Sexpr{round(mean(ans.summary.unscaled$fig_class), 1)} (\Sexpr{round(sd(ans.summary.unscaled$fig_class), 1)})\footnote{ISU students took only Part I due to time constraints.}
-             & \Sexpr{round(mean(ans.summary.unscaled$vis_search), 1)} (\Sexpr{round(sd(ans.summary.unscaled$vis_search), 1)})\\
+ISU Students & \Sexpr{round(mean(ans.summary$card_rot), 1)} (\Sexpr{round(sd(ans.summary$card_rot), 1)}) 
+             & \Sexpr{round(mean(ans.summary$folding), 1)} (\Sexpr{round(sd(ans.summary$folding), 1)})
+             & \Sexpr{round(mean(ans.summary$fig_class), 1)} (\Sexpr{round(sd(ans.summary$fig_class), 1)})\footnote{ISU students took only Part I due to time constraints.}
+             & \Sexpr{round(mean(ans.summary$vis_search), 1)} (\Sexpr{round(sd(ans.summary$vis_search), 1)})\\
 Scaled Scores & 88.0 (\Sexpr{round(sqrt((24.6^2)*2), 1)})
               & 13.8 (4.5)
               & \Sexpr{round((120.0*294 + 114.9*323)/617/2, 1)} (\Sexpr{round(sqrt((30^2*294 + 27.8^2*323)/617)/2, 1)})\footnote{Averages calculated assuming 294 males and 323 females.}
@@ -289,28 +289,18 @@ Completion of Calculus I is associated with increased performance on lineups. Th
 % ldply(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")], c(mean=mean,sd= sd))
 % @
 
-<<correlations, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".5\\linewidth", fig.height=4.5, fig.width=7.5, comment="|", warning=F, message=F>>=
+<<correlations, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".45\\linewidth", fig.height=4.5, fig.width=4.5, comment="|", warning=F, message=F>>=
 cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")])
 
-pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=F)
+pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 summary(pca)
 screeplot(pca)
 pca$rotation
 @
 
-<<pca, fig.cap="Plots of the principal components with observations. Visual Search and Paper Folding strongly contribute to both PC1 and PC2, while Figure Classification and Paper Folding strongly contributes to PC3 and Card Rotation strongly contributes to PC4", comment="|", fig.height=4.5, fig.width=4.5, warning=F, message=F, out.width='.45\\textwidth'>>=
-# Just using the 4 cognitive tests and ignoring the lineups...
-pca.cog.tests <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], retx=T, scale=T)
-summary(pca.cog.tests)
-pca.cog.tests$rotation
-biplot(pca.cog.tests, choices=1:2, pc.biplot=T, cex=c(.5, 1), adj=.75)
-biplot(pca.cog.tests, choices=3:4, pc.biplot=T, cex=c(.5, 1), adj=.75)
-@
-
-<<pca-reg, comment="|", warning=F, message=F, results='asis', echo=F>>=
-# Linear regression using PC's. 
-ans.pca <- cbind(ans.summary[,c(1:19)], ans.summary["lineup"], pca.cog.tests$x)
-xtable(summary(lm(lineup~PC1+PC2+PC3+PC4, data=ans.pca)), caption="Lineup score, as predicted by principal components. Only the first principal component is a significant predictor of lineup score.")
+<<pca, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\textwidth', comment="|", fig.cap="Plots of the principal components with observations. PC1 seems to represent a general ``visual intelligence'' factor. Figure classification is strongly related to lineups (PC2, PC3), and visual search is related to lineup performance as well (PC3). Paper folding does not seem to be strongly related to lineup performance outside of the first principal component; card rotation is only positively associated with lineup performance in PC4.">>=
+biplot(pca, choices=1:2, pc.biplot=T, cex=c(.5, 1), adj=.75)
+biplot(pca, choices=3:4, pc.biplot=T, cex=c(.5, 1), adj=.75)
 @
 
 In figure~\ref{fig:visualaptitudects}, we see that participant performance on lineups is positively correlated with performance on card rotation, figure classification, and paper folding tasks. This suggests that skills associated with visual reasoning ability are related to lineup performance. As participants must use the same skills in lineups (mental rotation, classification and determining categorization schemes, and multi-step spatial reasoning) as in the factor-referenced tests, this is not particularly surprising. In addition,there seems to be some positive relationship between a participant's score on the visual search task and their score on lineups: the visual search task represents a baseline of a participant's ability to find a matching pattern, while lineups require that task as well as the ability to determine what the pattern is for a particular graph. Even excluding the one low visual search score that is a high-leverage point, there seems to be a positive relationship between a participant's score on lineups and their score for visual search. 
@@ -318,7 +308,7 @@ In figure~\ref{fig:visualaptitudects}, we see that participant performance on li
 <<VisReasoningCts,echo=FALSE, include=FALSE, eval=T, fig.width=8,fig.height=8, message=F, warning=F>>=
 lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
  
-qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x") + xlab("Scaled Score") + ylab("Scaled Lineup Score") + geom_smooth(method="lm") + theme_bw()
+qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x") + xlab("Score") + ylab("Lineup Score") + geom_smooth(method="lm") + theme_bw()
 @
 
 \begin{figure}[htbp]\centering
@@ -363,9 +353,9 @@ To calculate ``scaled" comparison scores between tests which included different 
 \begin{tabular}{rlll}
 \hline
   & Card Rotation & Paper Folding & Figure Classification \\\hline
-ISU Students & \Sexpr{round(mean(ans.summary.unscaled$card_rot), 1)} (\Sexpr{round(sd(ans.summary.unscaled$card_rot), 1)}) 
-             & \Sexpr{round(mean(ans.summary.unscaled$folding), 1)} (\Sexpr{round(sd(ans.summary.unscaled$folding), 1)})
-             & \Sexpr{round(mean(ans.summary.unscaled$fig_class), 1)} (\Sexpr{round(sd(ans.summary.unscaled$fig_class), 1)})\footnote{ISU students took only Part I due to time constraints.}\\
+ISU Students & \Sexpr{round(mean(ans.summary$card_rot), 1)} (\Sexpr{round(sd(ans.summary$card_rot), 1)}) 
+             & \Sexpr{round(mean(ans.summary$folding), 1)} (\Sexpr{round(sd(ans.summary$folding), 1)})
+             & \Sexpr{round(mean(ans.summary$fig_class), 1)} (\Sexpr{round(sd(ans.summary$fig_class), 1)})\footnote{ISU students took only Part I due to time constraints.}\\
 Scaled Scores & 88.0 (\Sexpr{round(sqrt((24.6^2)*2), 1)})
               & 13.8 (4.5)
               & \Sexpr{round((120.0*294 + 114.9*323)/617/2, 1)} (\Sexpr{round(sqrt((30^2*294 + 27.8^2*323)/617)/2, 1)})\footnote{Averages calculated assuming 294 males and 323 females.}\\
