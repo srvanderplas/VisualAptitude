@@ -299,57 +299,18 @@ xtable(summary(lm(lineup~PC1+PC2+PC3+PC4, data=ans.pca)), caption="Lineup score,
 
 In figure~\ref{fig:visualaptitudects}, we see that participant performance on lineups is positively correlated with performance on card rotation, figure classification, and paper folding tasks. This suggests that skills associated with visual reasoning ability are related to lineup performance. As participants must use the same skills in lineups (mental rotation, classification and determining categorization schemes, and multi-step spatial reasoning) as in the factor-referenced tests, this is not particularly surprising. In addition,there seems to be some positive relationship between a participant's score on the visual search task and their score on lineups: the visual search task represents a baseline of a participant's ability to find a matching pattern, while lineups require that task as well as the ability to determine what the pattern is for a particular graph. Even excluding the one low visual search score that is a high-leverage point, there seems to be a positive relationship between a participant's score on lineups and their score for visual search. 
 
-<<VisReasoningAnalysis,echo=FALSE, include=FALSE, fig.width=8,fig.height=8, out.width='0.9\\textwidth', message=F, warning=F>>=
+<<VisReasoningCts,echo=FALSE, include=FALSE, eval=T, fig.width=8,fig.height=8, message=F, warning=F>>=
 lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
  
 qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x") + xlab("Scaled Score") + ylab("Scaled Lineup Score") + geom_smooth(method="lm") + theme_bw()
-# same aspect ratio
-ggsave(paste(imgdir, "fig-VisReasoningAnalysisCts.png", sep=""), width=6, height=6)
-
-lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
-lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
-lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience", "Video Game Hrs/Wk"))
-lineup.summary.categorical$value[lineup.summary.categorical$value=="f"] <- "Female"
-lineup.summary.categorical$value[lineup.summary.categorical$value=="m"] <- "Male"
-lineup.summary.categorical$value[lineup.summary.categorical$value=="y"] <- "TRUE"
-lineup.summary.categorical$value[lineup.summary.categorical$value=="n"] <- "FALSE"
-
-
-qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + facet_wrap(~variable, scales="free_x") + xlab("") + ylab("Scaled Lineup Score") + theme_bw() + geom_point(aes(x=value, y=lineup), shape=1, size=3)
-ggsave(paste(imgdir, "fig-VisReasoningAnalysisCat.png", sep=""), width=6, height=6)
 @
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=0.75\textwidth]{fig-VisReasoningAnalysisCts}
+\includegraphics[width=0.75\textwidth]{fig-VisReasoningCts-1}
 \caption[Visual Aptitude Study Results]{Scatterplots of all test scores compared to participants' scores in the lineup tests. There is a relatively strong positive correlation between lineup score and scores on visuospatial reasoning tests.}\label{fig:visualaptitudects}
 \end{figure}
 
 Figure \ref{fig:visualaptitudecat} shows participants' responses to the questionnaire given at the beginning of the study; these demographic questions allow us to compare the participants in our study to the undergraduate population of Iowa State as well as to explore relationships between demographic characteristics (major, research experience, etc.) and score on various sections of this test. 
-
-\begin{figure}[htbp]\centering
-\includegraphics[width=\textwidth]{fig-VisReasoningAnalysisCat}
-\caption[Visual Aptitude Study Results]{Sample demographic characteristics compared with lineup score. Sex (male), Calculus completion, and hours spent playing video games per week are all associated with a difference in lineup score. }\label{fig:visualaptitudecat}
-\end{figure}
-
-There is no significant difference in lineup performance for participants of different age, self-assessed skill rating, previous participation in math or science research, completion of a statistics class, or experience with AutoCAD.
-There is a significant difference between male and female performance on lineups; this is not particularly surprising, since men perform better on many spatial tests \citep{voyer1995magnitude} and performance on spatial tests is correlated with phase of the menstrual cycle in women \citep{hausmann2000sex}.
-Completion of Calculus I is associated with increased performance on lineups. This may be related to general math education level, or it may be that success in both lineups and calculus requires certain visual skills. \newtext{This result is consistent with \citep{shah1995conceptual}, who found an association between  mathematical ability and performance on simple graph description tasks.}  There is also a significant association between hours of video games played per week and score on lineups, however, this association is not monotonic and the groups do not have equal sample size, so the conclusion may be suspect. 
-
-<<ttests.categ, echo=F, results='asis'>>=
-tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
-    tmp <- anova(lm(lineup~factor(value, ordered=F), data=df))
-    coefs <- as.data.frame(tmp)[1,]
-    coefs$level <- gsub("factor(value, ordered = F)", unique(df$variable), rownames(coefs), fixed=T)
-    rownames(coefs) <- NULL
-    coefs <- coefs[,c(6, 1:5)]
-    names(coefs) <- c("Variable", "DF", "Sum.of.Squares", "Mean.Squared", "F.value", "p.value")
-    coefs
-})
-
-tmp <- rbind.fill(tmp)
-tmp <- tmp[order(tmp$p.value, decreasing=F),]
-print(xtable(tmp, digits=c(1, 1, 0, 3, 3, 2, 3), caption="Model results of each demographic variable compared with lineup score. Multiple testing issues aside, it appears that very few demographic variables (if any) are significantly associated with score on lineups among Iowa State undergraduate students."), include.rownames=F)
-@
 
 All results and data shown here are done in accordance with IRB \# 13-581.
 
