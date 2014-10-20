@@ -138,7 +138,7 @@ Between cognitive tasks, participants will also complete three blocks of 20 line
 
 In addition to these tests, participants will complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
 
-\subsection{Scoring and Scaling of Answers}\label{sec:scaling}
+\subsection{Test Scoring}\label{sec:scaling}
 
 Scoring of all test results was done such that random guessing leads to an expected value of 0; therefore each question answered correctly contributes to the score by 1, while a wrong answer is scored by $-1/(k-1)$, where $k$ is the total number of possible answers to the question. Thus, for a test consisting of multiple choice questions with $k$ suggested answers with a single correct answer each, the score is calculated as
 \begin{eqnarray}\label{eq.scoring}
@@ -150,19 +150,19 @@ This allows us to compare each participant's score in light of how many problems
 The advantage of using tests from the Kit of Factor Referenced Cognitive tests \citep{ekstrom1976manual} is that the tests are extremely well studied \citep{voyer1995magnitude,schaie1998longitudinal,hampson1990variations,mayer1994whom} and comparison data are available from the validation of these factors.
 \comment{the well studied reference list needs to be a bit more extensive ... do you know this book by Michel Hersen?\\\textit{I was working on it yesterday along with trying to validate the general idea that reading graphics requires certain spatial abilities. It's definitely a work in progress. I haven't seen that book before, but I'm not at all surprised it exists.}}
 
-
-\paragraph{Variance consideration of scaled test score:}
-Let $X_{n, k}$ be a participant's (unscaled) score on a test consisting of $n$ questions with $k$ answers each, out of which only one is correct.
-\begin{eqnarray*}
-\text{Var}(X_{n, k}) &=& n^2 \text{Var}(X_{1, k}) = \\
-&=& n^2 (\underbrace{1/k \cdot 1^2}_{\text{correct answer}}+ \underbrace{(-1/(k-1))^2 \cdot (k-1)/k}_{\text{wrong answer}}) = \\
-&=& n^2/(k-1).
-\end{eqnarray*}
-\newtext{The scaled test score $Z_{n,k}$ is $1/n \sqrt{(k-1)} X_{n,k}$ and the statement for the variance of $Z_{n,k}$ follows directly.}
-
-The above consideration only assumes independence between questions, which is reasonable. While we only consider a test consisting of questions with the same number of choices $k$, an extension to varied number of answers is trivial and has been done in the adjustment for the figure classification score. 
-
-To facilitate comparison of the visuospatial skills tests utilized in this study with the lineups, we will scale the test results by a factor of $1/n \sqrt{k-1}$, where $n$ is the number of questions in a test and $k$ is the number of offered answers on each questions (out of which only one is correct). This scaling ensures that test scores across different types are comparable. All test scores are now normalized such that they have under the assumption of random guessing an expected value of zero and a standard deviation of 1. In particular, this leads to a theoretical range of a normalized test score $Z_{n, k}$ of $[-\sqrt{k-1}, \sqrt{k-1}]$.
+% 
+% \paragraph{Variance consideration of scaled test score:}
+% Let $X_{n, k}$ be a participant's (unscaled) score on a test consisting of $n$ questions with $k$ answers each, out of which only one is correct.
+% \begin{eqnarray*}
+% \text{Var}(X_{n, k}) &=& n^2 \text{Var}(X_{1, k}) = \\
+% &=& n^2 (\underbrace{1/k \cdot 1^2}_{\text{correct answer}}+ \underbrace{(-1/(k-1))^2 \cdot (k-1)/k}_{\text{wrong answer}}) = \\
+% &=& n^2/(k-1).
+% \end{eqnarray*}
+% \newtext{The scaled test score $Z_{n,k}$ is $1/n \sqrt{(k-1)} X_{n,k}$ and the statement for the variance of $Z_{n,k}$ follows directly.}
+% 
+% The above consideration only assumes independence between questions, which is reasonable. While we only consider a test consisting of questions with the same number of choices $k$, an extension to varied number of answers is trivial and has been done in the adjustment for the figure classification score. 
+% 
+% To facilitate comparison of the visuospatial skills tests utilized in this study with the lineups, we will scale the test results by a factor of $1/n \sqrt{k-1}$, where $n$ is the number of questions in a test and $k$ is the number of offered answers on each questions (out of which only one is correct). This scaling ensures that test scores across different types are comparable. All test scores are now normalized such that they have under the assumption of random guessing an expected value of zero and a standard deviation of 1. In particular, this leads to a theoretical range of a normalized test score $Z_{n, k}$ of $[-\sqrt{k-1}, \sqrt{k-1}]$.
 
 \section{Results}
 Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students at Iowa State University. About one-half of the participants were in STEM fields, the others were distributed relatively evenly between agriculture, business, education, and liberal arts. Students were evenly distributed by gender, and were between 18 and 24 years of age with only one exception. This is reasonably representative of the university as a whole; ISU graduates are about 20\% engineering, 16\% business, and 11\% agriculture students, however, these numbers are for completed degrees, not current majors. 
@@ -209,8 +209,8 @@ Comparison populuation data was chosen to most closely match ISU undergraduate p
 
 
 \comment{\textit{We may want to include a table of scaled scores here, so that we don't just bust right into lineup discussion without contextualizing everything properly.}}
-\newtext{Applying the scaling protocol discussed in section \ref{sec:scaling}, we see that the ranges of scaled lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure \ref{fig:ScaledScores} shows the range of possible scores and the observed score distribution. } 
-<<ResultsScaledScores, echo=F, include=T, fig.cap="Scaled test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. \\label{fig:ScaledScores}", fig.width=8, fig.height=3, out.width='.9\\textwidth'>>=
+\newtext{Applying the grading protocol discussed in section \ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure \ref{fig:Scores} shows the range of possible scores and the observed score distribution. } 
+<<ResultsScaledScores, echo=F, include=T, fig.cap="Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. \\label{fig:Scores}", fig.width=8, fig.height=3, out.width='.9\\textwidth'>>=
 
 score.summary <- melt(ans.summary, measure.vars=20:24, value.name = "Score", variable.name = "Test")
 score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))

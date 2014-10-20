@@ -102,9 +102,9 @@ longform.sum$value <- with(longform.sum, value/sqrt(var))
 # longform.sum$value <- with(longform.sum, (pos.pts - neg.pts + min.score)/(min.score+max.score)*100)
 
 # Cast back to wide-ish form with just test totals
-ans.summary <- dcast(longform.sum, id~testtype, value.var="value", na.rm=TRUE)
+ans.summary <- dcast(longform.sum.unscaled, id~testtype, value.var="value", na.rm=TRUE)
 ans.summary <- merge(ans[,1:19], ans.summary)
-pct.ans <- dcast(longform.sum, id~testtype, value.var="pct.answered")
+pct.ans <- dcast(longform.sum.unscaled, id~testtype, value.var="pct.answered")
 
 # Cast unscaled version
 ans.summary.unscaled <- dcast(longform.sum.unscaled, id~testtype, value.var="value", na.rm=TRUE)
