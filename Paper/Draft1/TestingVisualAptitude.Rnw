@@ -133,7 +133,7 @@ Between cognitive tasks, participants will also complete three blocks of 20 line
 
 In addition to these tests, participants will complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
 
-\subsection{Scoring and Scaling of Answers}
+\subsection{Scoring and Scaling of Answers}\label{sec:scaling}
 
 Scoring of all test results was done such that random guessing leads to an expected value of 0; therefore each question answered correctly contributes to the score by 1, while a wrong answer is scored by $-1/(k-1)$, where $k$ is the total number of possible answers to the question. Thus, for a test consisting of multiple choice questions with $k$ suggested answers with a single correct answer each, the score is calculated as
 \begin{eqnarray}\label{eq.scoring}
@@ -158,7 +158,6 @@ Let $X_{n, k}$ be a participant's (unscaled) score on a test consisting of $n$ q
 The above consideration only assumes independence between questions, which is reasonable. While we only consider a test consisting of questions with the same number of choices $k$, an extension to varied number of answers is trivial and has been done in the adjustment for the figure classification score. 
 
 To facilitate comparison of the visuospatial skills tests utilized in this study with the lineups, we will scale the test results by a factor of $1/n \sqrt{k-1}$, where $n$ is the number of questions in a test and $k$ is the number of offered answers on each questions (out of which only one is correct). This scaling ensures that test scores across different types are comparable. All test scores are now normalized such that they have under the assumption of random guessing an expected value of zero and a standard deviation of 1. In particular, this leads to a theoretical range of a normalized test score $Z_{n, k}$ of $[-\sqrt{k-1}, \sqrt{k-1}]$.
-
 
 \section{Results}
 Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students at Iowa State University. About one-half of the participants were in STEM fields, the others were distributed relatively evenly between agriculture, business, education, and liberal arts. Students were evenly distributed by gender, and were between 18 and 24 years of age with only one exception. This is reasonably representative of the university as a whole; ISU graduates are about 20\% engineering, 16\% business, and 11\% agriculture students, however, these numbers are for completed degrees, not current majors. 
