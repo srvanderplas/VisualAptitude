@@ -126,8 +126,8 @@ Participants will complete the following tasks (sample pictures included, full s
 
 Between cognitive tasks, participants will also complete three blocks of 20 lineups each. These lineups have been previously tested \citep{hofmann2012graphical}. Participants have 5 minutes to complete each block of 20 lineups. Figure \ref{fig:lineup} shows a sample lineup of box plots. 
 
-\begin{figure}[htbp]\centering
-\includegraphics[width=.9\textwidth]{lineup}
+\begin{figure}\centering
+\includegraphics[width=.8\textwidth]{lineup}
 \caption[Sample Lineup]{A sample lineup. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 13 is the target. }\label{fig:lineup}
 \end{figure}
 
