@@ -204,8 +204,20 @@ Comparison populuation data was chosen to most closely match ISU undergraduate p
 
 
 \comment{\textit{We may want to include a table of scaled scores here, so that we don't just bust right into lineup discussion without contextualizing everything properly.}}
-\newtext{Applying the scaling protocol discussed in section \ref{sec:scaling}, we see that the ranges of scaled lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task.} 
+\newtext{Applying the scaling protocol discussed in section \ref{sec:scaling}, we see that the ranges of scaled lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure \ref{fig:ScaledScores} shows the range of possible scores and the observed score distribution. } 
+<<ResultsScaledScores, echo=F, include=T, fig.cap="Scaled test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. \\label{fig:ScaledScores}", fig.width=8, fig.height=3, out.width='.9\\textwidth'>>=
 
+score.summary <- melt(ans.summary, measure.vars=20:24, value.name = "Score", variable.name = "Test")
+score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
+qrange$sqrt.k <- sqrt(qrange$k-1)
+qrange$Test <- factor(qrange$testtype, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
+qplot(data=score.summary, x=Test, y=Score, geom="boxplot") + 
+  geom_rect(data=qrange, aes(xmin=as.numeric(Test)-.4, xmax=as.numeric(Test)+.4, ymin=-sqrt.k, ymax=sqrt.k, colour="red"), fill=NA, inherit.aes=F) + 
+  scale_colour_discrete(name="", labels="Theoretical Range") + 
+  theme(legend.position="bottom") + 
+  coord_flip()
+               # + theme_bw() #+ geom_jitter(aes(x=Test, y=Score))
+@
 % 
 % \comment{Could you include some more details on how to get from the Unscaled scores to the scaled versions? I'm assuming that for the Card Rotation, the two parts have equal size, explaining the doubled score, but why not double the standard deviation? $\text{Var}(aX) = a^2 \text{Var}(X)$  ok I got the first one - because it is $X_1 + X_2$ not $2 X_1$. still working on understanding the second one, though ... it would be worthwhile to include a bit more detail and maybe put that in an appendix to the paper. If you want to, you could instead extend the footnotes a bit for now. ... so just let me try this: Let's assume that $X_M$ and $X_F$ are the scores based on 294 men, and 323 women (are those midscore s of the intervals reported?). with corresponding $s_M$ and $s_F$ for the reported standard deviation of the full test. Then half of the test would have half of the scores with half of the standard deviation. we have a breakdown of 17 girls and 19 boys. $
 % X = (X_M/2 \cdot 294 + X_F/2 \cdot 323) /(294+323) = \Sexpr{round(120.0/2*294/617 + 114.9/2*323/617, 1)}
