@@ -136,6 +136,8 @@ In addition to these tests, participants will complete a questionnaire which inc
 \section{Results}
 Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students at Iowa State University. 
 \comment{Teensy overview of the demographics - this might end up in an appendix, but then we need to refer to from here. I'd like to know breakdown of men/women, classification, maybe an overview of different majors (not necessarily a breakdown, that might be leading to problems with identifiability)}
+\subsection{Scoring and Scaling of Answers}
+
 Scoring of all test results was done such that random guessing leads to an expected value of 0; therefore each question answered correctly contributes to the score by 1, while a wrong answer is scored by $-1/(k-1)$, where $k$ is the total number of possible answers to the question. Thus, for a test consisting of multiple choice questions with $k$ suggested answers with a single correct answer each, the score is calculated as
 \begin{eqnarray}\label{eq.scoring}
 \# \text{correct answers } - 1/(k-1) \cdot \# \text{wrong answers}.
@@ -146,6 +148,20 @@ This allows us to compare each participant's score in light of how many problems
 The advantage of using tests from the Kit of Factor Referenced Cognitive tests \citep{ekstrom1976manual} is that the tests are extremely well studied \citep{voyer1995magnitude,schaie1998longitudinal,hampson1990variations} and comparison data are available from the validation of these factors.
 \comment{the well studied reference list needs to be a bit more extensive ... do you know this book by Michel Hersen?\\\textit{I was working on it yesterday along with trying to validate the general idea that reading graphics requires certain spatial abilities. It's definitely a work in progress. I haven't seen that book before, but I'm not at all surprised it exists.}}
 The card rotation, paper folding, and figure classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students).
+
+
+\paragraph{Variance consideration of scaled test score:}
+Let $X_{n, k}$ be a participant's (unscaled) score on a test consisting of $n$ questions with $k$ answers each, out of which only one is correct.
+\begin{eqnarray*}
+\text{Var}(X_{n, k}) &=& n^2 \text{Var}(X_{1, k}) = \\
+&=& n^2 (\underbrace{1/k \cdot 1^2}_{\text{correct answer}}+ \underbrace{(-1/(k-1))^2 \cdot (k-1)/k}_{\text{wrong answer}}) = \\
+&=& n^2/(k-1).
+\end{eqnarray*}
+\newtext{The scaled test score $Z_{n,k}$ is $1/n \sqrt{(k-1)} X_{n,k}$ and the statement for the variance of $Z_{n,k}$ follows directly.}
+
+The above consideration only assumes independence between questions, which is reasonable. While we only consider a test consisting of questions with the same number of choices $k$, an extension to varied number of answers is trivial and has been done in the adjustment for the figure classification score. 
+
+To facilitate comparison of the visuospatial skills tests utilized in this study with the lineups, we will scale the test results by a factor of $1/n \sqrt{k-1}$, where $n$ is the number of questions in a test and $k$ is the number of offered answers on each questions (out of which only one is correct). This scaling ensures that test scores across different types are comparable. All test scores are now normalized such that they have under the assumption of random guessing an expected value of zero and a standard deviation of 1. In particular, this leads to a theoretical range of a normalized test score $Z_{n, k}$ of $[-\sqrt{k-1}, \sqrt{k-1}]$.
 
 \begin{savenotes}
 \begin{table}[ht]
