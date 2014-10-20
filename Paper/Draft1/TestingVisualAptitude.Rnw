@@ -229,6 +229,44 @@ so outline for the next few steps:
 \item linear model of lineup scores in PCA with discussion and tying it back to raw scores (figure classification really is the best predictor for lineups, but it only explains some of the variance).
 \end{enumerate}
  }
+ 
+
+
+\paragraph{Lineup Performance and Demographic Characteristics}
+
+<<VisReasoningCategorical, echo=F, include=F, eval=T, fig.width=8,fig.height=8, message=F, warning=F>>=
+lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
+lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
+lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience", "Video Game Hrs/Wk"))
+lineup.summary.categorical$value[lineup.summary.categorical$value=="f"] <- "Female"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="m"] <- "Male"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="y"] <- "TRUE"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="n"] <- "FALSE"
+
+tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
+    tmp <- anova(lm(lineup~factor(value, ordered=F), data=df))
+    coefs <- as.data.frame(tmp)[1,]
+    coefs$level <- gsub("factor(value, ordered = F)", unique(df$variable), rownames(coefs), fixed=T)
+    rownames(coefs) <- NULL
+    coefs <- coefs[,c(6, 1:5)]
+    names(coefs) <- c("Variable", "DF", "Sum.of.Squares", "Mean.Squared", "F.value", "p.value")
+    coefs
+})
+
+tmp <- rbind.fill(tmp)
+tmp <- tmp[order(tmp$p.value, decreasing=F),]
+
+lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, levels=unique(tmp$Variable))
+
+qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + facet_wrap(~variable, scales="free_x") + xlab("") + ylab("Scaled Lineup Score") + theme_bw() + geom_point(aes(x=value, y=lineup), shape=1, size=3)
+@
+\begin{figure}[htbp]\centering
+\includegraphics[width=\textwidth]{fig-VisReasoningCategorical-1}
+\caption[Visual Aptitude Study Results]{Sample demographic characteristics compared with lineup score. Categories are ordered by effect size; calculus completion,  hours spent playing video games per week, and sex are all associated with a difference in lineup score. }\label{fig:visualaptitudecat}
+\end{figure}
+
+Completion of Calculus I is associated with increased performance on lineups. This may be related to general math education level, or it may be that success in both lineups and calculus requires certain visual skills. This association is consistent with \citep{shah1995conceptual}, who found an association between  mathematical ability and performance on simple graph description tasks.  There is also a significant association between hours of video games played per week and score on lineups, however, this association is not monotonic and the groups do not have equal sample size, so the conclusion may be suspect. There is a (nearly) significant difference between male and female performance on lineups; this is not particularly surprising, since men perform better on many spatial tests \citep{voyer1995magnitude} and performance on spatial tests is correlated with phase of the menstrual cycle in women \citep{hausmann2000sex}. There is no significant difference in lineup performance for participants of different age, self-assessed skills in various domains, previous participation in math or science research, completion of a statistics class, or experience with AutoCAD. These demographic characteristics were chosen to account for life experience and personal skills which may have influenced the results. Statistical test results are available in appendix \ref{app:categoricalresults}. 
+
 
 % <<means>>=
 % library(plyr)
