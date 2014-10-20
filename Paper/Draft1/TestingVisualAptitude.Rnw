@@ -300,7 +300,7 @@ pca$rotation
 
 <<pca, fig.cap="Plots of the principal components with observations. Visual Search and Paper Folding strongly contribute to both PC1 and PC2, while Figure Classification and Paper Folding strongly contributes to PC3 and Card Rotation strongly contributes to PC4", comment="|", fig.height=4.5, fig.width=4.5, warning=F, message=F, out.width='.45\\textwidth'>>=
 # Just using the 4 cognitive tests and ignoring the lineups...
-pca.cog.tests <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], retx=T)
+pca.cog.tests <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], retx=T, scale=T)
 summary(pca.cog.tests)
 pca.cog.tests$rotation
 biplot(pca.cog.tests, choices=1:2, pc.biplot=T, cex=c(.5, 1), adj=.75)
