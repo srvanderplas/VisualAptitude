@@ -318,7 +318,7 @@ All results and data shown here are done in accordance with IRB \# 13-581.
 
 \section*{Appendix}
 \renewcommand{\thesubsection}{\Alph{subsection}}
-\subsection{Examining potential testing biases}
+\subsection{Examining potential testing biases}\label{app:ratests}
 T-tests of results for Hillary and Stephanie: 
 <<ttest, echo=F, include=T, results='asis'>>=
 ans.summary$tester <- c(rep("Hillary", 18), rep("Stephanie", nrow(ans.summary)-18))
