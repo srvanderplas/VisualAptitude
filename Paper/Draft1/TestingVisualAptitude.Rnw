@@ -417,6 +417,39 @@ tmp <- rbind.fill(tmp)
 tmp <- tmp[order(tmp$p.value, decreasing=F),]
 print(xtable(tmp, digits=c(1, 1, 0, 3, 3, 2, 3), caption="Model results of each demographic variable compared with lineup score. Multiple testing issues aside, it appears that very few demographic variables (if any) are significantly associated with score on lineups among Iowa State undergraduate students."), include.rownames=F)
 @
+\subsection{Lineup Performance: Accounting for ``Visual Intelligence''}
+As figure \ref{fig:biplots}(a) shows, the first principal component seems to primarily describe ``general intelligence", or ``visual intelligence" in a generic sense (as we have only tested visual skills). As the visual search task (VST) is the most generic of visual tasks (find the matching pattern) and requires no spatial manipulation, rotation, or inference, we might use it as an indicator of general visual intelligence (or cognitive tempo and attention to detail). 
 
+<<partialregression, results='asis', echo=1>>=
+model1 <- lm(lineup ~ vis_search, data=ans.summary)
+print(xtable(summary(model1), caption="Results of the linear regression of visual search score on lineup score. \\label{vst-reg}."), sanitize.text.function=sanitize)
+@
+<<partialregression1,fig.keep='all', fig.width=4, fig.height=4, out.width='.45\\textwidth', fig.cap="Biplots of the adjusted lineup, card rotation, figure classification, and paper folding scores principal components analysis. Adjusted lineup scores are most associated with figure classification in the second principal component. In the third and fourth components, adjusted scores are almost entirely orthogonal. \\label{fig:biplot-adjusted}", tidy=T, echo=1:7>>=
+# partial regression data set
+ans.part <- ans.summary
+ans.part$lineup <- resid(lm(lineup ~ vis_search, data=ans.summary))
+ans.part$card_rot <- resid(lm(card_rot ~ vis_search, data=ans.summary))
+ans.part$fig_class <- resid(lm(fig_class ~ vis_search, data=ans.summary))
+ans.part$folding <- resid(lm(folding ~ vis_search, data=ans.summary))
+
+pca2 <- prcomp(ans.part[,c("lineup", "card_rot", "fig_class", "folding")], scale=T, retx=T)
+biplot(pca2, choices=1:2, pc.biplot=T, cex=c(.5, 1), adj=.75)
+biplot(pca2, choices=3:4, pc.biplot=T, cex=c(.5, 1), adj=.75)
+@
+<<partialregression2, echo=F, results='asis'>>=
+model2 <- lm(lineup~fig_class+card_rot+folding, data=ans.part)
+print(xtable(model2, caption="Results of the linear regression of (the ETS tests $|$ VST) on (lineup score $|$ VST)"), sanitize.text.function=sanitize)
+@
+Removing paper folding from the analysis due to its' obvious nonsignificance and collinearity with card rotation, we get a slightly better regression result. 
+<<partialregression3, echo=F, results='asis'>>=
+model3 <- lm(lineup~fig_class+card_rot, data=ans.part)
+print(xtable(model3, caption="Results of the reduced linear regression of (the ETS tests $|$ VST) on (lineup score $|$ VST)"), sanitize.text.function=sanitize)
+print(xtable(anova(model3, model2), caption="Model comparison between full model (including paper folding) and reduced model (excluding paper folding), when accounting for scores on the VST in both independent and dependent variables. "), sanitize.text.function=sanitize)
+@
+
+Comparing the full and reduced models, we see that the reduction does not significantly reduce the explained sum of squares. 
+
+
+Even using VST as a ``general intelligence" factor, the first PC still does not discriminate between the tests. This approach is probably not worth pursuing further. 
 
 \end{document}
