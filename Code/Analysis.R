@@ -88,7 +88,7 @@ longform.sum <- merge(longform.sum, qrange)
 longform.sum$value <- with(longform.sum, pos.pts-neg.pts)
 
 # Save unscaled version
-longform.sum.unscaled <- longform.sum
+# longform.sum.unscaled <- longform.sum
 
 # Calculate test-wise means (for centering) and center scores
 # tmp <- ddply(longform.sum, .(testtype), summarize, test.mean = mean(value, na.rm=T))
@@ -96,19 +96,19 @@ longform.sum.unscaled <- longform.sum
 # longform.sum$value <- with(longform.sum, value - test.mean)
 
 # Scale scores
-longform.sum$value <- with(longform.sum, value/sqrt(var))
+# longform.sum$value <- with(longform.sum, value/sqrt(var))
 
 # Alt. Scaling method by range. 
 # longform.sum$value <- with(longform.sum, (pos.pts - neg.pts + min.score)/(min.score+max.score)*100)
 
 # Cast back to wide-ish form with just test totals
-ans.summary <- dcast(longform.sum.unscaled, id~testtype, value.var="value", na.rm=TRUE)
+ans.summary <- dcast(longform.sum, id~testtype, value.var="value", na.rm=TRUE)
 ans.summary <- merge(ans[,1:19], ans.summary)
-pct.ans <- dcast(longform.sum.unscaled, id~testtype, value.var="pct.answered")
+pct.ans <- dcast(longform.sum, id~testtype, value.var="pct.answered")
 
 # Cast unscaled version
-ans.summary.unscaled <- dcast(longform.sum.unscaled, id~testtype, value.var="value", na.rm=TRUE)
-ans.summary.unscaled <- merge(ans[,1:19], ans.summary.unscaled)
+# ans.summary.unscaled <- dcast(longform.sum.unscaled, id~testtype, value.var="value", na.rm=TRUE)
+# ans.summary.unscaled <- merge(ans[,1:19], ans.summary.unscaled)
 
 # Create video game factor variable
 ans.summary$vidgame_hrs_factor <- ordered(factor(rowSums(sapply(c(-1, 0, 1.99, 4.99), function(i) ans$vidgame_hrs>i)), labels=c("0", "[1, 2)", "[2, 5)", "5+"), levels=1:4))
@@ -117,4 +117,4 @@ ans.summary$vidgame_hrs_factor <- ordered(factor(rowSums(sapply(c(-1, 0, 1.99, 4
 lineup.summary <- melt(ans.summary, id.vars=c(1:19, 23, 25))
 
 # Create plot-able data frame with demographic data
-lineup.summary.categorical <- melt(ans.summary[,c(1:3, 12:17, 19, 23, 25)], id.vars=c("id", "lineup"))
+lineup.summary.categorical <- suppressWarnings(melt(ans.summary[,c(1:3, 12:17, 19, 23, 25)], id.vars=c("id", "lineup")))
