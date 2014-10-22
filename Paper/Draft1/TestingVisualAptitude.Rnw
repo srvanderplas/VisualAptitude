@@ -88,39 +88,41 @@ Statistical graphics provide quick summaries of data, models, and results, but t
 \newtext{Statistical lineups \citep{hofmann2012graphical,buja2009statistical} depend on the ability to search for a signal amid distractors (visual search) and the ability to infer patterns from stimuli (pattern recognition). Some lineups (polar coords) also depend on the ability to mentally rotate stimuli (spatial rotation) and mentally manipulate graphs (spatial rotation and manipulation). By breaking the lineup task down into component parts, we may be able to determine which visuospatial factors most strongly correlate with lineup performance, using carefully chosen cognitive tests to assess these aspects of visuospatial ability. These assessments will then be used to account for some of the variation in lineup performance differences. In addition, we will also examine the effect that previous experiences (science-based major, research experience, Auto-CAD skills) have on lineup performance and the implications for the use of lineups to assess the graphical display of statistical information. }
 
 \section{Methods}
+\subsection{Measures of visuospatial ability}
 \comment{Use the setup in the lineup protocol section to justify each of the tests chosen. }
 \comment{Besides pointing out what we asked participants to do, we also need some why, and also why in particular these tests were selected. part of the validity consideration can go in here - and the classification from the naval test of the tests we picked into different classes (maybe already with a hint that for our data these weren't actually orthogonal classes, because we found a really high correlation between card rotation and paper folding.)\\
-\textit{I don't know if the tests are supposed to be orthogonal. It would be hard to construct a set of tests that was orthogonal, because the abilities themselves aren't easily separable - math reasoning and spatial reasoning are related, for instance, and verbal abilities are correlated with creativity too.}}
+}
+
 Participants will complete the following tasks (sample pictures included, full stimuli set will be added to the appendix once we are sure there is no need for follow-up experiments). Tasks are designed so that participants are under time pressure; they are not expected to complete all of the problems in each section. This provides more discrimination between high scorers and prevents score compression at the top of the range. 
-\begin{itemize}
-\item Visual Search Task: designed to test participants' ability to find a target stimulus in a field of distractors. An example is shown in figure \ref{fig:VST}. The visual search task is similar in concept to lineups: it tests one's ability to find the target plot. Historically, it has been used as a measure of brain damage\citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological}; however, similar tasks, have been used to measure cognitive performance in a variety of situations (under the influence of drugs, for example, in \citet{anderson1983interactive}). The similarity to lineup protocol as well as the simiplicity of the test and its' lack of color justify the slight deviation from forms of visual search tasks typically used in normal populations. 
+
+The \textbf{visual searching task} (VST), shown in figure \ref{fig:VST}, is designed to test participants' ability to find a target stimulus in a field of distractors. The visual search task is similar in concept to lineups: it tests one's ability to find the target plot. Historically, it has been used as a measure of brain damage\citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological}; however, similar tasks, have been used to measure cognitive performance in a variety of situations (under the influence of drugs, for example, in \citet{anderson1983interactive}). The similarity to lineup protocol as well as the simiplicity of the test and its' lack of color justify the slight deviation from forms of visual search tasks typically used in normal populations. 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.7\textwidth]{VisualSearch}
 \caption[Visual Search Task]{Visual Search Task. Participants are instructed to find the plot numbered 1-24 which matches the plot labeled "Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
 \end{figure}
-\item Paper Folding Task: tests participants' ability to visualize and mentally manipulate figures in three dimensions. Associated with the ability to extrapolate symmetry and reflection over multiple steps. An example is shown in figure \ref{fig:paperfolding}. 
-\begin{figure}[htbp]\centering
-\includegraphics[width=.9\textwidth]{paperfolding}
-\caption[Paper Folding Task]{Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown in the left-hand figure. Participants will complete up to 20 of these tasks in 6 minutes.}\label{fig:paperfolding}
-\end{figure}
-Lineups require similar manipulations in two-dimensional space, and also require the ability to perform complex spatial manipulations mentally (for instance, comparing the interquartile range of two boxplots as well as their relative alignment to a similar set of two boxplots in another panel). 
 
-\item Card Rotation Task: tests participant's ability to rotate objects in two dimensions to distinguish between left-hand and right-hand versions of the same figure. Tests spatial reasoning ability and mental rotation skills. An example is shown in figure \ref{fig:cardrotation}.
-\begin{figure}[htbp]\centering
-\includegraphics[width=.9\textwidth]{cardrotation}
-\caption[Card Rotation Task]{Card Rotation Task. Participants mark each figure on the right hand side as either the same or different than the figure on the left hand side of the dividing line. Participants will complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.}\label{fig:cardrotation}
-\end{figure}
-As with the paper folding test, two-dimensional comparisons are an important component of lineup performance. In some lineup situations, these comparisons involve translation, in other lineups, rotation is required. 
-
-\item Figure Classification Task: tests participant's ability to extrapolate rules from provided figures. This task is associated with visual reasoning capabilities and we expect that it should correlate with the ability to pick out a signal plot from a lineup. An example is shown in figure \ref{fig:figureclassification}. 
+The \textbf{figure classification task} tests participant's ability to extrapolate rules from provided figures. This task is associated with inductive reasoning ablities (factor I in \citet{ekstrom1976manual}). An example is shown in figure \ref{fig:figureclassification}. 
 \begin{figure}[htbp]\centering
 \includegraphics[width=.9\textwidth]{figureclassification}
 \caption[Figure Classification Task]{Figure Classification Task. Participants classify each figure in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.}\label{fig:figureclassification}
 \end{figure}
 The figure classification test requires the same types of reasoning as the lineups: participants must determine the rules from the provided classes, and extrapolate from those rules to classify new figures. In lineups, participants must determine the rules based on the panels appearing in the lineup; they must then identify the plot which does not conform. As such, the figure classification test has content validity in relation to lineup performance: it is measuring similar underlying criteria. 
-\end{itemize}
 
-Between cognitive tasks, participants will also complete three blocks of 20 lineups each. These lineups have been previously tested \citep{hofmann2012graphical}. Participants have 5 minutes to complete each block of 20 lineups. Figure \ref{fig:lineup} shows a sample lineup of box plots. 
+The \textbf{card rotation test} measures a participant's ability to rotate objects in two dimensions in order to distinguish between left-hand and right-hand versions of the same figure. It tests mental rotation skills, and is classified as a test of spatial orientation in \citet{ekstrom1976manual}, though it does require that participants have both mental rotation ability and short-term visual memory. An example is shown in figure \ref{fig:cardrotation}.
+\begin{figure}[htbp]\centering
+\includegraphics[width=.9\textwidth]{cardrotation}
+\caption[Card Rotation Task]{Card Rotation Task. Participants mark each figure on the right hand side as either the same or different than the figure on the left hand side of the dividing line. Participants will complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.}\label{fig:cardrotation}
+\end{figure}
+Two-dimensional comparisons are an important component of lineup performance. In some lineup situations, these comparisons involve translation, but in other lineups, rotation is required. Lineups also require visual short-term memory, so the additional factor measured implicitly by this test does not reduce its potential relevance to lineup performance.  
+
+The \textbf{paper folding test} measures participants' ability to visualize and mentally manipulate figures in three dimensions. It is classified as part of the visualization factor in \citet{ekstrom1976manual}, which differs from the spatial orientation factor because it requires participants to visualize, manipulate, and transform the figure mentally; a more complex and demanding task than simple rotation. It is associated with the ability to extrapolate symmetry and reflection over multiple steps. An example is shown in figure \ref{fig:paperfolding}. 
+\begin{figure}[htbp]\centering
+\includegraphics[width=.9\textwidth]{paperfolding}
+\caption[Paper Folding Task]{Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown in the left-hand figure. Participants will complete up to 20 of these tasks in 6 minutes.}\label{fig:paperfolding}
+\end{figure}
+Lineups require similar manipulations in two-dimensional space, and also require the ability to perform complex spatial manipulations mentally (for instance, comparing the interquartile range of two boxplots as well as their relative alignment to a similar set of two boxplots in another panel).
+
+Between cognitive tasks, participants will also complete three blocks of 20 lineups each, assembled from previous studies \citep{hofmann2012graphical,majumder2013validation}. Participants have 5 minutes to complete each block of 20 lineups. Figure \ref{fig:lineup} shows a sample lineup of box plots. 
 
 \begin{figure}\centering
 \includegraphics[width=.8\textwidth]{lineup}
