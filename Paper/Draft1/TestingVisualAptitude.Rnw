@@ -298,16 +298,19 @@ Completion of Calculus I is associated with increased performance on lineups. Th
 % ldply(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")], c(mean=mean,sd= sd))
 % @
 
-<<correlations, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".45\\linewidth", fig.height=4.5, fig.width=4.5, comment="|", warning=F, message=F>>=
-cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")])
-
+<<correlations, echo=F, comment="|", warning=F, message=F, results='asis'>>=
+print(xtable(cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")]), digits=c(1, rep(3, 5)), caption="Correlation matrix for the five tests."), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize)
+@
+<<pcatests,echo=F, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".45\\linewidth", fig.height=4.5, fig.width=4.5, warning=F, message=F>>=
 pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 summary(pca)
 screeplot(pca)
-pca$rotation
+@
+<<pcarotation,echo=F, results='asis'>>=
+print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests."), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize)
 @
 
-<<pca, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\textwidth', comment="|", fig.cap="Plots of the principal components with observations. PC1 seems to represent a general ``visual intelligence'' factor. Figure classification is strongly related to lineups (PC2, PC3), and visual search is related to lineup performance as well (PC3). Paper folding does not seem to be strongly related to lineup performance outside of the first principal component; card rotation is only positively associated with lineup performance in PC4.">>=
+<<pca, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\textwidth', comment="|", fig.cap="Plots of the principal components with observations. PC1 seems to represent a general ``visual intelligence'' factor. Figure classification is strongly related to lineups (PC2, PC3), and visual search is related to lineup performance as well (PC3). Paper folding does not seem to be strongly related to lineup performance outside of the first principal component; card rotation is only positively associated with lineup performance in PC4.\\label{fig:biplots}">>=
 biplot(pca, choices=1:2, pc.biplot=T, cex=c(.5, 1), adj=.75)
 biplot(pca, choices=3:4, pc.biplot=T, cex=c(.5, 1), adj=.75)
 @
