@@ -64,6 +64,11 @@ library(plyr)
 suppressMessages(library(gridExtra))
 library(xtable)
 source(paste(codedir, "Analysis.R", sep=""))
+
+sanitize <- function(x){
+  str_replace(gsub("_", ".", x, fixed=T), "Pr\\((.{1,}))", "Pr$(\\1)$")
+}
+
 @
 
 \title{Spatial Reasoning and Statistical Graphics}
