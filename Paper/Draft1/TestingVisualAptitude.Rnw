@@ -215,16 +215,20 @@ Comparison populuation data was chosen to most closely match ISU undergraduate p
 
 \comment{\textit{We may want to include a table of scaled scores here, so that we don't just bust right into lineup discussion without contextualizing everything properly.}}
 \newtext{Applying the grading protocol discussed in section \ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure \ref{fig:Scores} shows the range of possible scores and the observed score distribution. } 
-<<ResultsScaledScores, echo=F, include=T, fig.cap="Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. \\label{fig:Scores}", fig.width=8, fig.height=3, out.width='.9\\textwidth'>>=
+<<ResultsScaledScores, echo=F, include=T, fig.cap="Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \\label{fig:Scores}", fig.width=8, fig.height=3, out.width='.95\\textwidth', warning=F, message=F>>=
 
 score.summary <- melt(ans.summary, measure.vars=20:24, value.name = "Score", variable.name = "Test")
-score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
+score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
 qrange$sqrt.k <- sqrt(qrange$k-1)
-qrange$Test <- factor(qrange$testtype, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
-qplot(data=score.summary, x=Test, y=Score, geom="boxplot") + 
-  geom_rect(data=qrange, aes(xmin=as.numeric(Test)-.4, xmax=as.numeric(Test)+.4, ymin=-sqrt.k, ymax=sqrt.k, colour="red"), fill=NA, inherit.aes=F) + 
+qrange$Test <- factor(qrange$testtype, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
+ggplot() + 
+  geom_bar(data=qrange, aes(width=.9, x=Test, y=-n/(k-1), fill="red"), alpha=.5, colour="red", stat="identity", inherit.aes=F) + 
+  geom_bar(data=qrange, aes(width=.9, x=Test, y=n, colour="red"), stat="identity", fill=NA, inherit.aes=F) + 
+  geom_boxplot(data=score.summary, aes(x=factor(Test), y=Score), inherit.aes=F) +
+  scale_fill_discrete(name="", labels="Scores indicating guessing") +
   scale_colour_discrete(name="", labels="Theoretical Range") + 
-  theme(legend.position="bottom") + 
+  theme(legend.position="bottom", legend.box="horizontal") + 
+  ylab("Score") + 
   coord_flip()
                # + theme_bw() #+ geom_jitter(aes(x=Test, y=Score))
 @
