@@ -323,6 +323,10 @@ lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Card Rotati
 qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x") + xlab("Score") + ylab("Lineup Score") + geom_smooth(method="lm") + theme_bw()
 @
 
+<<VisReasoningSPM,echo=FALSE, include=T, eval=T, fig.width=8,fig.height=8, message=F, warning=F, fig.cap="Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.">>=
+GGally::ggpairs(ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", "folding")], lower=list(continuous='smooth'), upper=list(continuous="cor"))
+@
+
 \begin{figure}[htbp]\centering
 \includegraphics[width=0.75\textwidth]{fig-VisReasoningCts-1}
 \caption[Visual Aptitude Study Results]{Scatterplots of all test scores compared to participants' scores in the lineup tests. There is a relatively strong positive correlation between lineup score and scores on visuospatial reasoning tests.}\label{fig:visualaptitudects}
