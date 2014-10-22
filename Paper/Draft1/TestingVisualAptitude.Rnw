@@ -303,10 +303,10 @@ print(xtable(cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vi
 @
 <<pcatests,echo=F, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".45\\linewidth", fig.height=4.5, fig.width=4.5, warning=F, message=F>>=
 pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
-summary(pca)
 screeplot(pca)
 @
 <<pcarotation,echo=F, results='asis'>>=
+print(xtable(summary(pca), caption="Importance of components in principal component analysis of the five tests."), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize)
 print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests."), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize)
 @
 
