@@ -156,8 +156,6 @@ This allows us to compare each participant's score in light of how many problems
 
 \section{Results}
 Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students at Iowa State University. About one-half of the participants were in STEM fields, the others were distributed relatively evenly between agriculture, business, and the social sciences. Students were evenly distributed by gender, and were between 18 and 24 years of age with only one exception. This is reasonably representative of the university as a whole; in the fall 2012 semester, 23\% of students were associated with the college of engineering, 23\% were associated with the college of liberal arts and sciences, 23\% were associated with the college of human sciences, 12\% with the business school, and 14\% with the school of agriculture. \footnote{\url{http://www.ir.iastate.edu/PDFfiles/2012-2013\%20Student\%20Profile.pdf}} 
-\newtext{The testing was conducted by two research assistants; the first tested 18 participants, the second tested 20 participants. A comparison of results from each researcher is available in appendix \ref{app:ratests}. }
-% \comment{Teensy overview of the demographics - this might end up in an appendix, but then we need to refer to from here. I'd like to know breakdown of men/women, classification, maybe an overview of different majors (not necessarily a breakdown, that might be leading to problems with identifiability)}
 
 \paragraph{Comparison of Spatial Tests with Previously Validated Results}
 The card rotation, paper folding, and figure classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students). We compare Iowa State students' unscaled scores in table \ref{tab:scorecomparison}, adjusting data from other populations to account for subpopulation structure and test length. 
@@ -321,26 +319,26 @@ All results and data shown here are done in accordance with IRB \# 13-581.
 
 \section*{Appendix}
 \renewcommand{\thesubsection}{\Alph{subsection}}
-\subsection{Examining potential testing biases}\label{app:ratests}
-T-tests of results for Hillary and Stephanie: 
-<<ttest, echo=F, include=T, results='asis'>>=
-ans.summary$tester <- c(rep("Hillary", 18), rep("Stephanie", nrow(ans.summary)-18))
-card.rotation <- t.test(card_rot~tester, data=ans.summary)
-paper.folding <- t.test(folding~tester, data=ans.summary)
-fig.class <- t.test(fig_class~tester, data=ans.summary)
-lineup <- t.test(lineup~tester, data=ans.summary)
-
-res <- ldply(ans.summary[,c("card_rot", "folding", "fig_class", "lineup")], function(i){
-  tmp <- t.test(i~ans.summary$tester)
-  data.frame(Hillary = as.numeric(tmp$estimate)[1], Stephanie = as.numeric(tmp$estimate)[2],
-             t = tmp$statistic, df=tmp$parameter, p=tmp$p.value, lb = tmp$conf.int[1], ub=tmp$conf.int[2])
-})
-
-res$.id <- c("Card Rotation", "Paper Folding", "Figure Classification", "Lineups")
-names(res) <- c("Variable", "Mean.Hillary", "Mean.Stephanie", "t", "df", "p-value", "Diff.LB", "Diff.UB")
-
-print(xtable(res), include.rownames = F, sanitize.text.function=sanitize)
-@
+% \subsection{Examining potential testing biases}\label{app:ratests}
+% T-tests of results for Hillary and Stephanie: 
+% <<ttest, echo=F, include=T, results='asis'>>=
+% ans.summary$tester <- c(rep("Hillary", 18), rep("Stephanie", nrow(ans.summary)-18))
+% card.rotation <- t.test(card_rot~tester, data=ans.summary)
+% paper.folding <- t.test(folding~tester, data=ans.summary)
+% fig.class <- t.test(fig_class~tester, data=ans.summary)
+% lineup <- t.test(lineup~tester, data=ans.summary)
+% 
+% res <- ldply(ans.summary[,c("card_rot", "folding", "fig_class", "lineup")], function(i){
+%   tmp <- t.test(i~ans.summary$tester)
+%   data.frame(Hillary = as.numeric(tmp$estimate)[1], Stephanie = as.numeric(tmp$estimate)[2],
+%              t = tmp$statistic, df=tmp$parameter, p=tmp$p.value, lb = tmp$conf.int[1], ub=tmp$conf.int[2])
+% })
+% 
+% res$.id <- c("Card Rotation", "Paper Folding", "Figure Classification", "Lineups")
+% names(res) <- c("Variable", "Mean.Hillary", "Mean.Stephanie", "t", "df", "p-value", "Diff.LB", "Diff.UB")
+% 
+% print(xtable(res), include.rownames = F, sanitize.text.function=sanitize)
+% @
 \subsection{Scaling Scores}\label{app:ScoreAdj}
 To calculate ``scaled" comparison scores between tests which included different numbers of sections, we scaled the mean in direct proportion to the number of questions (thus, if there were two sections of equivalent size, and the reference score included only one of those sections, we multiplied the reported mean score by two). The variance calculation is a bit more complicated: In the case described above, where the reference section contained half of the questions, the variance is multiplied by two, causing the standard deviation to be multiplied by approximately 1.41. 
 
