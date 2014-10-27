@@ -195,8 +195,6 @@ Table \ref{tab:scorecomparison} shows mean scores and standard deviation for ISU
 
 Comparison populuation data was chosen to most closely match ISU undergraduate population demographics. Thus, if comparison data was available for 9th and 12th grade students, we have compared Iowa State students' scores with the 12th grade students, as they are closer in age to college students. When data was available from college students and Army enlistees, we have compared ISU students to other college students, as college students are more likely to have similar gender distribution to ISU students.
 
-
-\comment{\textit{We may want to include a table of scaled scores here, so that we don't just bust right into lineup discussion without contextualizing everything properly.}}
 \newtext{Applying the grading protocol discussed in section \ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure \ref{fig:Scores} shows the range of possible scores and the observed score distribution. } 
 <<ResultsScaledScores, echo=F, include=T, fig.cap="Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \\label{fig:Scores}", fig.width=8, fig.height=3, out.width='.95\\textwidth', warning=F, message=F>>=
 
