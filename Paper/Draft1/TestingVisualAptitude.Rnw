@@ -381,7 +381,7 @@ Then, in order to account for the fact that ISU students took only part I of two
 
 \subsection{Lineup Performance and Demographic Characteristics}\label{app:categoricalresults}
 
-<<ttests.categ, echo=F, results='asis'>>=
+<<ttests.categ, echo=F, eval=T, results='asis'>>=
 tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
     tmp <- anova(lm(lineup~factor(value, ordered=F), data=df))
     coefs <- as.data.frame(tmp)[1,]
@@ -394,7 +394,7 @@ tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
 
 tmp <- rbind.fill(tmp)
 tmp <- tmp[order(tmp$p.value, decreasing=F),]
-print(xtable(tmp, digits=c(1, 1, 0, 3, 3, 2, 3), caption="Model results of each demographic variable compared with lineup score. Multiple testing issues aside, it appears that very few demographic variables (if any) are significantly associated with score on lineups among Iowa State undergraduate students."), include.rownames=F)
+print(xtable(tmp, digits=c(1, 1, 0, 3, 3, 2, 3), caption="Model results of each single demographic variable compared with lineup score. Multiple testing issues aside, it appears that very few demographic variables (if any) are significantly associated with score on lineups among Iowa State undergraduate students."), include.rownames=F)
 @
 \subsection{Lineup Performance: Accounting for ``Visual Intelligence''}
 As figure \ref{fig:biplots}(a) shows, the first principal component seems to primarily describe ``general intelligence", or ``visual intelligence" in a generic sense (as we have only tested visual skills). As the visual search task (VST) is the most generic of visual tasks (find the matching pattern) and requires no spatial manipulation, rotation, or inference, we might use it as an indicator of general visual intelligence (or cognitive tempo and attention to detail). 
