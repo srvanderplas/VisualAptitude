@@ -205,13 +205,13 @@ qrange$Test <- factor(qrange$testtype, levels=c("lineup", "card_rot", "fig_class
 ggplot() + 
   geom_bar(data=qrange, aes(width=.9, x=Test, y=-n/(k-1), fill="red"), alpha=.5, colour="red", stat="identity", inherit.aes=F) + 
   geom_bar(data=qrange, aes(width=.9, x=Test, y=n, colour="red"), stat="identity", fill=NA, inherit.aes=F) + 
-  geom_boxplot(data=score.summary, aes(x=factor(Test), y=Score), inherit.aes=F) +
+  geom_boxplot(data=score.summary, aes(x=factor(Test), y=Score), inherit.aes=F, fill="grey") +
   scale_fill_discrete(name="", labels="Scores indicating guessing") +
   scale_colour_discrete(name="", labels="Theoretical Range") + 
+  theme_bw()  + 
   theme(legend.position="bottom", legend.box="horizontal") + 
   ylab("Score") + 
   coord_flip()
-               # + theme_bw() #+ geom_jitter(aes(x=Test, y=Score))
 @
 % 
 % \comment{Could you include some more details on how to get from the Unscaled scores to the scaled versions? I'm assuming that for the Card Rotation, the two parts have equal size, explaining the doubled score, but why not double the standard deviation? $\text{Var}(aX) = a^2 \text{Var}(X)$  ok I got the first one - because it is $X_1 + X_2$ not $2 X_1$. still working on understanding the second one, though ... it would be worthwhile to include a bit more detail and maybe put that in an appendix to the paper. If you want to, you could instead extend the footnotes a bit for now. ... so just let me try this: Let's assume that $X_M$ and $X_F$ are the scores based on 294 men, and 323 women (are those midscore s of the intervals reported?). with corresponding $s_M$ and $s_F$ for the reported standard deviation of the full test. Then half of the test would have half of the scores with half of the standard deviation. we have a breakdown of 17 girls and 19 boys. $
