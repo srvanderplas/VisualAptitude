@@ -1,15 +1,67 @@
 \documentclass[10pt,journal,compsoc]{IEEEtran}
 %---------------------------------------------------
+% TVCG packages and header
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  \usepackage{graphicx}
+  % declare the path(s) where your graphic files are
+  \graphicspath{{Figure/}{Images/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  \DeclareGraphicsExtensions{.pdf,.jpg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% *** MATH PACKAGES ***
+%
+\usepackage[cmex10]{amsmath}
+\usepackage{amssymb}
+
+% *** SUBFigure~PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+  \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+
+% *** FLOAT PACKAGES ***
+%
+\usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/dblfloatfix/
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+
+%---------------------------------------------------
 \usepackage{color}
 \usepackage{fullpage}
 \usepackage[dvipsnames,svgnames]{xcolor}
-\usepackage{wrapfig,float}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{graphicx}
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{url}
+%\usepackage{wrapfig,float}
+%\usepackage{caption}
+%\usepackage{subcaption}
+%\usepackage{url}
 \usepackage{ulem}
 \usepackage[section]{placeins}
 \usepackage{sidecap}
@@ -21,8 +73,8 @@
 \makesavenoteenv{tabular}
 
 % Bibliography without numbers or labels
-\usepackage{natbib}
-\bibliographystyle{apa}
+%\usepackage{natbib}
+%\bibliographystyle{apa}
 
 %Optional Package to add PDF bookmarks and hypertext links
 \usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
@@ -34,17 +86,12 @@
 \newcommand{\done}[2][inline]{\todo[color=SpringGreen, #1]{#2}}  % for todos that have been seen and dealt with
 \newcommand{\meh}[2][inline]{\todo[color=White, #1]{#2}}   % for todos that may no longer be relevant 
 \newcommand{\comment}[2][inline]{\todo[color=SkyBlue, #1]{#2}} % for comments that may not be "to-do"s
-\newcommand{\mcomment}[1]{\todo[color=SkyBlue]{#1}} % for margin comments
+%\newcommand{\mcomment}[1]{\todo[color=SkyBlue]{#1}} % for margin comments
 \newcommand{\newtext}[1]{\todo[inline, color=White]{ \color{OliveGreen}{#1}}} % new text - not necessarily something to be done
 \newcommand{\move}[1]{\todo[inline, color=Lime]{#1}} % new to do item
 %
 %---------------------------------------------------
 
-%---------------------------------------------------
-%             Set Picture Locations
-\graphicspath{{Figure/}{Images/}}
-%
-%---------------------------------------------------
 
 <<VisualAptitude-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE, message=F, warning=F>>=
 rm(list=ls())
@@ -72,21 +119,80 @@ sanitize <- function(x){
 
 @
 
-\title{Spatial Reasoning and Statistical Graphics}
-\author{Susan VanderPlas, Heike Hofmann} % , Stephanie De Graaf, Hillary Cheney ??
+
 
 \begin{document}
+\title{Spatial Reasoning and Statistical Graphics}
+
+\author{Susan VanderPlas, Heike Hofmann} % , Stephanie De Graaf, Hillary Cheney ??
+
+\author{Susan~VanderPlas,
+        and~Heike~Hofmann,~\IEEEmembership{Member,~IEEE,}% <-this % stops a space
+\IEEEcompsocitemizethanks{\IEEEcompsocthanksitem S. VanderPlas and H. Hofmann are with the Department
+of Statistics and Statistical Laboratory, Iowa State University, Ames,
+IA, 50011.\protect\\
+% note need leading \protect in front of \\ to get a newline within \thanks as
+% \\ is fragile and will error, could use \hfil\break instead.
+E-mail: {srvanderplas, hofmann}@iastate.edu}% <-this % stops an unwanted space
+\thanks{Manuscript received Month XX, 2015; revised Month XX, XXXX.}}
+
+% The paper headers
+\markboth{IEEE TRANSACTIONS ON VISUALIZATION AND COMPUTER GRAPHICS, No.~X, Month~YYYY}%
+{VanderPlas \MakeLowercase{\textit{et al.}}: Spatial Reasoning and Statistical Graphics}
+
+
+\IEEEtitleabstractindextext{%
+\begin{abstract}
+The abstract goes here.
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+Computer Society, IEEEtran, journal, \LaTeX, paper, template.
+\end{IEEEkeywords}}
+
+
+% make the title area
 \maketitle
 
-\section{Introduction}
+
+\IEEEdisplaynontitleabstractindextext
+% \IEEEdisplaynontitleabstractindextext has no effect when using
+% compsoc or transmag under a non-conference mode.
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+\IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
+
+% The very first letter is a 2 line initial drop letter followed
+% by the rest of the first word in caps (small caps for compsoc).
+% 
+% form to use if the first word consists of a single letter:
+% \IEEEPARstart{A}{demo} file is ....
+% 
+% Here we have the typical use of a "T" for an initial drop letter
+% and "HIS" in caps to complete the first word.
+\IEEEPARstart{T}{his} demo file is intended to serve as a ``starter file''
+for IEEE Computer Society journal papers produced under \LaTeX\ using
+IEEEtran.cls version 1.8a and later.
+
 \comment{Intro about statistical graphics, lineups, ...}
 \subsection{Spatial Reasoning and Statistical Graphics}
-Statistical graphics provide quick summaries of data, models, and results, but these displays may not be equally useful to all viewers. Mathematical ability is important, even for the simplest graphs: \citet{shah1995conceptual} showed that mathematical ability, but not spatial ability, was associated with accuracy on a simple two-dimensional line graph. Spatial ability becomes more important, however, when more complicated graphical displays are used in comparison tasks: \citet{mayer1994whom} hypothesize that individuals with low spatial ability perform worse on tests utilizing diagrams and graphs because more cognitive resources are required to process the visual stimuli, which leaves fewer resources to make connections and draw conclusions from those stimuli. Many theories of graphical learning center around the difference between visual and verbal processing: the dual-coding theory emphasizes the utility of complementary information in both domains, while the visual argument hypothesis emphasizes that graphics are more efficient tools for providing data with spatial, temporal, or other implicit ordering, because the spatial dimension can be represented graphically in a more natural manner \citep{vekiri2002value}. Both of these theories suggest spatial ability would impact a viewer's use of graphics, because spatial ability either influences cognitive resource allocation or affects the processing of spatial relationships between graphical elements. Previous investigations into graphical learning and spatial ability have found relationships between spatial ability and the ability to read information from graphs \citep{lowrie2007solving}. 
+Statistical graphics provide quick summaries of data, models, and results, but these displays may not be equally useful to all viewers. Mathematical ability is important, even for the simplest graphs: XXX in \cite{shah1995conceptual} showed that mathematical ability, but not spatial ability, was associated with accuracy on a simple two-dimensional line graph. Spatial ability becomes more important, however, when more complicated graphical displays are used in comparison tasks: XXX in \cite{mayer1994whom} hypothesize that individuals with low spatial ability perform worse on tests utilizing diagrams and graphs because more cognitive resources are required to process the visual stimuli, which leaves fewer resources to make connections and draw conclusions from those stimuli. Many theories of graphical learning center around the difference between visual and verbal processing: the dual-coding theory emphasizes the utility of complementary information in both domains, while the visual argument hypothesis emphasizes that graphics are more efficient tools for providing data with spatial, temporal, or other implicit ordering, because the spatial dimension can be represented graphically in a more natural manner \cite{vekiri2002value}. Both of these theories suggest spatial ability would impact a viewer's use of graphics, because spatial ability either influences cognitive resource allocation or affects the processing of spatial relationships between graphical elements. Previous investigations into graphical learning and spatial ability have found relationships between spatial ability and the ability to read information from graphs \cite{lowrie2007solving}. 
 
 \subsection{The Lineup Protocol}
 \comment{More lineup introduction here}
 
-Statistical lineups \citep{hofmann2012graphical,buja2009statistical} depend on the ability to search for a signal amid distractors (visual search) and the ability to infer patterns from stimuli (pattern recognition). Some lineups (polar coords) also depend on the ability to mentally rotate stimuli (spatial rotation) and mentally manipulate graphs (spatial rotation and manipulation). By breaking the lineup task down into component parts, we may be able to determine which visuospatial factors most strongly correlate with lineup performance, using carefully chosen cognitive tests to assess these aspects of visuospatial ability. These assessments are then used to account for some of the variation in lineup performance differences. In addition, we also examine the effect that previous experiences (science-based major, research experience, Auto-CAD skills) have on lineup performance and the implications for the use of lineups to assess the graphical display of statistical information. 
+Statistical lineups \cite{hofmann2012graphical,buja2009statistical} depend on the ability to search for a signal amid distractors (visual search) and the ability to infer patterns from stimuli (pattern recognition). Some lineups (polar coords) also depend on the ability to mentally rotate stimuli (spatial rotation) and mentally manipulate graphs (spatial rotation and manipulation). By breaking the lineup task down into component parts, we may be able to determine which visuospatial factors most strongly correlate with lineup performance, using carefully chosen cognitive tests to assess these aspects of visuospatial ability. These assessments are then used to account for some of the variation in lineup performance differences. In addition, we also examine the effect that previous experiences (science-based major, research experience, Auto-CAD skills) have on lineup performance and the implications for the use of lineups to assess the graphical display of statistical information. 
 
 \section{Methods}
 \subsection{Measures of visuospatial ability}
@@ -96,37 +202,37 @@ Statistical lineups \citep{hofmann2012graphical,buja2009statistical} depend on t
 
 Participants will complete the following tasks (sample pictures included, full stimuli set will be added to the appendix once we are sure there is no need for follow-up experiments). Tasks are designed so that participants are under time pressure; they are not expected to complete all of the problems in each section. This provides more discrimination between high scorers and prevents score compression at the top of the range. 
 
-The \textbf{visual searching task} (VST), shown in figure \ref{fig:VST}, is designed to test participants' ability to find a target stimulus in a field of distractors. The visual search task is similar in concept to lineups: it tests an individual's ability to find the target plot. Historically, it has been used as a measure of brain damage\citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological}; however, similar tasks, have been used to measure cognitive performance in a variety of situations (under the influence of drugs, for example, in \citet{anderson1983interactive}). The similarity to the lineup protocol as well as the simplicity of the test and its' lack of color justify the slight deviation from forms of visual search tasks typically used in normal populations. 
+The \textbf{visual searching task} (VST), shown in figure~\ref{fig:VST}, is designed to test participants' ability to find a target stimulus in a field of distractors. The visual search task is similar in concept to lineups: it tests an individual's ability to find the target plot. Historically, it has been used as a measure of brain damage\cite{goldstein1973validity,demita1981validity,moerland1986neuropsychological}; however, similar tasks, have been used to measure cognitive performance in a variety of situations (under the influence of drugs, for example, in XXX in \cite{anderson1983interactive}). The similarity to the lineup protocol as well as the simplicity of the test and its' lack of color justify the slight deviation from forms of visual search tasks typically used in normal populations. 
 \begin{figure}[hbpt]\centering
 \includegraphics[width=\linewidth]{VisualSearch}
 \caption[Visual Search Task]{Visual Search Task. Participants are instructed to find the plot numbered 1-24 which matches the plot labeled ``Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
 \end{figure}
 
-The \textbf{figure classification task} tests a participant's ability to extrapolate rules from provided figures. This task is associated with inductive reasoning ablities (factor I in \citet{ekstrom1976manual}). An example is shown in figure \ref{fig:figureclassification}. 
+The \textbf{figure~classification task} tests a participant's ability to extrapolate rules from provided figures. This task is associated with inductive reasoning ablities (factor I in XXX in \cite{ekstrom1976manual}). An example is shown in figure~\ref{fig:figureclassification}. 
 \begin{figure*}[hbpt]\centering
-\includegraphics[width=.9\linewidth]{figureclassification}
-\caption[Figure Classification Task]{Figure Classification Task. Participants classify each figure in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.}\label{fig:figureclassification}
+\includegraphics[width=.75\linewidth]{figureclassification}
+\caption[Figure~Classification Task]{Figure~Classification Task. Participants classify each figure~in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.}\label{fig:figureclassification}
 \end{figure*}
-The figure classification test requires the same type of reasoning as the lineups: participants must determine the rules from the provided classes, and extrapolate from those rules to classify new figures. In lineups, participants must determine the rules based on the panels appearing in the lineup; they must then identify the plot which does not conform. As such, the figure classification test has content validity in relation to lineup performance: it is measuring similar underlying criteria. 
+The figure~classification test requires the same type of reasoning as the lineups: participants must determine the rules from the provided classes, and extrapolate from those rules to classify new figures. In lineups, participants must determine the rules based on the panels appearing in the lineup; they must then identify the plot which does not conform. As such, the figure~classification test has content validity in relation to lineup performance: it is measuring similar underlying criteria. 
 
-The \textbf{card rotation test} measures a participant's ability to rotate objects in two dimensions in order to distinguish between left-hand and right-hand versions of the same figure. It tests mental rotation skills, and is classified as a test of spatial orientation in \citet{ekstrom1976manual}, though it does require that participants have both mental rotation ability and short-term visual memory. An example is shown in figure \ref{fig:cardrotation}.
+The \textbf{card rotation test} measures a participant's ability to rotate objects in two dimensions in order to distinguish between left-hand and right-hand versions of the same figure. It tests mental rotation skills, and is classified as a test of spatial orientation in XXX in \cite{ekstrom1976manual}, though it does require that participants have both mental rotation ability and short-term visual memory. An example is shown in figure~\ref{fig:cardrotation}.
 \begin{figure*}[hbpt]\centering
-\includegraphics[width=.9\linewidth]{cardrotation}
-\caption[Card Rotation Task]{Card Rotation Task. Participants mark each figure on the right hand side as either the same or different than the figure on the left hand side of the dividing line. Participants will complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.}\label{fig:cardrotation}
+\includegraphics[width=.75\linewidth]{cardrotation}
+\caption[Card Rotation Task]{Card Rotation Task. Participants mark each figure~on the right hand side as either the same or different than the figure~on the left hand side of the dividing line. Participants will complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.}\label{fig:cardrotation}
 \end{figure*}
 Two-dimensional comparisons are an important component of lineup performance. In some lineup situations, these comparisons involve translation, but in other lineups, rotation is required. Lineups also require visual short-term memory, so the additional factor measured implicitly by this test does not reduce its potential relevance to lineup performance.  
 
-The \textbf{paper folding test} measures participants' ability to visualize and mentally manipulate figures in three dimensions. It is classified as part of the visualization factor in \citet{ekstrom1976manual}, which differs from the spatial orientation factor because it requires participants to visualize, manipulate, and transform the figure mentally, which makes it a more complex and demanding task than simple rotation. The paper folding test is associated with the ability to extrapolate symmetry and reflection over multiple steps. An example is shown in figure \ref{fig:paperfolding}. 
+The \textbf{paper folding test} measures participants' ability to visualize and mentally manipulate figures in three dimensions. It is classified as part of the visualization factor in XXX in \cite{ekstrom1976manual}, which differs from the spatial orientation factor because it requires participants to visualize, manipulate, and transform the figure~mentally, which makes it a more complex and demanding task than simple rotation. The paper folding test is associated with the ability to extrapolate symmetry and reflection over multiple steps. An example is shown in figure~\ref{fig:paperfolding}. 
 \begin{figure*}[hbpt]\centering
-\includegraphics[width=.9\linewidth]{paperfolding}
-\caption[Paper Folding Task]{Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown in the left-hand figure. Participants will complete up to 20 of these tasks in 6 minutes.}\label{fig:paperfolding}
+\includegraphics[width=.75\linewidth]{paperfolding}
+\caption[Paper Folding Task]{Paper Folding Task. Participants are instructed to pick the figure~matching the sequence of steps shown in the left-hand figure. Participants will complete up to 20 of these tasks in 6 minutes.}\label{fig:paperfolding}
 \end{figure*}
 Lineups require similar manipulations in two-dimensional space, and also require the ability to perform complex spatial manipulations mentally; for instance, comparing the interquartile range of two boxplots as well as their relative alignment to a similar set of two boxplots in another panel.
 
-Between cognitive tasks, participants will also complete three blocks of 20 lineups each, assembled from previous studies \citep{hofmann2012graphical,majumder2013validation}. Participants have 5 minutes to complete each block of 20 lineups. Figure \ref{fig:lineup} shows a sample lineup of box plots. 
+Between cognitive tasks, participants will also complete three blocks of 20 lineups each, assembled from previous studies \cite{hofmann2012graphical,majumder2013validation}. Participants have 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup} shows a sample lineup of box plots. 
 
 \begin{figure}\centering
-\includegraphics[width=.8\linewidth]{lineup}
+\includegraphics[width=\linewidth]{lineup}
 \caption[Sample Lineup]{A sample lineup. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 13 is the target. }\label{fig:lineup}
 \end{figure}
 
@@ -138,11 +244,11 @@ Scoring of all test results was done such that random guessing leads to an expec
 \begin{eqnarray}\label{eq.scoring}
 \# \text{correct answers } - 1/(k-1) \cdot \# \text{wrong answers}.
 \end{eqnarray}
-This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests \citep{diamond1973correction, ekstrom1976manual} from which parts of this test are drawn. The advantage of using tests from the Kit of Factor Referenced Cognitive tests \citep{ekstrom1976manual} is that the tests are extremely well studied (including an extensive meta-analysis by \citet{voyer1995magnitude} of the spatial tests we are using in this study) and comparison data are available from the validation of these factors \citep{schaie1998longitudinal,hampson1990variations,mayer1994whom} and previous versions of the kit \citep{educational1963kit}.
+This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests \cite{diamond1973correction, ekstrom1976manual} from which parts of this test are drawn. The advantage of using tests from the Kit of Factor Referenced Cognitive tests \cite{ekstrom1976manual} is that the tests are extremely well studied (including an extensive meta-analysis by XXX in \cite{voyer1995magnitude} of the spatial tests we are using in this study) and comparison data are available from the validation of these factors \cite{schaie1998longitudinal,hampson1990variations,mayer1994whom} and previous versions of the kit \cite{educational1963kit}.
 \comment{maybe reference book by Michel Hersen\\\textit{I was working on it yesterday along with trying to validate the general idea that reading graphics requires certain spatial abilities. It's definitely a work in progress. I haven't seen that book before, but I'm not at all surprised it exists.}}
 
 % 
-% \paragraph{Variance consideration of scaled test score:}
+% \subsection{Variance consideration of scaled test score:}
 % Let $X_{n, k}$ be a participant's (unscaled) score on a test consisting of $n$ questions with $k$ answers each, out of which only one is correct.
 % \begin{eqnarray*}
 % \text{Var}(X_{n, k}) &=& n^2 \text{Var}(X_{1, k}) = \\
@@ -151,22 +257,22 @@ This allows us to compare each participant's score in light of how many problems
 % \end{eqnarray*}
 % \newtext{The scaled test score $Z_{n,k}$ is $1/n \sqrt{(k-1)} X_{n,k}$ and the statement for the variance of $Z_{n,k}$ follows directly.}
 % 
-% The above consideration only assumes independence between questions, which is reasonable. While we only consider a test consisting of questions with the same number of choices $k$, an extension to varied number of answers is trivial and has been done in the adjustment for the figure classification score. 
+% The above consideration only assumes independence between questions, which is reasonable. While we only consider a test consisting of questions with the same number of choices $k$, an extension to varied number of answers is trivial and has been done in the adjustment for the figure~classification score. 
 % 
 % To facilitate comparison of the visuospatial skills tests utilized in this study with the lineups, we will scale the test results by a factor of $1/n \sqrt{k-1}$, where $n$ is the number of questions in a test and $k$ is the number of offered answers on each questions (out of which only one is correct). This scaling ensures that test scores across different types are comparable. All test scores are now normalized such that they have under the assumption of random guessing an expected value of zero and a standard deviation of 1. In particular, this leads to a theoretical range of a normalized test score $Z_{n, k}$ of $[-\sqrt{k-1}, \sqrt{k-1}]$.
 
 \section{Results}
 Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students at Iowa State University. About one-half of the participants were in STEM fields, the others were distributed relatively evenly between agriculture, business, and the social sciences. Students were evenly distributed by gender, and were between 18 and 24 years of age with only one exception. This is reasonably representative of the university as a whole; in the fall 2012 semester, 23\% of students were associated with the college of engineering, 23\% were associated with the college of liberal arts and sciences, 23\% were associated with the college of human sciences, 12\% with the business school, and 14\% with the school of agriculture. \footnote{\url{http://www.ir.iastate.edu/PDFfiles/2012-2013\%20Student\%20Profile.pdf}} 
 
-\paragraph{Comparison of Spatial Tests with Previously Validated Results}
-The card rotation, paper folding, and figure classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students). We compare Iowa State students' unscaled scores in table \ref{tab:scorecomparison}, adjusting data from other populations to account for subpopulation structure and test length. 
+\subsection{Comparison of Spatial Tests with Previously Validated Results}
+The card rotation, paper folding, and figure~classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students). We compare Iowa State students' unscaled scores in table \ref{tab:scorecomparison}, adjusting data from other populations to account for subpopulation structure and test length. 
 
 \begin{savenotes}
-\begin{table}[ht]
+\begin{table*}[ht]
 \centering
 \begin{tabular}{rlllc}
 \hline
-  & Card Rotation & Paper Folding & Figure Classification & Visual Search  \\\hline
+  & Card Rotation & Paper Folding & Figure~Classification & Visual Search  \\\hline
 ISU Students & \Sexpr{round(mean(ans.summary$card_rot), 1)} (\Sexpr{round(sd(ans.summary$card_rot), 1)}) 
              & \Sexpr{round(mean(ans.summary$folding), 1)} (\Sexpr{round(sd(ans.summary$folding), 1)})
              & \Sexpr{sprintf("%.1f", mean(ans.summary$fig_class))} (\Sexpr{round(sd(ans.summary$fig_class), 1)})\footnote{ISU students took only Part I due to time constraints.}
@@ -186,22 +292,22 @@ Unscaled Scores & 44.0 (24.6)\footnote{Data from Part I only.}
               & \\\hline
 \end{tabular}                
             
-\caption{Comparison of scores from Iowa State students and scores reported in \citet{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available. The Visual Search task \citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological} is not part of the Kit of Factor Referenced Cognitive Test data, and thus we do not have comparison data for the form used in this experiment. \label{tab:scorecomparison}}
-\end{table}
+\caption{Comparison of scores from Iowa State students and scores reported in XXX in \cite{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available. The Visual Search task \cite{goldstein1973validity,demita1981validity,moerland1986neuropsychological} is not part of the Kit of Factor Referenced Cognitive Test data, and thus we do not have comparison data for the form used in this experiment. \label{tab:scorecomparison}}
+\end{table*}
 \end{savenotes}
 
 Table \ref{tab:scorecomparison} shows mean scores and standard deviation for ISU students and other populations. Values have been adjusted to accommodate for differences in test procedures and sub-population structure; for instance,  some data is reported for a single part of a two-part test, or results are reported for each gender separately (adjustment procedure is described in more detail in Appendix \ref{app:ScoreAdj}). Once these adjustments have been completed, it is evident that Iowa State undergraduates scored at about the same level as other similar demographics. In fact, both means and standard deviations of ISU students' scores are similar to the comparison groups, which were chosen from available demographic groups based on population similarity. 
 
 Comparison population data was chosen to most closely match ISU undergraduate population demographics. Thus, if comparison data was available for 9th and 12th grade students, scores of Iowa State students were compared to scores of 12th grade students, who are closer in age to college students. When data was available from college students and Army enlistees, comparisons of scores were based on other college students, as college students are more likely to have a similar gender distribution to ISU students.
 
-Applying the grading protocol discussed in section \ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure \ref{fig:Scores} shows the range of possible scores and the observed score distribution. 
+Applying the grading protocol discussed in section \ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure~\ref{fig:Scores} shows the range of possible scores and the observed score distribution. 
 
 <<ResultsScaledScores, echo=F, include=T, fig.pos="hbt", fig.cap="Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \\label{fig:Scores}", fig.width=8, fig.height=3, out.width='.95\\linewidth', warning=F, message=F>>=
 
 score.summary <- melt(ans.summary, measure.vars=20:24, value.name = "Score", variable.name = "Test")
-score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
+score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure~Class.", "Paper Folding", "Visual Search"))
 qrange$sqrt.k <- sqrt(qrange$k-1)
-qrange$Test <- factor(qrange$testtype, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
+qrange$Test <- factor(qrange$testtype, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure~Class.", "Paper Folding", "Visual Search"))
 ggplot() + 
   geom_bar(data=qrange, aes(width=.9, x=Test, y=-n/(k-1), fill="red"), alpha=.5, colour="red", stat="identity", inherit.aes=F) + 
   geom_bar(data=qrange, aes(width=.9, x=Test, y=n, colour="red"), stat="identity", fill=NA, inherit.aes=F) + 
@@ -222,18 +328,18 @@ ggplot() +
 \item some general words on behavior of lineup scores by themselves - I think the whole discussion that is at the moment  at the end of the paper should move up here. The levels of the video gaming are a bit messed up - they should be ordered according to number of games played rather than alphabetically :) - and I think that then the relationship actually is a monotonic one ...
  In any case, sort the figures in the table according to their $p$-values in the table. Gender shows up as significantly different in my table of $p$ values, but in the text you say that it is not. 
  The table with the t-tests should probably go into an appendix .... 
-\item figure 8 with either three or four scatterplots depending on how the visual search scores fit in
+\item figure~8 with either three or four scatterplots depending on how the visual search scores fit in
 \item a paragraph on discussing the multicollinearity between the test scores based on correlations (either, again, including visual search or not) - this should lead to the conclusion that we cannot directly use a linear model of lineup in test scores.
 \item PCA of test scores, with a bit of discussion
-\item linear model of lineup scores in PCA with discussion and tying it back to raw scores (figure classification really is the best predictor for lineups, but it only explains some of the variance).
+\item linear model of lineup scores in PCA with discussion and tying it back to raw scores (figure~classification really is the best predictor for lineups, but it only explains some of the variance).
 \end{enumerate}
  }
  
 
 
-\paragraph{Lineup Performance and Demographic Characteristics}
+\subsection{Lineup Performance and Demographic Characteristics}
 
-<<VisReasoningCategorical, echo=F, include=F, eval=T, fig.width=8,fig.height=8, message=F, warning=F>>=
+<<VisReasoningCategorical, echo=F, include=F, eval=T, fig.width=8,fig.height=5, message=F, warning=F>>=
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
 lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience", "Video Game Hrs/Wk"))
@@ -258,14 +364,14 @@ tmp <- tmp[order(tmp$p.value, decreasing=F),]
 lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, levels=unique(tmp$Variable))
 lineup.summary.categorical$value <- factor(lineup.summary.categorical$value, levels=c("0","1", "2","3","4","5","[1, 2)", "[2, 5)", "18-20", "21-24", "25-28", "5+", "FALSE", "TRUE", "Female", "Male"))
 
-qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + facet_wrap(~variable, scales="free_x") + xlab("") + ylab("Scaled Lineup Score") + theme_bw() + geom_point(aes(x=value, y=lineup), shape=1, size=3)
+qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + facet_wrap(~variable, scales="free_x", ncol=5) + xlab("") + ylab("Scaled Lineup Score") + theme_bw() + geom_point(aes(x=value, y=lineup), shape=1, size=3)
 @
-\begin{figure}[hbpt]\centering
+\begin{figure*}[hbpt]\centering
 \includegraphics[width=\linewidth]{fig-VisReasoningCategorical-1}
 \caption[Visual Aptitude Study Results]{Sample demographic characteristics compared with lineup score. Categories are ordered by effect size; calculus completion,  hours spent playing video games per week, and sex are all associated with a difference in lineup score. }\label{fig:visualaptitudecat}
-\end{figure}
+\end{figure*}
 
-Completion of Calculus I is associated with increased performance on lineups. This may be related to general math education level, or it may be that success in both lineups and calculus requires certain visual skills. This association is consistent with \citep{shah1995conceptual}, who found an association between  mathematical ability and performance on simple graph description tasks.  There is also a significant association between hours of video games played per week and score on lineups, however, this association is not monotonic and the groups do not have equal sample size, so the conclusion may be suspect. There is a (nearly) significant difference between male and female performance on lineups; this is not particularly surprising, since men perform better on many spatial tests \citep{voyer1995magnitude} and performance on spatial tests is correlated with phase of the menstrual cycle in women \citep{hausmann2000sex}. There is no significant difference in lineup performance for participants of different age, self-assessed skills in various domains, previous participation in math or science research, completion of a statistics class, or experience with AutoCAD. These demographic characteristics were chosen to account for life experience and personal skills which may have influenced the results. Statistical test results are available in appendix \ref{app:categoricalresults}. 
+Completion of Calculus I is associated with increased performance on lineups. This may be related to general math education level, or it may be that success in both lineups and calculus requires certain visual skills. This association is consistent with \cite{shah1995conceptual}, who found an association between  mathematical ability and performance on simple graph description tasks.  There is also a significant association between hours of video games played per week and score on lineups, however, this association is not monotonic and the groups do not have equal sample size, so the conclusion may be suspect. There is a (nearly) significant difference between male and female performance on lineups; this is not particularly surprising, since men perform better on many spatial tests \cite{voyer1995magnitude} and performance on spatial tests is correlated with phase of the menstrual cycle in women \cite{hausmann2000sex}. There is no significant difference in lineup performance for participants of different age, self-assessed skills in various domains, previous participation in math or science research, completion of a statistics class, or experience with AutoCAD. These demographic characteristics were chosen to account for life experience and personal skills which may have influenced the results. Statistical test results are available in appendix \ref{app:categoricalresults}. 
 
 
 % <<means>>=
@@ -285,20 +391,20 @@ print(xtable(summary(pca), caption="Importance of components in principal compon
 print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests."), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize)
 @
 
-<<pca, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Plots of the principal components with observations. PC1 seems to represent a general ``visual intelligence'' factor (and thus is not represented here). Figure classification is strongly related to lineups (PC2, PC3), and visual search is related to lineup performance as well (PC3). Paper folding does not seem to be strongly related to lineup performance outside of the first principal component; card rotation is only positively associated with lineup performance in PC4.\\label{fig:biplots}">>=
+<<pca, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Plots of the principal components with observations. PC1 seems to represent a general ``visual intelligence'' factor (and thus is not represented here). Figure~classification is strongly related to lineups (PC2, PC3), and visual search is related to lineup performance as well (PC3). Paper folding does not seem to be strongly related to lineup performance outside of the first principal component; card rotation is only positively associated with lineup performance in PC4.\\label{fig:biplots}">>=
 biplot(pca, choices=2:3, pc.biplot=T, cex=c(.5, 1), adj=.75)
 biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), adj=.75)
 @
 
-In figure~\ref{fig:visualaptitudects}, we see that participant performance on lineups is positively correlated with performance on card rotation, figure classification, and paper folding tasks. This suggests that skills associated with visual reasoning ability are related to lineup performance. As participants must use the same skills in lineups (mental rotation, classification and determining categorization schemes, and multi-step spatial reasoning) as in the factor-referenced tests, this is not particularly surprising. In addition,there seems to be some positive relationship between a participant's score on the visual search task and their score on lineups: the visual search task represents a baseline of a participant's ability to find a matching pattern, while lineups require that task as well as the ability to determine what the pattern is for a particular graph. Even excluding the one low visual search score that is a high-leverage point, there seems to be a positive relationship between a participant's score on lineups and their score for visual search. 
+In figure~\ref{fig:visualaptitudects}, we see that participant performance on lineups is positively correlated with performance on card rotation, figure~classification, and paper folding tasks. This suggests that skills associated with visual reasoning ability are related to lineup performance. As participants must use the same skills in lineups (mental rotation, classification and determining categorization schemes, and multi-step spatial reasoning) as in the factor-referenced tests, this is not particularly surprising. In addition,there seems to be some positive relationship between a participant's score on the visual search task and their score on lineups: the visual search task represents a baseline of a participant's ability to find a matching pattern, while lineups require that task as well as the ability to determine what the pattern is for a particular graph. Even excluding the one low visual search score that is a high-leverage point, there seems to be a positive relationship between a participant's score on lineups and their score for visual search. 
 
 <<VisReasoningCts,echo=FALSE, include=FALSE, eval=T, fig.width=8,fig.height=8, message=F, warning=F>>=
-lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Card Rotation", "Figure Classification", "Paper Folding", "Visual Search"))
+lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Card Rotation", "Figure~Classification", "Paper Folding", "Visual Search"))
  
 qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x") + xlab("Score") + ylab("Lineup Score") + geom_smooth(method="lm") + theme_bw()
 @
 
-<<VisReasoningSPM,echo=FALSE, include=T, eval=T, fig.width=8,fig.height=8, message=F, warning=F, fig.cap="Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.">>=
+<<VisReasoningSPM,echo=FALSE, include=T, eval=T, fig.width=8,fig.height=8, message=F, warning=F, fig.cap="Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure~classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.">>=
 GGally::ggpairs(ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", "folding")], lower=list(continuous='smooth'), upper=list(continuous="cor"))
 @
 
@@ -307,11 +413,15 @@ GGally::ggpairs(ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", 
 \caption[Visual Aptitude Study Results]{Scatterplots of all test scores compared to participants' scores in the lineup tests. There is a relatively strong positive correlation between lineup score and scores on visuospatial reasoning tests.}\label{fig:visualaptitudects}
 \end{figure}
 
-Figure \ref{fig:visualaptitudecat} shows participants' responses to the questionnaire given at the beginning of the study; these demographic questions allow us to compare the participants in our study to the undergraduate population of Iowa State as well as to explore relationships between demographic characteristics (major, research experience, etc.) and score on various sections of this test. 
+Figure~\ref{fig:visualaptitudecat} shows participants' responses to the questionnaire given at the beginning of the study; these demographic questions allow us to compare the participants in our study to the undergraduate population of Iowa State as well as to explore relationships between demographic characteristics (major, research experience, etc.) and score on various sections of this test. 
 
 All results and data shown here are done in accordance with IRB \# 13-581.
 
+\bibliographystyle{IEEEtran}
 \bibliography{references}
+
+
+
 
 \section*{Appendix}
 \renewcommand{\thesubsection}{\Alph{subsection}}
@@ -330,7 +440,7 @@ All results and data shown here are done in accordance with IRB \# 13-581.
 %              t = tmp$statistic, df=tmp$parameter, p=tmp$p.value, lb = tmp$conf.int[1], ub=tmp$conf.int[2])
 % })
 % 
-% res$.id <- c("Card Rotation", "Paper Folding", "Figure Classification", "Lineups")
+% res$.id <- c("Card Rotation", "Paper Folding", "Figure~Classification", "Lineups")
 % names(res) <- c("Variable", "Mean.Hillary", "Mean.Stephanie", "t", "df", "p-value", "Diff.LB", "Diff.UB")
 % 
 % print(xtable(res), include.rownames = F, sanitize.text.function=sanitize)
@@ -343,7 +453,7 @@ To calculate ``scaled" comparison scores between tests which included different 
 \centering
 \begin{tabular}{rlll}
 \hline
-  & Card Rotation & Paper Folding & Figure Classification \\\hline
+  & Card Rotation & Paper Folding & Figure~Classification \\\hline
 ISU Students & \Sexpr{round(mean(ans.summary$card_rot), 1)} (\Sexpr{round(sd(ans.summary$card_rot), 1)}) 
              & \Sexpr{round(mean(ans.summary$folding), 1)} (\Sexpr{round(sd(ans.summary$folding), 1)})
              & \Sexpr{round(mean(ans.summary$fig_class), 1)} (\Sexpr{round(sd(ans.summary$fig_class), 1)})\footnote{ISU students took only Part I due to time constraints.}\\
@@ -360,16 +470,16 @@ naval recruits}
               & \parbox[t]{.3\linewidth}{\footnotesize suburban 11th \& 12th grade students\\(288-300 males, 317-329 females)}\\\hline
 \end{tabular}                
             
-\caption{Comparison of scores from Iowa State students and scores reported in \citet{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available.\label{tab:scorecomparison2}}
+\caption{Comparison of scores from Iowa State students and scores reported in XXX in \cite{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available.\label{tab:scorecomparison2}}
 \end{table}
 \end{savenotes}
 
-This scaling gets slightly more complicated for scores which have two sub-groups, as with the Figure Classification test. To get a single unified score with standard deviation, we did the following calculations: 
+This scaling gets slightly more complicated for scores which have two sub-groups, as with the Figure~Classification test. To get a single unified score with standard deviation, we did the following calculations: 
 \begin{eqnarray}
 \mu_{all} &= (\mu_{F}N_F + \mu_{M}N_M)/(N_F + N_M)\\
 \sigma_{all} &= \sqrt{\left(N_F\sigma_F^2 + N_M\sigma_M^2\right)/(N_F + N_M)}
 \end{eqnarray}
-Then, in order to account for the fact that ISU students took only part I of two parts to the Figure Classification test (and thus completed half of the questions), we adjusted the transformation as follows
+Then, in order to account for the fact that ISU students took only part I of two parts to the Figure~Classification test (and thus completed half of the questions), we adjusted the transformation as follows
 \begin{eqnarray}
 \mu_{all} &= 1/2 (\mu_{F}N_F + \mu_{M}N_M)/(N_F + N_M)\\
 \sigma_{all} &= \sqrt{\left(N_F\sigma_F^2 + N_M\sigma_M^2\right)/(2(N_F + N_M))}
@@ -393,13 +503,13 @@ tmp <- tmp[order(tmp$p.value, decreasing=F),]
 print(xtable(tmp, digits=c(1, 1, 0, 3, 3, 2, 3), caption="Model results of each single demographic variable compared with lineup score. Multiple testing issues aside, it appears that very few demographic variables (if any) are significantly associated with score on lineups among Iowa State undergraduate students."), include.rownames=F)
 @
 \subsection{Lineup Performance: Accounting for ``Visual Intelligence''}
-As figure \ref{fig:biplots}(a) shows, the first principal component seems to primarily describe ``general intelligence", or ``visual intelligence" in a generic sense (as we have only tested visual skills). As the visual search task (VST) is the most generic of visual tasks (find the matching pattern) and requires no spatial manipulation, rotation, or inference, we might use it as an indicator of general visual intelligence (or cognitive tempo and attention to detail). 
+As figure~\ref{fig:biplots}(a) shows, the first principal component seems to primarily describe ``general intelligence", or ``visual intelligence" in a generic sense (as we have only tested visual skills). As the visual search task (VST) is the most generic of visual tasks (find the matching pattern) and requires no spatial manipulation, rotation, or inference, we might use it as an indicator of general visual intelligence (or cognitive tempo and attention to detail). 
 
 <<partialregression, results='asis', echo=1>>=
 model1 <- lm(lineup ~ vis_search, data=ans.summary)
 print(xtable(summary(model1), caption="Results of the linear regression of visual search score on lineup score. \\label{vst-reg}."), sanitize.text.function=sanitize)
 @
-<<partialregression1,fig.keep='all', fig.width=4, fig.height=4, out.width='.45\\linewidth', fig.cap="Biplots of the adjusted lineup, card rotation, figure classification, and paper folding scores principal components analysis. Adjusted lineup scores are most associated with figure classification in the second principal component. In the third and fourth components, adjusted scores are almost entirely orthogonal. \\label{fig:biplot-adjusted}", tidy=T, echo=1:7>>=
+<<partialregression1,fig.keep='all', fig.width=4, fig.height=4, out.width='.45\\linewidth', fig.cap="Biplots of the adjusted lineup, card rotation, figure~classification, and paper folding scores principal components analysis. Adjusted lineup scores are most associated with figure~classification in the second principal component. In the third and fourth components, adjusted scores are almost entirely orthogonal. \\label{fig:biplot-adjusted}", tidy=T, echo=1:7>>=
 # partial regression data set
 ans.part <- ans.summary
 ans.part$lineup <- resid(lm(lineup ~ vis_search, data=ans.summary))
@@ -429,22 +539,22 @@ Even using VST as a ``general intelligence" factor, the first PC still does not 
 
 \subsection{Lit Review Rejects}
 \begin{itemize}
-\item \citet{just1985cognitive} showed that high-spatial-ability viewers used different rotation strategies than low-spatial-ability viewers when asked to whether three-dimensional alphabet cubes were the same. 
-\item \citet{voyer1995magnitude} completed a meta-analysis of spatial tasks and gender differences. They concluded that ``rotation" tasks, such as the card rotation test, have robust sex differences across cohort, and while the sex differences seem to be declining for some tests, such as the card rotation test, the differences still exist for the time being. Test administration differences may account for the change. They also concluded that the paper-folding test showed no such sex difference, though this may be dependent on test scoring (a lower guessing penalty decreases the score difference). 
+\item XXX in \cite{just1985cognitive} showed that high-spatial-ability viewers used different rotation strategies than low-spatial-ability viewers when asked to whether three-dimensional alphabet cubes were the same. 
+\item XXX in \cite{voyer1995magnitude} completed a meta-analysis of spatial tasks and gender differences. They concluded that ``rotation" tasks, such as the card rotation test, have robust sex differences across cohort, and while the sex differences seem to be declining for some tests, such as the card rotation test, the differences still exist for the time being. Test administration differences may account for the change. They also concluded that the paper-folding test showed no such sex difference, though this may be dependent on test scoring (a lower guessing penalty decreases the score difference). 
 \comment{\textit{In the current analysis, we have scored the paper folding test out of 20. Alternate scoring procedures still need to be investigated... they cite a poster, but it's not available anywhere online as far as I can tell.}}
-\item \citet{lowrie2007solving} investigated students (9-10 yrs) ability to read mathematical graphs and their visual-spatial ability. They partition graphs into 6 ``graphical languages" (some of these languages aren't statistical graphs - networks, venn diagrams, maps), and use multivariate analysis to associate spatial ability with some of the types of graphs studied. 
+\item XXX in \cite{lowrie2007solving} investigated students (9-10 yrs) ability to read mathematical graphs and their visual-spatial ability. They partition graphs into 6 ``graphical languages" (some of these languages aren't statistical graphs - networks, venn diagrams, maps), and use multivariate analysis to associate spatial ability with some of the types of graphs studied. 
 \comment{\textit{I can't understand their model results very well, so I'm not entirely sure what's going on here. \\
-They also cite a bunch of studies (including \citet{voyer1995magnitude}) that I haven't had time to completely explore.}}
-\item \citet{vekiri2002value} is lit review discussing the different theories about the utility of graphics in learning (dual coding theory, visual argument hypothesis, and conjoint retention hypothesis). The article contains a nice definition of graphics (though it might be too domain specific for statistical graphics, since it claims graphics have only one meaning and aren't prone to interpretation.) Depending on the context, ``maps", ``charts", and ``graphs" here could fall into a loose classification as ``statistical graphics", but in general ``graphs" is probably accurate for most of the lineups we're testing: ``[Referents are ] quantitative data ... that enable viewers to compare and observe relations among variables". 
+They also cite a bunch of studies (including XXX in \cite{voyer1995magnitude}) that I haven't had time to completely explore.}}
+\item XXX in \cite{vekiri2002value} is lit review discussing the different theories about the utility of graphics in learning (dual coding theory, visual argument hypothesis, and conjoint retention hypothesis). The article contains a nice definition of graphics (though it might be too domain specific for statistical graphics, since it claims graphics have only one meaning and aren't prone to interpretation.) Depending on the context, ``maps", ``charts", and ``graphs" here could fall into a loose classification as ``statistical graphics", but in general ``graphs" is probably accurate for most of the lineups we're testing: ``[Referents are ] quantitative data ... that enable viewers to compare and observe relations among variables". 
 \begin{itemize}
 \item \textbf{Dual Coding Theory}: people encode both words and pictures separately, so both are encoded for a graph. \\
-Supports the use of graphics, and there is support for dual-coding in working memory research (pictures and words are processed separately but in parallel). In addition, since graphics depend on other abilities (spatial abilities), graphics that aren't properly designed create higher cognitive load and lower performance on graphical tasks. The review also specifically discusses visuospatial ability, citing a speculation from \citet{mayer1994whom} that students with low spatial ability perform worse with diagrams and graphs because more cognitive resources are required.
+Supports the use of graphics, and there is support for dual-coding in working memory research (pictures and words are processed separately but in parallel). In addition, since graphics depend on other abilities (spatial abilities), graphics that aren't properly designed create higher cognitive load and lower performance on graphical tasks. The review also specifically discusses visuospatial ability, citing a speculation from XXX in \cite{mayer1994whom} that students with low spatial ability perform worse with diagrams and graphs because more cognitive resources are required.
 \comment{\textit{Lots of studies by Sweller cited throught the cognitive load discussion - I haven't gotten to that literature yet.\\That said, that research has some potential to justify the use of lineups from a psychological perspective - if you can claim that types of graphs that have poor performance do so because they create higher cognitive load (cue psych research into why that would be true, cleveland \& mcgill, etc.), you can justify the suckiness of those awful boxplot-jittered-things.}}
-\item \textbf{Visual Argument Hypothesis}: Graphics require less processing because their visuospatial properties encode some of the information through the arrangement of elements as well as the elements themselves. That is, graphics are a form of ``external cognition" \citep{scaife1996external} that guide, constrain, and facilitate cognitive behavior\citep{zhang1997nature}. This constraint reduces memory load and makes more cognitive resources available for other tasks; displays that clearly present information without deep processing requirements are more effective\citep{zhang1994representations}. Graphical displays have higher search and computational efficiency than text \citep{larkin1987diagram}, and when graphics are designed according to gestalt principles of organization, where grouping lines up with visual chunks, gestalt heuristics can be used to more quickly encode information \citep{shah1999graphs}.
+\item \textbf{Visual Argument Hypothesis}: Graphics require less processing because their visuospatial properties encode some of the information through the arrangement of elements as well as the elements themselves. That is, graphics are a form of ``external cognition" \cite{scaife1996external} that guide, constrain, and facilitate cognitive behavior\cite{zhang1997nature}. This constraint reduces memory load and makes more cognitive resources available for other tasks; displays that clearly present information without deep processing requirements are more effective\cite{zhang1994representations}. Graphical displays have higher search and computational efficiency than text \cite{larkin1987diagram}, and when graphics are designed according to gestalt principles of organization, where grouping lines up with visual chunks, gestalt heuristics can be used to more quickly encode information \cite{shah1999graphs}.
 \comment{\textit{I am working on making my way through all of this literature - right now, I'm re-citing stuff; I will print the papers out and add to this ASAP once I get toner into the printer.}}
 \item \textbf{Conjoint Retention Hypothesis} - based on dual coding theory, but claims that there are separate but interconnected memory codes for verbal and visual information. Assumes maps/graphs are encoded intact, with visuospatial properties preserved. This is pretty unlikely, and the literature is not so relevant to our cause. Spatial information is encoded, but words can actually interfere with this encoding; it is not ``intact" 
 \end{itemize}
-\item \citet{mayer1994whom} used the card rotation test (10 figures, 80 questions total) and the paper folding test (10 items) to evaluate spatial performance, along with a problem solving test. They used the same penalty structure on the card rotation test, and don't seem to have used any penalty on the paper folding test; they then scaled the two tests. Their problem solving test was more practical (engineering-based), so isn't applicable to our study. They were testing instruction using visual + audio in sync, visual + audio out of sync, and then no instruction as a control. High-ability students could make more use of the in-sync presentation of visual and auditory information than low-ability students, but did not differ significantly in the out-of-sync information condition. Thus, visualization ability moderates the results of the information presented by allowing students to process information concurrently more efficiently, but doesn't help students process the information separately or help students come up with solutions to the problem-solving task. 
-\item \citet{hofmann2012graphical} for lineup stimuli and general lineup performance
+\item XXX in \cite{mayer1994whom} used the card rotation test (10 figures, 80 questions total) and the paper folding test (10 items) to evaluate spatial performance, along with a problem solving test. They used the same penalty structure on the card rotation test, and don't seem to have used any penalty on the paper folding test; they then scaled the two tests. Their problem solving test was more practical (engineering-based), so isn't applicable to our study. They were testing instruction using visual + audio in sync, visual + audio out of sync, and then no instruction as a control. High-ability students could make more use of the in-sync presentation of visual and auditory information than low-ability students, but did not differ significantly in the out-of-sync information condition. Thus, visualization ability moderates the results of the information presented by allowing students to process information concurrently more efficiently, but doesn't help students process the information separately or help students come up with solutions to the problem-solving task. 
+\item XXX in \cite{hofmann2012graphical} for lineup stimuli and general lineup performance
 \end{itemize}
 \end{document}
