@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[10pt,journal,compsoc]{IEEEtran}
 %---------------------------------------------------
 \usepackage{color}
 \usepackage{fullpage}
@@ -98,35 +98,35 @@ Participants will complete the following tasks (sample pictures included, full s
 
 The \textbf{visual searching task} (VST), shown in figure \ref{fig:VST}, is designed to test participants' ability to find a target stimulus in a field of distractors. The visual search task is similar in concept to lineups: it tests an individual's ability to find the target plot. Historically, it has been used as a measure of brain damage\citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological}; however, similar tasks, have been used to measure cognitive performance in a variety of situations (under the influence of drugs, for example, in \citet{anderson1983interactive}). The similarity to the lineup protocol as well as the simplicity of the test and its' lack of color justify the slight deviation from forms of visual search tasks typically used in normal populations. 
 \begin{figure}[hbpt]\centering
-\includegraphics[width=.65\textwidth]{VisualSearch}
+\includegraphics[width=\linewidth]{VisualSearch}
 \caption[Visual Search Task]{Visual Search Task. Participants are instructed to find the plot numbered 1-24 which matches the plot labeled ``Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
 \end{figure}
 
 The \textbf{figure classification task} tests a participant's ability to extrapolate rules from provided figures. This task is associated with inductive reasoning ablities (factor I in \citet{ekstrom1976manual}). An example is shown in figure \ref{fig:figureclassification}. 
-\begin{figure}[hbpt]\centering
-\includegraphics[width=.9\textwidth]{figureclassification}
+\begin{figure*}[hbpt]\centering
+\includegraphics[width=.9\linewidth]{figureclassification}
 \caption[Figure Classification Task]{Figure Classification Task. Participants classify each figure in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.}\label{fig:figureclassification}
-\end{figure}
+\end{figure*}
 The figure classification test requires the same type of reasoning as the lineups: participants must determine the rules from the provided classes, and extrapolate from those rules to classify new figures. In lineups, participants must determine the rules based on the panels appearing in the lineup; they must then identify the plot which does not conform. As such, the figure classification test has content validity in relation to lineup performance: it is measuring similar underlying criteria. 
 
 The \textbf{card rotation test} measures a participant's ability to rotate objects in two dimensions in order to distinguish between left-hand and right-hand versions of the same figure. It tests mental rotation skills, and is classified as a test of spatial orientation in \citet{ekstrom1976manual}, though it does require that participants have both mental rotation ability and short-term visual memory. An example is shown in figure \ref{fig:cardrotation}.
-\begin{figure}[hbpt]\centering
-\includegraphics[width=.9\textwidth]{cardrotation}
+\begin{figure*}[hbpt]\centering
+\includegraphics[width=.9\linewidth]{cardrotation}
 \caption[Card Rotation Task]{Card Rotation Task. Participants mark each figure on the right hand side as either the same or different than the figure on the left hand side of the dividing line. Participants will complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.}\label{fig:cardrotation}
-\end{figure}
+\end{figure*}
 Two-dimensional comparisons are an important component of lineup performance. In some lineup situations, these comparisons involve translation, but in other lineups, rotation is required. Lineups also require visual short-term memory, so the additional factor measured implicitly by this test does not reduce its potential relevance to lineup performance.  
 
 The \textbf{paper folding test} measures participants' ability to visualize and mentally manipulate figures in three dimensions. It is classified as part of the visualization factor in \citet{ekstrom1976manual}, which differs from the spatial orientation factor because it requires participants to visualize, manipulate, and transform the figure mentally, which makes it a more complex and demanding task than simple rotation. The paper folding test is associated with the ability to extrapolate symmetry and reflection over multiple steps. An example is shown in figure \ref{fig:paperfolding}. 
-\begin{figure}[hbpt]\centering
-\includegraphics[width=.9\textwidth]{paperfolding}
+\begin{figure*}[hbpt]\centering
+\includegraphics[width=.9\linewidth]{paperfolding}
 \caption[Paper Folding Task]{Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown in the left-hand figure. Participants will complete up to 20 of these tasks in 6 minutes.}\label{fig:paperfolding}
-\end{figure}
+\end{figure*}
 Lineups require similar manipulations in two-dimensional space, and also require the ability to perform complex spatial manipulations mentally; for instance, comparing the interquartile range of two boxplots as well as their relative alignment to a similar set of two boxplots in another panel.
 
 Between cognitive tasks, participants will also complete three blocks of 20 lineups each, assembled from previous studies \citep{hofmann2012graphical,majumder2013validation}. Participants have 5 minutes to complete each block of 20 lineups. Figure \ref{fig:lineup} shows a sample lineup of box plots. 
 
 \begin{figure}\centering
-\includegraphics[width=.8\textwidth]{lineup}
+\includegraphics[width=.8\linewidth]{lineup}
 \caption[Sample Lineup]{A sample lineup. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 13 is the target. }\label{fig:lineup}
 \end{figure}
 
@@ -180,9 +180,9 @@ Unscaled Scores & 44.0 (24.6)\footnote{Data from Part I only.}
                 & M:~120.0~(30.0), F:~114.9~(27.8)
                 & --\\
 {\footnotesize Population}    
-              & \parbox[t]{.15\textwidth}{\footnotesize approx.\ 550 male\\ naval recruits} 
-              & \parbox[t]{.15\textwidth}{\footnotesize 46 college students\\(1963~version)}
-              & \parbox[t]{.3\textwidth}{\footnotesize suburban 11th \& 12th grade students\\(288-300 males, 317-329 females)}
+              & \parbox[t]{.15\linewidth}{\footnotesize approx.\ 550 male\\ naval recruits} 
+              & \parbox[t]{.15\linewidth}{\footnotesize 46 college students\\(1963~version)}
+              & \parbox[t]{.3\linewidth}{\footnotesize suburban 11th \& 12th grade students\\(288-300 males, 317-329 females)}
               & \\\hline
 \end{tabular}                
             
@@ -196,7 +196,7 @@ Comparison population data was chosen to most closely match ISU undergraduate po
 
 Applying the grading protocol discussed in section \ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure \ref{fig:Scores} shows the range of possible scores and the observed score distribution. 
 
-<<ResultsScaledScores, echo=F, include=T, fig.pos="hbt", fig.cap="Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \\label{fig:Scores}", fig.width=8, fig.height=3, out.width='.95\\textwidth', warning=F, message=F>>=
+<<ResultsScaledScores, echo=F, include=T, fig.pos="hbt", fig.cap="Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \\label{fig:Scores}", fig.width=8, fig.height=3, out.width='.95\\linewidth', warning=F, message=F>>=
 
 score.summary <- melt(ans.summary, measure.vars=20:24, value.name = "Score", variable.name = "Test")
 score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
@@ -261,7 +261,7 @@ lineup.summary.categorical$value <- factor(lineup.summary.categorical$value, lev
 qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + facet_wrap(~variable, scales="free_x") + xlab("") + ylab("Scaled Lineup Score") + theme_bw() + geom_point(aes(x=value, y=lineup), shape=1, size=3)
 @
 \begin{figure}[hbpt]\centering
-\includegraphics[width=\textwidth]{fig-VisReasoningCategorical-1}
+\includegraphics[width=\linewidth]{fig-VisReasoningCategorical-1}
 \caption[Visual Aptitude Study Results]{Sample demographic characteristics compared with lineup score. Categories are ordered by effect size; calculus completion,  hours spent playing video games per week, and sex are all associated with a difference in lineup score. }\label{fig:visualaptitudecat}
 \end{figure}
 
@@ -285,7 +285,7 @@ print(xtable(summary(pca), caption="Importance of components in principal compon
 print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests."), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize)
 @
 
-<<pca, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\textwidth', comment="|", fig.cap="Plots of the principal components with observations. PC1 seems to represent a general ``visual intelligence'' factor (and thus is not represented here). Figure classification is strongly related to lineups (PC2, PC3), and visual search is related to lineup performance as well (PC3). Paper folding does not seem to be strongly related to lineup performance outside of the first principal component; card rotation is only positively associated with lineup performance in PC4.\\label{fig:biplots}">>=
+<<pca, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Plots of the principal components with observations. PC1 seems to represent a general ``visual intelligence'' factor (and thus is not represented here). Figure classification is strongly related to lineups (PC2, PC3), and visual search is related to lineup performance as well (PC3). Paper folding does not seem to be strongly related to lineup performance outside of the first principal component; card rotation is only positively associated with lineup performance in PC4.\\label{fig:biplots}">>=
 biplot(pca, choices=2:3, pc.biplot=T, cex=c(.5, 1), adj=.75)
 biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), adj=.75)
 @
@@ -303,7 +303,7 @@ GGally::ggpairs(ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", 
 @
 
 \begin{figure}[hbpt]\centering
-\includegraphics[width=0.75\textwidth]{fig-VisReasoningCts-1}
+\includegraphics[width=0.75\linewidth]{fig-VisReasoningCts-1}
 \caption[Visual Aptitude Study Results]{Scatterplots of all test scores compared to participants' scores in the lineup tests. There is a relatively strong positive correlation between lineup score and scores on visuospatial reasoning tests.}\label{fig:visualaptitudects}
 \end{figure}
 
@@ -354,10 +354,10 @@ Unscaled Scores & 44.0 (24.6)\footnote{Data from Part I only.}
                 & 13.8 (4.5)
                 & M:~120.0~(30.0), F:~114.9~(27.8)\\
 {\footnotesize Population}    
-              & \parbox[t]{.2\textwidth}{\footnotesize approx.\ 550 male \\
+              & \parbox[t]{.2\linewidth}{\footnotesize approx.\ 550 male \\
 naval recruits} 
-              & \parbox[t]{.2\textwidth}{\footnotesize 46 college students\\(1963~version)}
-              & \parbox[t]{.3\textwidth}{\footnotesize suburban 11th \& 12th grade students\\(288-300 males, 317-329 females)}\\\hline
+              & \parbox[t]{.2\linewidth}{\footnotesize 46 college students\\(1963~version)}
+              & \parbox[t]{.3\linewidth}{\footnotesize suburban 11th \& 12th grade students\\(288-300 males, 317-329 females)}\\\hline
 \end{tabular}                
             
 \caption{Comparison of scores from Iowa State students and scores reported in \citet{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available.\label{tab:scorecomparison2}}
@@ -399,7 +399,7 @@ As figure \ref{fig:biplots}(a) shows, the first principal component seems to pri
 model1 <- lm(lineup ~ vis_search, data=ans.summary)
 print(xtable(summary(model1), caption="Results of the linear regression of visual search score on lineup score. \\label{vst-reg}."), sanitize.text.function=sanitize)
 @
-<<partialregression1,fig.keep='all', fig.width=4, fig.height=4, out.width='.45\\textwidth', fig.cap="Biplots of the adjusted lineup, card rotation, figure classification, and paper folding scores principal components analysis. Adjusted lineup scores are most associated with figure classification in the second principal component. In the third and fourth components, adjusted scores are almost entirely orthogonal. \\label{fig:biplot-adjusted}", tidy=T, echo=1:7>>=
+<<partialregression1,fig.keep='all', fig.width=4, fig.height=4, out.width='.45\\linewidth', fig.cap="Biplots of the adjusted lineup, card rotation, figure classification, and paper folding scores principal components analysis. Adjusted lineup scores are most associated with figure classification in the second principal component. In the third and fourth components, adjusted scores are almost entirely orthogonal. \\label{fig:biplot-adjusted}", tidy=T, echo=1:7>>=
 # partial regression data set
 ans.part <- ans.summary
 ans.part$lineup <- resid(lm(lineup ~ vis_search, data=ans.summary))
