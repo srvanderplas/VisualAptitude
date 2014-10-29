@@ -190,11 +190,12 @@ Unscaled Scores & 44.0 (24.6)\footnote{Data from Part I only.}
 \end{table}
 \end{savenotes}
 
-Table \ref{tab:scorecomparison} shows mean scores and standard deviation for ISU students and other populations. Values have been adjusted to accommodate differences in test procedures and sub-population structure; for instance,  some data is reported for a single part of a two-part test, or results are reported for each gender separately (adjustment procedure is described in more detail in Appendix \ref{app:ScoreAdj}). Once these adjustments have been completed, it is evident that Iowa State undergraduates scored at about the same level as other similar demographics. In fact, both means and standard deviations of ISU students' scores are similar to the comparison groups, which were chosen from available demographic groups based on population similarity. 
+Table \ref{tab:scorecomparison} shows mean scores and standard deviation for ISU students and other populations. Values have been adjusted to accommodate for differences in test procedures and sub-population structure; for instance,  some data is reported for a single part of a two-part test, or results are reported for each gender separately (adjustment procedure is described in more detail in Appendix \ref{app:ScoreAdj}). Once these adjustments have been completed, it is evident that Iowa State undergraduates scored at about the same level as other similar demographics. In fact, both means and standard deviations of ISU students' scores are similar to the comparison groups, which were chosen from available demographic groups based on population similarity. 
 
-Comparison populuation data was chosen to most closely match ISU undergraduate population demographics. Thus, if comparison data was available for 9th and 12th grade students, we have compared Iowa State students' scores with the 12th grade students, as they are closer in age to college students. When data was available from college students and Army enlistees, we have compared ISU students to other college students, as college students are more likely to have similar gender distribution to ISU students.
+Comparison population data was chosen to most closely match ISU undergraduate population demographics. Thus, if comparison data was available for 9th and 12th grade students, scores of Iowa State students were compared to scores of 12th grade students, who are closer in age to college students. When data was available from college students and Army enlistees, comparisons of scores were based on other college students, as college students are more likely to have a similar gender distribution to ISU students.
 
-\newtext{Applying the grading protocol discussed in section \ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure \ref{fig:Scores} shows the range of possible scores and the observed score distribution. } 
+Applying the grading protocol discussed in section \ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure \ref{fig:Scores} shows the range of possible scores and the observed score distribution. 
+
 <<ResultsScaledScores, echo=F, include=T, fig.pos="hbt", fig.cap="Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \\label{fig:Scores}", fig.width=8, fig.height=3, out.width='.95\\textwidth', warning=F, message=F>>=
 
 score.summary <- melt(ans.summary, measure.vars=20:24, value.name = "Score", variable.name = "Test")
@@ -214,17 +215,9 @@ ggplot() +
   coord_flip()
 @
 % 
-% \comment{Could you include some more details on how to get from the Unscaled scores to the scaled versions? I'm assuming that for the Card Rotation, the two parts have equal size, explaining the doubled score, but why not double the standard deviation? $\text{Var}(aX) = a^2 \text{Var}(X)$  ok I got the first one - because it is $X_1 + X_2$ not $2 X_1$. still working on understanding the second one, though ... it would be worthwhile to include a bit more detail and maybe put that in an appendix to the paper. If you want to, you could instead extend the footnotes a bit for now. ... so just let me try this: Let's assume that $X_M$ and $X_F$ are the scores based on 294 men, and 323 women (are those midscore s of the intervals reported?). with corresponding $s_M$ and $s_F$ for the reported standard deviation of the full test. Then half of the test would have half of the scores with half of the standard deviation. we have a breakdown of 17 girls and 19 boys. $
-% X = (X_M/2 \cdot 294 + X_F/2 \cdot 323) /(294+323) = \Sexpr{round(120.0/2*294/617 + 114.9/2*323/617, 1)}
-% $. For the Variance of $X$ we then have:
-% $\text{Var}(X) = \text{Var}(X_{M_1} + X_{M_2}) \cdot (294/617)^2 + \text{Var}(X_{F_1} + X_{F_2}) \cdot (323/617)^2 = \Sexpr{round(sqrt(30^2/2 * (294/617)^2 + 27.8^2/2 * (323/617)^2),1)}^2$
-% }
 
-%In order to ensure all tests have similar variance, we scaled test scores by the standard deviation under random guessing. This approach also allows us to compare the test scores using similar orders of magnitude.
+\comment{
 
-\comment{OK, so on to the next steps ... we would like to figure out, how the lineups play into the established test scores. I think we need to talk about how to best talk through the visual search score. We have a lot of information on the other three scores - is there an established test in the naval test that is `like' the visual search? - i.e. could we use those scores to compare to? 
-
-so outline for the next few steps:
 \begin{enumerate}
 \item some general words on behavior of lineup scores by themselves - I think the whole discussion that is at the moment  at the end of the paper should move up here. The levels of the video gaming are a bit messed up - they should be ordered according to number of games played rather than alphabetically :) - and I think that then the relationship actually is a monotonic one ...
  In any case, sort the figures in the table according to their $p$-values in the table. Gender shows up as significantly different in my table of $p$ values, but in the text you say that it is not. 
