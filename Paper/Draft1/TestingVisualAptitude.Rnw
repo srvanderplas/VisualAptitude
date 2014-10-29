@@ -97,27 +97,27 @@ Statistical lineups \citep{hofmann2012graphical,buja2009statistical} depend on t
 Participants will complete the following tasks (sample pictures included, full stimuli set will be added to the appendix once we are sure there is no need for follow-up experiments). Tasks are designed so that participants are under time pressure; they are not expected to complete all of the problems in each section. This provides more discrimination between high scorers and prevents score compression at the top of the range. 
 
 The \textbf{visual searching task} (VST), shown in figure \ref{fig:VST}, is designed to test participants' ability to find a target stimulus in a field of distractors. The visual search task is similar in concept to lineups: it tests an individual's ability to find the target plot. Historically, it has been used as a measure of brain damage\citep{goldstein1973validity,demita1981validity,moerland1986neuropsychological}; however, similar tasks, have been used to measure cognitive performance in a variety of situations (under the influence of drugs, for example, in \citet{anderson1983interactive}). The similarity to the lineup protocol as well as the simplicity of the test and its' lack of color justify the slight deviation from forms of visual search tasks typically used in normal populations. 
-\begin{figure}[htbp]\centering
-\includegraphics[width=.7\textwidth]{VisualSearch}
+\begin{figure}[hbpt]\centering
+\includegraphics[width=.65\textwidth]{VisualSearch}
 \caption[Visual Search Task]{Visual Search Task. Participants are instructed to find the plot numbered 1-24 which matches the plot labeled ``Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
 \end{figure}
 
 The \textbf{figure classification task} tests a participant's ability to extrapolate rules from provided figures. This task is associated with inductive reasoning ablities (factor I in \citet{ekstrom1976manual}). An example is shown in figure \ref{fig:figureclassification}. 
-\begin{figure}[htbp]\centering
+\begin{figure}[hbpt]\centering
 \includegraphics[width=.9\textwidth]{figureclassification}
 \caption[Figure Classification Task]{Figure Classification Task. Participants classify each figure in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.}\label{fig:figureclassification}
 \end{figure}
 The figure classification test requires the same type of reasoning as the lineups: participants must determine the rules from the provided classes, and extrapolate from those rules to classify new figures. In lineups, participants must determine the rules based on the panels appearing in the lineup; they must then identify the plot which does not conform. As such, the figure classification test has content validity in relation to lineup performance: it is measuring similar underlying criteria. 
 
 The \textbf{card rotation test} measures a participant's ability to rotate objects in two dimensions in order to distinguish between left-hand and right-hand versions of the same figure. It tests mental rotation skills, and is classified as a test of spatial orientation in \citet{ekstrom1976manual}, though it does require that participants have both mental rotation ability and short-term visual memory. An example is shown in figure \ref{fig:cardrotation}.
-\begin{figure}[htbp]\centering
+\begin{figure}[hbpt]\centering
 \includegraphics[width=.9\textwidth]{cardrotation}
 \caption[Card Rotation Task]{Card Rotation Task. Participants mark each figure on the right hand side as either the same or different than the figure on the left hand side of the dividing line. Participants will complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.}\label{fig:cardrotation}
 \end{figure}
 Two-dimensional comparisons are an important component of lineup performance. In some lineup situations, these comparisons involve translation, but in other lineups, rotation is required. Lineups also require visual short-term memory, so the additional factor measured implicitly by this test does not reduce its potential relevance to lineup performance.  
 
 The \textbf{paper folding test} measures participants' ability to visualize and mentally manipulate figures in three dimensions. It is classified as part of the visualization factor in \citet{ekstrom1976manual}, which differs from the spatial orientation factor because it requires participants to visualize, manipulate, and transform the figure mentally, which makes it a more complex and demanding task than simple rotation. The paper folding test is associated with the ability to extrapolate symmetry and reflection over multiple steps. An example is shown in figure \ref{fig:paperfolding}. 
-\begin{figure}[htbp]\centering
+\begin{figure}[hbpt]\centering
 \includegraphics[width=.9\textwidth]{paperfolding}
 \caption[Paper Folding Task]{Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown in the left-hand figure. Participants will complete up to 20 of these tasks in 6 minutes.}\label{fig:paperfolding}
 \end{figure}
@@ -195,7 +195,7 @@ Table \ref{tab:scorecomparison} shows mean scores and standard deviation for ISU
 Comparison populuation data was chosen to most closely match ISU undergraduate population demographics. Thus, if comparison data was available for 9th and 12th grade students, we have compared Iowa State students' scores with the 12th grade students, as they are closer in age to college students. When data was available from college students and Army enlistees, we have compared ISU students to other college students, as college students are more likely to have similar gender distribution to ISU students.
 
 \newtext{Applying the grading protocol discussed in section \ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure \ref{fig:Scores} shows the range of possible scores and the observed score distribution. } 
-<<ResultsScaledScores, echo=F, include=T, fig.cap="Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \\label{fig:Scores}", fig.width=8, fig.height=3, out.width='.95\\textwidth', warning=F, message=F>>=
+<<ResultsScaledScores, echo=F, include=T, fig.pos="hbt", fig.cap="Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \\label{fig:Scores}", fig.width=8, fig.height=3, out.width='.95\\textwidth', warning=F, message=F>>=
 
 score.summary <- melt(ans.summary, measure.vars=20:24, value.name = "Score", variable.name = "Test")
 score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
@@ -209,7 +209,8 @@ ggplot() +
   scale_colour_discrete(name="", labels="Theoretical Range") + 
   theme_bw()  + 
   theme(legend.position="bottom", legend.box="horizontal") + 
-  ylab("Score") + 
+  ylab("Test Scores") + 
+  xlab("") +
   coord_flip()
 @
 % 
@@ -262,10 +263,11 @@ tmp <- rbind.fill(tmp)
 tmp <- tmp[order(tmp$p.value, decreasing=F),]
 
 lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, levels=unique(tmp$Variable))
+lineup.summary.categorical$value <- factor(lineup.summary.categorical$value, levels=c("0","1", "2","3","4","5","[1, 2)", "[2, 5)", "18-20", "21-24", "25-28", "5+", "FALSE", "TRUE", "Female", "Male"))
 
 qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + facet_wrap(~variable, scales="free_x") + xlab("") + ylab("Scaled Lineup Score") + theme_bw() + geom_point(aes(x=value, y=lineup), shape=1, size=3)
 @
-\begin{figure}[htbp]\centering
+\begin{figure}[hbpt]\centering
 \includegraphics[width=\textwidth]{fig-VisReasoningCategorical-1}
 \caption[Visual Aptitude Study Results]{Sample demographic characteristics compared with lineup score. Categories are ordered by effect size; calculus completion,  hours spent playing video games per week, and sex are all associated with a difference in lineup score. }\label{fig:visualaptitudecat}
 \end{figure}
@@ -307,7 +309,7 @@ qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3
 GGally::ggpairs(ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", "folding")], lower=list(continuous='smooth'), upper=list(continuous="cor"))
 @
 
-\begin{figure}[htbp]\centering
+\begin{figure}[hbpt]\centering
 \includegraphics[width=0.75\textwidth]{fig-VisReasoningCts-1}
 \caption[Visual Aptitude Study Results]{Scatterplots of all test scores compared to participants' scores in the lineup tests. There is a relatively strong positive correlation between lineup score and scores on visuospatial reasoning tests.}\label{fig:visualaptitudects}
 \end{figure}
