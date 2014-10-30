@@ -103,7 +103,7 @@ datadir <- "../../Data/"
 imgdir <- "Figure/"
 codedir <- "../../Code/"
 
-options(replace.assign=TRUE,width=40,scipen=3)
+options(replace.assign=TRUE,width=30,scipen=3)
 
 
 library(reshape2)
@@ -134,7 +134,7 @@ of Statistics and Statistical Laboratory, Iowa State University, Ames,
 IA, 50011.\protect\\
 % note need leading \protect in front of \\ to get a newline within \thanks as
 % \\ is fragile and will error, could use \hfil\break instead.
-E-mail: {srvanderplas, hofmann}@iastate.edu}% <-this % stops an unwanted space
+E-mail: {skoons, hofmann}@iastate.edu}% <-this % stops an unwanted space
 \thanks{Manuscript received Month XX, 2015; revised Month XX, XXXX.}}
 
 % The paper headers
