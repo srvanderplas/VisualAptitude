@@ -4,7 +4,8 @@
 ans <- read.csv(paste0(datadir, "VisualGraphicsData.csv"), na.strings=c(" ", ""), stringsAsFactors=F)
 # Create anon. IDs that are unique
 ans$id <- 1:nrow(ans)
-
+# Fix age categories
+ans$age <- gsub("21-24", "21+", gsub("25-28", "21+", ans$age))
 
 # Create a key that has the same structure as the answers
 key <- ans[1,]
