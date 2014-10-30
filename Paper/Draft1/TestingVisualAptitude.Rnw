@@ -199,9 +199,6 @@ Statistical lineups~\cite{hofmann2012graphical,buja2009statistical} depend on th
 
 \section{Methods}
 \subsection{Measures of visuospatial ability}
-\comment{Use the setup in the lineup protocol section to justify each of the tests chosen. }
-\comment{Besides pointing out what we asked participants to do, we also need some why, and also why in particular these tests were selected. part of the validity consideration can go in here - and the classification from the naval test of the tests we picked into different classes (maybe already with a hint that for our data these weren't actually orthogonal classes, because we found a really high correlation between card rotation and paper folding.)\\
-}
 
 Participants will complete the following tasks (sample pictures included, full stimuli set will be added to the appendix once we are sure there is no need for follow-up experiments). Tasks are designed so that participants are under time pressure; they are not expected to complete all of the problems in each section. This provides more discrimination between high scorers and prevents score compression at the top of the range. 
 
