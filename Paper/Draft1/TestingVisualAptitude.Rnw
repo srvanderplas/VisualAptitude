@@ -200,7 +200,7 @@ Statistical lineups~\cite{hofmann2012graphical,buja2009statistical} depend on th
 \section{Methods}
 \subsection{Measures of visuospatial ability}
 
-Participants will complete the following tasks (sample pictures included, full stimuli set will be added to the appendix once we are sure there is no need for follow-up experiments). Tasks are designed so that participants are under time pressure; they are not expected to complete all of the problems in each section. This provides more discrimination between high scorers and prevents score compression at the top of the range. 
+Participants will complete several cognitive tests designed to measure spatial and reasoning ability. Tasks are designed so that participants are under time pressure; they are not expected to complete all of the problems in each section. This provides more discrimination between high scorers and prevents score compression at the top of the range. 
 
 The \textbf{visual searching task} (VST), shown in figure~\ref{fig:VST}, is designed to test participants' ability to find a target stimulus in a field of distractors. The visual search task is similar in concept to lineups: it tests an individual's ability to find the target plot. Historically, it has been used as a measure of brain damage\cite{goldstein1973validity,demita1981validity,moerland1986neuropsychological}; however, similar tasks, have been used to measure cognitive performance in a variety of situations (under the influence of drugs, for example, in~\cite{anderson1983interactive}). The similarity to the lineup protocol as well as the simplicity of the test and its' lack of color justify the slight deviation from forms of visual search tasks typically used in normal populations. 
 \begin{figure}[hbpt]\centering
