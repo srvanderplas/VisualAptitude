@@ -186,6 +186,8 @@ Computer Society, IEEEtran, journal, \LaTeX, paper, template.
 for IEEE Computer Society journal papers produced under \LaTeX\ using
 IEEEtran.cls version 1.8a and later.
 
+\comment{Next few steps for the analysis: (1) I think we should add a linear model for lineup scores that includes the demographics of participants as well; (2)}
+
 \comment{Intro about statistical graphics, lineups, ...}
 \subsection{Spatial Reasoning and Statistical Graphics}
 Statistical graphics provide quick summaries of data, models, and results, but these displays may not be equally useful to all viewers. Mathematical ability is important, even for the simplest graphs:  mathematical ability, not spatial ability, was shown~\cite{shah1995conceptual} to be associated with accuracy on a simple two-dimensional line graph. Spatial ability becomes more important, however, when more complicated graphical displays are used in comparison tasks: the lower performance of  individuals with low spatial ability  on tests utilizing diagrams and graphs is attributed ~\cite{mayer1994whom} to the fact that more cognitive resources are required to process the visual stimuli, which leaves fewer resources to make connections and draw conclusions from those stimuli. \newtext{It is theorized that graphics are a form of ``external cognition"~\cite{scaife1996external} that guide, constrain, and facilitate cognitive behavior\cite{zhang1997nature}. This constraint reduces memory load and makes more cognitive resources available for other tasks, but also implicates visual ability as an important factor in graph comprehension. }
@@ -301,7 +303,7 @@ Comparison population data was chosen to most closely match ISU undergraduate po
 
 Applying the grading protocol discussed in section~\ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure~\ref{fig:Scores} shows the range of possible scores and the observed score distribution. 
 
-<<ResultsScaledScores, echo=F, include=T, fig.pos="hbt", fig.cap="Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \\label{fig:Scores}", fig.width=4.5, fig.height=4.5, out.width='\\linewidth', warning=F, message=F>>=
+<<ResultsScaledScores, echo=F, include=T, fig.pos="hbt", fig.cap="Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \\label{fig:Scores}", fig.width=4.5, fig.height=4.5, out.width='.\\linewidth', warning=F, message=F>>=
 
 score.summary <- melt(ans.summary, measure.vars=20:24, value.name = "Score", variable.name = "Test")
 score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure~Class.", "Paper Folding", "Visual Search"))
