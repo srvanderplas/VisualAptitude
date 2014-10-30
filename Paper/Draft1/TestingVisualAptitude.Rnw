@@ -386,28 +386,62 @@ GGally::ggpairs(ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", 
 pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 # screeplot(pca)
 @
+
+\newtext{Results from the visuospatial tests used in this experiment are highly correlated, as shown in figure~\ref{fig:scatterplotmatrix}; this is to be expected given that all of these tests are influenced by factors other than visual ability - general intelligence, mental processing speed, cognitive resources, motivation, and attention, to name a few. In order to assess factors contributing to lineup performance, we first will examine the separate dimensions measured by the entire battery of tests using principal components analysis on the scaled test scores.} 
+\newtext{Table \ref{tab:PCAvariance5} shows the importance of each principal component and the cumulative proportion of variance. As expected, PC1 accounts for \Sexpr{round(summary(pca)$importance[3,1]*100,1)}\% of the variance in the data, that is, all of the general factors discussed above which influence test results. We will focus on the remaining components; these show differences in performance on the tests, and thus provide information about the skills needed to successfully examine lineups. }
+
+\newtext{Biplots of the remaining principal components are shown in figure~\ref{fig:biplots5}, and the corresponding rotation matrix is provided in \ref{tab:PCArotation5}. PC1 seems to represent a general ``visual intelligence'' factor.}
+
 <<pcasummary,echo=F, results='asis'>>=
-print(xtable(summary(pca), caption="Importance of components in principal component analysis of the five tests.\\label{tab:PCAvariance5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
+print(xtable(summary(pca), caption="Importance of principal components, analyzing all five tests.\\label{tab:PCAvariance5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
 @
 
-
+\newtext{Figure~classification is strongly related to lineups (PC2, PC3), and visual search is related to lineup performance as well (PC3). These two components highlight the shared demands of the lineup task and the figure classification task: participants must establish categories from provided stimuli and then classify the stimuli accordingly. } 
 
 <<pcarotation,echo=F, results='asis'>>=
 print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests.\\label{tab:PCArotation5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
 @
 
-<<pca, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Plots of the principal components with observations. PC1 seems to represent a general ``visual intelligence'' factor (and thus is not represented here). Figure~classification is strongly related to lineups (PC2, PC3), and visual search is related to lineup performance as well (PC3). Paper folding does not seem to be strongly related to lineup performance outside of the first principal component; card rotation is only positively associated with lineup performance in PC4.\\label{fig:biplots}", echo=F, fig.env="figure*">>=
-biplot(pca, choices=2:3, pc.biplot=T, cex=c(.5, 1), adj=.75)
-biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), adj=.75)
+\newtext{The visual search task is also clearly important to lineup performance: PC3 captures the similarity between the visual search and lineup performance, and aspects of these tasks are negatively correlated with aspects of the paper folding and card rotation tasks within PC3. Paper folding does not seem to be strongly associated with lineup performance outside of the first principal component; card rotation is only positively associated with lineup performance in PC4.}
+\newtext{PC4 captures the similarity between lineups and the card rotation task and separates this similarity from the figure classification task; this similarity does not account for much extra variance (10\%), but it may be that only some lineups require spatial rotation skills. PC5 contains only 5\% of the remaining variance, and is thus not of much interest, however, it seems to capture the relationship between the card rotation task and the paper folding and visual search tasks.}
+<<pca, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.8\\linewidth', comment="|", fig.cap="Plots of principal components 2-5 with observations. \\label{fig:biplots5}", echo=F, fig.env="figure">>=
+par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+biplot(pca, choices=2:3, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
+biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), xlim=c(-2,2), ylim=c(-2,2))
+@
+<<pcasummary2,echo=F, results='asis'>>=
+pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
+print(xtable(summary(pca2), caption="Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\\label{tab:PCAvariance4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
+@
+\newtext{If we examine the relationship between the four cognitive tests (excluding lineups), we can determine how lineup performance affects the variance partitions. Table \ref{tab:PCAvariance4} contains the importance of each resultant PC and the proportion of the variance each PC represents. }
+
+\newtext{As with the previous principal components analysis, PC1 accounts for about \Sexpr{round(summary(pca2)$importance[3,1],1)*100}\% of the variance; figure \ref{fig:biplots4} and table \ref{tab:PCArotation4} confirm that PC1 is again a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test; this is incredibly similar to the role of PC2 in the 5-component analysis. }
+
+<<pcarotation2,echo=F, results='asis'>>=
+print(xtable(pca2$rotation, caption="PCA Rotation matrix for the four cognitive tests.\\label{tab:PCArotation4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
 @
 
-In figure~\ref{fig:visualaptitudects}, we see that participant performance on lineups is positively correlated with performance on card rotation, figure~classification, and paper folding tasks. This suggests that skills associated with visual reasoning ability are related to lineup performance. As participants must use the same skills in lineups (mental rotation, classification and determining categorization schemes, and multi-step spatial reasoning) as in the factor-referenced tests, this is not particularly surprising. In addition,there seems to be some positive relationship between a participant's score on the visual search task and their score on lineups: the visual search task represents a baseline of a participant's ability to find a matching pattern, while lineups require that task as well as the ability to determine what the pattern is for a particular graph. Even excluding the one low visual search score that is a high-leverage point, there seems to be a positive relationship between a participant's score on lineups and their score for visual search. 
+\newtext{PC3 differentiates the figure classification and visual search tests from the paper folding test; this is true in the 5-component analysis as well, but in that analysis the role of the figure classification test was not as significant due to the inclusion of the lineup task. PC4 is not particularly significant (it accounts for \Sexpr{round(summary(pca2)$importance[2,4]*100,1)}\% of the variance), but it differentiates the card rotation task from the paper folding task, much like PC5 in the full PCA.}
 
-<<VisReasoningCts,echo=FALSE, include=FALSE, eval=T, fig.width=8,fig.height=8, message=F, warning=F>>=
-lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Card Rotation", "Figure~Classification", "Paper Folding", "Visual Search"))
- 
-qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x") + xlab("Score") + ylab("Lineup Score") + geom_smooth(method="lm") + theme_bw()
+\newtext{Comparing the two principal component analyses in this manner suggests that lineups are a separate dimension (as the addition of lineups result in an additional principal component which accounts for at least 10\% of the variance), but that they are most closely related to the figure classification task, and less closely related to the visual searching task.}
+
+\newtext{This emphasizes the underpinnings of lineups: they are a visual medium, but they ultimately are a classification task, presented in a graphical manner. Using lineups as a proxy for statistical significance tests is similar to using a classifier on pictoral data: while the data is presented ``graphically", the participant is actually classifying the data based on underlying summary statistics.}
+\comment{that last sentance is probably reaching a bit far...}
+
+
+<<pca2, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.8\\linewidth', comment="|", fig.cap="Plots of principal components 1-4 with observations. PCA was performed on the four cognitive tests used to understand the cognitive demands of the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
+par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+biplot(pca2, choices=1:2, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
+biplot(pca2, choices=3:4, pc.biplot=T, cex=c(.5, 1), xlim=c(-3,3), ylim=c(-2.5,2.5))
 @
+
+% In figure~\ref{fig:visualaptitudects}, we see that participant performance on lineups is positively correlated with performance on card rotation, figure~classification, and paper folding tasks. This suggests that skills associated with visual reasoning ability are related to lineup performance. As participants must use the same skills in lineups (mental rotation, classification and determining categorization schemes, and multi-step spatial reasoning) as in the factor-referenced tests, this is not particularly surprising. In addition,there seems to be some positive relationship between a participant's score on the visual search task and their score on lineups: the visual search task represents a baseline of a participant's ability to find a matching pattern, while lineups require that task as well as the ability to determine what the pattern is for a particular graph. Even excluding the one low visual search score that is a high-leverage point, there seems to be a positive relationship between a participant's score on lineups and their score for visual search. 
+% 
+% <<VisReasoningCts,echo=FALSE, include=FALSE, eval=T, fig.width=8,fig.height=8, message=F, warning=F>>=
+% lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Card Rotation", "Figure~Classification", "Paper Folding", "Visual Search"))
+%  
+% qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x") + xlab("Score") + ylab("Lineup Score") + geom_smooth(method="lm") + theme_bw()
+% @
 
 % 
 % \begin{figure}[hbt]\centering
