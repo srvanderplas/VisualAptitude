@@ -454,12 +454,9 @@ All results and data shown here were collected and analyzed in accordance with I
 \bibliographystyle{IEEEtran}
 \bibliography{references}
 
+\appendices
 
-
-
-\section*{Appendix}
-\renewcommand{\thesubsection}{\Alph{subsection}}
-% \subsection{Examining potential testing biases}\label{app:ratests}
+% \section{Examining potential testing biases}\label{app:ratests}
 % T-tests of results for Hillary and Stephanie: 
 % <<ttest, echo=F, include=T, results='asis'>>=
 % ans.summary$tester <- c(rep("Hillary", 18), rep("Stephanie", nrow(ans.summary)-18))
@@ -479,36 +476,12 @@ All results and data shown here were collected and analyzed in accordance with I
 % 
 % print(xtable(res), include.rownames = F, sanitize.text.function=sanitize)
 % @
-\subsection{Scaling Scores}\label{app:ScoreAdj}
-To calculate ``scaled" comparison scores between tests which included different numbers of sections, we scaled the mean in direct proportion to the number of questions (thus, if there were two sections of equivalent size, and the reference score included only one of those sections, we multiplied the reported mean score by two). The variance calculation is a bit more complicated: In the case described above, where the reference section contained half of the questions, the variance is multiplied by two, causing the standard deviation to be multiplied by approximately 1.41. 
 
-\begin{savenotes}
-\begin{table*}[hbt]
-\caption{Comparison of scores from Iowa State students and scores reported in~\cite{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available.\label{tab:scorecomparison2}}
 
-\centering
-\begin{tabular}{rlll}
-\hline
-  & Card Rotation & Paper Folding & Figure~Classification \\\hline
-ISU Students & \Sexpr{round(mean(ans.summary$card_rot), 1)} (\Sexpr{round(sd(ans.summary$card_rot), 1)}) 
-             & \Sexpr{round(mean(ans.summary$folding), 1)} (\Sexpr{round(sd(ans.summary$folding), 1)})
-             & \Sexpr{round(mean(ans.summary$fig_class), 1)} (\Sexpr{round(sd(ans.summary$fig_class), 1)})\footnote{ISU students took only Part I due to time constraints.}\\
-Scaled Scores & 88.0 (\Sexpr{round(sqrt((24.6^2)*2), 1)})
-              & 13.8 (4.5)
-              & \Sexpr{round((120.0*294 + 114.9*323)/617/2, 1)} (\Sexpr{round(sqrt((30^2*294 + 27.8^2*323)/617)/2, 1)})\footnote{Averages calculated assuming 294 males and 323 females.}\\
-Unscaled Scores & 44.0 (24.6)\footnote{Data from Part I only.}
-                & 13.8 (4.5)
-                & M:~120.0~(30.0), F:~114.9~(27.8)\\
-{\footnotesize Population}    
-              & \parbox[t]{.2\linewidth}{\footnotesize approx.\ 550 male \\
-naval recruits} 
-              & \parbox[t]{.2\linewidth}{\footnotesize 46 college students\\(1963~version)}
-              & \parbox[t]{.3\linewidth}{\footnotesize suburban 11th \& 12th grade students\\(288-300 males, 317-329 females)}\\\hline
-\end{tabular}                
-\end{table*}
-\end{savenotes}
+\section{Scaling Scores}\label{app:ScoreAdj}
+To calculate ``scaled" comparison scores between tests which included different numbers of test sections (as shown in table \ref{tab:scorecomparison}), we scaled the mean in direct proportion to the number of questions (thus, if there were two sections of equivalent size, and the reference score included only one of those sections, we multiplied the reported mean score by two). The variance calculation is a bit more complicated: In the case described in the main text, where the reference section contained half of the questions, the variance is multiplied by two, causing the standard deviation to be multiplied by approximately 1.41. 
 
-This scaling gets slightly more complicated for scores which have two sub-groups, as with the Figure~Classification test. To get a single unified score with standard deviation, we did the following calculations: 
+This scaling gets slightly more complicated for scores which have two sub-groups, as with the Figure~Classification test. To get a single unified score with standard deviation, we completed the following calculations: 
 \begin{eqnarray}
 \mu_{all} &= (\mu_{F}N_F + \mu_{M}N_M)/(N_F + N_M)\\
 \sigma_{all} &= \sqrt{\left(N_F\sigma_F^2 + N_M\sigma_M^2\right)/(N_F + N_M)}
@@ -519,8 +492,8 @@ Then, in order to account for the fact that ISU students took only part I of two
 \sigma_{all} &= \sqrt{\left(N_F\sigma_F^2 + N_M\sigma_M^2\right)/(2(N_F + N_M))}
 \end{eqnarray}
 
-\subsection{Lineup Performance and Demographic Characteristics}\label{app:categoricalresults}
-
+\section{Lineup Performance and Demographic Characteristics}\label{app:categoricalresults}
+Table \ref{tab:ttest-demographics} provides the results of a sequence of linear models fit to the lineup data. Each row in the table represents a single model, with one predictor variable (a factor with two or more levels). Due to sample size considerations, multiple testing corrections were not performed; in addition, the independent variables are correlated: in our sample, males are more likely to have completed Calculus 1, but are also more likely to spend time playing video games. As such, a model including two or more of the significant predictor variables shows all included variables to be nonsignificant. To better understand the effects of these variables, a much larger study would be required. 
 <<ttests.categ, echo=F, eval=T, results='asis'>>=
 tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
     tmp <- anova(lm(lineup~factor(value, ordered=F), data=df))
@@ -528,66 +501,67 @@ tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
     coefs$level <- gsub("factor(value, ordered = F)", unique(df$variable), rownames(coefs), fixed=T)
     rownames(coefs) <- NULL
     coefs <- coefs[,c(6, 1:5)]
-    names(coefs) <- c("Variable", "DF", "Sum.of.Squares", "Mean.Squared", "F.value", "p.value")
+    names(coefs) <- c("Variable", "DF", "Sum.of.Squares", "MeanSq", "F", "p.val")
     coefs
 })
 
 tmp <- rbind.fill(tmp)
-tmp <- tmp[order(tmp$p.value, decreasing=F),]
-print(xtable(tmp, digits=c(1, 1, 0, 3, 3, 2, 3), caption="Model results of each single demographic variable compared with lineup score. Multiple testing issues aside, it appears that very few demographic variables (if any) are significantly associated with score on lineups among Iowa State undergraduate students."), include.rownames=F, floating.environment="table*", caption.placement="top")
+tmp2 <- tmp[order(tmp$p.val, decreasing=F),-3]
+tmp2$Variable <- gsub("Math/Science", "STEM", gsub(" Experience", "", gsub(" Hrs/Wk", " hrs", tmp2$Variable)), fixed=T)
+print(xtable(tmp2, digits=c(1, 1, 0, 3, 2, 3), caption="Results of lineup score modeled by single demographic variables. \\label{tab:ttest-demographics}"), include.rownames=F, floating.environment="table", caption.placement="top")
 @
-\subsection{Lineup Performance: Accounting for ``Visual Intelligence''}
-As figure~\ref{fig:biplots}(a) shows, the first principal component seems to primarily describe ``general intelligence", or ``visual intelligence" in a generic sense (as we have only tested visual skills). As the visual search task (VST) is the most generic of visual tasks (find the matching pattern) and requires no spatial manipulation, rotation, or inference, we might use it as an indicator of general visual intelligence (or cognitive tempo and attention to detail). 
+% \section{Lineup Performance: Accounting for ``Visual Intelligence''}
+% As figure~\ref{fig:biplots}(a) shows, the first principal component seems to primarily describe ``general intelligence", or ``visual intelligence" in a generic sense (as we have only tested visual skills). As the visual search task (VST) is the most generic of visual tasks (find the matching pattern) and requires no spatial manipulation, rotation, or inference, we might use it as an indicator of general visual intelligence (or cognitive tempo and attention to detail). 
+% 
+% <<partialregression, results='asis', echo=1, tidy=T>>=
+% model1 <- lm(lineup ~ vis_search, data=ans.summary)
+% print(xtable(summary(model1), caption="Results of the linear regression of visual search score on lineup score. \\label{vst-reg}."), sanitize.text.function=sanitize)
+% @
+% <<partialregression1,fig.keep='all', fig.width=4, fig.height=4, out.width='.45\\linewidth', fig.cap="Biplots of the adjusted lineup, card rotation, figure~classification, and paper folding scores principal components analysis. Adjusted lineup scores are most associated with figure~classification in the second principal component. In the third and fourth components, adjusted scores are almost entirely orthogonal. \\label{fig:biplot-adjusted}", tidy=T, echo=1:7>>=
+% # partial regression data set
+% ans.part <- ans.summary
+% ans.part$lineup <- resid(lm(lineup ~ vis_search, data=ans.summary))
+% ans.part$card_rot <- resid(lm(card_rot ~ vis_search, data=ans.summary))
+% ans.part$fig_class <- resid(lm(fig_class ~ vis_search, data=ans.summary))
+% ans.part$folding <- resid(lm(folding ~ vis_search, data=ans.summary))
+% 
+% pca2 <- prcomp(ans.part[,c("lineup", "card_rot", "fig_class", "folding")], scale=T, retx=T)
+% biplot(pca2, choices=1:2, pc.biplot=T, cex=c(.5, 1), adj=.75)
+% biplot(pca2, choices=3:4, pc.biplot=T, cex=c(.5, 1), adj=.75)
+% @
+% <<partialregression2, echo=F, results='asis'>>=
+% model2 <- lm(lineup~fig_class+card_rot+folding, data=ans.part)
+% print(xtable(model2, caption="Results of the linear regression of (the ETS tests $|$ VST) on (lineup score $|$ VST)"), sanitize.text.function=sanitize, caption.placement="top")
+% @
+% Removing paper folding from the analysis due to its' obvious nonsignificance and collinearity with card rotation, we get a slightly better regression result. 
+% <<partialregression3, echo=F, results='asis'>>=
+% model3 <- lm(lineup~fig_class+card_rot, data=ans.part)
+% print(xtable(model3, caption="Results of the reduced linear regression of (the ETS tests $|$ VST) on (lineup score $|$ VST)"), sanitize.text.function=sanitize, caption.placement="top")
+% print(xtable(anova(model3, model2), caption="Model comparison between full model (including paper folding) and reduced model (excluding paper folding), when accounting for scores on the VST in both independent and dependent variables. "), sanitize.text.function=sanitize, caption.placement="top")
+% @
+% 
+% Comparing the full and reduced models, we see that the reduction does not significantly reduce the explained sum of squares. 
+% 
+% 
+% Even using VST as a ``general intelligence" factor, the first PC still does not discriminate between the tests. This approach is probably not worth pursuing further. 
 
-<<partialregression, results='asis', echo=1, tidy=T>>=
-model1 <- lm(lineup ~ vis_search, data=ans.summary)
-print(xtable(summary(model1), caption="Results of the linear regression of visual search score on lineup score. \\label{vst-reg}."), sanitize.text.function=sanitize)
-@
-<<partialregression1,fig.keep='all', fig.width=4, fig.height=4, out.width='.45\\linewidth', fig.cap="Biplots of the adjusted lineup, card rotation, figure~classification, and paper folding scores principal components analysis. Adjusted lineup scores are most associated with figure~classification in the second principal component. In the third and fourth components, adjusted scores are almost entirely orthogonal. \\label{fig:biplot-adjusted}", tidy=T, echo=1:7>>=
-# partial regression data set
-ans.part <- ans.summary
-ans.part$lineup <- resid(lm(lineup ~ vis_search, data=ans.summary))
-ans.part$card_rot <- resid(lm(card_rot ~ vis_search, data=ans.summary))
-ans.part$fig_class <- resid(lm(fig_class ~ vis_search, data=ans.summary))
-ans.part$folding <- resid(lm(folding ~ vis_search, data=ans.summary))
-
-pca2 <- prcomp(ans.part[,c("lineup", "card_rot", "fig_class", "folding")], scale=T, retx=T)
-biplot(pca2, choices=1:2, pc.biplot=T, cex=c(.5, 1), adj=.75)
-biplot(pca2, choices=3:4, pc.biplot=T, cex=c(.5, 1), adj=.75)
-@
-<<partialregression2, echo=F, results='asis'>>=
-model2 <- lm(lineup~fig_class+card_rot+folding, data=ans.part)
-print(xtable(model2, caption="Results of the linear regression of (the ETS tests $|$ VST) on (lineup score $|$ VST)"), sanitize.text.function=sanitize, caption.placement="top")
-@
-Removing paper folding from the analysis due to its' obvious nonsignificance and collinearity with card rotation, we get a slightly better regression result. 
-<<partialregression3, echo=F, results='asis'>>=
-model3 <- lm(lineup~fig_class+card_rot, data=ans.part)
-print(xtable(model3, caption="Results of the reduced linear regression of (the ETS tests $|$ VST) on (lineup score $|$ VST)"), sanitize.text.function=sanitize, caption.placement="top")
-print(xtable(anova(model3, model2), caption="Model comparison between full model (including paper folding) and reduced model (excluding paper folding), when accounting for scores on the VST in both independent and dependent variables. "), sanitize.text.function=sanitize, caption.placement="top")
-@
-
-Comparing the full and reduced models, we see that the reduction does not significantly reduce the explained sum of squares. 
-
-
-Even using VST as a ``general intelligence" factor, the first PC still does not discriminate between the tests. This approach is probably not worth pursuing further. 
-
-\subsection{Lit Review Rejects}
-\begin{itemize}
-\item authors in~\cite{just1985cognitive} showed that high-spatial-ability viewers used different rotation strategies than low-spatial-ability viewers when asked to whether three-dimensional alphabet cubes were the same. 
-\item authors in~\cite{voyer1995magnitude} completed a meta-analysis of spatial tasks and gender differences. They concluded that ``rotation" tasks, such as the card rotation test, have robust sex differences across cohort, and while the sex differences seem to be declining for some tests, such as the card rotation test, the differences still exist for the time being. Test administration differences may account for the change. They also concluded that the paper-folding test showed no such sex difference, though this may be dependent on test scoring (a lower guessing penalty decreases the score difference). 
-\comment{\textit{In the current analysis, we have scored the paper folding test out of 20. Alternate scoring procedures still need to be investigated... they cite a poster, but it's not available anywhere online as far as I can tell.}}
-\item authors in~\cite{lowrie2007solving} investigated students (9-10 yrs) ability to read mathematical graphs and their visual-spatial ability. They partition graphs into 6 ``graphical languages" (some of these languages aren't statistical graphs - networks, venn diagrams, maps), and use multivariate analysis to associate spatial ability with some of the types of graphs studied. 
-\comment{\textit{I can't understand their model results very well, so I'm not entirely sure what's going on here. \\
-They also cite a bunch of studies (including authors in~\cite{voyer1995magnitude}) that I haven't had time to completely explore.}}
-\item authors in~\cite{vekiri2002value} is lit review discussing the different theories about the utility of graphics in learning (dual coding theory, visual argument hypothesis, and conjoint retention hypothesis). The article contains a nice definition of graphics (though it might be too domain specific for statistical graphics, since it claims graphics have only one meaning and aren't prone to interpretation.) Depending on the context, ``maps", ``charts", and ``graphs" here could fall into a loose classification as ``statistical graphics", but in general ``graphs" is probably accurate for most of the lineups we're testing: ``[Referents are ] quantitative data ... that enable viewers to compare and observe relations among variables". 
-\begin{itemize}
-\item \textbf{Dual Coding Theory}: people encode both words and pictures separately, so both are encoded for a graph. \\
-Supports the use of graphics, and there is support for dual-coding in working memory research (pictures and words are processed separately but in parallel). In addition, since graphics depend on other abilities (spatial abilities), graphics that aren't properly designed create higher cognitive load and lower performance on graphical tasks. The review also specifically discusses visuospatial ability, citing a speculation from authors in~\cite{mayer1994whom} that students with low spatial ability perform worse with diagrams and graphs because more cognitive resources are required.
-\comment{\textit{Lots of studies by Sweller cited throught the cognitive load discussion - I haven't gotten to that literature yet.\\That said, that research has some potential to justify the use of lineups from a psychological perspective - if you can claim that types of graphs that have poor performance do so because they create higher cognitive load (cue psych research into why that would be true, cleveland \& mcgill, etc.), you can justify the suckiness of those awful boxplot-jittered-things.}}
-\item \textbf{Visual Argument Hypothesis}: Graphics require less processing because their visuospatial properties encode some of the information through the arrangement of elements as well as the elements themselves. Displays that clearly present information without deep processing requirements are more effective\cite{zhang1994representations}. Graphical displays have higher search and computational efficiency than text~\cite{larkin1987diagram}, and when graphics are designed according to gestalt principles of organization, where grouping lines up with visual chunks, gestalt heuristics can be used to more quickly encode information~\cite{shah1999graphs}.
-\item \textbf{Conjoint Retention Hypothesis} - based on dual coding theory, but claims that there are separate but interconnected memory codes for verbal and visual information. Assumes maps/graphs are encoded intact, with visuospatial properties preserved. This is pretty unlikely, and the literature is not so relevant to our cause. Spatial information is encoded, but words can actually interfere with this encoding; it is not ``intact" 
-\end{itemize}
-\item authors in~\cite{mayer1994whom} used the card rotation test (10 figures, 80 questions total) and the paper folding test (10 items) to evaluate spatial performance, along with a problem solving test. They used the same penalty structure on the card rotation test, and don't seem to have used any penalty on the paper folding test; they then scaled the two tests. Their problem solving test was more practical (engineering-based), so isn't applicable to our study. They were testing instruction using visual + audio in sync, visual + audio out of sync, and then no instruction as a control. High-ability students could make more use of the in-sync presentation of visual and auditory information than low-ability students, but did not differ significantly in the out-of-sync information condition. Thus, visualization ability moderates the results of the information presented by allowing students to process information concurrently more efficiently, but doesn't help students process the information separately or help students come up with solutions to the problem-solving task. 
-\item authors in~\cite{hofmann2012graphical} for lineup stimuli and general lineup performance
-\end{itemize}
+% \section{Lit Review Rejects}
+% \begin{itemize}
+% \item authors in~\cite{just1985cognitive} showed that high-spatial-ability viewers used different rotation strategies than low-spatial-ability viewers when asked to whether three-dimensional alphabet cubes were the same. 
+% \item authors in~\cite{voyer1995magnitude} completed a meta-analysis of spatial tasks and gender differences. They concluded that ``rotation" tasks, such as the card rotation test, have robust sex differences across cohort, and while the sex differences seem to be declining for some tests, such as the card rotation test, the differences still exist for the time being. Test administration differences may account for the change. They also concluded that the paper-folding test showed no such sex difference, though this may be dependent on test scoring (a lower guessing penalty decreases the score difference). 
+% \comment{\textit{In the current analysis, we have scored the paper folding test out of 20. Alternate scoring procedures still need to be investigated... they cite a poster, but it's not available anywhere online as far as I can tell.}}
+% \item authors in~\cite{lowrie2007solving} investigated students (9-10 yrs) ability to read mathematical graphs and their visual-spatial ability. They partition graphs into 6 ``graphical languages" (some of these languages aren't statistical graphs - networks, venn diagrams, maps), and use multivariate analysis to associate spatial ability with some of the types of graphs studied. 
+% \comment{\textit{I can't understand their model results very well, so I'm not entirely sure what's going on here. \\
+% They also cite a bunch of studies (including authors in~\cite{voyer1995magnitude}) that I haven't had time to completely explore.}}
+% \item authors in~\cite{vekiri2002value} is lit review discussing the different theories about the utility of graphics in learning (dual coding theory, visual argument hypothesis, and conjoint retention hypothesis). The article contains a nice definition of graphics (though it might be too domain specific for statistical graphics, since it claims graphics have only one meaning and aren't prone to interpretation.) Depending on the context, ``maps", ``charts", and ``graphs" here could fall into a loose classification as ``statistical graphics", but in general ``graphs" is probably accurate for most of the lineups we're testing: ``[Referents are ] quantitative data ... that enable viewers to compare and observe relations among variables". 
+% \begin{itemize}
+% \item \textbf{Dual Coding Theory}: people encode both words and pictures separately, so both are encoded for a graph. \\
+% Supports the use of graphics, and there is support for dual-coding in working memory research (pictures and words are processed separately but in parallel). In addition, since graphics depend on other abilities (spatial abilities), graphics that aren't properly designed create higher cognitive load and lower performance on graphical tasks. The review also specifically discusses visuospatial ability, citing a speculation from authors in~\cite{mayer1994whom} that students with low spatial ability perform worse with diagrams and graphs because more cognitive resources are required.
+% \comment{\textit{Lots of studies by Sweller cited throught the cognitive load discussion - I haven't gotten to that literature yet.\\That said, that research has some potential to justify the use of lineups from a psychological perspective - if you can claim that types of graphs that have poor performance do so because they create higher cognitive load (cue psych research into why that would be true, cleveland \& mcgill, etc.), you can justify the suckiness of those awful boxplot-jittered-things.}}
+% \item \textbf{Visual Argument Hypothesis}: Graphics require less processing because their visuospatial properties encode some of the information through the arrangement of elements as well as the elements themselves. Displays that clearly present information without deep processing requirements are more effective\cite{zhang1994representations}. Graphical displays have higher search and computational efficiency than text~\cite{larkin1987diagram}, and when graphics are designed according to gestalt principles of organization, where grouping lines up with visual chunks, gestalt heuristics can be used to more quickly encode information~\cite{shah1999graphs}.
+% \item \textbf{Conjoint Retention Hypothesis} - based on dual coding theory, but claims that there are separate but interconnected memory codes for verbal and visual information. Assumes maps/graphs are encoded intact, with visuospatial properties preserved. This is pretty unlikely, and the literature is not so relevant to our cause. Spatial information is encoded, but words can actually interfere with this encoding; it is not ``intact" 
+% \end{itemize}
+% \item authors in~\cite{mayer1994whom} used the card rotation test (10 figures, 80 questions total) and the paper folding test (10 items) to evaluate spatial performance, along with a problem solving test. They used the same penalty structure on the card rotation test, and don't seem to have used any penalty on the paper folding test; they then scaled the two tests. Their problem solving test was more practical (engineering-based), so isn't applicable to our study. They were testing instruction using visual + audio in sync, visual + audio out of sync, and then no instruction as a control. High-ability students could make more use of the in-sync presentation of visual and auditory information than low-ability students, but did not differ significantly in the out-of-sync information condition. Thus, visualization ability moderates the results of the information presented by allowing students to process information concurrently more efficiently, but doesn't help students process the information separately or help students come up with solutions to the problem-solving task. 
+% \item authors in~\cite{hofmann2012graphical} for lineup stimuli and general lineup performance
+% \end{itemize}
 \end{document}
