@@ -236,7 +236,7 @@ Between cognitive tasks, participants will also complete three blocks of 20 line
 \caption[Sample Lineup]{A sample lineup. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 13 is the target. }\label{fig:lineup}
 \end{figure}
 
-In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. \comment{XXX should we classify majors into STEM/non-STEM? - there's a ton of literature and interest that we could potentially tap into} These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
+In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. \comment{XXX should we classify majors into STEM/non-STEM? - there's a ton of literature and interest that we could potentially tap into \\\textit{I'm not opposed, but we have to decide where ag-majors fall... not everything is easily classifiable. Psychology is another problem: I was very STEM-psychology, but you don't have to be.}} These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
 
 \subsection{Test Scoring}\label{sec:scaling}
 
