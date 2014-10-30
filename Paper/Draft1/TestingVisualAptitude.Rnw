@@ -372,16 +372,27 @@ Completion of Calculus I is associated with increased performance on lineups; th
 % ldply(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")], c(mean=mean,sd= sd))
 % @
 
-<<correlations, echo=F, comment="|", warning=F, message=F, results='asis', size="footnotesize">>=
-print(xtable(cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")]), digits=c(1, rep(2, 5)), caption="Correlation matrix for the five tests."), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", scalebox=.9, table.placement="htb", caption.placement="top")
+\subsection{Understanding Visual Abilities and Lineup Performance}
+<<correlations, echo=F, comment="|", warning=F, message=F, results='asis', size="footnotesize", include=F>>=
+print(xtable(cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")]), digits=c(1, rep(2, 5)), caption="Correlation matrix for the five tests.\\label{tab:corrmatrix5}"), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", scalebox=.9, table.placement="htb", caption.placement="top")
 @
+
+<<VisReasoningSPM,echo=FALSE, include=T, eval=T, fig.width=8,fig.height=8, message=F, warning=F, fig.cap="Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure~classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.\\label{fig:scatterplotmatrix}">>=
+GGally::ggpairs(ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", "folding")], lower=list(continuous='smooth'), upper=list(continuous="cor"))
+@
+
 <<pcatests,echo=F, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".8\\linewidth", fig.height=3, fig.width=4.5, warning=F, message=F, size="footnotesize">>=
 pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
-screeplot(pca)
+# screeplot(pca)
 @
+<<pcasummary,echo=F, results='asis'>>=
+print(xtable(summary(pca), caption="Importance of components in principal component analysis of the five tests.\\label{tab:PCAvariance5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
+@
+
+
+
 <<pcarotation,echo=F, results='asis'>>=
-print(xtable(summary(pca), caption="Importance of components in principal component analysis of the five tests.",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
-print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests.",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
+print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests.\\label{tab:PCArotation5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
 @
 
 <<pca, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Plots of the principal components with observations. PC1 seems to represent a general ``visual intelligence'' factor (and thus is not represented here). Figure~classification is strongly related to lineups (PC2, PC3), and visual search is related to lineup performance as well (PC3). Paper folding does not seem to be strongly related to lineup performance outside of the first principal component; card rotation is only positively associated with lineup performance in PC4.\\label{fig:biplots}", echo=F, fig.env="figure*">>=
@@ -397,16 +408,11 @@ lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Card Rotati
 qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x") + xlab("Score") + ylab("Lineup Score") + geom_smooth(method="lm") + theme_bw()
 @
 
-<<VisReasoningSPM,echo=FALSE, include=T, eval=T, fig.width=8,fig.height=8, message=F, warning=F, fig.cap="Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure~classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.">>=
-GGally::ggpairs(ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", "folding")], lower=list(continuous='smooth'), upper=list(continuous="cor"))
-@
-
-\begin{figure}[hbt]\centering
-\includegraphics[width=0.75\linewidth]{fig-VisReasoningCts-1}
-\caption[Visual Aptitude Study Results]{Scatterplots of all test scores compared to participants' scores in the lineup tests. There is a relatively strong positive correlation between lineup score and scores on visuospatial reasoning tests.}\label{fig:visualaptitudects}
-\end{figure}
-
-Figure~\ref{fig:visualaptitudecat} shows participants' responses to the questionnaire given at the beginning of the study; these demographic questions allow us to compare the participants in our study to the undergraduate population of Iowa State as well as to explore relationships between demographic characteristics (major, research experience, etc.) and score on various sections of this test. 
+% 
+% \begin{figure}[hbt]\centering
+% \includegraphics[width=0.75\linewidth]{fig-VisReasoningCts-1}
+% \caption[Visual Aptitude Study Results]{Scatterplots of all test scores compared to participants' scores in the lineup tests. There is a relatively strong positive correlation between lineup score and scores on visuospatial reasoning tests.}\label{fig:visualaptitudects}
+% \end{figure}
 
 All results and data shown here are done in accordance with IRB \# 13-581.
 
