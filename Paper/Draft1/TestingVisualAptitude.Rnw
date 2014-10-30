@@ -186,7 +186,8 @@ Computer Society, IEEEtran, journal, \LaTeX, paper, template.
 for IEEE Computer Society journal papers produced under \LaTeX\ using
 IEEEtran.cls version 1.8a and later.
 
-\comment{Next few steps for the analysis: (1) I think we should add a linear model for lineup scores that includes the demographics of participants as well; (2)}
+\comment{Next few steps for the analysis: (1) I think we should add a linear model for lineup scores that includes the demographics of participants as well; (2) could you do the scoring of lineups by type of plot used and investigate the relationship between those types of lineups and the other visual tests ... not sure that that will pay off, but it's interesting.
+(3) in terms of why we would use lineups in a test comparison ... lineups give us a way to say 'this is correct' which regular graphics don't. So we should put a spin sentence on at the intro and the back that we are suggesting to use lineups as a tool to not only evaluate individuals (which we can see is possible) but also as a tool to evaluate charts ... which we've done before ... and tie it into the regular testing literature ...}
 
 \comment{Intro about statistical graphics, lineups, ...}
 \subsection{Spatial Reasoning and Statistical Graphics}
