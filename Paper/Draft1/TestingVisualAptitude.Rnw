@@ -449,7 +449,7 @@ biplot(pca2, choices=3:4, pc.biplot=T, cex=c(.5, 1), xlim=c(-3,3), ylim=c(-2.5,2
 % \caption[Visual Aptitude Study Results]{Scatterplots of all test scores compared to participants' scores in the lineup tests. There is a relatively strong positive correlation between lineup score and scores on visuospatial reasoning tests.}\label{fig:visualaptitudects}
 % \end{figure}
 
-All results and data shown here are done in accordance with IRB \# 13-581.
+All results and data shown here were collected and analyzed in accordance with IRB \# 13-581.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
