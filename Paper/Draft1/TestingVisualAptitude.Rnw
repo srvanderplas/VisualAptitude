@@ -70,9 +70,9 @@
 \usepackage{bbm}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{rotating}
+\usepackage[referable]{threeparttablex}
 \usepackage{footnote} % table footnotes
-\usepackage{tablefootnote}
-\makesavenoteenv{tabular}
+%\makesavenoteenv{tabular}
 
 % Bibliography without numbers or labels
 %\usepackage{natbib}
@@ -215,23 +215,20 @@ The \textbf{visual searching task} (VST), shown in figure~\ref{fig:VST}, is desi
 \end{figure}
 
 The \textbf{figure classification task} tests a participant's ability to extrapolate rules from provided figures. This task is associated with inductive reasoning ablities (factor I  in~\cite{ekstrom1976manual}). An example is shown in figure~\ref{fig:figureclassification}. 
-% \begin{figure*}[hbt]\centering
-% \includegraphics[width=.75\linewidth]{figureclassification}
-% \caption[figure classification Task]{figure classification Task. Participants classify each figure~in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.}\label{fig:figureclassification}
-% \end{figure*}
+
 The figure classification test requires the same type of reasoning as the lineups: participants must determine the rules from the provided classes, and extrapolate from those rules to classify new figures. In lineups, participants must determine the rules based on the panels appearing in the lineup; they must then identify the plot which does not conform. As such, the figure classification test has content validity in relation to lineup performance: it is measuring similar underlying criteria. 
 
  \begin{figure*}[!ht]
   \centering
-   \subfloat[Figure Classification Task. Participants classify each figure~in the second row as belonging to group 1, 2, or 3 (if applicable). Participants will complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.\label{fig:figureclassification}]{%
+   \subfloat[Figure Classification Task. Participants classify each figure in the second row as belonging to one of the groups above. Participants complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.\label{fig:figureclassification}]{%
   \includegraphics[width=.75\linewidth]{figureclassification}
 }
 \hfill
-    \subfloat[Card Rotation Task. Participants mark each figure on the right hand side as either the same as or different than the figure on the left hand side of the dividing line. Participants will complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.\label{fig:cardrotation}]{%
+    \subfloat[Card Rotation Task. Participants mark each figure on the right hand side as either the same as or different than the figure on the left hand side of the dividing line. Participants complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.\label{fig:cardrotation}]{%
 \includegraphics[width=.75\linewidth]{cardrotation}
     }
     \hfill
-    \subfloat[Paper Folding Task. Participants are instructed to pick the figure~matching the sequence of steps shown in the left-hand figure. Participants will complete up to 20 of these tasks in 6 minutes.\label{fig:paperfolding}]{%
+    \subfloat[Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown on the left-hand side. Participants  complete up to 20 of these tasks in 6 minutes.\label{fig:paperfolding}]{%
 \includegraphics[width=.75\linewidth]{paperfolding}
    }
     \caption{Visuospatial tests}
@@ -260,7 +257,7 @@ Between cognitive tasks, participants will also complete three blocks of 20 line
 
 \begin{figure}\centering
 \includegraphics[width=\linewidth]{lineup}
-\caption[Sample Lineup]{A sample lineup. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 13 is the target. }\label{fig:lineup}
+\caption[Sample Lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 13 is the target. }\label{fig:lineup}
 \end{figure}
 
 In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. \comment{XXX should we classify majors into STEM/non-STEM? - there's a ton of literature and interest that we could potentially tap into \\\textit{I'm not opposed, but we have to decide where ag-majors fall... not everything is easily classifiable. Psychology is another problem: I was very STEM-psychology, but you don't have to be.}} These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
@@ -298,9 +295,10 @@ The card rotation, paper folding, and figure classification tests have been vali
 \begin{table*}[htb]
 \caption{Comparison of scores from Iowa State students and scores reported in~\cite{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available. The Visual Search task~\cite{goldstein1973validity,demita1981validity,moerland1986neuropsychological} is not part of the Kit of Factor Referenced Cognitive Test data, and thus we do not have comparison data for the form used in this experiment. \label{tab:scorecomparison}}
 \centering
+\begin{threeparttable}  
 \begin{tabular}{rlllc}
 \hline
-  & Card Rotation & Paper Folding & figure classification & Visual Search  \\\hline
+  & Card Rotation & Paper Folding & Figure Classification & Visual Search  \\\hline
 ISU Students & \Sexpr{round(mean(ans.summary$card_rot), 1)} (\Sexpr{round(sd(ans.summary$card_rot), 1)}) 
              & \Sexpr{round(mean(ans.summary$folding), 1)} (\Sexpr{round(sd(ans.summary$folding), 1)})
              & \Sexpr{sprintf("%.1f", mean(ans.summary$fig_class))} (\Sexpr{round(sd(ans.summary$fig_class), 1)})\footnote{ISU students took only Part I due to time constraints.}
@@ -318,7 +316,13 @@ Unscaled Scores & 44.0 (24.6)\footnote{Data from Part I only.}
               & \parbox[t]{.15\linewidth}{\footnotesize 46 college students\\(1963~version)}
               & \parbox[t]{.3\linewidth}{\footnotesize suburban 11th \& 12th grade students\\(288-300 males, 317-329 females)}
               & \\\hline
-\end{tabular}                
+\end{tabular}
+        \begin{tablenotes}
+            \item[2] ISU students took only Part I due to time constraints.
+            \item[3] Averages calculated assuming 294 males and 323 females.
+            \item[4] Data from Part I only.
+        \end{tablenotes}      
+    \end{threeparttable}
 \end{table*}
 %\end{savenotes}
 
