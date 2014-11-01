@@ -50,6 +50,7 @@
 % http://www.ctan.org/tex-archive/macros/latex/contrib/dblfloatfix/
 
 
+
 % *** PDF, URL AND HYPERLINK PACKAGES ***
 %
 \usepackage{url}
@@ -70,6 +71,7 @@
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{rotating}
 \usepackage{footnote} % table footnotes
+\usepackage{tablefootnote}
 \makesavenoteenv{tabular}
 
 % Bibliography without numbers or labels
@@ -267,12 +269,12 @@ This allows us to compare each participant's score in light of how many problems
 % To facilitate comparison of the visuospatial skills tests utilized in this study with the lineups, we will scale the test results by a factor of $1/n \sqrt{k-1}$, where $n$ is the number of questions in a test and $k$ is the number of offered answers on each questions (out of which only one is correct). This scaling ensures that test scores across different types are comparable. All test scores are now normalized such that they have under the assumption of random guessing an expected value of zero and a standard deviation of 1. In particular, this leads to a theoretical range of a normalized test score $Z_{n, k}$ of $[-\sqrt{k-1}, \sqrt{k-1}]$.
 
 \section{Results}
-Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students at Iowa State University. About one-half of the participants were in STEM fields, the others were distributed relatively evenly between agriculture, business, and the social sciences. Students were evenly distributed by gender, and were between 18 and 24 years of age with only one exception. This is reasonably representative of the university as a whole; in the fall 2012 semester, 23\% of students were associated with the college of engineering, 23\% were associated with the college of liberal arts and sciences, 23\% were associated with the college of human sciences, 12\% with the business school, and 14\% with the school of agriculture. \footnote{\url{http://www.ir.iastate.edu/PDFfiles/2012-2013\%20Student\%20Profile.pdf}} 
+Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students at Iowa State University. About one-half of the participants were in STEM fields, the others were distributed relatively evenly between agriculture, business, and the social sciences. Students were evenly distributed by gender, and were between 18 and 24 years of age with only one exception. This is reasonably representative\footnote{\url{http://www.ir.iastate.edu/PDFfiles/2012-2013\%20Student\%20Profile.pdf}} of the university as a whole; in the fall 2012 semester, 23\% of students were associated with the college of engineering, 23\% were associated with the college of liberal arts and sciences, 23\% were associated with the college of human sciences, 12\% with the business school, and 14\% with the school of agriculture.  
 
 \subsection{Comparison of Spatial Tests with Previously Validated Results}
 The card rotation, paper folding, and figure classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students). We compare Iowa State students' unscaled scores in table~\ref{tab:scorecomparison}, adjusting data from other populations to account for subpopulation structure and test length. 
 
-\begin{savenotes}
+%\begin{savenotes}
 \begin{table*}[htb]
 \caption{Comparison of scores from Iowa State students and scores reported in~\cite{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available. The Visual Search task~\cite{goldstein1973validity,demita1981validity,moerland1986neuropsychological} is not part of the Kit of Factor Referenced Cognitive Test data, and thus we do not have comparison data for the form used in this experiment. \label{tab:scorecomparison}}
 \centering
@@ -298,7 +300,7 @@ Unscaled Scores & 44.0 (24.6)\footnote{Data from Part I only.}
               & \\\hline
 \end{tabular}                
 \end{table*}
-\end{savenotes}
+%\end{savenotes}
 
 Table~\ref{tab:scorecomparison} shows mean scores and standard deviation for ISU students and other populations. Values have been adjusted to accommodate for differences in test procedures and sub-population structure; for instance,  some data is reported for a single part of a two-part test, or results are reported for each gender separately (adjustment procedure is described in more detail in Appendix~\ref{app:ScoreAdj}). Once these adjustments have been completed, it is evident that Iowa State undergraduates scored at about the same level as other similar demographics. In fact, both means and standard deviations of ISU students' scores are similar to the comparison groups, which were chosen from available demographic groups based on population similarity. 
 
@@ -321,7 +323,7 @@ ggplot() +
   theme_bw()  + 
   ylab("Test Scores") + 
   xlab("") +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1), legend.position=c(.75,.8)) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1), legend.position=c(.8,.8)) +
   theme(plot.margin=unit(c(0,0,0,0),"mm"))
   #coord_flip()
 @
@@ -369,11 +371,12 @@ qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") +
 \caption[Visual Aptitude Study Results]{Demographic characteristics of participants compared with lineup score. Categories are ordered by effect size; calculus completion,  hours spent playing video games per week, and sex are all associated with a significant difference in lineup score. }\label{fig:visualaptitudecat}
 \end{figure*}
 
-\newtext{Next, we examine the effect of demographic factors on lineup performance. Previous work found a relationship between lineup performance and factors such as education level, country of origin, and age\cite{humanfactorslineups}; our participant population is more homogeneous, which allows us to explore factors such as educational background and skills on performance in lineup tests. }
+%Next, we examine the effect of demographic factors on lineup performance. 
+Previous work found a relationship between lineup performance and demographic factors such as education level, country of origin, and age \cite{humanfactorslineups}; our participant population is very homogeneous, which allows us to explore factors such as educational background and skills on performance in lineup tests. 
 
-Figure~\ref{fig:visualaptitudecat} shows participants' lineup scores as a function of their responses to the questionnaire given at the beginning of the study; these demographic questions allow us to explore relationships between demographic characteristics (major, research experience, etc.) and test performance. 
+Figure~\ref{fig:visualaptitudecat} shows participants' lineup scores in relationship to their responses in the questionnaire given at the beginning of the study; this allows us to explore effects of demographic characteristics (major, research experience, etc.) on test performance. 
 
-Completion of Calculus I is associated with increased performance on lineups; this may be related to general math education level, or it may be that success in both lineups and calculus requires certain visual skills. This association is consistent with~\cite{shah1995conceptual}, who found an association between  mathematical ability and performance on simple graph description tasks.  There is also a significant association between hours of video games played per week and score on lineups, however, this association is not monotonic and the groups do not have equal sample size, so the conclusion may be suspect. There is a (nearly) significant difference between male and female performance on lineups; this is not particularly surprising, since men perform better on many spatial tests~\cite{voyer1995magnitude} and performance on spatial tests is correlated with phase of the menstrual cycle in women~\cite{hausmann2000sex}. There is no significant difference in lineup performance for participants of different age, self-assessed skills in various domains, previous participation in math or science research, completion of a statistics class, or experience with AutoCAD. These demographic characteristics were chosen to account for life experience and personal skills which may have influenced the results. Statistical test results are available in appendix~\ref{app:categoricalresults}. 
+Completion of Calculus I is associated with increased performance on lineups; this may be related to general math education level, or it may be that success in both lineups and calculus requires certain visual skills. This association is consistent with findings in~\cite{shah1995conceptual}, which associated  mathematical ability to performance on simple graph description tasks.  There is also a significant relationship between hours of video games played per week and score on lineups, however, this association is not monotonic and the groups do not have equal sample size, so the conclusion may be suspect. There is a (nearly) significant difference between male and female performance on lineups; this is not particularly surprising, as men perform better on many spatial tests~\cite{voyer1995magnitude} and performance on spatial tests is correlated with phase of the menstrual cycle in women~\cite{hausmann2000sex}. There is no significant difference in lineup performance for participants of different age, self-assessed skills in various domains, previous participation in math or science research, completion of a statistics class, or experience with AutoCAD. These demographic characteristics were chosen to account for life experience and personal skills which may have influenced the results. Statistical test results are available in appendix~\ref{app:categoricalresults}. 
 % <<means>>=
 % library(plyr)
 % ldply(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")], c(mean=mean,sd= sd))
@@ -393,23 +396,32 @@ pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_
 # screeplot(pca)
 @
 
-\newtext{Results from the visuospatial tests used in this experiment are highly correlated, as shown in figure~\ref{fig:scatterplotmatrix}; this is to be expected given that all of these tests are influenced by factors other than visual ability - general intelligence, mental processing speed, cognitive resources, motivation, and attention, to name a few. In order to assess factors contributing to lineup performance, we first will examine the separate dimensions measured by the entire battery of tests using principal components analysis on the scaled test scores.} 
-\newtext{Table \ref{tab:PCAvariance5} shows the importance of each principal component and the cumulative proportion of variance. As expected, PC1 accounts for \Sexpr{round(summary(pca)$importance[3,1]*100,1)}\% of the variance in the data, that is, all of the general factors discussed above which influence test results. We will focus on the remaining components; these show differences in performance on the tests, and thus provide information about the skills needed to successfully examine lineups. }
-
-\newtext{Biplots of the remaining principal components are shown in figure~\ref{fig:biplots5}, and the corresponding rotation matrix is provided in \ref{tab:PCArotation5}. PC1 seems to represent a general ``visual intelligence'' factor.}
+Results from the visuospatial tests used in this experiment are highly correlated, as shown in figure~\ref{fig:scatterplotmatrix}; this is to be expected given that all of these tests are measuring visual ability of individuals in some way. 
+%are influenced by factors other than visual ability -- general intelligence, mental processing speed, cognitive resources, motivation, and attention, to name a few. 
+What is of more interest to us, is how other factors, such as e.g.~general intelligence, mental processing speed, cognitive resources, motivation, and attention affect performance. 
+In order to assess factors contributing to lineup performance, we first examine the separate dimensions measured by the entire battery of tests using principal components analysis on the scaled test scores.
+%
+Table~\ref{tab:PCAvariance5} shows the importance of each principal component and the cumulative proportion of variance. 
+PC1
+accounts for \Sexpr{round(summary(pca)$importance[3,1]*100,1)}\% of the variance in the data, the corresponding rotation matrix is provided in~\ref{tab:PCArotation5}.
+As expected, PC1 is essentially an average across all tests representing a general ``visual intelligence" factor. %, that is, all of the general factors discussed above which influence test results. 
+We will focus on the remaining components, which show differences in performance on the tests, and thus provide us with more insight about the skills needed to successfully examine lineups. 
+Biplots of these principal components are shown in figure~\ref{fig:biplots5}. 
 
 <<pcasummary,echo=F, results='asis'>>=
 print(xtable(summary(pca), caption="Importance of principal components, analyzing all five tests.\\label{tab:PCAvariance5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
 @
 
-\newtext{figure classification is strongly related to lineups (PC2, PC3), and visual search is related to lineup performance as well (PC3). These two components highlight the shared demands of the lineup task and the figure classification task: participants must establish categories from provided stimuli and then classify the stimuli accordingly. } 
+Figure classification is strongly related to lineups (PC2, PC3). Performance on the visual search task  is also related to lineup performance (PC3). These two components highlight the shared demands of the lineup task and the figure classification task: participants must establish categories from provided stimuli and then classify the stimuli accordingly. 
 
 <<pcarotation,echo=F, results='asis'>>=
-print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests.\\label{tab:PCArotation5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
+print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests. The first principal component is essentially an average of all five tests. 
+             \\label{tab:PCArotation5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
 @
 
-\newtext{The visual search task is also clearly important to lineup performance: PC3 captures the similarity between the visual search and lineup performance, and aspects of these tasks are negatively correlated with aspects of the paper folding and card rotation tasks within PC3. Paper folding does not seem to be strongly associated with lineup performance outside of the first principal component; card rotation is only positively associated with lineup performance in PC4.}
-\newtext{PC4 captures the similarity between lineups and the card rotation task and separates this similarity from the figure classification task; this similarity does not account for much extra variance (10\%), but it may be that only some lineups require spatial rotation skills. PC5 contains only 5\% of the remaining variance, and is thus not of much interest, however, it seems to capture the relationship between the card rotation task and the paper folding and visual search tasks.}
+The visual search task is also clearly important to lineup performance: PC3 captures the similarity between the visual search and lineup performance, and aspects of these tasks are negatively correlated with aspects of the paper folding and card rotation tasks within PC3. Paper folding does not seem to be strongly associated with lineup performance outside of the first principal component; card rotation is only positively associated with lineup performance in PC4.
+
+PC4 captures the similarity between lineups and the card rotation task and separates this similarity from the figure classification task; this similarity does not account for much extra variance (10\%), but it may be that only some lineups require spatial rotation skills. PC5 contains only 5\% of the remaining variance, and is thus not of much interest, however, it seems to capture the relationship between the card rotation task and the paper folding and visual search tasks.
 <<pca, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.8\\linewidth', comment="|", fig.cap="Plots of principal components 2-5 with observations. \\label{fig:biplots5}", echo=F, fig.env="figure">>=
 par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
 biplot(pca, choices=2:3, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
@@ -419,9 +431,9 @@ biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), xlim=c(-2,2), ylim=c(-2,2))
 pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 print(xtable(summary(pca2), caption="Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\\label{tab:PCAvariance4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
 @
-\newtext{If we examine the relationship between the four cognitive tests (excluding lineups), we can determine how lineup performance affects the variance partitions. Table \ref{tab:PCAvariance4} contains the importance of each resultant PC and the proportion of the variance each PC represents. }
+If we examine the relationship between the four cognitive tests (excluding lineups), we can determine how lineup performance affects the variance partitions. Table~\ref{tab:PCAvariance4} contains the importance of each resultant PC and the proportion of the variance each PC represents. 
 
-\newtext{As with the previous principal components analysis, PC1 accounts for about \Sexpr{round(summary(pca2)$importance[3,1],1)*100}\% of the variance; figure \ref{fig:biplots4} and table \ref{tab:PCArotation4} confirm that PC1 is again a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test; this is incredibly similar to the role of PC2 in the 5-component analysis. }
+\newtext{As with the previous principal components analysis, PC1 accounts for about \Sexpr{round(summary(pca2)$importance[3,1],1)*100}\% of the variance; figure~\ref{fig:biplots4} and table~\ref{tab:PCArotation4} confirm that PC1 is again a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test; this is incredibly similar to the role of PC2 in the 5-component analysis. }
 
 <<pcarotation2,echo=F, results='asis'>>=
 print(xtable(pca2$rotation, caption="PCA Rotation matrix for the four cognitive tests.\\label{tab:PCArotation4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
@@ -485,7 +497,7 @@ All results and data shown here were collected and analyzed in accordance with I
 
 
 \section{Scaling Scores}\label{app:ScoreAdj}
-To calculate ``scaled" comparison scores between tests which included different numbers of test sections (as shown in table \ref{tab:scorecomparison}), we scaled the mean in direct proportion to the number of questions (thus, if there were two sections of equivalent size, and the reference score included only one of those sections, we multiplied the reported mean score by two). The variance calculation is a bit more complicated: In the case described in the main text, where the reference section contained half of the questions, the variance is multiplied by two, causing the standard deviation to be multiplied by approximately 1.41. 
+To calculate ``scaled" comparison scores between tests which included different numbers of test sections (as shown in table~\ref{tab:scorecomparison}), we scaled the mean in direct proportion to the number of questions (thus, if there were two sections of equivalent size, and the reference score included only one of those sections, we multiplied the reported mean score by two). The variance calculation is a bit more complicated: In the case described in the main text, where the reference section contained half of the questions, the variance is multiplied by two, causing the standard deviation to be multiplied by approximately 1.41. 
 
 This scaling gets slightly more complicated for scores which have two sub-groups, as with the figure classification test. To get a single unified score with standard deviation, we completed the following calculations: 
 \begin{eqnarray}
@@ -499,7 +511,7 @@ Then, in order to account for the fact that ISU students took only part I of two
 \end{eqnarray}
 
 \section{Lineup Performance and Demographic Characteristics}\label{app:categoricalresults}
-Table \ref{tab:ttest-demographics} provides the results of a sequence of linear models fit to the lineup data. Each row in the table represents a single model, with one predictor variable (a factor with two or more levels). Due to sample size considerations, multiple testing corrections were not performed; in addition, the independent variables are correlated: in our sample, males are more likely to have completed Calculus 1, but are also more likely to spend time playing video games. As such, a model including two or more of the significant predictor variables shows all included variables to be nonsignificant. To better understand the effects of these variables, a much larger study would be required. 
+Table~\ref{tab:ttest-demographics} provides the results of a sequence of linear models fit to the lineup data. Each row in the table represents a single model, with one predictor variable (a factor with two or more levels). Due to sample size considerations, multiple testing corrections were not performed; in addition, the independent variables are correlated: in our sample, males are more likely to have completed Calculus 1, but are also more likely to spend time playing video games. As such, a model including two or more of the significant predictor variables shows all included variables to be nonsignificant. To better understand the effects of these variables, a much larger study would be required. 
 <<ttests.categ, echo=F, eval=T, results='asis'>>=
 tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
     tmp <- anova(lm(lineup~factor(value, ordered=F), data=df))
