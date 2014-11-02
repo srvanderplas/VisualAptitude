@@ -617,4 +617,38 @@ print(xtable(tmp2, digits=c(1, 1, 0, 3, 2, 3), caption="Results of lineup score 
 % \item authors in~\cite{mayer1994whom} used the card rotation test (10 figures, 80 questions total) and the paper folding test (10 items) to evaluate spatial performance, along with a problem solving test. They used the same penalty structure on the card rotation test, and don't seem to have used any penalty on the paper folding test; they then scaled the two tests. Their problem solving test was more practical (engineering-based), so isn't applicable to our study. They were testing instruction using visual + audio in sync, visual + audio out of sync, and then no instruction as a control. High-ability students could make more use of the in-sync presentation of visual and auditory information than low-ability students, but did not differ significantly in the out-of-sync information condition. Thus, visualization ability moderates the results of the information presented by allowing students to process information concurrently more efficiently, but doesn't help students process the information separately or help students come up with solutions to the problem-solving task. 
 % \item authors in~\cite{hofmann2012graphical} for lineup stimuli and general lineup performance
 % \end{itemize}
+
+<<linearmodel, results='hide'>>=
+ans.model <- data.frame(ans.summary, data.frame(pca2$x))
+# exclude all variables that are not supposed to go into the linear model
+# those are the unrotated tests; instead we have the PCs
+excl <- c("id", "card_rot", "fig_class", "folding", "vis_search", "vidgame_hrs", "major1", "major2", "minor1", "minor2", "learning_disability", "colorblind", "epilepsy", "normal_vision")
+
+ans.model$math_science_research <- ans.model$math_science_research=="y"
+ans.model$stats_class <- ans.model$stats_class=="y"
+ans.model$calc_1 <- ans.model$calc_1=="y"
+pcmath <- prcomp(ans.model[,c("math_science_research", "stats_class", "calc_1", "math_skills")])
+biplot(pcmath)
+biplot(pcmath, 3:4)
+# variables split into stats_class/math_science_research and calc_1/math_skills
+# leave out math_skills in favor of calc_1 - for interpretability
+
+xtabs(~stats_class+math_science_research, data=ans.model)
+# only one kid is doing research without a stats class
+# recode to sum of them
+ans.model$statsP <- with(ans.model, stats_class + math_science_research)
+
+excl <- c(excl, c("math_skills", "math_science_research", "stats_class"))
+incl <- setdiff(names(ans.model), excl)
+
+m0 <- lm(lineup~., data=ans.model[, incl])
+
+# use AIC in backward selection
+library(MASS)
+m1 <- stepAIC(m0, direction="both")
+@
+<<modelresults>>=
+anova(m1)
+summary(m1)
+@
 \end{document}
