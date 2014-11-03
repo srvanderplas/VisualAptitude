@@ -114,6 +114,8 @@ library(plyr)
 library(grid)
 suppressMessages(library(gridExtra))
 library(xtable)
+library(stringr)
+library(magrittr)
 source(paste(codedir, "Analysis.R", sep=""))
 
 sanitize <- function(x){
