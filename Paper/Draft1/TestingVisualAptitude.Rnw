@@ -671,16 +671,21 @@ summary(m1)
 
 \section{Lineup Types}
 The two lineup sections which contain boxplots are shown as separate density curves, as they appear to be testing different things (outliers vs. difference in medians). 
-<<lineup-types,echo=F, fig.cap="Plot of scaled scores for different types of lineups", fig.env="figure*", fig.width=6, fig.height=6, out.width=".9\\linewidth">>=
-lineup.type.sum$plot.type <- factor(lineup.type.sum$plot.type, levels=c("boxplot", "jitter.boxplot", "violinplot", "tree.boxplot", "scatterplot", "density", "stacked.bar", "qq.line", "qq.line.error", "qq.line.error.rotated"))
+<<lineup-types,echo=F, fig.cap="Plot of scaled scores for different types of lineups", fig.width=3, fig.height=8, out.width=".9\\linewidth">>=
+lineup.type.sum$plot.type <- str_replace(lineup.type.sum$plot.type, "rotated", "rot")
+lineup.type.sum$plot.type <- factor(lineup.type.sum$plot.type, levels=c("boxplot", "jitter.boxplot", "violinplot", "tree.boxplot", "scatterplot", "density", "stacked.bar", "qq.line", "qq.line.error", "qq.line.error.rot"))
 qplot(data=lineup.type.sum, x=score, y=..scaled.., colour=factor(testnum), geom="density", cut=4) + 
-  facet_wrap(~plot.type, ncol=5) + 
-  xlab("Percent of Lineups Correct") + 
+  facet_wrap(~plot.type, ncol=2) + 
+  xlab("Proportion of Lineups Correct") + 
   ylab("Scaled Density") + 
   geom_vline(aes(xintercept=0), linetype=3) + 
   scale_colour_discrete("Lineup Test Number") + 
   scale_x_continuous(breaks=c(-.33, 0, .33, .67, 1)) +
-  theme_bw() + theme(legend.position="bottom", legend.direction="horizontal", axis.text.x=element_text(angle=30))
+  scale_y_continuous(breaks=c(0, .5, 1)) +
+  theme_bw() + 
+  theme(legend.position="bottom", legend.direction="horizontal", 
+        axis.text.x=element_text(angle=30, hjust=1),
+        plot.margin=unit(c(0,0,0,0),"mm"))
 @
 Conclusion: stacked bar plots are awful. 
 \end{document}
