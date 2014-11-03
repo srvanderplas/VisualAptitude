@@ -554,21 +554,21 @@ To get a single unified score with standard deviation, we completed the followin
 \sigma_{\text{all}} &= \sqrt{\left(N_F\sigma_F^2 + N_M\sigma_M^2\right)/(N_F + N_M)},
 \end{align}
 \newtext{where $\mu_F$ and $\mu_M$ are the mean of female and male scores respectively, $N_F$ and $N_M$ are the number of participants in each group, and $\sigma_F^2$ and $\sigma_M^2$ are the variance of each group.
-Substituting in the provided numbers, }
-\begin{align}
+Substituting in the provided numbers, we get}
+\begin{align*}
 \mu_{\text{all}} &= \left(323\!*\!114.9\! +\! 294\!*\!120.0\right)/(323\!+\!294) \\
 & = \Sexpr{round((120.0*294 + 114.9*323)/617/2, 1)}\\
 \sigma_{\text{all}} &= \sqrt{\left(323(27.8)^2 \!+\! 294(30)^2\right)/(323\!+\!294)} \\
-& = \Sexpr{round(sqrt((30^2*294 + 27.8^2*323)/617)/2, 1)}
-\end{align}
+& = \Sexpr{round(sqrt((30^2*294 + 27.8^2*323)/617)/2, 1).}
+\end{align*}
 
 Whenever participants in two studies were not exposed to the same number of questions, the resulting scores are not comparable: both overall scores and their standard deviations are different. We can achieve comparability by scaling the scores accordingly.
 For example, in order to account for the fact that ISU students took only part I of two parts to the figure classification test (and thus completed half of the questions), we adjust the transformation as follows:
 
-\begin{eqnarray}
-\mu_{\text{part I}} &= 1/2 \mu_{\text{all}}\\
-\sigma_{\text{part I}} &= 1/\sqrt{2} \sigma_{\text{all}}
-\end{eqnarray}
+\begin{eqnarray*}
+\mu_{\text{part I}} &= 1/2 \cdot \mu_{\text{all}}\\
+\sigma_{\text{part I}} &= 1/\sqrt{2} \cdot \sigma_{\text{all}}
+\end{eqnarray*}
 
 \section{Lineup Performance and Demographic Characteristics}\label{app:categoricalresults}
 Table~\ref{tab:ttest-demographics} provides the results of a sequence of linear models fit to the lineup data. Each row in the table represents a single model, with one predictor variable (a factor with two or more levels). Due to sample size considerations, multiple testing corrections were not performed; in addition, the independent variables are correlated: in our sample, males are more likely to have completed Calculus 1, but are also more likely to spend time playing video games. As such, a model including two or more of the significant predictor variables shows all included variables to be nonsignificant. To better understand the effects of these variables, a much larger study would be required. 
