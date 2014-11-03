@@ -337,14 +337,14 @@ Applying the grading protocol discussed in section~\ref{sec:scaling}, we see tha
 <<ResultsScaledScores, echo=F, include=T, fig.pos="htb", fig.cap="Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \\label{fig:Scores}", fig.width=4.5, fig.height=4.5, out.width='\\linewidth', warning=F, message=F>>=
 
 score.summary <- melt(ans.summary, measure.vars=20:24, value.name = "Score", variable.name = "Test")
-score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure~Class.", "Paper Folding", "Visual Search"))
+score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
 qrange$sqrt.k <- sqrt(qrange$k-1)
-qrange$Test <- factor(qrange$testtype, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure~Class.", "Paper Folding", "Visual Search"))
+qrange$Test <- factor(qrange$testtype, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
 
 qr1 <- qrange
 qr1$Type <- "Theoretical\nRange"
 qr2 <- qrange
-qr2$Type <- "Scores\nindicating\nguessing"
+qr2$Type <- "Scores indicating\nguessing"
 qr2$n <- with(qr2, -n/(k-1))
 
 qrange <- rbind(qr1, qr2)
@@ -360,8 +360,8 @@ ggplot() +
   xlab("") +
   theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
   theme(plot.margin=unit(c(0,0,0,0),"mm")) + 
-  theme(legend.position=c(.85,.825),  legend.box.just = "left", 
-        legend.key.height=unit(12, "mm")) 
+  theme(legend.position=c(.80,.825),  legend.box.just = "left", 
+        legend.key.height=unit(8, "mm")) 
   #coord_flip()
 @
 % 
