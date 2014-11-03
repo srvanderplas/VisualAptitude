@@ -414,10 +414,6 @@ Previous work found a relationship between lineup performance and demographic fa
 Figure~\ref{fig:visualaptitudecat} shows participants' lineup scores in relationship to their responses in the questionnaire given at the beginning of the study; this allows us to explore effects of demographic characteristics (major, research experience, etc.) on test performance. 
 
 Completion of Calculus I is associated with increased performance on lineups; this may be related to general math education level, or it may be that success in both lineups and calculus requires certain visual skills. This association is consistent with findings in~\cite{shah1995conceptual}, which associated  mathematical ability to performance on simple graph description tasks.  There is also a significant relationship between hours of video games played per week and score on lineups, however, this association is not monotonic and the groups do not have equal sample size, so the conclusion may be suspect. There is a (nearly) significant difference between male and female performance on lineups; this is not particularly surprising, as men perform better on many spatial tests~\cite{voyer1995magnitude} and performance on spatial tests is correlated with phase of the menstrual cycle in women~\cite{hausmann2000sex}. There is no significant difference in lineup performance for participants of different age, self-assessed skills in various domains, previous participation in math or science research, completion of a statistics class, or experience with AutoCAD. These demographic characteristics were chosen to account for life experience and personal skills which may have influenced the results. Statistical test results are available in appendix~\ref{app:categoricalresults}. 
-% <<means>>=
-% library(plyr)
-% ldply(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")], c(mean=mean,sd= sd))
-% @
 
 \subsection{Understanding Visual Abilities and Lineup Performance}
 <<correlations, echo=F, comment="|", warning=F, message=F, results='asis', size="footnotesize", include=F>>=
