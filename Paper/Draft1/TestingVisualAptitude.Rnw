@@ -562,20 +562,23 @@ All results and data shown here were collected and analyzed in accordance with I
 \section{Scaling Scores}\label{app:ScoreAdj}
 To calculate ``scaled" comparison scores between tests which included different numbers of test sections (as shown in table~\ref{tab:scorecomparison}), we scaled the mean in direct proportion to the number of questions (thus, if there were two sections of equivalent size, and the reference score included only one of those sections, we multiplied the reported mean score by two). The variance calculation is a bit more complicated: In the case described in the main text, where the reference section contained half of the questions, the variance is multiplied by two, causing the standard deviation to be multiplied by approximately 1.41. 
 
-This scaling gets slightly more complicated for scores which have two sub-groups, as with the figure classification test. To get a single unified score with standard deviation, we completed the following calculations: 
-\begin{eqnarray}
-\mu_{\text{all}} &= (\mu_{F}N_F + \mu_{M}N_M)/(N_F + N_M)\\
+This scaling gets slightly more complicated for scores which have two sub-groups, as with the figure classification test, which separately sumarizes male and female participants' scores. 
+To get a single unified score with standard deviation, we completed the following calculations: 
+\begin{align}
+\mu_{\text{all}} &= (N_F\mu_{F} + N_M\mu_{M})/(N_F + N_M)\\
 \sigma_{\text{all}} &= \sqrt{\left(N_F\sigma_F^2 + N_M\sigma_M^2\right)/(N_F + N_M)},
-\end{eqnarray}
-\newtext{where $\mu_F$ and $\mu_M$ are the averages observed individually, ...}
-\comment{You need to define all elements in the calculations}
+\end{align}
+\newtext{where $\mu_F$ and $\mu_M$ are the mean of female and male scores respectively, $N_F$ and $N_M$ are the number of participants in each group, and $\sigma_F^2$ and $\sigma_M^2$ are the variance of each group.
+Substituting in the provided numbers, }
+\begin{align}
+\mu_{\text{all}} &= \left(323\!*\!114.9\! +\! 294\!*\!120.0\right)/(323\!+\!294) \\
+& = \Sexpr{round((120.0*294 + 114.9*323)/617/2, 1)}\\
+\sigma_{\text{all}} &= \sqrt{\left(323(27.8)^2 \!+\! 294(30)^2\right)/(323\!+\!294)} \\
+& = \Sexpr{round(sqrt((30^2*294 + 27.8^2*323)/617)/2, 1)}
+\end{align}
 
-\comment{In a next step, include the derivations using the actual numbers.}
-
-\comment{We can approach the next piece a bit more generally.}
-\newtext{Whenever participants in two studies were not exposed to the same number of questions, the resulting scores are not comparable: both overall scores and their standard deviations are different. We can achieve comparability by scaling the scores accordingly.}
-
-In order to account for the fact that ISU students took only part I of two parts to the figure classification test (and thus completed half of the questions), we adjust the transformation as follows:
+Whenever participants in two studies were not exposed to the same number of questions, the resulting scores are not comparable: both overall scores and their standard deviations are different. We can achieve comparability by scaling the scores accordingly.
+For example, in order to account for the fact that ISU students took only part I of two parts to the figure classification test (and thus completed half of the questions), we adjust the transformation as follows:
 
 \begin{eqnarray}
 \mu_{\text{part I}} &= 1/2 \mu_{\text{all}}\\
