@@ -255,12 +255,14 @@ Lineups require similar manipulations in two-dimensional space, and also require
 
 Between cognitive tasks, participants will also complete three blocks of 20 lineups each, assembled from previous studies~\cite{hofmann2012graphical,majumder2013validation}. Participants have 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup} shows a sample lineup of box plots. 
 
-\begin{figure}\centering
+In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. \comment{XXX should we classify majors into STEM/non-STEM? - there's a ton of literature and interest that we could potentially tap into \\\textit{I'm not opposed, but we have to decide where ag-majors fall... not everything is easily classifiable. Psychology is another problem: I was very STEM-psychology, but you don't have to be.}} These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
+
+\begin{figure}[hbtp]
+\centering
 \includegraphics[width=\linewidth]{lineup}
 \caption[Sample Lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 13 is the target. }\label{fig:lineup}
 \end{figure}
 
-In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. \comment{XXX should we classify majors into STEM/non-STEM? - there's a ton of literature and interest that we could potentially tap into \\\textit{I'm not opposed, but we have to decide where ag-majors fall... not everything is easily classifiable. Psychology is another problem: I was very STEM-psychology, but you don't have to be.}} These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
 
 \subsection{Test Scoring}\label{sec:scaling}
 
@@ -512,7 +514,7 @@ PC4 captures the similarity between lineups and the card rotation task and separ
 \newtext{Comparing the two principal component analyses in this manner suggests that lineups are a separate dimension (as the addition of lineups result in an additional principal component which accounts for at least 10\% of the variance), but that they are most closely related to the figure classification task, and less closely related to the visual searching task.}
 
 \newtext{This emphasizes the underpinnings of lineups: they are a visual medium, but they ultimately are a classification task, presented in a graphical manner. Using lineups as a proxy for statistical significance tests is similar to using a classifier on pictoral data: while the data is presented ``graphically", the participant is actually classifying the data based on underlying summary statistics.}
-\comment{that last sentance is probably reaching a bit far...}
+\comment{that last sentence is probably reaching a bit far... \textit I think that sentence is just fine :)}
 % In figure~\ref{fig:visualaptitudects}, we see that participant performance on lineups is positively correlated with performance on card rotation, figure classification, and paper folding tasks. This suggests that skills associated with visual reasoning ability are related to lineup performance. As participants must use the same skills in lineups (mental rotation, classification and determining categorization schemes, and multi-step spatial reasoning) as in the factor-referenced tests, this is not particularly surprising. In addition,there seems to be some positive relationship between a participant's score on the visual search task and their score on lineups: the visual search task represents a baseline of a participant's ability to find a matching pattern, while lineups require that task as well as the ability to determine what the pattern is for a particular graph. Even excluding the one low visual search score that is a high-leverage point, there seems to be a positive relationship between a participant's score on lineups and their score for visual search. 
 % 
 % <<VisReasoningCts,echo=FALSE, include=FALSE, eval=T, fig.width=8,fig.height=8, message=F, warning=F>>=
@@ -575,12 +577,17 @@ This scaling gets slightly more complicated for scores which have two sub-groups
 In order to account for the fact that ISU students took only part I of two parts to the figure classification test (and thus completed half of the questions), we adjust the transformation as follows:
 
 \begin{eqnarray}
-\mu_{\text{part I}} &= 1/2 \mu_{\text{all}}\\
-\sigma_{\text{part I}} &= 1/\sqrt{2} \sigma_{\text{all}}
+\mu_{\text{part I}} &= 1/2 \cdot \mu_{\text{all}}\\
+\sigma_{\text{part I}} &= 1/\sqrt{2} \cdot \sigma_{\text{all}}
 \end{eqnarray}
 
 \section{Lineup Performance and Demographic Characteristics}\label{app:categoricalresults}
-Table~\ref{tab:ttest-demographics} provides the results of a sequence of linear models fit to the lineup data. Each row in the table represents a single model, with one predictor variable (a factor with two or more levels). Due to sample size considerations, multiple testing corrections were not performed; in addition, the independent variables are correlated: in our sample, males are more likely to have completed Calculus 1, but are also more likely to spend time playing video games. As such, a model including two or more of the significant predictor variables shows all included variables to be nonsignificant. To better understand the effects of these variables, a much larger study would be required. 
+Table~\ref{tab:ttest-demographics} provides the results of a sequence of linear models fit to the lineup data. Each row in the table represents a single model, with one predictor variable (a factor with two or more levels).
+\comment{Comment on a few more things here: order of variables in the table, and what exactly you have done to compute the values (model), also, why did you use separate factors for the skills and the number of video game hours? All of these variables are ordinal, so a linear factor using a single degree of freedom might be the most suitable for a start.}
+%Due to sample size considerations, multiple testing corrections were not performed;
+Note that these covariates are correlated: in our sample, males are more likely to have completed Calculus 1, but are also more likely to spend time playing video games. 
+\comment{the next sentence will need some re-phrasing according to the results of the linear model.}
+As such, a model including two or more of the significant predictor variables shows all included variables to be nonsignificant. To better understand the effects of these variables, a much larger study would be required. 
 <<ttests.categ, echo=F, eval=T, results='asis'>>=
 tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
     tmp <- anova(lm(lineup~factor(value, ordered=F), data=df))
