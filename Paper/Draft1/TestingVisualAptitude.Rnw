@@ -471,8 +471,9 @@ ggplot()+
 rm(list=c("data", "all", "densities"))
 @
 
-<<pcatests,echo=F, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".8\\linewidth", fig.height=3, fig.width=4.5, warning=F, message=F, size="footnotesize">>=
+<<pca,echo=F, warning=F, message=F>>=
 pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
+pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 # screeplot(pca)
 @
 
