@@ -493,13 +493,13 @@ As expected, PC1 is essentially an average across all tests representing a gener
 We will focus on the remaining components, which show differences in performance on the tests, and thus provide us with more insight about the skills needed to successfully examine lineups. 
 Biplots of these principal components are shown in figure~\ref{fig:biplots5}. 
 
-<<pcasummary,echo=F, results='asis'>>=
+<<pcasummary5,echo=F, results='asis'>>=
 print(xtable(summary(pca), caption="Importance of principal components, analyzing all five tests.\\label{tab:PCAvariance5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
 @
 
 Figure classification is strongly related to lineups (PC2, PC3). Performance on the visual search task  is also related to lineup performance (PC3). These two components highlight the shared demands of the lineup task and the figure classification task: participants must establish categories from provided stimuli and then classify the stimuli accordingly. 
 
-<<pcarotation,echo=F, results='asis'>>=
+<<pcarotation5,echo=F, results='asis'>>=
 print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests. The first principal component is essentially an average of all five tests. 
              \\label{tab:PCArotation5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
 @
@@ -598,13 +598,10 @@ tmp2$Variable <- gsub("Math/Science", "STEM", gsub(" Experience", "", gsub(" Hrs
 print(xtable(tmp2, digits=c(1, 1, 0, 3, 2, 3), caption="Results of lineup score modeled by single demographic variables. \\label{tab:ttest-demographics}"), include.rownames=F, floating.environment="table", caption.placement="top")
 @
 
-\section{Principal Component Analysis of Visuo-Spatial Tests}\label{app:pca4}
-<<pca, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.8\\linewidth', comment="|", fig.cap="Plots of principal components 2-5 with observations. \\label{fig:biplots5}", echo=F, fig.env="figure">>=
-par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
-biplot(pca, choices=2:3, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
-biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), xlim=c(-2,2), ylim=c(-2,2))
-@
-<<pcasummary2,echo=F, results='asis'>>=
+\section{Principal Component Analysis of Visuo-Spatial Tests}\label{app:pca}
+\subsection{PCA of the Four Cognitive Tests}\label{app:pca4}
+
+<<pcasummary4,echo=F, results='asis'>>=
 pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 print(xtable(summary(pca2), caption="Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\\label{tab:PCAvariance4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
 @
@@ -614,22 +611,22 @@ Table~\ref{tab:PCAvariance4} contains the importance of each resultant PC and th
 
 \newtext{PC1 accounts for about \Sexpr{round(summary(pca2)$importance[3,1],1)*100}\% of the variance; figure~\ref{fig:biplots4} and table~\ref{tab:PCArotation4} confirm that PC1 is a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test, while}
 
-<<pcarotation2,echo=F, results='asis'>>=
+<<pcarotation4,echo=F, results='asis'>>=
 print(xtable(pca2$rotation, caption="PCA Rotation matrix for the four cognitive tests.\\label{tab:PCArotation4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
 @
 
 \newtext{
 PC3 differentiates these two from the paper folding test. PC4 is not particularly significant (it accounts for \Sexpr{round(summary(pca2)$importance[2,4]*100,1)}\% of the variance), but it differentiates the card rotation task from the paper folding task.}
 
-
-
-
-<<pca2, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.8\\linewidth', comment="|", fig.cap="Plots of principal components 1-4 with observations. PCA was performed on the four cognitive tests used to understand the cognitive demands of the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
+<<biplot-pca4, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.8\\linewidth', comment="|", fig.cap="Plots of principal components 1-4 with observations. PCA was performed on the four cognitive tests used to understand the cognitive demands of the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
 par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
 biplot(pca2, choices=1:2, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
 biplot(pca2, choices=3:4, pc.biplot=T, cex=c(.5, 1), xlim=c(-3,3), ylim=c(-2.5,2.5))
 @
 
+\subsection{PCA of all Five Tests (Cognitive Tests and Lineups)}\label{app:pca5}
+PC1 is essentially an average across all tests representing a general ``visual intelligence" factor.
+Biplots of the remaining principal components are shown in figure~\ref{fig:biplots5}. 
 
 % \section{Lineup Performance: Accounting for ``Visual Intelligence''}
 % As figure~\ref{fig:biplots}(a) shows, the first principal component seems to primarily describe ``general intelligence", or ``visual intelligence" in a generic sense (as we have only tested visual skills). As the visual search task (VST) is the most generic of visual tasks (find the matching pattern) and requires no spatial manipulation, rotation, or inference, we might use it as an indicator of general visual intelligence (or cognitive tempo and attention to detail). 
@@ -665,6 +662,11 @@ biplot(pca2, choices=3:4, pc.biplot=T, cex=c(.5, 1), xlim=c(-3,3), ylim=c(-2.5,2
 % 
 % 
 % Even using VST as a ``general intelligence" factor, the first PC still does not discriminate between the tests. This approach is probably not worth pursuing further. 
+<<biplots-pca5, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.8\\linewidth', comment="|", fig.cap="Plots of principal components 2-5 with observations. \\label{fig:biplots5}", echo=F, fig.env="figure">>=
+par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+biplot(pca, choices=2:3, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
+biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), xlim=c(-2,2), ylim=c(-2,2))
+@
 
 % \section{Lit Review Rejects}
 % \begin{itemize}
