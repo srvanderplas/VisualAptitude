@@ -346,8 +346,8 @@ ggplot() +
   xlab("") +
   theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
   theme(plot.margin=unit(c(0,0,0,0),"mm")) + 
-  theme(legend.position=c(.80,.125),  legend.box.just = "left", 
-        legend.key.height=unit(8, "mm")) 
+  theme(legend.position=c(.68,.125),  legend.box.just = "left", 
+        legend.key.height=unit(6, "mm")) 
   #coord_flip()
 @
 % 
