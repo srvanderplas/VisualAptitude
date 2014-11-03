@@ -465,9 +465,10 @@ ggplot()+
   geom_smooth(data=subset(all, points), aes(x=x, y=y), method="lm") + 
   geom_text(data=subset(all, !points), aes(x=x, y=y, label=paste0("Correlation = \n", label))) + 
   geom_line(data=densities, aes(x=x, y=y)) + 
-  facet_grid(xvar~yvar, scales="free") + 
+  facet_grid(xvar~yvar, scales="free", labeller = labeller(xvar=fix.names, yvar=fix.names)) + 
   theme_bw() + 
   theme(axis.title=element_blank())
+rm(list=c("data", "all", "densities"))
 @
 
 <<pcatests,echo=F, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".8\\linewidth", fig.height=3, fig.width=4.5, warning=F, message=F, size="footnotesize">>=
