@@ -8,7 +8,8 @@ ans$id <- 1:nrow(ans)
 ans$age <- gsub("21-24", "21+", gsub("25-28", "21+", ans$age))
 
 
-ans$stem <- str_detect(ans$major1, "(Engineering)|(Biology)|([cC]hemistry)|(Statistics)|(Genetics)|(Animal Science)|(Horticulture)")
+ans$stem <- str_detect(ans$major1, "(Engineering)|(Biology)|([cC]hemistry)|(Statistics)|(Genetics)|(Environmental Science)|(Animal Science)|(Horticulture)") 
+ans$stem[!is.na(ans$major2)] <- ans$stem[!is.na(ans$major2)] | str_detect(ans$major2[!is.na(ans$major2)], "(Engineering)|(Biology)|([cC]hemistry)|(Statistics)|(Genetics)|(Environmental Science)|(Animal Science)|(Horticulture)")
 
 ans <- ans[,c(1:19, 397, 20:396)]
 
