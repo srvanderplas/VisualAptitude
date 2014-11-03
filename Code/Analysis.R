@@ -55,6 +55,22 @@ key[,378:397] <- c("a", "d", "b", "d", "b",
                    "a", "e", "d", "d", "c")
 
 
+keytype <- key
+keytype[,46:65] <- rep(c("boxplot", "density", "scatterplot", "stacked.bar"), each=5)
+keytype[,226:245] <- c("boxplot", "boxplot", "violinplot", "violinplot", 
+                       "boxplot", "violinplot", "jitter.boxplot", "jitter.boxplot", 
+                       "boxplot", "violinplot", "violinplot", "tree.boxplot", 
+                       "tree.boxplot", "violinplot", "violinplot", "jitter.boxplot",
+                       "tree.boxplot", "jitter.boxplot", "violinplot", "tree.boxplot")
+keytype[,358:377] <- c("qq.line.error", "qq.line", "qq.line.error", "qq.line", 
+                   "qq.line", "qq.line.error.rotated", "qq.line.error", "qq.line.error.rotated", 
+                   "qq.line.error", "qq.line.error.rotated", "qq.line", "qq.line.error", 
+                   "qq.line.error.rotated", "qq.line.error.rotated", "qq.line.error", "qq.line",
+                   "qq.line.error", "qq.line", "qq.line.error", "qq.line.error.rotated")
+
+keytype <- keytype[,str_detect(names(keytype), "lineup")]
+keytype <- data.frame(question=names(keytype), plot.type=as.character(keytype[1,]))
+
 library(plyr)
 # Score each answer by whether it is the same as the key. Make sure NA values stay as NA. 
 scored <- ddply(ans, .(id), function(j) as.numeric(j==key) + c(0, NA)[1+is.na(j)])
@@ -92,6 +108,16 @@ longform.sum <- ddply(longform, .(id, testtype), summarize,
 longform.sum <- merge(longform.sum, qrange)
 # Calculate raw score
 longform.sum$value <- with(longform.sum, pos.pts-neg.pts)
+
+# calculate scores by question type
+longform <- merge(longform, keytype, by.x="variable", by.y="question", all.x=T, all.y=T)
+lineup.type.sum <- ddply(subset(longform, !is.na(plot.type)), .(id, plot.type, testnum), summarize, 
+                         pos.pts = ifelse(is.numeric(value), sum(value, na.rm=T), unique(value)),
+                         neg.pts = ifelse(is.numeric(value), sum((1-value)*penalty, na.rm=T), unique(value)), 
+                         total.pos = length(value),
+                         total.neg = sum(rep(1, length(value))*penalty))
+lineup.type.sum$score <- with(lineup.type.sum, (pos.pts-neg.pts)/total.pos)
+
 
 # Save unscaled version
 # longform.sum.unscaled <- longform.sum
