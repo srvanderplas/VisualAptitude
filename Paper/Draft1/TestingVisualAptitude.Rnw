@@ -423,7 +423,53 @@ print(xtable(cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vi
 @
 
 <<VisReasoningSPM,echo=FALSE, include=T, eval=T, fig.width=8,fig.height=8, message=F, warning=F, fig.cap="Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.\\label{fig:scatterplotmatrix}">>=
-GGally::ggpairs(ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", "folding")], lower=list(continuous='smooth'), upper=list(continuous="cor"))
+data <- ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", "folding")]
+grid <- expand.grid(x=1:ncol(data), y=1:ncol(data))
+grid <- subset(grid, x != y & x<y)
+
+all <- do.call("rbind", lapply(1:nrow(grid), function(i) {
+  xcol <- grid[i, "x"]
+  ycol <- grid[i, "y"]
+
+  rbind.fill(
+    data.frame(
+      xvar = names(data)[ycol], 
+      yvar = names(data)[xcol],
+      x = data[, xcol], 
+      y = data[, ycol], 
+      points = T,
+      data
+    ),
+    data.frame(
+      yvar = names(data)[ycol], 
+      xvar = names(data)[xcol],
+      x = mean(range(data[, ycol])), 
+      y = mean(range(data[, xcol])),
+      label = round(cor(data[,xcol], data[,ycol]), 3),
+      points = F
+    )
+  )
+}))
+all$xvar <- factor(all$xvar, levels=names(data))
+all$yvar <- factor(all$yvar, levels=names(data))
+densities <- do.call("rbind", lapply(1:ncol(data), function(i) {
+    tmp <- density(data[,i])
+    data.frame(
+      xvar = names(data)[i], 
+      yvar = names(data)[i],
+      x = tmp$x, 
+      y = tmp$y/max(tmp$y)* diff(range(tmp$x)) + min(tmp$x)
+    )
+  }))
+
+ggplot()+
+  geom_point(data=subset(all, points), aes(x=x, y=y)) + 
+  geom_smooth(data=subset(all, points), aes(x=x, y=y), method="lm") + 
+  geom_text(data=subset(all, !points), aes(x=x, y=y, label=paste0("Correlation = \n", label))) + 
+  geom_line(data=densities, aes(x=x, y=y)) + 
+  facet_grid(xvar~yvar, scales="free") + 
+  theme_bw() + 
+  theme(axis.title=element_blank())
 @
 
 <<pcatests,echo=F, fig.cap="Scree plot of principle component analysis of performance on the different test batteries.", out.width=".8\\linewidth", fig.height=3, fig.width=4.5, warning=F, message=F, size="footnotesize">>=
