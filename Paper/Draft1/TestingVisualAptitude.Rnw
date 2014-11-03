@@ -629,7 +629,7 @@ The visual search task is also clearly important to lineup performance: PC3 capt
 
 PC4 captures the similarity between lineups and the card rotation task and separates this similarity from the figure classification task; this similarity does not account for much extra variance (10\%), but it may be that only some lineups require spatial rotation skills. PC5 contains only 5\% of the remaining variance, and is thus not of much interest, however, it seems to capture the relationship between the card rotation task and the paper folding and visual search tasks.
 
-
+\section{Linear Model}
 <<linearmodel, results='hide'>>=
 pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 ans.model <- data.frame(ans.summary, data.frame(pca2$x))
