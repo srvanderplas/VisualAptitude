@@ -513,19 +513,7 @@ PC4 captures the similarity between lineups and the card rotation task and separ
 
 \newtext{This emphasizes the underpinnings of lineups: they are a visual medium, but they ultimately are a classification task, presented in a graphical manner. Using lineups as a proxy for statistical significance tests is similar to using a classifier on pictoral data: while the data is presented ``graphically", the participant is actually classifying the data based on underlying summary statistics.}
 \comment{that last sentance is probably reaching a bit far...}
-% In figure~\ref{fig:visualaptitudects}, we see that participant performance on lineups is positively correlated with performance on card rotation, figure classification, and paper folding tasks. This suggests that skills associated with visual reasoning ability are related to lineup performance. As participants must use the same skills in lineups (mental rotation, classification and determining categorization schemes, and multi-step spatial reasoning) as in the factor-referenced tests, this is not particularly surprising. In addition,there seems to be some positive relationship between a participant's score on the visual search task and their score on lineups: the visual search task represents a baseline of a participant's ability to find a matching pattern, while lineups require that task as well as the ability to determine what the pattern is for a particular graph. Even excluding the one low visual search score that is a high-leverage point, there seems to be a positive relationship between a participant's score on lineups and their score for visual search. 
-% 
-% <<VisReasoningCts,echo=FALSE, include=FALSE, eval=T, fig.width=8,fig.height=8, message=F, warning=F>>=
-% lineup.summary$variable <- factor(lineup.summary$variable, labels=c("Card Rotation", "figure classification", "Paper Folding", "Visual Search"))
-%  
-% qplot(data=lineup.summary, x=value, y=lineup, geom="point", shape=I(1), size=I(3)) + facet_wrap(~variable, scales="free_x") + xlab("Score") + ylab("Lineup Score") + geom_smooth(method="lm") + theme_bw()
-% @
 
-% 
-% \begin{figure}[hbt]\centering
-% \includegraphics[width=0.75\linewidth]{fig-VisReasoningCts-1}
-% \caption[Visual Aptitude Study Results]{Scatterplots of all test scores compared to participants' scores in the lineup tests. There is a relatively strong positive correlation between lineup score and scores on visuospatial reasoning tests.}\label{fig:visualaptitudects}
-% \end{figure}
 
 All results and data shown here were collected and analyzed in accordance with IRB \# 13-581.
 
