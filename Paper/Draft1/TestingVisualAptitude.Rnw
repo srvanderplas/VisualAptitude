@@ -678,7 +678,7 @@ The two lineup sections which contain boxplots are shown as separate density cur
 <<lineup-types,echo=F, fig.cap="Plot of scaled scores for different types of lineups", fig.width=3, fig.height=8, out.width=".9\\linewidth", warning=F, message=F>>=
 lineup.type.sum2$plot.type <- str_replace(lineup.type.sum2$plot.type, "rotated", "rot")
 lineup.type.sum2$plot.type <- str_replace(as.character(lineup.type.sum2$plot.type), "error", "err")
-lineup.type.sum2$plot.type <- factor(lineup.type.sum2$plot.type, levels=c("boxplot", "jitter.boxplot", "violinplot", "tree.boxplot", "scatterplot", "density", "stacked.bar", "qq.line", "qq.line.err", "qq.line.err.rot"))
+lineup.type.sum2$plot.type <- factor(lineup.type.sum2$plot.type, levels=c("boxplot", "jitter.boxplot", "violinplot", "bee.swarm.boxplot", "scatterplot", "density", "histogram", "qq.line", "qq.line.err", "qq.line.err.rot"))
 qplot(data=subset(lineup.type.sum2, !is.na(plot.type)& testtype=="lineup"), 
       x=score, y=..scaled.., colour=factor(testnum), geom="density", cut=4) + 
   facet_wrap(~plot.type, ncol=2) + 
@@ -695,8 +695,8 @@ qplot(data=subset(lineup.type.sum2, !is.na(plot.type)& testtype=="lineup"),
 @
 Conclusion: stacked bar plots are awful - the same as guessing. 
 
-<<lineup-types-scores,echo=F, fig.cap="Plot of scaled lineup scores by aptitude test scores", fig.width=6, fig.height=12, out.width=".65\\linewidth", fig.env="figure*">>=
-lineup.type.sum3 <- dcast(lineup.type.sum2, id + testtype ~ plot.type, value.var="score", fun.aggregate = sum)
+<<lineup-types-scores,echo=F, fig.cap="Plot of scaled lineup scores by aptitude test scores", fig.width=6, fig.height=12, out.width=".65\\linewidth", fig.env="figure*", warning=F, message=F>>=
+lineup.type.sum3 <- dcast(lineup.type.sum2, id + testtype ~ plot.type, value.var="pos.pts", fun.aggregate = sum)
 other.scores <- subset(lineup.type.sum3, testtype!="lineup")[,c(1,2,13)]
 names(other.scores)[3] <- "testscore"
 lineup.scores <- melt(subset(lineup.type.sum3, testtype=="lineup")[,c(1,3:12)], id.vars = 1)
@@ -708,7 +708,7 @@ cor.labels <- ddply(lineup.type.sum3, .(lineup.type, testtype), summarize, x=min
 qplot(data=lineup.type.sum3, 
       x=testscore, y=lineup.pct, geom="jitter", colour=I("grey30")) + 
   geom_smooth(method="lm") + 
-  facet_grid(lineup.type~testtype, scales="free_x") + 
+  facet_grid(lineup.type~testtype, scales="free") + 
   ylab("Proportion of Lineups Correct") + 
   xlab("Test Score")+
   geom_text(data=cor.labels, aes(x=x, y=1.1, label=label), hjust=0, vjust=1, size=3) + 
