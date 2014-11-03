@@ -459,6 +459,14 @@ densities <- do.call("rbind", lapply(1:ncol(data), function(i) {
       y = tmp$y/max(tmp$y)* diff(range(tmp$x)) + min(tmp$x)
     )
   }))
+fix.names <- function(values){
+  values %>% 
+    str_replace("lineup", "Lineups") %>% 
+    str_replace("vis_search", "Visual Search") %>%
+    str_replace("fig_class", "Figure Classification") %>% 
+    str_replace("card_rot", "Card Rotation") %>%
+    str_replace("folding", "Paper Folding")
+}
 
 ggplot()+
   geom_point(data=subset(all, points), aes(x=x, y=y)) + 
