@@ -646,8 +646,12 @@ biplot(pcmath, 3:4)
 # variables split into stats_class/math_science_research and calc_1/math_skills
 # leave out math_skills in favor of calc_1 - for interpretability
 
+xtabs(~stem+calc_1, data=ans.model)
+# stem major is more associated with performance on lineups than calc 1...
+
 xtabs(~stats_class+math_science_research, data=ans.model)
 # only one kid is doing research without a stats class
+
 # recode to sum of them
 ans.model$statsP <- with(ans.model, stats_class + math_science_research)
 
