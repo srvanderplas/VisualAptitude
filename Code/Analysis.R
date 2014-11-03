@@ -57,12 +57,12 @@ key[,378:397] <- c("a", "d", "b", "d", "b",
 
 
 keytype <- key
-keytype[,46:65] <- rep(c("boxplot", "density", "scatterplot", "stacked.bar"), each=5)
+keytype[,46:65] <- rep(c("boxplot", "density", "scatterplot", "histogram"), each=5)
 keytype[,226:245] <- c("boxplot", "boxplot", "violinplot", "violinplot", 
                        "boxplot", "violinplot", "jitter.boxplot", "jitter.boxplot", 
-                       "boxplot", "violinplot", "violinplot", "tree.boxplot", 
-                       "tree.boxplot", "violinplot", "violinplot", "jitter.boxplot",
-                       "tree.boxplot", "jitter.boxplot", "violinplot", "tree.boxplot")
+                       "boxplot", "violinplot", "violinplot", "bee.swarm.boxplot", 
+                       "bee.swarm.boxplot", "violinplot", "violinplot", "jitter.boxplot",
+                       "bee.swarm.boxplot", "jitter.boxplot", "violinplot", "bee.swarm.boxplot")
 keytype[,358:377] <- c("qq.line.error", "qq.line", "qq.line.error", "qq.line", 
                    "qq.line", "qq.line.error.rotated", "qq.line.error", "qq.line.error.rotated", 
                    "qq.line.error", "qq.line.error.rotated", "qq.line", "qq.line.error", 
