@@ -528,7 +528,6 @@ PC5 is almost identical to PC4 in the four-component PCA; as before, it does not
 }
 
 \newtext{This emphasizes the underpinnings of lineups: they are a visual medium, but they ultimately are a classification task, presented in a graphical manner. Using lineups as a proxy for statistical significance tests is similar to using a classifier on pictoral data: while the data is presented ``graphically", the participant is actually classifying the data based on underlying summary statistics.}
-\comment{that last sentance is probably reaching a bit far...}
 
 
 All results and data shown here were collected and analyzed in accordance with IRB \# 13-581.
