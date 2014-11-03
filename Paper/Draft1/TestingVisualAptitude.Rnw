@@ -492,9 +492,8 @@ In order to assess factors contributing to lineup performance, we first examine 
 
 \newtext{
 A principal component analysis (PCA) of the four established visuo-spatial tests reveals that they all share a very strong first component, which explains about \Sexpr{round(summary(pca2)$importance[3,1],2)*100}\% of the total variability. 
-PC1 is essentially an average across all tests representing a general ``visual intelligence" factor. The principal components beyond that span another two dimensions, while the last dimension is weak (at \Sexpr{round(summary(pca2)$importance[2,4],2)*100}\%). 
-PC2 differentiates the figure classification test from the visual searching test, while PC3 differentiates these two from the paper folding test. 
-PC4 is not particularly significant (it accounts for \Sexpr{round(summary(pca2)$importance[2,4]*100,1)}\% of the variance), but it differentiates the card rotation task from the paper folding task. 
+PC1 is essentially an average across all tests representing a general ``visual intelligence" factor. The other principal components span another two dimensions, while the last dimension is weak (at \Sexpr{round(summary(pca2)$importance[2,4],2)*100}\%). 
+PC2 differentiates the figure classification test from the visual searching test, while PC3 differentiates these two tests from the paper folding test. 
 More detailed results from the 4-test analysis are provided in Appendix \ref{app:pca}.
 }
 
