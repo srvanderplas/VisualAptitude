@@ -453,7 +453,7 @@ all <- do.call("rbind", lapply(1:nrow(grid), function(i) {
 all$xvar <- factor(all$xvar, levels=names(data))
 all$yvar <- factor(all$yvar, levels=names(data))
 densities <- do.call("rbind", lapply(1:ncol(data), function(i) {
-    tmp <- density(data[,i])
+    tmp <- density(data[,i], cut = 1, adjust=.75)
     data.frame(
       xvar = names(data)[i], 
       yvar = names(data)[i],
