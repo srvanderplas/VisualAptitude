@@ -374,7 +374,7 @@ ggplot() +
 <<VisReasoningCategorical, echo=F, include=F, eval=T, fig.width=9,fig.height=5, message=F, warning=F, fig.pos='htb'>>=
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
-lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience", "Video Game Hrs/Wk"))
+lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience", "STEM Major", "Video Game Hrs/Wk"))
 lineup.summary.categorical$value[lineup.summary.categorical$value=="f"] <- "Female"
 lineup.summary.categorical$value[lineup.summary.categorical$value=="m"] <- "Male"
 lineup.summary.categorical$value[lineup.summary.categorical$value=="y"] <- "TRUE"
@@ -397,7 +397,7 @@ lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variabl
 lineup.summary.categorical$value <- factor(lineup.summary.categorical$value, levels=c("0","1", "2","3","4","5","[1, 2)", "[2, 5)", "5+", "18-20", "21+", "TRUE", "FALSE", "Female", "Male"))
 
 qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + 
-  facet_wrap(~variable, scales="free_x", ncol=5) + xlab("") + 
+  facet_wrap(~variable, scales="free_x", ncol=4) + xlab("") + 
   ylab("Scaled Lineup Score") + 
   geom_point(aes(x=value, y=lineup), shape=1, size=3) + 
   theme_bw() + 
@@ -405,7 +405,7 @@ qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") +
 @
 \begin{figure*}[h!tb]\centering
 \includegraphics[width=.9\linewidth]{fig-VisReasoningCategorical-1}
-\caption[Visual Aptitude Study Results]{Demographic characteristics of participants compared with lineup score. Categories are ordered by effect size; calculus completion,  hours spent playing video games per week, and sex are all associated with a significant difference in lineup score. }\label{fig:visualaptitudecat}
+\caption[Visual Aptitude Study Results]{Demographic characteristics of participants compared with lineup score. Categories are ordered by effect size; majoring in a STEM field, calculus completion, hours spent playing video games per week, and sex are all associated with a significant difference in lineup score. }\label{fig:visualaptitudecat}
 \end{figure*}
 
 %Next, we examine the effect of demographic factors on lineup performance. 
