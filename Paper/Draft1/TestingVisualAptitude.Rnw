@@ -640,7 +640,7 @@ excl <- c("id", "card_rot", "fig_class", "folding", "vis_search", "vidgame_hrs",
 ans.model$math_science_research <- ans.model$math_science_research=="y"
 ans.model$stats_class <- ans.model$stats_class=="y"
 ans.model$calc_1 <- ans.model$calc_1=="y"
-pcmath <- prcomp(ans.model[,c("math_science_research", "stats_class", "calc_1", "math_skills")])
+pcmath <- prcomp(ans.model[,c("math_science_research", "stats_class", "calc_1", "math_skills", "stem")])
 biplot(pcmath)
 biplot(pcmath, 3:4)
 # variables split into stats_class/math_science_research and calc_1/math_skills
@@ -695,7 +695,11 @@ qplot(data=subset(lineup.type.sum2, !is.na(plot.type)& testtype=="lineup"),
 @
 Conclusion: stacked bar plots are awful - the same as guessing. 
 
+<<<<<<< HEAD
 <<lineup-types-scores,echo=F, fig.cap="Plot of scaled lineup scores by aptitude test scores", fig.width=6, fig.height=12, out.width=".65\\linewidth", fig.env="figure*", warning=F, message=F>>=
+=======
+<<lineup-types-scores,echo=F, fig.cap="Plot of scaled lineup scores by aptitude test scores", fig.width=6, fig.height=12, out.width=".65\\linewidth", fig.env="figure*">>=
+>>>>>>> changes during the meeting
 lineup.type.sum3 <- dcast(lineup.type.sum2, id + testtype ~ plot.type, value.var="pos.pts", fun.aggregate = sum)
 other.scores <- subset(lineup.type.sum3, testtype!="lineup")[,c(1,2,13)]
 names(other.scores)[3] <- "testscore"
