@@ -475,15 +475,15 @@ Results from the visuospatial tests used in this experiment are highly correlate
 What is of more interest to us is how other factors, such as e.g.~general intelligence, mental processing speed, cognitive resources, motivation, and attention affect performance. 
 In order to assess factors contributing to lineup performance, we first examine the separate dimensions measured by the battery of cognitive tests (other than lineups) using principal components analysis on the scaled test scores, then we examine all five tests using the same procedure. 
 
-\newtext{
+
 A principal component analysis (PCA) of the four established visuo-spatial tests reveals that they all share a very strong first component, which explains about \Sexpr{round(summary(pca2)$importance[3,1],2)*100}\% of the total variability. 
 PC1 is essentially an average across all tests representing a general ``visual intelligence" factor. The other principal components span another two dimensions, while the last dimension is weak (at \Sexpr{round(summary(pca2)$importance[2,4],2)*100}\%). 
 PC2 differentiates the figure classification test from the visual searching test, while PC3 differentiates these two tests from the paper folding test. 
 More detailed results from the 4-test analysis are provided in Appendix \ref{app:pca}.
-}
+
 
 Incorporating the lineup task into the principal component analysis, we find the principal components to be fairly similar to the four-component analysis. 
-Table~\ref{tab:PCAvariance5} shows the importance of each principal component and the cumulative proportion of variance; the corresponding rotation matrix is provided in~\ref{tab:PCArotation5}. 
+Table~\ref{tab:PCAvariance5} shows the importance of each principal component. \newtext{From the distribution of the variance components, we see that the lineup test  spans an additional dimension within the space of the four established tests.} From the rotation matrix (see Table~\ref{tab:PCArotation5}) we see that  
 
 <<pcasummary5,echo=F, results='asis'>>=
 print(xtable(summary(pca), caption="Importance of principal components, analyzing all five tests.\\label{tab:PCAvariance5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
@@ -494,26 +494,80 @@ print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests. The 
              \\label{tab:PCArotation5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
 @
 
-As expected, PC1 is essentially an average across all tests representing a general ``visual intelligence" factor, and accounts for \Sexpr{round(summary(pca)$importance[3,1]*100,1)}\% of the variance in the data. 
-We will focus on the remaining components, which show differences in performance on the tests, and thus provide us with more insight about the skills needed to successfully examine lineups. 
-Biplots of these principal components are provided in Appendix \ref{app:pca5}. 
+the first principal component, PC1, is again essentially an average across all tests and accounts for \Sexpr{round(summary(pca)$importance[3,1]*100,1)}\% of the variance in the data. 
+Biplots of the remaining components are provided in Appendix \ref{app:pca5}. 
 
-\newtext{
 Figure classification is strongly related to lineups (PC2, PC3), and as in the four-component PCA, figure classification is strongly represented in both principal components. 
 Performance on the visual search task is also related to lineup performance (PC3), and is more strongly represented in PC3 in the five-component PCA than in the four-componet PCA. 
-These two components highlight the shared demands of the lineup task and the figure classification task: participants must establish categories from provided stimuli and then classify the stimuli accordingly.}
+These two components highlight the shared demands of the lineup task and the figure classification task: participants must establish categories from provided stimuli and then classify the stimuli accordingly.
 
-\newtext{
-Comparing the two principal component analyses in this manner suggests that lineups are a separate dimension (as the addition of lineups result in an additional principal component which accounts for at least 10\% of the variance), but that they are most closely related to the figure classification task, and less closely related to the visual searching task.
-} 
+While lineups do span a separate dimension, but the PCA also suggests that they are most closely related to the figure classification task, and least related to the visual searching task.
 
-\newtext{
+
 The additional dimension, PC4 in the five-component PCA, separates lineups from the figure classification task and incorporates the relatively weak correlation between performance on the card rotation task and lineup performance; this dimension accounts for \Sexpr{round(summary(pca)$importance[2,4]*100,1)}\% of the variance. 
 PC5 is almost identical to PC4 in the four-component PCA; as before, it does not account for a significant portion of the variance in the data.
+
+
+This emphasizes the underpinnings of lineups: they are a visual medium, but they ultimately are a classification task, presented in a graphical manner. Using lineups as a proxy for statistical significance tests is similar to using a classifier on pictoral data: while the data is presented ``graphically", the participant is actually classifying the data based on underlying summary statistics.
+
+
+\subsection{Linear model of demographic factors}
+\newtext{The demographic variables are highy correlated, e.g.~there is a high correlation between STEM majors and taking calculus 1 -- only eight students are either not STEM, but have taken calculaus 1 or are STEM but have not taken the class. The situation between a statistics class and doing research is even more correlated. Only one student is doing research who has (not yet ?) taen a statistics course. A principal component of the five math/stats questions splits the variables into two areas: the first principal component is an average of math skills, calculaus 1 and STEM, while the second principal component is an average of XXX }
+<<linearmodel, results='hide'>>=
+pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
+ans.model <- data.frame(ans.summary, data.frame(pca2$x))
+# exclude all variables that are not supposed to go into the linear model
+# those are the unrotated tests; instead we have the PCs
+excl <- c("id", "card_rot", "fig_class", "folding", "vis_search", "vidgame_hrs", "major1", "major2", "minor1", "minor2", "learning_disability", "colorblind", "epilepsy", "normal_vision")
+
+ans.model$math_science_research <- ans.model$math_science_research=="y"
+ans.model$stats_class <- ans.model$stats_class=="y"
+ans.model$calc_1 <- ans.model$calc_1=="y"
+pcmath <- prcomp(ans.model[,c("math_science_research", "stats_class", "calc_1", "math_skills", "stem")], scale=T)
+pcmath$rotation
+# first component of math PCA is average of math_skills, calc_1 and stem
+# second component is stat_class and research
+
+#pcm <- data.frame(pcmath$x)
+#names(pcm) <- paste("SM", 1:5, sep="")
+#ans.model <- data.frame(ans.model, pcm)
+biplot(pcmath)
+biplot(pcmath, 3:4)
+
+
+xtabs(~stem+sex, data=ans.model)
+# sad day! 
+
+xtabs(~stem+calc_1, data=ans.model)
+# stem major is more associated with performance on lineups than calc 1...
+
+xtabs(~stats_class+math_science_research, data=ans.model)
+# only one kid is doing research without a stats class
+
+# recode to sum of them
+ans.model$STATS <- with(ans.model, stats_class + math_science_research)
+ans.model$MATH <- with(ans.model, calc_1+math_skills/5+stem)
+
+excl <- c(excl, c("math_science_research", "stats_class"))
+excl <- c(excl, c("calc_1", "math_skills", "stem"))
+incl <- setdiff(names(ans.model), excl)
+
+m0 <- lm(lineup~., data=ans.model[, incl])
+
+# use AIC in backward selection
+library(MASS)
+m1 <- stepAIC(m0, direction="both")
+@
+<<modelresults>>=
+anova(m1)
+summary(m1)
+@
+\subsection{Lineup Types}
+\comments{
+results need to go here
 }
 
-\newtext{This emphasizes the underpinnings of lineups: they are a visual medium, but they ultimately are a classification task, presented in a graphical manner. Using lineups as a proxy for statistical significance tests is similar to using a classifier on pictoral data: while the data is presented ``graphically", the participant is actually classifying the data based on underlying summary statistics.}
-
+\section{Discussion and Conclusions}
 
 All results and data shown here were collected and analyzed in accordance with IRB \# 13-581.
 
@@ -629,49 +683,7 @@ The visual search task is also clearly important to lineup performance: PC3 capt
 
 PC4 captures the similarity between lineups and the card rotation task and separates this similarity from the figure classification task; this similarity does not account for much extra variance (10\%), but it may be that only some lineups require spatial rotation skills. PC5 contains only 5\% of the remaining variance, and is thus not of much interest, however, it seems to capture the relationship between the card rotation task and the paper folding and visual search tasks.
 
-\section{Linear Model}
-<<linearmodel, results='hide'>>=
-pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
-ans.model <- data.frame(ans.summary, data.frame(pca2$x))
-# exclude all variables that are not supposed to go into the linear model
-# those are the unrotated tests; instead we have the PCs
-excl <- c("id", "card_rot", "fig_class", "folding", "vis_search", "vidgame_hrs", "major1", "major2", "minor1", "minor2", "learning_disability", "colorblind", "epilepsy", "normal_vision")
 
-ans.model$math_science_research <- ans.model$math_science_research=="y"
-ans.model$stats_class <- ans.model$stats_class=="y"
-ans.model$calc_1 <- ans.model$calc_1=="y"
-pcmath <- prcomp(ans.model[,c("math_science_research", "stats_class", "calc_1", "math_skills", "stem")])
-biplot(pcmath)
-biplot(pcmath, 3:4)
-# variables split into stats_class/math_science_research and calc_1/math_skills
-# leave out math_skills in favor of calc_1 - for interpretability
-
-
-xtabs(~stem+sex, data=ans.model)
-# sad day! 
-
-xtabs(~stem+calc_1, data=ans.model)
-# stem major is more associated with performance on lineups than calc 1...
-
-xtabs(~stats_class+math_science_research, data=ans.model)
-# only one kid is doing research without a stats class
-
-# recode to sum of them
-ans.model$statsP <- with(ans.model, stats_class + math_science_research)
-
-excl <- c(excl, c("math_skills", "math_science_research", "stats_class"))
-incl <- setdiff(names(ans.model), excl)
-
-m0 <- lm(lineup~., data=ans.model[, incl])
-
-# use AIC in backward selection
-library(MASS)
-m1 <- stepAIC(m0, direction="both")
-@
-<<modelresults>>=
-anova(m1)
-summary(m1)
-@
 
 \section{Lineup Types}
 The two lineup sections which contain boxplots are shown as separate density curves, as they appear to be testing different things (outliers vs. difference in medians). 
@@ -695,11 +707,7 @@ qplot(data=subset(lineup.type.sum2, !is.na(plot.type)& testtype=="lineup"),
 @
 Conclusion: stacked bar plots are awful - the same as guessing. 
 
-<<<<<<< HEAD
 <<lineup-types-scores,echo=F, fig.cap="Plot of scaled lineup scores by aptitude test scores", fig.width=6, fig.height=12, out.width=".65\\linewidth", fig.env="figure*", warning=F, message=F>>=
-=======
-<<lineup-types-scores,echo=F, fig.cap="Plot of scaled lineup scores by aptitude test scores", fig.width=6, fig.height=12, out.width=".65\\linewidth", fig.env="figure*">>=
->>>>>>> changes during the meeting
 lineup.type.sum3 <- dcast(lineup.type.sum2, id + testtype ~ plot.type, value.var="pos.pts", fun.aggregate = sum)
 other.scores <- subset(lineup.type.sum3, testtype!="lineup")[,c(1,2,13)]
 names(other.scores)[3] <- "testscore"
