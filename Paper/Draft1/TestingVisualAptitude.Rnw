@@ -320,7 +320,8 @@ Comparison population data was chosen to most closely match ISU undergraduate po
 
 Applying the grading protocol discussed in section~\ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure~\ref{fig:Scores} shows the range of possible scores and the observed score distribution. 
 
-<<ResultsScaledScores, echo=F, include=T, fig.pos="htb", fig.cap="Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \\label{fig:Scores}", fig.width=4.5, fig.height=4.5, out.width='\\linewidth', warning=F, message=F>>=
+\begin{figure}[ht]
+<<ResultsScaledScores, echo=F, include=T, fig.width=4.5, fig.height=4.5, out.width='\\linewidth', warning=F, message=F>>=
 
 score.summary <- melt(ans.summary, measure.vars=21:25, value.name = "Score", variable.name = "Test")
 score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
@@ -350,6 +351,8 @@ ggplot() +
         legend.key.height=unit(6, "mm")) 
   #coord_flip()
 @
+\caption{Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \label{fig:Scores}}
+\end{figure}
 % 
 
 % Applying the grading protocol discussed in section~\ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure~\ref{fig:Scores} shows the range of possible scores and the observed score distribution. 
@@ -483,17 +486,16 @@ More detailed results from the 4-test analysis are provided in Appendix \ref{app
 
 
 Incorporating the lineup task into the principal component analysis, we find the principal components to be fairly similar to the four-component analysis. 
-Table~\ref{tab:PCAvariance5} shows the importance of each principal component. \newtext{From the distribution of the variance components, we see that the lineup test  spans an additional dimension within the space of the four established tests.} From the rotation matrix (see Table~\ref{tab:PCArotation5}) we see that  
-
+Table~\ref{tab:PCAvariance5} shows the importance of each principal component. From the distribution of the variance components, we see that the lineup test  spans an additional dimension within the space of the four established tests. 
 <<pcasummary5,echo=F, results='asis'>>=
-print(xtable(summary(pca), caption="Importance of principal components, analyzing all five tests.\\label{tab:PCAvariance5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
+print(xtable(summary(pca), caption="Importance of principal components, analyzing all five tests.\\label{tab:PCAvariance5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="ht", caption.placement="top")
 @
 
 <<pcarotation5,echo=F, results='asis'>>=
 print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests. The first principal component is essentially an average of all five tests. 
              \\label{tab:PCArotation5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
 @
-
+From the rotation matrix (see Table~\ref{tab:PCArotation5}) we see that  
 the first principal component, PC1, is again essentially an average across all tests and accounts for \Sexpr{round(summary(pca)$importance[3,1]*100,1)}\% of the variance in the data. 
 Biplots of the remaining components are provided in Appendix \ref{app:pca5}. 
 
@@ -559,7 +561,7 @@ m1 <- stepAIC(m0, direction="both")
 }
 <<modelresults, echo=FALSE, results='asis'>>=
 library(xtable)
-xtable(summary(m1), caption="Estimates and significances of a linear model of lineup scores.", label="tab:m1")
+print(xtable(summary(m1), caption="Estimates and significances of a linear model of lineup scores.", label="tab:m1"), caption.placement="top")
 @
 \subsection{Lineup Types}
 \comment{
@@ -609,7 +611,7 @@ To get a single unified score with standard deviation, we completed the followin
 \newtext{where $\mu_F$ and $\mu_M$ are the mean of female and male scores respectively, $N_F$ and $N_M$ are the number of participants in each group, and $\sigma_F^2$ and $\sigma_M^2$ are the variance of each group.
 Substituting in the provided numbers, we get}
 \begin{align*}
-\mu_{\text{all}} &= \left(323\!*\!114.9\! +\! 294\!*\!120.0\right)/(323\!+\!294) \\
+\mu_{\text{all}} &= \left(323\!\cdot\!114.9\! +\! 294\!\cdot\!120.0\right)/(323\!+\!294) \\
 & = \Sexpr{round((120.0*294 + 114.9*323)/617/2, 1)}\\
 \sigma_{\text{all}} &= \sqrt{\left(323(27.8)^2 \!+\! 294(30)^2\right)/(323\!+\!294)} \\
 & = \Sexpr{round(sqrt((30^2*294 + 27.8^2*323)/617)/2, 1)}.
