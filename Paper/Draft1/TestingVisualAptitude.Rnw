@@ -512,8 +512,8 @@ This emphasizes the underpinnings of lineups: they are a visual medium, but they
 
 
 \subsection{Linear model of demographic factors}
-\newtext{The demographic variables are highy correlated, e.g.~there is a high correlation between STEM majors and taking calculus 1 -- only eight students are either not STEM, but have taken calculaus 1 or are STEM but have not taken the class. The situation between a statistics class and doing research is even more correlated. Only one student is doing research who has (not yet ?) taen a statistics course. A principal component of the five math/stats questions splits the variables into two areas: the first principal component is an average of math skills, calculaus 1 and STEM, while the second principal component is an average of XXX }
-<<linearmodel, results='hide'>>=
+\newtext{The demographic variables are highy correlated, e.g.~there is a high correlation between STEM majors and taking calculus 1 -- only eight students are either not STEM, but have taken calculaus 1 or are STEM but have not taken the class. The situation between a statistics class and doing research is even more correlated. Only one student is doing research who has (not yet ?) taken a statistics course. A principal component of the five math/stats questions splits the variables into two areas: the first principal component is an average of math skills, calculus 1 and STEM, while the second principal component is an average of having taken a statistics class and doing research. We therefore decided to use sums of these variables to come up with a separate math and a stats score. Note, that the correlation between the math and the stats score is almost zero. }
+<<linearmodel, results='hide', echo=FALSE>>=
 pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 ans.model <- data.frame(ans.summary, data.frame(pca2$x))
 # exclude all variables that are not supposed to go into the linear model
@@ -528,11 +528,8 @@ pcmath$rotation
 # first component of math PCA is average of math_skills, calc_1 and stem
 # second component is stat_class and research
 
-#pcm <- data.frame(pcmath$x)
-#names(pcm) <- paste("SM", 1:5, sep="")
-#ans.model <- data.frame(ans.model, pcm)
-biplot(pcmath)
-biplot(pcmath, 3:4)
+#biplot(pcmath)
+#biplot(pcmath, 3:4)
 
 
 xtabs(~stem+sex, data=ans.model)
@@ -558,12 +555,14 @@ m0 <- lm(lineup~., data=ans.model[, incl])
 library(MASS)
 m1 <- stepAIC(m0, direction="both")
 @
-<<modelresults>>=
-anova(m1)
-summary(m1)
+\newtext{We fit a linear model of lineup scores in all of the demographic variables and the test scores from the visuo-spatial tests. Then we use a step-wise backwards selection based on AIC (Akaike Information Criterion - do we need a reference?) to select the best model. The result is shown in table~\ref{tab:m1}. Only two covariates stay in the model: PC1 and MATH, reflecting two dimensions of what affects lineup scores. We can think of PC1 as an innate visual ability, while the MATH score is a matter of both ability and training. 
+}
+<<modelresults, echo=FALSE, results='asis'>>=
+library(xtable)
+xtable(summary(m1), caption="Estimates and significances of a linear model of lineup scores.", label="tab:m1")
 @
 \subsection{Lineup Types}
-\comments{
+\comment{
 results need to go here
 }
 
