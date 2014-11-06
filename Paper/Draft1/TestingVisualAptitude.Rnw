@@ -511,7 +511,10 @@ This emphasizes the underpinnings of lineups: the test utilizes a visual medium,
 
 \subsection{Linear model of demographic factors}
 \newtext{Note that all of the demographic variables in the survey are highy correlated, for example there is a high correlation between STEM majors and taking calculus.% -- only eight students are either not STEM, but have taken calculaus 1 or are STEM but have not taken the class. 
-Similarly, the correlation  between having taken a statistics class and having been involved in mathematics or statistics research is high. Only one student is doing research who has (not yet ?) taken a statistics course. A principal component of the five math/stats questions splits the variables into two main areas: the first principal component is an average of math skills, calculus 1 and STEM, while the second principal component is an average of having taken a statistics class and doing research. We therefore decided to use sums of these variables to come up with a separate math and a stats score. Note, that the correlation between the math and the stats score is almost zero. }
+Similarly, the correlation  between having taken a statistics class and having been involved in mathematics or statistics research is high. Only one student is doing research who has (not yet ?) taken a statistics course. }
+\comment{The honors program puts freshman in research labs in their first year; Ryan worked in a corn biology lab as a physics/engineering major. If they are LBAR, they may still be placed in science labs, or they could be doing LBAR research - may not require stats.}
+\newtext{
+A principal component of the five math/stats questions splits the variables into two main areas: the first principal component is an average of math skills, calculus 1 and STEM, while the second principal component is an average of having taken a statistics class and doing research. We therefore decided to use sums of these variables to come up with a separate math and a stats score. Note, that the correlation between the math and the stats score is almost zero. }
 <<linearmodel, results='hide', echo=FALSE>>=
 pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 ans.model <- data.frame(ans.summary, data.frame(pca2$x))
