@@ -105,7 +105,7 @@ datadir <- "../../Data/"
 imgdir <- "Figure/"
 codedir <- "../../Code/"
 
-options(replace.assign=TRUE,width=30,scipen=3)
+options(replace.assign=TRUE,scipen=3)
 
 
 library(reshape2)
@@ -499,23 +499,19 @@ From the rotation matrix (see Table~\ref{tab:PCArotation5}) we see that
 the first principal component, PC1, is again essentially an average across all tests and accounts for \Sexpr{round(summary(pca)$importance[3,1]*100,1)}\% of the variance in the data. 
 Biplots of the remaining components are provided in Appendix \ref{app:pca5}. 
 
-Figure classification is strongly related to lineups (PC2, PC3), and as in the four-component PCA, figure classification is strongly represented in both principal components. 
-Performance on the visual search task is also related to lineup performance (PC3), and is more strongly represented in PC3 in the five-component PCA than in the four-componet PCA. 
-These two components highlight the shared demands of the lineup task and the figure classification task: participants must establish categories from provided stimuli and then classify the stimuli accordingly.
+Figure classification is strongly related to lineups, and as in the four-component PCA, figure classification is strongly represented in the first two principal components. While lineups do span a separate dimension, the PCA suggests that they are most closely related to the figure classification task, and least related to the visual searching task.
 
-While lineups do span a separate dimension, but the PCA also suggests that they are most closely related to the figure classification task, and least related to the visual searching task.
+% 
+% The additional dimension, PC4 in the five-component PCA, separates lineups from the figure classification task and incorporates the relatively weak correlation between performance on the card rotation task and lineup performance; this dimension accounts for \Sexpr{round(summary(pca)$importance[2,4]*100,1)}\% of the variance. 
+% PC5 is almost identical to PC4 in the four-component PCA; as before, it does not account for a significant portion of the variance in the data.
+% 
 
-
-The additional dimension, PC4 in the five-component PCA, separates lineups from the figure classification task and incorporates the relatively weak correlation between performance on the card rotation task and lineup performance; this dimension accounts for \Sexpr{round(summary(pca)$importance[2,4]*100,1)}\% of the variance. 
-PC5 is almost identical to PC4 in the four-component PCA; as before, it does not account for a significant portion of the variance in the data.
-
-
-This emphasizes the underpinnings of lineups: they are a visual medium, but they ultimately are a classification task, presented in a graphical manner. Using lineups as a proxy for statistical significance tests is similar to using a classifier on pictoral data: while the data is presented ``graphically", the participant is actually classifying the data based on underlying summary statistics.
+This emphasizes the underpinnings of lineups: the test utilizes a visual medium, but is ultimately are a classification task presented in a graphical manner. Using lineups as a proxy for statistical significance tests is similar to using a classifier on pictoral data: while the data is presented ``graphically", the participant is actually classifying the data based on underlying summary statistics.
 
 
 \subsection{Linear model of demographic factors}
 \newtext{Note that all of the demographic variables in the survey are highy correlated, for example there is a high correlation between STEM majors and taking calculus.% -- only eight students are either not STEM, but have taken calculaus 1 or are STEM but have not taken the class. 
-Similaryl, the correlation  between having taken a statistics class and having been involved in mathematics or statistics research is high. Only one student is doing research who has (not yet ?) taken a statistics course. A principal component of the five math/stats questions splits the variables into two main areas: the first principal component is an average of math skills, calculus 1 and STEM, while the second principal component is an average of having taken a statistics class and doing research. We therefore decided to use sums of these variables to come up with a separate math and a stats score. Note, that the correlation between the math and the stats score is almost zero. }
+Similarly, the correlation  between having taken a statistics class and having been involved in mathematics or statistics research is high. Only one student is doing research who has (not yet ?) taken a statistics course. A principal component of the five math/stats questions splits the variables into two main areas: the first principal component is an average of math skills, calculus 1 and STEM, while the second principal component is an average of having taken a statistics class and doing research. We therefore decided to use sums of these variables to come up with a separate math and a stats score. Note, that the correlation between the math and the stats score is almost zero. }
 <<linearmodel, results='hide', echo=FALSE>>=
 pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 ans.model <- data.frame(ans.summary, data.frame(pca2$x))
@@ -558,7 +554,7 @@ m0 <- lm(lineup~., data=ans.model[, incl])
 library(MASS)
 m1 <- stepAIC(m0, direction="both")
 @
-\newtext{We fit a linear model of lineup scores in the thus modified demographic variables and the test scores from the visuo-spatial tests. Using a step-wise backwards selection based on AIC (Akaike Information Criterion - do we need a reference?) we select the best model. The result is shown in table~\ref{tab:m1}. Only two covariates stay in the model: PC1 and MATH, reflecting two dimensions of what affects lineup scores. We can think of PC1 as an innate visual ability, while the MATH score is a matter of both ability and training. 
+\newtext{We fit a linear model of lineup scores in the thus modified demographic variables and the test scores from the visuo-spatial tests, selecting the best model using AIC and stepwise backwards selection. The result is shown in table~\ref{tab:m1}. Only two covariates stay in the model: PC1 and MATH, reflecting two dimensions of what affects lineup scores. We can think of PC1 as a measure of innate visual or intellectual ability, while the MATH score is a matter of both ability and training. 
 }
 <<modelresults, echo=FALSE, results='asis'>>=
 library(xtable)
