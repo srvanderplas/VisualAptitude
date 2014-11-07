@@ -510,11 +510,10 @@ This emphasizes the underpinnings of lineups: the test utilizes a visual medium,
 
 
 \subsection{Linear model of demographic factors}
-\newtext{Note that all of the demographic variables in the survey are highy correlated, for example there is a high correlation between STEM majors and taking calculus.% -- only eight students are either not STEM, but have taken calculaus 1 or are STEM but have not taken the class. 
-Similarly, the correlation  between having taken a statistics class and having been involved in mathematics or statistics research is high. Only one student is doing research who has (not yet ?) taken a statistics course. }
-\comment{The honors program puts freshman in research labs in their first year; Ryan worked in a corn biology lab as a physics/engineering major. If they are LBAR, they may still be placed in science labs, or they could be doing LBAR research - may not require stats.}
-\newtext{
-A principal component of the five math/stats questions splits the variables into two main areas: the first principal component is an average of math skills, calculus 1 and STEM, while the second principal component is an average of having taken a statistics class and doing research. We therefore decided to use sums of these variables to come up with a separate math and a stats score. Note, that the correlation between the math and the stats score is almost zero. }
+Note that all of the demographic variables in the survey are highy correlated, for example there is a high correlation between STEM majors and taking calculus.% -- only eight students are either not STEM, but have taken calculaus 1 or are STEM but have not taken the class. 
+Similarly, the correlation  between having taken a statistics class and having been involved in mathematics or statistics research is high. Only one student is doing research who has (not yet?) taken a statistics course. 
+%\comment{The honors program puts freshman in research labs in their first year; Ryan worked in a corn biology lab as a physics/engineering major. If they are LBAR, they may still be placed in science labs, or they could be doing LBAR research - may not require stats.}
+A principal component of the five math/stats questions splits the variables into two main areas: the first principal component is an average of math skills, calculus 1 and STEM, while the second principal component is an average of having taken a statistics class and doing research. We therefore decided to use sums of these variables to come up with a separate math and a stats score. Note, that the correlation between the math and the stats score is almost zero. 
 <<linearmodel, results='hide', echo=FALSE>>=
 pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 ans.model <- data.frame(ans.summary, data.frame(pca2$x))
@@ -557,8 +556,8 @@ m0 <- lm(lineup~., data=ans.model[, incl])
 library(MASS)
 m1 <- stepAIC(m0, direction="both")
 @
-\newtext{We fit a linear model of lineup scores in the thus modified demographic variables and the test scores from the visuo-spatial tests, selecting the best model using AIC and stepwise backwards selection. The result is shown in table~\ref{tab:m1}. Only two covariates stay in the model: PC1 and MATH, reflecting two dimensions of what affects lineup scores. We can think of PC1 as a measure of innate visual or intellectual ability, while the MATH score is a matter of both ability and training. The remaining principal components were not sufficiently associated with lineup score to include in the model.
-}
+We fit a linear model of lineup scores in the thus modified demographic variables and the test scores from the visuo-spatial tests, selecting the best model using AIC and stepwise backwards selection. The result is shown in table~\ref{tab:m1}. Only two covariates stay in the model: PC1 and MATH, reflecting two dimensions of what affects lineup scores. We can think of PC1 as a measure of innate visual or intellectual ability, while the MATH score is a matter of both ability and training. The remaining principal components were not sufficiently associated with lineup score to be included in the model.
+
 <<modelresults, echo=FALSE, results='asis'>>=
 library(xtable)
 print(xtable(summary(m1), caption="Estimates and significances of a linear model of lineup scores.", label="tab:m1"), caption.placement="top")
