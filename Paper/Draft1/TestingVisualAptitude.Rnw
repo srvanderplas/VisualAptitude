@@ -563,8 +563,10 @@ library(xtable)
 print(xtable(summary(m1), caption="Estimates and significances of a linear model of lineup scores.", label="tab:m1"), caption.placement="top")
 @
 \subsection{Lineup Types}
+\newtext{The survey consisted of three sets of different types of lines. Examples lineups for each type of plot are provided in Appendix \ref{app:lineuptypes}. 
+}
 \newtext{
-We can also compare participants' performance on specific types of lineup plots compared with their scores on the visual aptitude tests, for instance, accuracy on lineups which require mental rotation may be related to performance on the card rotation task. Examples lineups for each type of plot are provided in Appendix \ref{app:lineuptypes}.
+We can also compare participants' performance on specific types of lineup plots compared with their scores on the visual aptitude tests, for instance, accuracy on lineups which require mental rotation may be related to performance on the card rotation task. 
 }
 
 <<lineup-types,echo=F, fig.cap="Plot of scaled scores for different types of lineups\\label{fig:plottypesdensity}", fig.width=3, fig.height=6, out.width=".9\\linewidth", warning=F, message=F>>=
