@@ -519,8 +519,8 @@ This emphasizes the underpinnings of lineups: the test utilizes a visual medium,
 
 
 \subsection{Linear model of demographic factors}
-Note that all of the demographic variables in the survey are highy correlated, for example there is a high correlation between STEM majors and taking calculus.% -- only eight students are either not STEM, but have taken calculaus 1 or are STEM but have not taken the class. 
-Similarly, the correlation  between having taken a statistics class and having been involved in mathematics or statistics research is high. Only one student is doing research who has (not yet?) taken a statistics course. 
+Note that all of the demographic variables in the survey are highy correlated, for example there is a high correlation between STEM majors and taking calculus. % -- only eight students are either not STEM, but have taken calculaus 1 or are STEM but have not taken the class. 
+Similarly, the correlation  between having taken a statistics class and having been involved in mathematics or statistics research is high. Only one student is doing research who has not taken a statistics course. 
 %\comment{The honors program puts freshman in research labs in their first year; Ryan worked in a corn biology lab as a physics/engineering major. If they are LBAR, they may still be placed in science labs, or they could be doing LBAR research - may not require stats.}
 A principal component of the five math/stats questions splits the variables into two main areas: the first principal component is an average of math skills, calculus 1 and STEM, while the second principal component is an average of having taken a statistics class and doing research. We therefore decided to use sums of these variables to come up with a separate math and a stats score. Note, that the correlation between the math and the stats score is almost zero. 
 <<linearmodel, results='hide', echo=FALSE>>=
@@ -572,8 +572,83 @@ library(xtable)
 print(xtable(summary(m1), caption="Estimates and significances of a linear model of lineup scores.", label="tab:m1"), caption.placement="top")
 @
 \subsection{Lineup Types}
-\newtext{The survey consisted of three sets of different types of lines. Examples lineups for each type of plot are provided in Appendix \ref{app:lineuptypes}. 
+\newtext{Each of the three sets of 20 lineups was taken from previous experiments which tested different types of plots to determine which plot type most effectively conveyed important characteristics of the underlying data set. }
+\comment{Add experiment summary/refs here}
+\newtext{Examples lineups for each experiment are provided in Appendix \ref{app:lineuptypes}. 
 }
+
+\newtext{The experiment in the first lineup section examined the use of boxplots, density plots, histograms, and dotplots to compare two groups with different means and outliers. 
+}
+\comment{Add note about experimental performance, general accuracy rate, etc.}
+
+\newtext{The second lineup section also explored two groups of data, this time comparing boxplots, bee swarm boxplots, boxplots with overlaid jittered data, and violin plots. Participants were much more accurate in this experiment ...
+}
+\comment{Add note about experimental performance, general accuracy rate, etc.}
+
+\newtext{The final lineup section explored qq plots from various model simulations, using reference lines, acceptance bands, and rotation to determine which plots allowed participants to most effectively identify violations of normality. Rotated qq plots showed lower performance because participants could more accurately compare acceptance bands to residuals, and thus could identify that the reference bands were too liberal. As a result, performance was somewhat lower for rotated plots, even though participants could more accurately compare the residuals to the reference bands.}
+\comment{Add citations, more explanations, etc.}
+
+\newtext{Calculating participant scores on each block of lineups separately, we can use principal components analysis to examine which lineup tasks are most closely associated with visual abilities tested in the aptitude portions of this experiment.} 
+
+<<lineupblockpca, echo=F, warning=F, message=F, fig.cap="Lineup block PCA rotation matrix in graphical form.">>=
+lineup.block.pca <- prcomp(lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
+rotation <- melt(lineup.block.pca$rotation)
+importance <- as.data.frame(summary(lineup.block.pca)$importance)[2,]
+rotation <- merge(rotation, melt(importance, variable.name="Var2", value.name="importance"))
+rotation$Var1 <- factor(rotation$Var1, 
+                        levels=c("vis_search", "folding", "card_rot", "fig_class", "lineup_3", "lineup_2", "lineup_1"),
+                        labels=c("Visual Search", "Paper Folding", "Card Rotation", "Figure Class.", "Lineup Test 3", "Lineup Test 2", "Lineup Test 1"))
+library(grid) # needed for arrow function
+qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotation, arrow=arrow(length=unit(0.1, "cm"))) + facet_wrap(~Var2) + xlab("Contribution to each PC * % Variance in PC") + ggtitle("Lineup Types and Visual Aptitude") + ylab("")
+@
+
+\newtext{We see that again, PC1 accounts for general visual aptitude. PC2, however, emphasizes the relationship between figure classification and Lineup task 1 (and to a lesser extent, on lineup task 2). PC3 differentiates the lineup task 3 from the visual search task; other tasks do not impact PC3 to a meaningful degree. PC4 separates lineup test 2 from the paper folding and card rotation tests and emphasizes the overlap with the visual search test. PC5 separates lineup test 2 and the figure classification test from the overlap between the other lineup tests and the visual search test. PC 6 and 7 account for \Sexpr{as.numeric(round(100*importance[6], 1))}\% and \Sexpr{as.numeric(round(100*importance[7], 1))}\% of the variance, respectively; PC6 seems to differentiate the first two lineup tasks from the overlap between the third lineup task and the figure classification task.
+}
+<<lineupblockpca-biplot,echo=F, warning=F, message=F, fig.cap="This is awful, but at least shows everything", fig.env="figure*", fig.width=11, fig.height=10, out.width=".9\\linewidth">>=
+data <- as.data.frame(lineup.block.pca$rotation)
+grid <- expand.grid(x=1:7, y=1:7)
+grid <- subset(grid, x != y)
+
+all <- do.call("rbind", lapply(1:nrow(grid), function(i) {
+  xcol <- grid[i, "x"]
+  ycol <- grid[i, "y"]
+
+  rbind.fill(
+    data.frame(
+      xvar = names(data)[xcol], 
+      yvar = names(data)[ycol],
+      x = 0,
+      y = 0,
+      xend = data[, xcol], 
+      yend = data[, ycol], 
+      label = rownames(data),
+      points = T
+    )
+  )
+}))
+all$xvar <- factor(all$xvar, levels=names(data))
+all$yvar <- factor(all$yvar, levels=names(data))
+
+tmp <- rotation[,1:3]
+names(tmp) <- c("xvar", "label", "rotation")
+tmp$xvar <- tmp$yvar <- factor(tmp$xvar, levels=names(data))
+
+all$label <- factor(all$label, 
+                        levels=c("vis_search", "folding", "card_rot", "fig_class", "lineup_1", "lineup_2", "lineup_3"),
+                        labels=c("Visual Search", "Paper Folding", "Card Rotation", "Figure Class.", "Lineup Test 1", "Lineup Test 2", "Lineup Test 3"))
+
+ggplot()+
+  geom_segment(data=subset(all, points), aes(x=x, y=y, xend=xend, yend=yend, colour=label), arrow=arrow(length=unit(.1, "cm"))) + 
+#   geom_point(data=tmp, aes(x=0*rotation, y=rotation, colour=label)) + 
+  geom_text(data=tmp, aes(x=ceiling(rotation)-.5, y=rotation, label=label, colour=label)) + 
+  facet_grid(xvar~yvar) + 
+  theme_bw() + 
+  theme(axis.title=element_blank()) + 
+  scale_colour_manual("Test", values = c("#f781bf", "#e41a1c", "#ff7f00", "#66a61e", "#1d91c0", "#225ea8", "#0c2c84"))
+rm(list=c("data", "all"))
+@
+\subsection{Lineup Plot Types}
+
 \newtext{
 We can also compare participants' performance on specific types of lineup plots compared with their scores on the visual aptitude tests, for instance, accuracy on lineups which require mental rotation may be related to performance on the card rotation task. 
 }

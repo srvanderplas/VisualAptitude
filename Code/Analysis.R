@@ -110,6 +110,22 @@ longform.sum <- merge(longform.sum, qrange)
 # Calculate raw score
 longform.sum$value <- with(longform.sum, pos.pts-neg.pts)
 
+# calculate scores by lineup section
+lineup.sec.sum <- ddply(longform, .(id, testtype, testnum), summarize, 
+                         pos.pts = ifelse(is.numeric(value), sum(value, na.rm=T), unique(value)),
+                         neg.pts = ifelse(is.numeric(value), sum((1-value)*penalty, na.rm=T), unique(value)), 
+                         total.pos = length(value),
+                         total.neg = sum(rep(1, length(value))*penalty))
+lineup.sec.sum$score <- with(lineup.sec.sum, (pos.pts-neg.pts))
+lineup.sec.sum2 <- ddply(subset(lineup.sec.sum, testtype!="lineup"), .(id, testtype), summarize, score=sum(score), pos.pts=sum(pos.pts), neg.pts=sum(neg.pts), total.pos=sum(total.pos), total.neg=sum(total.neg))
+lineup.section.sum <- rbind.fill(lineup.sec.sum2, subset(lineup.sec.sum, testtype=="lineup"))
+lineup.section.sum$testnum[is.na(lineup.section.sum$testnum)] <- ""
+lineup.section.sum$testnum[nchar(lineup.section.sum$testnum)>0] <- paste0("_", lineup.section.sum$testnum[nchar(lineup.section.sum$testnum)>0])
+lineup.section.sum$testtype <- paste0(lineup.section.sum$testtype, lineup.section.sum$testnum)
+
+lineup.section.summary <- merge(ans[,1:20], dcast(lineup.section.sum, id~testtype, value.var="score", na.rm=TRUE))
+rm(lineup.sec.sum2, lineup.sec.sum, lineup.section.sum)
+
 # calculate scores by question type
 longform2 <- merge(longform, keytype, by.x="variable", by.y="question", all.x=T, all.y=T)
 lineup.type.sum <- ddply(longform2, .(id, testtype, plot.type, testnum), summarize, 
@@ -121,7 +137,7 @@ lineup.type.sum$score <- with(lineup.type.sum, (pos.pts-neg.pts))
 lineup.type.sum2 <- ddply(subset(lineup.type.sum, testtype!="lineup"), .(id, testtype), summarize, score=sum(score), pos.pts=sum(pos.pts), neg.pts=sum(neg.pts), total.pos=sum(total.pos), total.neg=sum(total.neg))
 lineup.type.sum$score <- with(lineup.type.sum, (pos.pts-neg.pts)/total.pos)
 lineup.type.sum2 <- rbind.fill(lineup.type.sum2, subset(lineup.type.sum, testtype=="lineup"))
-
+rm(lineup.type.sum, longform2)
 
 # Save unscaled version
 # longform.sum.unscaled <- longform.sum
