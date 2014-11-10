@@ -574,10 +574,10 @@ We can also compare participants' performance on specific types of lineup plots 
 lineup.type.sum2$plot.type <- str_replace(lineup.type.sum2$plot.type, "rotated", "rot")
 lineup.type.sum2$plot.type <- str_replace(as.character(lineup.type.sum2$plot.type), "error", "err")
 lineup.type.sum2$plot.type <- factor(lineup.type.sum2$plot.type, 
-                                     levels=c("boxplot", "jitter.boxplot", "violinplot", "bee.swarm.boxplot", 
+                                     levels=c("violinplot", "jitter.boxplot", "bee.swarm.boxplot", "boxplot", 
                                               "scatterplot", "density", "histogram", 
                                               "qq.line", "qq.line.err", "qq.line.err.rot"), 
-                                     labels=c("Boxplot", "Boxplot + \nOverlaid Data", "Violin Plot", "Bee Swarm Boxplot",
+                                     labels=c("Violin Plot", "Boxplot + \nOverlaid Data", "Bee Swarm Boxplot", "Boxplot", 
                                               "Scatterplot", "Density Plot", "Overlaid Histogram", 
                                               "QQ plot + Line", "QQ plot +\nAcceptance Band", 
                                               "Rotated QQ plot +\nAcceptance Band")
@@ -612,11 +612,11 @@ lineup.scores <- melt(subset(lineup.type.sum3, testtype=="lineup")[,c(1,3:12)], 
 names(lineup.scores)[2:3] <- c("lineup.type", "lineup.pct")
 lineup.type.sum3 <- merge(other.scores, lineup.scores, all.x=T, all.y=T)
 lineup.type.sum3$lineup.type <- factor(lineup.type.sum3$lineup.type, 
-                                     levels=c("Boxplot", "Boxplot + \nOverlaid Data", "Violin Plot", "Bee Swarm Boxplot",
+                                     levels=c("Violin Plot", "Boxplot + \nOverlaid Data", "Bee Swarm Boxplot", "Boxplot", 
                                               "Scatterplot", "Density Plot", "Overlaid Histogram", 
                                               "QQ plot + Line", "QQ plot +\nAcceptance Band", 
                                               "Rotated QQ plot +\nAcceptance Band"), 
-                                     labels=c("Boxplot", "Boxplot\n + Points", "Violin Plot", "Bee Swarm \nBoxplot",
+                                     labels=c("Violin Plot", "Boxplot\n + Points", "Bee Swarm \nBoxplot", "Boxplot", 
                                               "Scatter\nPlot", "Density\nPlot", "Overlaid\nHistogram", 
                                               "QQ plot\n+ Line", "QQ plot\n+ Bands", 
                                               "Rotated QQ\nplot + Bands")
