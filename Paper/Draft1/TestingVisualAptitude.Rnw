@@ -578,14 +578,14 @@ print(xtable(summary(m1), caption="Estimates and significances of a linear model
 We can also compare participants' performance on specific types of lineup plots compared with their scores on the visual aptitude tests, for instance, accuracy on lineups which require mental rotation may be related to performance on the card rotation task. 
 }
 
-<<lineup-types,echo=F, fig.cap="Plot of scaled scores for different types of lineups\\label{fig:plottypesdensity}", fig.width=3, fig.height=6, out.width=".9\\linewidth", warning=F, message=F>>=
+<<lineup-types,echo=F, fig.cap="Plot of scaled scores for different types of lineups\\label{fig:plottypesdensity}", fig.width=4, fig.height=8, out.width=".9\\linewidth", warning=F, message=F>>=
 lineup.type.sum2$plot.type <- str_replace(lineup.type.sum2$plot.type, "rotated", "rot")
 lineup.type.sum2$plot.type <- str_replace(as.character(lineup.type.sum2$plot.type), "error", "err")
 lineup.type.sum2$plot.type <- factor(lineup.type.sum2$plot.type, 
                                      levels=c("violinplot", "jitter.boxplot", "bee.swarm.boxplot", "boxplot", 
                                               "scatterplot", "density", "histogram", 
                                               "qq.line", "qq.line.err", "qq.line.err.rot"), 
-                                     labels=c("Violin Plot", "Boxplot + \nOverlaid Data", "Bee Swarm Boxplot", "Boxplot", 
+                                     labels=c("Violin Plot", "Boxplot + Points", "Bee Swarm Boxplot", "Boxplot", 
                                               "Scatterplot", "Density Plot", "Overlaid Histogram", 
                                               "QQ plot + Line", "QQ plot +\nAcceptance Band", 
                                               "Rotated QQ plot +\nAcceptance Band")
@@ -620,7 +620,7 @@ lineup.scores <- melt(subset(lineup.type.sum3, testtype=="lineup")[,c(1,3:12)], 
 names(lineup.scores)[2:3] <- c("lineup.type", "lineup.pct")
 lineup.type.sum3 <- merge(other.scores, lineup.scores, all.x=T, all.y=T)
 lineup.type.sum3$lineup.type <- factor(lineup.type.sum3$lineup.type, 
-                                     levels=c("Violin Plot", "Boxplot + \nOverlaid Data", "Bee Swarm Boxplot", "Boxplot", 
+                                     levels=c("Violin Plot", "Boxplot + Points", "Bee Swarm Boxplot", "Boxplot", 
                                               "Scatterplot", "Density Plot", "Overlaid Histogram", 
                                               "QQ plot + Line", "QQ plot +\nAcceptance Band", 
                                               "Rotated QQ plot +\nAcceptance Band"), 
@@ -644,6 +644,10 @@ qplot(data=subset(lineup.type.sum3, testtype!="vis_search"),
         plot.margin=unit(c(0,0,0,0),"mm"))
 @
 
+\newtext{For comparison, the correlation between general lineup score (non-subdivided) and the card rotation test score was \Sexpr{sprintf("%.3f", cor(ans.summary$lineup, ans.summary$card_rot))}, the correlation between general lineup score and the figure classification test was \Sexpr{sprintf("%.3f", cor(ans.summary$lineup, ans.summary$fig_class))}, and the correlation between lineup score and the paper folding test was \Sexpr{sprintf("%.3f", cor(ans.summary$lineup, ans.summary$folding))}.}
+\newtext{While we can compare the correlation strength between tasks, it is clear that the correlation between the score on any single lineup type and a particular visual aptitude score is lower than the overall relationship that we attribute to visual ability. }
+\newtext{Additional data is imperative to understand the reasoning required for specific types of plots - it is likely that the 5-10 trials per participant presented in each chart in figure \ref{fig:scatterplottypes} are simply not sufficient to uncover any specific relationship between reasoning ability and lineup task. 
+}
 \section{Discussion and Conclusions}
 
 All results and data shown here were collected and analyzed in accordance with IRB \# 13-581.
