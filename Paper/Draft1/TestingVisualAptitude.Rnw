@@ -203,9 +203,18 @@ Statistical graphics provide quick summaries of data, models, and results, but t
 Many theories of graphical learning center around the difference between visual and verbal processing: the dual-coding theory emphasizes the utility of complementary information in both domains, while the visual argument hypothesis emphasizes that graphics are more efficient tools for providing data with spatial, temporal, or other implicit ordering, because the spatial dimension can be represented graphically in a more natural manner~\cite{vekiri2002value}. Both of these theories suggest spatial ability would impact a viewer's use of graphics, because spatial ability either influences cognitive resource allocation or affects the processing of spatial relationships between graphical elements. In addition, previous investigations into graphical learning and spatial ability have found relationships between spatial ability and the ability to read information from graphs~\cite{lowrie2007solving}. 
 
 \subsection{The Lineup Protocol}
-\todo[inline]{More lineup introduction here}
+\todo[inline]{Standard lineup protocol introduction here.} 
+\newtext{Figure \ref{fig:lineup} shows a sample lineup of boxplots; participants would be expected to determine that sub-plot 4 is the most different because the two groups have notably different medians.}
 
 Statistical lineups~\cite{hofmann2012graphical,wickham2010graphical, buja2009statistical} depend on the ability to search for a signal amid distractors (visual search) and the ability to infer patterns from stimuli (pattern recognition). Some lineups (polar coords) also depend on the ability to mentally rotate stimuli (spatial rotation) and mentally manipulate graphs (spatial rotation and manipulation). By breaking the lineup task down into component parts, we may be able to determine which visuospatial factors most strongly correlate with lineup performance, using carefully chosen cognitive tests to assess these aspects of visuospatial ability. Demographic factors are known to impact lineup performance: country, education, and age affected score on lineup tests, and all of those factors plus gender had an effect on the amount of time spent on lineups \cite{humanfactorslineups}. In addition, lineup performance can be partially explained using statistical distance metrics \cite{distancemetriclineups}, but these metrics do not completely succeed in predicting human performance, in part due to the difficulty of representing human visual ability algorithmically.
+
+\begin{figure}\centering
+\includegraphics[width=\linewidth]{lineup}
+\caption[Sample Lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 4 is the target plot, because the two groups have a large difference in medians. }\label{fig:lineup}
+\end{figure}
+
+\newtext{One of the most useful features of the lineup protocol is that it allows researchers to conclusively determine which graphics show certain features most conclusively (providing an experimental protocol for comparing graphics based on the accuracy of user conclusions). In addition, lineups provide researchers with a statistically valid methodology for determining whether a specific graph shows a real, statistically significant effect by comparing a target plot with plots formed using permutations of the same data, providing a randomization test protocol for graphics. As a result, lineups are a useful and innovative tool for evaluating charts; on an individual level, they can also be used to evaluate a specific participant's perceptual reasoning ability in the context of statistical graphics.}
+
 In this paper, we examine some demographic characteristics as well as characteristics such as  spatial and pattern recognition ability with the goal of understanding the skills necessary for accurate lineup performance as well as underlying variation in lineup performance. 
 
 \section{Methods}
@@ -259,11 +268,6 @@ The \textbf{paper folding test} measures participants' ability to visualize and 
 Lineups require similar manipulations in two-dimensional space, and also require the ability to perform complex spatial manipulations mentally; for instance, comparing the interquartile range of two boxplots as well as their relative alignment to a similar set of two boxplots in another panel.
 
 Between cognitive tasks, participants will also complete three blocks of 20 lineups each, assembled from previous studies~\cite{hofmann2012graphical,majumder2013validation}. Participants have 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup} shows a sample lineup of box plots. 
-
-\begin{figure}\centering
-\includegraphics[width=\linewidth]{lineup}
-\caption[Sample Lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 13 is the target. }\label{fig:lineup}
-\end{figure}
 
 In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. 
 These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
