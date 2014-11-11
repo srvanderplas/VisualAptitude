@@ -604,49 +604,6 @@ qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotat
 
 \newtext{We see that again, PC1 accounts for general visual aptitude. PC2, however, emphasizes the relationship between figure classification and Lineup task 1 (and to a lesser extent, on lineup task 2). PC3 differentiates the lineup task 3 from the visual search task; other tasks do not impact PC3 to a meaningful degree. PC4 separates lineup test 2 from the paper folding and card rotation tests and emphasizes the overlap with the visual search test. PC5 separates lineup test 2 and the figure classification test from the overlap between the other lineup tests and the visual search test. PC 6 and 7 account for \Sexpr{as.numeric(round(100*importance[6], 1))}\% and \Sexpr{as.numeric(round(100*importance[7], 1))}\% of the variance, respectively; PC6 seems to differentiate the first two lineup tasks from the overlap between the third lineup task and the figure classification task.
 }
-<<lineupblockpca-biplot,echo=F, warning=F, message=F, fig.cap="This is awful, but at least shows everything", fig.env="figure*", fig.width=11, fig.height=10, out.width=".9\\linewidth">>=
-data <- as.data.frame(lineup.block.pca$rotation)
-grid <- expand.grid(x=1:7, y=1:7)
-grid <- subset(grid, x != y)
-
-all <- do.call("rbind", lapply(1:nrow(grid), function(i) {
-  xcol <- grid[i, "x"]
-  ycol <- grid[i, "y"]
-
-  rbind.fill(
-    data.frame(
-      xvar = names(data)[xcol], 
-      yvar = names(data)[ycol],
-      x = 0,
-      y = 0,
-      xend = data[, xcol], 
-      yend = data[, ycol], 
-      label = rownames(data),
-      points = T
-    )
-  )
-}))
-all$xvar <- factor(all$xvar, levels=names(data))
-all$yvar <- factor(all$yvar, levels=names(data))
-
-tmp <- rotation[,1:3]
-names(tmp) <- c("xvar", "label", "rotation")
-tmp$xvar <- tmp$yvar <- factor(tmp$xvar, levels=names(data))
-
-all$label <- factor(all$label, 
-                        levels=c("vis_search", "folding", "card_rot", "fig_class", "lineup_1", "lineup_2", "lineup_3"),
-                        labels=c("Visual Search", "Paper Folding", "Card Rotation", "Figure Class.", "Lineup Test 1", "Lineup Test 2", "Lineup Test 3"))
-
-ggplot()+
-  geom_segment(data=subset(all, points), aes(x=x, y=y, xend=xend, yend=yend, colour=label), arrow=arrow(length=unit(.1, "cm"))) + 
-#   geom_point(data=tmp, aes(x=0*rotation, y=rotation, colour=label)) + 
-  geom_text(data=tmp, aes(x=ceiling(rotation)-.5, y=rotation, label=label, colour=label)) + 
-  facet_grid(xvar~yvar) + 
-  theme_bw() + 
-  theme(axis.title=element_blank()) + 
-  scale_colour_manual("Test", values = c("#f781bf", "#e41a1c", "#ff7f00", "#66a61e", "#1d91c0", "#225ea8", "#0c2c84"))
-rm(list=c("data", "all"))
-@
 \subsection{Lineup Plot Types}
 
 \newtext{
