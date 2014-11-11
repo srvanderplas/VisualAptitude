@@ -422,7 +422,8 @@ Completion of Calculus I is associated with increased performance on lineups; th
 print(xtable(cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")]), digits=c(1, rep(2, 5)), caption="Correlation matrix for the five tests.\\label{tab:corrmatrix5}"), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", scalebox=.9, table.placement="htb", caption.placement="top")
 @
 
-<<VisReasoningSPM,echo=FALSE, include=T, eval=T, fig.width=8,fig.height=8, message=F, warning=F, fig.cap="Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.\\label{fig:scatterplotmatrix}">>=
+\begin{figure}[htp]
+<<VisReasoningSPM,echo=FALSE, include=T, eval=T, fig.width=8,fig.height=8, message=F, warning=F>>=
 data <- ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", "folding")]
 grid <- expand.grid(x=1:ncol(data), y=1:ncol(data))
 grid <- subset(grid, x != y & x<y)
@@ -480,6 +481,8 @@ ggplot()+
   theme(axis.title=element_blank())
 rm(list=c("data", "all", "densities"))
 @
+\caption{Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.\label{fig:scatterplotmatrix}}
+\end{figure}
 
 <<pca,echo=F, warning=F, message=F>>=
 pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
