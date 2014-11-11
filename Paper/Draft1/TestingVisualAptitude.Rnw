@@ -152,9 +152,10 @@ The abstract goes here.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
-\begin{IEEEkeywords}
-Computer Society, IEEEtran, journal, \LaTeX, paper, template.
-\end{IEEEkeywords}}
+% \begin{IEEEkeywords}
+% Computer Society, IEEEtran, journal, \LaTeX, paper, template.
+% \end{IEEEkeywords}
+}
 
 
 % make the title area
@@ -192,8 +193,11 @@ IEEEtran.cls version 1.8a and later.
 
 \comment{Next few steps for the analysis: \\
 (1) I think we should add a linear model for lineup scores that includes the demographics of participants as well; \\
+\textbf{Done; added to Results section}\\
 (2) could you do the scoring of lineups by type of plot used and investigate the relationship between those types of lineups and the other visual tests ... not sure that that will pay off, but it's interesting.\\
-(3) in terms of why we would use lineups in a test comparison ... lineups give us a way to say 'this is correct' which regular graphics don't. So we should put a spin sentence on at the intro and the back that we are suggesting to use lineups as a tool to not only evaluate individuals (which we can see is possible) but also as a tool to evaluate charts ... which we've done before ... and tie it into the regular testing literature ...}
+\textbf{Done, along with an examination of each experiment separately}\\
+(3) in terms of why we would use lineups in a test comparison ... lineups give us a way to say 'this is correct' which regular graphics don't. So we should put a spin sentence on at the intro and the back that we are suggesting to use lineups as a tool to not only evaluate individuals (which we can see is possible) but also as a tool to evaluate charts ... which we've done before ... and tie it into the regular testing literature ...\\
+\textbf{A few sentences added, still need to tie into the existing literature}}
 
 \todo[inline]{Intro about statistical graphics, lineups, ...}
 \subsection{Spatial Reasoning and Statistical Graphics}
