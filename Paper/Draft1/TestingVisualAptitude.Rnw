@@ -422,8 +422,7 @@ Completion of Calculus I is associated with increased performance on lineups; th
 print(xtable(cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")]), digits=c(1, rep(2, 5)), caption="Correlation matrix for the five tests.\\label{tab:corrmatrix5}"), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", scalebox=.9, table.placement="htb", caption.placement="top")
 @
 
-\begin{figure}[htp]
-<<VisReasoningSPM,echo=FALSE, include=T, eval=T, fig.width=8,fig.height=8, message=F, warning=F>>=
+<<VisReasoningSPM,echo=FALSE, include=T, eval=T, fig.width=8,fig.height=8, message=F, warning=F, fig.cap="Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.\\label{fig:scatterplotmatrix}">>=
 data <- ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", "folding")]
 grid <- expand.grid(x=1:ncol(data), y=1:ncol(data))
 grid <- subset(grid, x != y & x<y)
@@ -481,8 +480,6 @@ ggplot()+
   theme(axis.title=element_blank())
 rm(list=c("data", "all", "densities"))
 @
-\caption{Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.\label{fig:scatterplotmatrix}}
-\end{figure}
 
 <<pca,echo=F, warning=F, message=F>>=
 pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
@@ -875,3 +872,14 @@ PC4 captures the similarity between lineups and the card rotation task and separ
 % \item authors in~\cite{mayer1994whom} used the card rotation test (10 figures, 80 questions total) and the paper folding test (10 items) to evaluate spatial performance, along with a problem solving test. They used the same penalty structure on the card rotation test, and don't seem to have used any penalty on the paper folding test; they then scaled the two tests. Their problem solving test was more practical (engineering-based), so isn't applicable to our study. They were testing instruction using visual + audio in sync, visual + audio out of sync, and then no instruction as a control. High-ability students could make more use of the in-sync presentation of visual and auditory information than low-ability students, but did not differ significantly in the out-of-sync information condition. Thus, visualization ability moderates the results of the information presented by allowing students to process information concurrently more efficiently, but doesn't help students process the information separately or help students come up with solutions to the problem-solving task. 
 % \item authors in~\cite{hofmann2012graphical} for lineup stimuli and general lineup performance
 % \end{itemize}
+
+<<>>=
+vistests <- scale(lineup.section.summary[,c("card_rot", "fig_class", "folding", "vis_search")])
+lineups <- scale(lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3")])
+vmain <- rowSums(vistests)/4
+alltests <- data.frame(vmain, vistests-vmain, lineups)
+pctests <- prcomp(alltests)
+biplot(pctests)
+biplot(pctests, 3:4)
+
+@
