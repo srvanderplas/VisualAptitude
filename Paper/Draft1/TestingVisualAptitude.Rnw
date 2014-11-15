@@ -192,9 +192,8 @@ for IEEE Computer Society journal papers produced under \LaTeX\ using
 IEEEtran.cls version 1.8a and later.
 
 \comment{Next few steps for the analysis: \\
-\\
 (3) in terms of why we would use lineups in a test comparison ... lineups give us a way to say 'this is correct' which regular graphics don't. So we should put a spin sentence on at the intro and the back that we are suggesting to use lineups as a tool to not only evaluate individuals (which we can see is possible) but also as a tool to evaluate charts ... which we've done before ... and tie it into the regular testing literature ...\\
-\textbf{A few sentences added, still need to tie into the existing literature}
+\textbf{A few sentences added, still need to tie into the existing literature}\\
 (4) I'll take care of the intro to lineups}
 
 \todo[inline]{Intro about statistical graphics, lineups, ...}
@@ -226,16 +225,16 @@ In this paper, we examine some demographic characteristics as well as characteri
 Participants are asked to complete several cognitive tests designed to measure spatial and reasoning ability. Tasks are times such  that participants are under  pressure to complete; participants are not expected to finish all of the problems in each section. This allows for a better discrimination between scores and prevents score compression at the top of the range. 
 
 The \textbf{visual searching task} (VST), shown in figure~\ref{fig:VST}, is designed to test a participant's ability to find a target stimulus in a field of distractors, thus making the visual search task similar in concept to lineups. Historically, visual search has been used as a measure of brain damage \cite{goldstein1973validity,demita1981validity,moerland1986neuropsychological}; however, similar tasks have been used to measure cognitive performance in a variety of situations, for example under the influence of drugs in~\cite{anderson1983interactive}. The similarity to the lineup protocol as well as the simplicity of the test and its' lack of color justify the slight deviation from forms of visual search tasks typically used in normal populations. 
-\begin{figure}[hbt]\centering
+\begin{figure}[htp]\centering
 \includegraphics[width=\linewidth]{VisualSearch}
-\caption[Visual Search Task]{Visual Search Task. Participants are instructed to find the plot numbered 1-24 which matches the plot labeled ``Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
+\caption[Visual Search Task]{Visual Search Task (VST). Participants are instructed to find the plot numbered 1-24 which matches the plot labeled ``Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
 \end{figure}
 
 The \textbf{figure classification task} tests a participant's ability to extrapolate rules from provided figures. This task is associated with inductive reasoning ablities (factor I  in~\cite{ekstrom1976manual}). An example is shown in figure~\ref{fig:figureclassification}. 
 
 The figure classification test requires the same type of reasoning as the lineups: participants must determine the rules from the provided classes, and extrapolate from those rules to classify new figures. In lineups, participants must determine the rules based on the panels appearing in the lineup; they must then identify the plot which does not conform. As such, the figure classification test has content validity in relation to lineup performance: it is measuring similar underlying criteria. 
 
- \begin{figure*}[!ht]
+ \begin{figure*}[ht]
   \centering
    \subfloat[Figure Classification Task. Participants classify each figure in the second row as belonging to one of the groups above. Participants complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.\label{fig:figureclassification}]{%
   \includegraphics[width=.75\linewidth]{figureclassification}
@@ -329,8 +328,8 @@ Table~\ref{tab:scorecomparison} shows mean scores and standard deviation for ISU
 Comparison population data was chosen to most closely match ISU undergraduate population demographics. Thus, if comparison data was available for 9th and 12th grade students, scores of Iowa State students were compared to scores of 12th grade students, who are closer in age to college students. When data was available from college students and Army enlistees, comparisons of scores were based on other college students, as college students are more likely to have a similar gender distribution to ISU students.
 
 Applying the grading protocol discussed in section~\ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure~\ref{fig:Scores} shows the range of possible scores and the observed score distribution. 
-\newtext{Participants' scores on the VST indicate score compression; that is, both participants with medium and high visual search abilities scored at the extremely high end of the spectrum. 
-In future experiments, participants should be given less time (or more questions) to better differentiate participants with medium and high-ability.}
+Participants' scores on the VST indicate score compression; that is, both participants with medium and high visual search abilities scored at the extremely high end of the spectrum. 
+In future experiments, participants should be given less time (or more questions) to better differentiate participants with medium and high-ability.
 
 \begin{figure}[ht]
 <<ResultsScaledScores, echo=F, include=T, fig.width=4.5, fig.height=4.5, out.width='\\linewidth', warning=F, message=F>>=
@@ -372,7 +371,7 @@ ggplot() +
 
 \subsection{Lineup Performance and Demographic Characteristics}
 
-<<VisReasoningCategorical, echo=F, include=F, eval=T, fig.width=9,fig.height=6, message=F, warning=F, fig.pos='htb'>>=
+<<VisReasoningCategorical, echo=F, include=F, eval=T, fig.width=9,fig.height=6, message=F, warning=F, fig.pos='ht'>>=
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
 lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience", "STEM Major", "Video Game Hrs/Wk"))
@@ -421,7 +420,7 @@ Completion of Calculus I is associated with increased performance on lineups; th
 print(xtable(cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")]), digits=c(1, rep(2, 5)), caption="Correlation matrix for the five tests.\\label{tab:corrmatrix5}"), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", scalebox=.9, table.placement="htb", caption.placement="top")
 @
 
-<<VisReasoningSPM,echo=FALSE, include=T, eval=T, fig.width=8,fig.height=8, message=F, warning=F, fig.cap="Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.\\label{fig:scatterplotmatrix}">>=
+<<VisReasoningSPM,echo=FALSE,fig.pos="ht", include=T, eval=T, fig.width=8,fig.height=8, message=F, warning=F, fig.cap="Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.\\label{fig:scatterplotmatrix}">>=
 data <- ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", "folding")]
 grid <- expand.grid(x=1:ncol(data), y=1:ncol(data))
 grid <- subset(grid, x != y & x<y)
@@ -493,7 +492,7 @@ In order to assess factors contributing to lineup performance, we first examine 
 
 A principal component analysis (PCA) of the four established visuo-spatial tests reveals that they all share a very strong first component, which explains about \Sexpr{round(summary(pca2)$importance[3,1],2)*100}\% of the total variability. 
 PC1 is essentially an average across all tests representing a general ``visual intelligence" factor. The other principal components span another two dimensions, while the last dimension is weak (at \Sexpr{round(summary(pca2)$importance[2,4],2)*100}\%). 
-PC2 differentiates the figure classification test from the visual searching test, while PC3 differentiates these two tests from the paper folding test. 
+PC2 differentiates the figure classification test from the visual searching test, whereas PC3 differentiates these two tests from the paper folding test. 
 More detailed results from the 4-test analysis are provided in Appendix \ref{app:pca}.
 
 
@@ -575,23 +574,10 @@ library(xtable)
 print(xtable(summary(m1), caption="Estimates and significances of a linear model of lineup scores.", label="tab:m1"), caption.placement="top")
 @
 \subsection{Lineup Types}
-\newtext{Each of the three sets of 20 lineups was taken from previous experiments which tested different types of plots to determine which plot type most effectively conveyed important characteristics of the underlying data set. }
-\comment{Add experiment summary/refs here}
-\newtext{Examples lineups for each experiment are provided in Appendix \ref{app:lineuptypes}. 
-}
+Each of the three sets of 20 lineups was taken from previous experiments which tested different types of plots to determine which plot type most effectively conveyed important characteristics of the underlying data set. 
+Examples lineups for each experiment and more detailed explanations for each of these experiments are provided in Appendix \ref{app:lineuptypes}. 
 
-\newtext{The experiment in the first lineup section examined the use of boxplots, density plots, histograms, and dotplots to compare two groups with different means and outliers. 
-}
-\comment{Add note about experimental performance, general accuracy rate, etc.}
-
-\newtext{The second lineup section also explored two groups of data, this time comparing boxplots, bee swarm boxplots, boxplots with overlaid jittered data, and violin plots. Participants were much more accurate in this experiment ...
-}
-\comment{Add note about experimental performance, general accuracy rate, etc.}
-
-\newtext{The final lineup section explored qq plots from various model simulations, using reference lines, acceptance bands, and rotation to determine which plots allowed participants to most effectively identify violations of normality. Rotated qq plots showed lower performance because participants could more accurately compare acceptance bands to residuals, and thus could identify that the reference bands were too liberal. As a result, performance was somewhat lower for rotated plots, even though participants could more accurately compare the residuals to the reference bands.}
-\comment{Add citations, more explanations, etc.}
-
-\newtext{Calculating participant scores on each block of lineups separately, we can use principal components analysis to examine which lineup tasks are most closely associated with visual abilities tested in the aptitude portions of this experiment.} 
+In order to examine which lineup tasks are most closely associated with visual abilities tested in the aptitude portions of an experiment, we employ principal component analysis on participant scores averaged across each block of lineups.
 
 <<lineupblockpca, echo=F, warning=F, message=F, fig.cap="Lineup block PCA rotation matrix in graphical form.">>=
 lineup.block.pca <- prcomp(lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
@@ -605,10 +591,12 @@ library(grid) # needed for arrow function
 qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotation, arrow=arrow(length=unit(0.1, "cm"))) + facet_wrap(~Var2) + xlab("Contribution to each PC * % Variance in PC") + ggtitle("Lineup Types and Visual Aptitude") + ylab("")
 @
 
-\newtext{We see that again, PC1 accounts for general visual aptitude. PC2, however, emphasizes the relationship between figure classification and Lineup task 1 (and to a lesser extent, on lineup task 2). PC3 differentiates the lineup task 3 from the visual search task; other tasks do not impact PC3 to a meaningful degree. PC4 separates lineup test 2 from the paper folding and card rotation tests and emphasizes the overlap with the visual search test. PC5 separates lineup test 2 and the figure classification test from the overlap between the other lineup tests and the visual search test. PC 6 and 7 account for \Sexpr{as.numeric(round(100*importance[6], 1))}\% and \Sexpr{as.numeric(round(100*importance[7], 1))}\% of the variance, respectively; PC6 seems to differentiate the first two lineup tasks from the overlap between the third lineup task and the figure classification task.
-}
-\subsection{Lineup Plot Types}
+From figure~\ref{fig:lineupblockpca} we see that again, PC1 accounts for general visual aptitude. PC2, however, emphasizes the relationship between figure classification and Lineup task 1 (and to a lesser extent, on lineup task 2). PC3 differentiates the lineup task 3 from the visual search task; other tasks do not impact PC3 to a meaningful degree. PC4 separates lineup test 2 from the paper folding and card rotation tests and emphasizes the overlap with the visual search test. PC5 separates lineup test 2 and the figure classification test from the overlap between the other lineup tests and the visual search test. PC6 and PC7 account for \newtext{joint total of less than 10\% of the overall variability, and do not display any distinct patterns in the loadings.} %\Sexpr{as.numeric(round(100*importance[6], 1))}\% and \Sexpr{as.numeric(round(100*importance[7], 1))}\% of the variance, respectively; PC6 seems to differentiate the first two lineup tasks from the overlap between the third lineup task and the figure classification task.
 
+\comment{What is the overall conclusion?}
+
+\subsection{Lineup Plot Types}
+\comment{Susan, would you agree in the assessment that the results from this section are inconclusive at best? Unless I am overlooking anything, I don't see substantial findings. We could move this section to the appendix, and just refer to it as being inconclusive.}
 \newtext{
 We can also compare participants' performance on specific types of lineup plots compared with their scores on the visual aptitude tests, for instance, accuracy on lineups which require mental rotation may be related to performance on the card rotation task. 
 }
@@ -801,6 +789,12 @@ PC4 captures the similarity between lineups and the card rotation task and separ
 
 \section{Lineup Task Examples}\label{app:lineuptypes}
 \subsection{Lineup Set 1}
+
+\newtext{The experiment in the first lineup section examined the use of boxplots, density plots, histograms, and dotplots to compare two groups with different means and outliers. 
+}
+\comment{Add note about experimental performance, general accuracy rate, etc.}
+
+
 \comment{Description of original purpose of the experiment}
 \begin{figure}[htbp]
 \includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups1/boxplot_1_15_5_4_13}
@@ -821,6 +815,13 @@ PC4 captures the similarity between lineups and the card rotation task and separ
 \FloatBarrier
 \subsection{Lineup Set 2}
 \comment{Description of original purpose of the experiment. Note that this experiment appears to have more outliers.}
+
+\newtext{The second lineup section also explored two groups of data, this time comparing boxplots, bee swarm boxplots, boxplots with overlaid jittered data, and violin plots. Participants were much more accurate in this experiment ...
+}
+\comment{Add note about experimental performance, general accuracy rate, etc.}
+
+
+
 \begin{figure}[htbp]
 \includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups2/file147f94f6965d7}
 \caption{Boxplots.}
@@ -840,6 +841,10 @@ PC4 captures the similarity between lineups and the card rotation task and separ
 \FloatBarrier
 \subsection{Lineup Set 3}
 \comment{Description of original purpose of the experiment.}
+\newtext{The final lineup section explored QQ-plots from various model simulations, using reference lines, acceptance bands, and rotation to determine which plots allowed participants to most effectively identify violations of normality. Rotated qq plots showed lower performance because participants could more accurately compare acceptance bands to residuals, and thus could identify that the reference bands were too liberal. As a result, performance was somewhat lower for rotated plots, even though participants could more accurately compare the residuals to the reference bands.}
+\comment{Add citations, more explanations, etc.}
+
+
 \begin{figure}[htbp]
 \includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups3/file13876a225d34-single}
 \caption{QQ Plot with guide line.}
