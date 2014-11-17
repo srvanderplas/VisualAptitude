@@ -206,7 +206,7 @@ Many theories of graphical learning center around the difference between visual 
 \subsection{The Lineup Protocol}
 \todo[inline]{Standard lineup protocol introduction here.} 
 
-\newtext{Figure \ref{fig:lineup} shows a sample lineup of boxplots; participants would be expected to determine that sub-plot 4 is the most different because the two groups have notably different medians.} 
+Figure \ref{fig:lineup} shows a sample lineup of boxplots; participants would be expected to determine that sub-plot 4 is the most different because the two groups have notably different medians.
 
 Statistical lineups~\cite{hofmann2012graphical,wickham2010graphical, buja2009statistical} depend on the ability to search for a signal amid distractors (visual search) and the ability to infer patterns from stimuli (pattern recognition). Some lineups (polar coords) also depend on the ability to mentally rotate stimuli (spatial rotation) and mentally manipulate graphs (spatial rotation and manipulation). By breaking the lineup task down into component parts, we may be able to determine which visuospatial factors most strongly correlate with lineup performance, using carefully chosen cognitive tests to assess these aspects of visuospatial ability. Demographic factors are known to impact lineup performance: country, education, and age affected score on lineup tests, and all of those factors plus gender had an effect on the amount of time spent on lineups \cite{humanfactorslineups}. In addition, lineup performance can be partially explained using statistical distance metrics \cite{distancemetriclineups}, but these metrics do not completely succeed in predicting human performance, in part due to the difficulty of representing human visual ability algorithmically.
 
