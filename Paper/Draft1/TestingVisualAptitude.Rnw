@@ -793,6 +793,20 @@ PC4 captures the similarity between lineups and the card rotation task and separ
 \includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups3/file13878e5c92f-single}
 \caption{QQ Plot rotated 45 degrees.}
 \end{figure}
+
+
+<<>>=
+vistests <- scale(lineup.section.summary[,c("card_rot", "fig_class", "folding", "vis_search")])
+lineups <- scale(lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3")])
+vmain <- rowSums(vistests)/4
+alltests <- data.frame(vmain, vistests-vmain, lineups)
+pctests <- prcomp(alltests)
+biplot(pctests)
+biplot(pctests, 3:4)
+
+@
+
+
 \section{Lineup Plot Types} \label{app:plottypes}
 We can also compare participants' performance on specific types of lineup plots compared with their scores on the visual aptitude tests, for instance, accuracy on lineups which require mental rotation may be related to performance on the card rotation task. 
 
@@ -883,14 +897,3 @@ For comparison, the correlation between general lineup score (non-subdivided) an
 % \item authors in~\cite{mayer1994whom} used the card rotation test (10 figures, 80 questions total) and the paper folding test (10 items) to evaluate spatial performance, along with a problem solving test. They used the same penalty structure on the card rotation test, and don't seem to have used any penalty on the paper folding test; they then scaled the two tests. Their problem solving test was more practical (engineering-based), so isn't applicable to our study. They were testing instruction using visual + audio in sync, visual + audio out of sync, and then no instruction as a control. High-ability students could make more use of the in-sync presentation of visual and auditory information than low-ability students, but did not differ significantly in the out-of-sync information condition. Thus, visualization ability moderates the results of the information presented by allowing students to process information concurrently more efficiently, but doesn't help students process the information separately or help students come up with solutions to the problem-solving task. 
 % \item authors in~\cite{hofmann2012graphical} for lineup stimuli and general lineup performance
 % \end{itemize}
-
-<<>>=
-vistests <- scale(lineup.section.summary[,c("card_rot", "fig_class", "folding", "vis_search")])
-lineups <- scale(lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3")])
-vmain <- rowSums(vistests)/4
-alltests <- data.frame(vmain, vistests-vmain, lineups)
-pctests <- prcomp(alltests)
-biplot(pctests)
-biplot(pctests, 3:4)
-
-@
