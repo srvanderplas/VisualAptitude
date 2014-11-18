@@ -194,7 +194,9 @@ IEEEtran.cls version 1.8a and later.
 \comment{Next few steps for the analysis: \\
 (3) in terms of why we would use lineups in a test comparison ... lineups give us a way to say 'this is correct' which regular graphics don't. So we should put a spin sentence on at the intro and the back that we are suggesting to use lineups as a tool to not only evaluate individuals (which we can see is possible) but also as a tool to evaluate charts ... which we've done before ... and tie it into the regular testing literature ...\\
 \textbf{A few sentences added, still need to tie into the existing literature}\\
-(4) I'll take care of the intro to lineups}
+(4) I'll take care of the intro to lineups\\
+(5) Include lineup results from other studies. For that, we need to compare percent correct attempted data. 
+}
 
 \todo[inline]{Intro about statistical graphics, lineups, ...}
 \subsection{Spatial Reasoning and Statistical Graphics}
@@ -608,6 +610,22 @@ While lineups constitute a distinct principal component when aggregated into a s
 
 
 \section{Discussion and Conclusions}
+
+\comment{ Just collecting items:
+lineups are classification tests, not necessarily visual tests; 
+individual tasks are somewhat more related to individual tests, but no overall general trend towards any of the other tests besides figure classification. 
+
+mathematical training - could be interesting follow-up study.
+
+amazon turk study - how generalizable are they.
+
+use figure classification for pre-screening without biasing; i.e. as baseline criteria or for exclusion of participants from future amazon turk studies.
+
+
+}
+
+
+
 
 All results and data shown here were collected and analyzed in accordance with IRB \# 13-581.
 
