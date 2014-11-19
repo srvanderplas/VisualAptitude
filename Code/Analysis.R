@@ -123,6 +123,8 @@ lineup.section.sum$testnum[is.na(lineup.section.sum$testnum)] <- ""
 lineup.section.sum$testnum[nchar(lineup.section.sum$testnum)>0] <- paste0("_", lineup.section.sum$testnum[nchar(lineup.section.sum$testnum)>0])
 lineup.section.sum$testtype <- paste0(lineup.section.sum$testtype, lineup.section.sum$testnum)
 
+lineup.section.pct <- dcast(subset(lineup.sec.sum, testtype=="lineup")%>%mutate(pct.score=pos.pts/total.pos), id~testtype+testnum, value.var="pct.score")
+
 lineup.section.summary <- merge(ans[,1:20], dcast(lineup.section.sum, id~testtype, value.var="score", na.rm=TRUE))
 rm(lineup.sec.sum2, lineup.sec.sum, lineup.section.sum)
 
