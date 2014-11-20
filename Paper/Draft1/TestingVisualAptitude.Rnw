@@ -580,6 +580,79 @@ print(xtable(summary(m1), caption="Estimates and significances of a linear model
 Each of the three sets of 20 lineups was taken from previous experiments which tested different types of plots to determine which plot type most effectively conveyed important characteristics of the underlying data set. 
 Examples lineups for each experiment and more detailed explanations for each of these experiments are provided in Appendix \ref{app:lineuptypes}. 
 
+\newtext{Figure \ref{fig:lineuptaskmatrix} shows the correlations between the three lineup tasks and the figure classification, card rotation, and paper folding tasks. The visual search task was only slightly correlated with the three lineup tasks and has been omitted from this figure. Performance on lineup tasks 1 and 2, which dealt with the distributuion of two groups of numerical data, is most strongly correlated with the performance on the figure classification task, which measures general reasoning ability. Performance on lineup task 3, which dealt with the identification of nonnormal residual qq plots, is more associated with the card rotation and paper folding tests, which measure visuospatial ability. This suggests that certain lineup tasks may require more visual ability than others; in this case, the qq-plot lineups required participants to mentally rotate plots, compare vertical distances, and perform more mental manipulation than the first two lineup tasks. }
+
+<<LineupTypeSPM,echo=FALSE,fig.pos="ht", include=T, eval=T, fig.width=8,fig.height=4, message=F, warning=F, fig.cap="Pairwise scatterplots of test scores, with lineups separated into the three lineup tasks. All lineup tasks are moderately correlated with the figure classification task, and while tasks 1 and 2 are most strongly correlated with figure classification, lineup task 3 is most strongly correlated with the card rotation and paper folding tasks. \\label{fig:lineuptaskmatrix}">>=
+data <- lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3", "vis_search", "fig_class", "card_rot", "folding")]
+grid <- expand.grid(x=1:ncol(data), y=1:ncol(data))
+grid <- subset(grid, x != y & x<y)
+
+all <- do.call("rbind", lapply(1:nrow(grid), function(i) {
+  xcol <- grid[i, "x"]
+  ycol <- grid[i, "y"]
+
+  rbind.fill(
+    data.frame(
+      xvar = names(data)[ycol], 
+      yvar = names(data)[xcol],
+      x = data[, xcol], 
+      y = data[, ycol], 
+      points = T,
+      data
+    ),
+    data.frame(
+      yvar = names(data)[ycol], 
+      xvar = names(data)[xcol],
+      x = mean(range(data[, ycol])), 
+      y = mean(range(data[, xcol])),
+      label = round(cor(data[,xcol], data[,ycol]), 3),
+      points = F
+    )
+  )
+}))
+all$xvar <- factor(all$xvar, levels=names(data))
+all$yvar <- factor(all$yvar, levels=names(data))
+densities <- do.call("rbind", lapply(1:ncol(data), function(i) {
+    tmp <- density(data[,i], cut = 1, adjust=.75)
+    data.frame(
+      xvar = names(data)[i], 
+      yvar = names(data)[i],
+      x = tmp$x, 
+      y = tmp$y/max(tmp$y)* diff(range(tmp$x)) + min(tmp$x)
+    )
+  }))
+fix.names <- function(values){
+  values %>% 
+    str_replace("lineup", "Lineups") %>% 
+    str_replace("vis_search", "Visual Search") %>%
+    str_replace("fig_class", "Figure Classification") %>% 
+    str_replace("card_rot", "Card Rotation") %>%
+    str_replace("folding", "Paper Folding")
+}
+
+all2 <- subset(all, grepl("lineup", yvar) & points & !grepl("vis_search", xvar))
+names(all2)[1:4] <- c("yvar", "xvar", "y", "x")
+all2mean <- rbind(
+  ddply(subset(all2, !grepl("lineup", yvar)), .(xvar, yvar), summarize, label=paste0("Cor = ", round(cor(x,y), 3)), x=max(x), y=min(y)-1, hjust=1, vjust=0),
+  ddply(subset(all2, grepl("lineup", xvar) & grepl("lineup", yvar)), .(xvar, yvar), function(df){
+    with(df, data.frame(xvar=unique(yvar), yvar=unique(xvar), 
+                        x=mean(range(y)), y=mean(range(x)), 
+                        label=paste0("Correlation = \n", round(cor(x,y),3)),
+                        hjust=.5, vjust=.5))
+    })
+)
+par(mfrow=c(1,2),mar=c(4,4.5,.1,.1)
+
+ggplot()+
+  geom_point(data=subset(all2, points), aes(x=x, y=y)) + 
+  geom_smooth(data=subset(all2, points), aes(x=x, y=y), method="lm") + 
+  geom_text(data=all2mean, aes(x=x, y=y, label=label, hjust=hjust, vjust=vjust)) + 
+  geom_line(data=subset(densities, grepl("lineup", xvar)), aes(x=x, y=y)) + 
+  facet_grid(xvar~yvar, scales="free", labeller = labeller(xvar=fix.names, yvar=fix.names)) + 
+  theme_bw() + 
+  theme(axis.title=element_blank())
+@
+
 In order to examine which lineup tasks are most closely associated with visual abilities tested in the aptitude portions of an experiment, we employ principal component analysis on participant scores averaged across each block of lineups.
 
 <<lineupblockpca, echo=F, warning=F, message=F, fig.cap="Lineup block PCA rotation matrix in graphical form.">>=
