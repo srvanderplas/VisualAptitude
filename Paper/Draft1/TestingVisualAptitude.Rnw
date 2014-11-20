@@ -679,6 +679,21 @@ From figure~\ref{fig:lineupblockpca} we see that again, PC1 accounts for general
 
 While lineups constitute a distinct principal component when aggregated into a single score, this PCA of the separate lineup types and the cognitive tests indicates that different lineup experiments exist in different principal component loadings. Overall, there is an additional principal component gained from separating the lineup blocks by experiment type. As lineup tasks 1 and 2 contained similar plot types, it is possible that those two tasks overlap in the component space while lineup task 3 is distinct. 
 
+\paragraph{Removing the effect of overall aptitude}
+
+
+<<removeAptitude,echo=F,fig.width=8, fig.height=4>>=
+vistests <- scale(lineup.section.summary[,c("card_rot", "fig_class", "folding", "vis_search")])
+lineups <- scale(lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3")])
+vmain <- rowSums(vistests)/4
+alltests <- data.frame(vmain, vistests-vmain, lineups)
+pctests <- prcomp(alltests)
+par(mfrow=c(1,2), mar=c(4,4.5,.1,.1), tcl=-0.01, cex.lab=.8,cex.axis=.7,mgp=c(2,.7,0),tcl=-.3)
+biplot(pctests)
+biplot(pctests, 3:4)
+@
+
+
 The relationship between participant performance on different types of lineups (and different types of plots) and performance on tests of spatial ability bears further investigation; this study suggests that there may be an effect, but there is simply not enough variation to make definitive conclusions about the relationship between different measures of visual aptitude and performance on specific lineup tasks. 
 
 A larger study could not only address the question of which lineup tasks require certain visual skills, but could also address the use of different types of plots from a perceptual perspective. A preliminary analysis of performance on different types of plots is available in appendix \ref{app:plottypes}, but a larger study is needed for definitive results. The advantage of the lineup protocol is that it allows us to not only consider individual performance but also to compare aggregate performance on different types of plots. Integrating information about the visual skills required for each type of plot provides information about the underlying perceptual skills and experience required to read different types of plots.
