@@ -664,7 +664,7 @@ rotation$Var1 <- factor(rotation$Var1,
                         levels=c("vis_search", "folding", "card_rot", "fig_class", "lineup_3", "lineup_2", "lineup_1"),
                         labels=c("Visual Search", "Paper Folding", "Card Rotation", "Figure Class.", "Lineup Test 3", "Lineup Test 2", "Lineup Test 1"))
 library(grid) # needed for arrow function
-qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotation, arrow=arrow(length=unit(0.1, "cm"))) + facet_wrap(~Var2) + xlab("Contribution to each PC * % Variance in PC") + ggtitle("Lineup Types and Visual Aptitude") + ylab("") + theme_bw()
+qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotation, arrow=arrow(length=unit(0.1, "cm"))) + facet_wrap(~Var2, ncol=4) + xlab("Contribution to each PC * % Variance in PC") + ggtitle("Lineup Types and Visual Aptitude") + ylab("") + theme_bw()
 @
 
 From figure~\ref{fig:lineupblockpca} we see that again, PC1 accounts for general visual aptitude. 
