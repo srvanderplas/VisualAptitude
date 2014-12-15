@@ -199,7 +199,7 @@ Many theories of graphical learning center around the difference between visual 
 %\subsection{The Lineup Protocol}
 %\todo[inline]{Standard lineup protocol introduction here.} 
 
-\newtext{The lineup protocol~\cite{hofmann2012graphical,wickham2010graphical, buja2009statistical} is introducing a testing framework that allows to quantify the significance of graphical findings with the same mathematical rigor as conventional hypothesis tests. }
+\newtext{The lineup protocol~\cite{hofmann2012graphical,wickham2010graphical, buja2009statistical} is a testing framework that allows us to quantify the significance of graphical findings with the same mathematical rigor as conventional hypothesis tests. }
 
 Figure \ref{fig:lineup} shows a sample lineup of boxplots; participants are expected to identify the most different among the plots shown. In this example, sub-plot 4 is the target  because of the noticeably different locations of the two boxplot medians.
 
