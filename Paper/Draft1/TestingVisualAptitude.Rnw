@@ -189,17 +189,12 @@ The abstract goes here.
 % and "HIS" in caps to complete the first word.
 \IEEEPARstart{S}{tatistical} graphics provide quick summaries of data, models, and results, but these displays may not be equally useful to all viewers. Mathematical ability is important, even for the simplest graphs:  mathematical ability, not spatial ability, was shown~\cite{shah1995conceptual} to be associated with accuracy on a simple two-dimensional line graph. 
 
-%\todo[inline]{Intro about statistical graphics, lineups, ...}
-%\subsection{Spatial Reasoning and Statistical Graphics}
 Spatial ability becomes more important, however, when more complicated graphical displays are used in comparison tasks: the lower performance of individuals with low spatial ability on tests utilizing diagrams and graphs is attributed ~\cite{mayer1994whom} to the fact that more cognitive resources are required to process the visual stimuli, which leaves fewer resources to make connections and draw conclusions from those stimuli. It is theorized that graphics are a form of ``external cognition"~\cite{scaife1996external} that guide, constrain, and facilitate cognitive behavior\cite{zhang1997nature}. 
 Graphics utilize higher-bandwidth visual pathways to encode information\cite{baddeley1974working}, allowing viewers to quickly and intuitively encode multiple dimensions of numerical relationships; however, this higher-bandwidth approach also depends on the viewer's visual and spatial reasoning ability. Well-designed graphics emphasize and present important features of the data while minimizing  features of lesser importance, guiding the viewer towards conclusions that are meaningful in context and supported by the data while maximizing the information encoded in working memory. Under this framework, well-designed graphics reduce memory load and make more cognitive resources available for other tasks (such as drawing conclusions from the data), at the cost of depending on certain visuospatial reasoning abilities. 
 
 Many theories of graphical learning center around the difference between visual and verbal processing: the dual-coding theory emphasizes the utility of complementary information in both domains, while the visual argument hypothesis emphasizes that graphics are more efficient tools for providing data with spatial, temporal, or other implicit ordering, because the spatial dimension can be represented graphically in a more natural manner~\cite{vekiri2002value}. Both of these theories suggest spatial ability would impact a viewer's use of graphics, because spatial ability either influences cognitive resource allocation or affects the processing of spatial relationships between graphical elements. In addition, previous investigations into graphical learning and spatial ability have found relationships between spatial ability and the ability to read information from graphs~\cite{lowrie2007solving}. 
 
-%\subsection{The Lineup Protocol}
-%\todo[inline]{Standard lineup protocol introduction here.} 
-
-\newtext{The lineup protocol~\cite{hofmann2012graphical,wickham2010graphical, buja2009statistical} is a testing framework that allows us to quantify the significance of graphical findings with the same mathematical rigor as conventional hypothesis tests. }
+The lineup protocol~\cite{hofmann2012graphical,wickham2010graphical, buja2009statistical} is a testing framework that allows us to quantify the significance of graphical findings with the same mathematical rigor as conventional hypothesis tests.
 
 Figure \ref{fig:lineup} shows a sample lineup of boxplots; participants are expected to identify the most different among the plots shown. In this example, sub-plot 4 is the target  because of the noticeably different locations of the two boxplot medians.
 
@@ -792,26 +787,23 @@ print(xtable(summary(pca2), caption="Importance of principal components in an an
 @
 Table~\ref{tab:PCAvariance4} contains the importance of each resultant PC and the proportion of the variance each PC represents. 
 
-\newtext{PC1 accounts for about \Sexpr{round(summary(pca2)$importance[3,1],1)*100}\% of the variance; figure~\ref{fig:biplots4} and table~\ref{tab:PCArotation4} confirm that PC1 is a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test, while}
+PC1 accounts for about \Sexpr{round(summary(pca2)$importance[3,1],1)*100}\% of the variance; figure~\ref{fig:biplots4} and table~\ref{tab:PCArotation4} confirm that PC1 is a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test, while PC3 differentiates these two from the paper folding test. PC4 is not particularly significant (it accounts for \Sexpr{round(summary(pca2)$importance[2,4]*100,1)}\% of the variance), but it differentiates the card rotation task from the paper folding task.
 
 <<pcarotation4,echo=F, results='asis'>>=
 print(xtable(pca2$rotation, caption="PCA Rotation matrix for the four cognitive tests.\\label{tab:PCArotation4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
 @
 
-\newtext{
-PC3 differentiates these two from the paper folding test. PC4 is not particularly significant (it accounts for \Sexpr{round(summary(pca2)$importance[2,4]*100,1)}\% of the variance), but it differentiates the card rotation task from the paper folding task.}
-
-<<biplot-pca4, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.8\\linewidth', comment="|", fig.cap="Plots of principal components 1-4 with observations. PCA was performed on the four cognitive tests used to understand the cognitive demands of the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
+<<biplot-pca4, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.7\\linewidth', comment="|", fig.cap="Plots of principal components 1-4 with observations. PCA was performed on the four cognitive tests used to understand the cognitive demands of the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
 par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
 biplot(pca2, choices=1:2, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
 biplot(pca2, choices=3:4, pc.biplot=T, cex=c(.5, 1), xlim=c(-3,3), ylim=c(-2.5,2.5))
 @
 
-\subsection{PCA of all Five Tests (Cognitive Tests and Lineups)}\label{app:pca5}
+\subsection{PCA of Cognitive Tests and Lineups}\label{app:pca5}
 PC1 is essentially an average across all tests representing a general ``visual intelligence" factor.
 Biplots of the remaining principal components are shown in figure~\ref{fig:biplots5}. 
 
-<<biplots-pca5, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.8\\linewidth', comment="|", fig.cap="Plots of principal components 2-5 with observations. \\label{fig:biplots5}", echo=F, fig.env="figure">>=
+<<biplots-pca5, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.7\\linewidth', comment="|", fig.cap="Plots of principal components 2-5 with observations. \\label{fig:biplots5}", echo=F, fig.env="figure">>=
 par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
 biplot(pca, choices=2:3, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
 biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), xlim=c(-2,2), ylim=c(-2,2))
@@ -825,9 +817,8 @@ PC4 captures the similarity between lineups and the card rotation task and separ
 
 \section{Lineup Task Examples}\label{app:lineuptypes}
 \subsection{Lineup Set 1}
+The experiment in the first lineup section examined the use of boxplots, density plots, histograms, and dotplots to compare two groups which vary in mean and sample size. The experiment was originally designed to explore the use of lineups to test plots of competing design\cite{hofmann2012graphical}. This set of lineups consists of 20 plots selected from the plots used in the full experiment; each set of data is displayed with each of the four plot types. 
 
-\newtext{The experiment in the first lineup section examined the use of boxplots, density plots, histograms, and dotplots to compare two groups which vary in mean and sample size. The experiment was originally designed to explore the use of lineups to test plots of competing design\cite{hofmann2012graphical}. This set of lineups consists of 20 plots selected from the plots used in the full experiment; each set of data is displayed with each of the four plot types. 
-}
 \comment{Describe performance - need to get data from original experiment.}
 \begin{figure}[htbp]
 \includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups1/boxplot_1_15_5_4_13}
@@ -847,14 +838,7 @@ PC4 captures the similarity between lineups and the card rotation task and separ
 \end{figure}
 \FloatBarrier
 \subsection{Lineup Set 2}
-\comment{Description of original purpose of the experiment. Note that this experiment appears to have more outliers.}
-
-\newtext{The second lineup section also explored two groups of data, this time comparing boxplots, bee swarm boxplots, boxplots with overlaid jittered data, and violin plots. Participants were much more accurate in this experiment ...
-}
-\comment{Add note about experimental performance, general accuracy rate, etc.}
-
-
-
+The second lineup section also explored two groups of data, this time comparing boxplots, bee swarm boxplots, boxplots with overlaid jittered data, and violin plots. Participants were much more accurate in this experiment than in the experiment described previously, because of the types of plots compared as well as the underlying data distributions. 
 \begin{figure}[htbp]
 \includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups2/file147f94f6965d7}
 \caption{Boxplots.}
@@ -873,9 +857,8 @@ PC4 captures the similarity between lineups and the card rotation task and separ
 \end{figure}
 \FloatBarrier
 \subsection{Lineup Set 3}
-\comment{Description of original purpose of the experiment.}
-\newtext{The final lineup section explored QQ-plots from various model simulations, using reference lines, acceptance bands, and rotation to determine which plots allowed participants to most effectively identify violations of normality. Rotated qq plots showed lower performance because participants could more accurately compare acceptance bands to residuals, and thus could identify that the reference bands were too liberal. As a result, performance was somewhat lower for rotated plots, even though participants could more accurately compare the residuals to the reference bands.}
-\comment{Add citations, more explanations, etc.}
+The final lineup section explored QQ-plots from various model simulations, using reference lines, acceptance bands, and rotation to determine which plots allowed participants to most effectively identify violations of normality. Rotated qq plots showed lower performance because participants could more accurately compare acceptance bands to residuals, and thus could identify that the reference bands were too liberal. As a result, performance was somewhat lower for rotated plots, even though participants could more accurately compare the residuals to the reference bands.
+% \comment{Add citations, more explanations, etc.}
 
 
 \begin{figure}[htbp]
@@ -926,7 +909,7 @@ qplot(data=subset(lineup.type.sum2, !is.na(plot.type)& testtype=="lineup"),
 
 Figure \ref{fig:plottypesdensity} compares performance on each different type of plot. As two different lineup tasks utilized boxplots to test different qualities of the distribution of data (outliers vs. difference in medians), different tasks are shown as different colors, so that accuracy on tasks which are shown in blue can be compared to other blue density curves. 
 
-Figure \ref{fig:scatterplottypes} shows the association between scaled score on each type of lineup and score on the visual reasoning tests. Sample size for each plot type is fairly small - between 5 and 10 plots per individual, so there is low power for systematic inference, but we can establish that the card rotation task is much more significantly associated with the QQ plots tasks compared to the other tasks. In addition, rotated qq plots seem to be much more asssociated with the paper folding task scores than other qq plot tasks; this may be because they require more visual manipulation than other qq plots?
+Figure \ref{fig:scatterplottypes} shows the association between scaled score on each type of lineup and score on the visual reasoning tests. Sample size for each plot type is fairly small - between 5 and 10 plots per individual, so there is low power for systematic inference, but we can establish that the card rotation task is much more significantly associated with the QQ plots tasks compared to the other tasks. In addition, rotated qq plots seem to be much more asssociated with the paper folding task scores than other qq plot tasks; this may be because they require more visual manipulation than other qq plots.
 
 <<lineup-types-scores,echo=F, fig.cap="Plot of scaled lineup scores by aptitude test scores.\\label{fig:scatterplottypes}", fig.width=6, fig.height=12, out.width="\\linewidth", fig.env="figure", warning=F, message=F>>=
 lineup.type.sum3 <- dcast(lineup.type.sum2, id + testtype ~ plot.type, value.var="score", fun.aggregate = mean)
