@@ -189,7 +189,6 @@ This study examines the demographic characteristics and visual skills associated
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\comment{OK, slow down! The intro is still a bit disconnected - I've tried to add the sentences that I think are missing in the first paragraph, but I'm not sure what story you want to tell. What would help is to write a sentence each to summarise a paragraph, and then work on connections between the paragraph. }
 \IEEEPARstart{D}{ata} displays provide quick summaries of data, models, and results, but \newtext{not all displays are equally good, nor is any data display } %these displays may not be 
 equally useful to all viewers. 
 
@@ -205,12 +204,19 @@ Spatial ability becomes more important, though, when more complicated graphical 
 \comment{Here is a paragraph missing, that connects the existing literature to what we are doing in this paper. 
 In particular, we need to answer the questions: 
 
-- why are we interested in evaluating which skills are necessary to evaluate graphical displays (this has been implicitly answered by saying that cognitive load was reduced, so we free up resources and mak graphics a better tool for more people.
+- why are we interested in evaluating which skills are necessary to evaluate graphical displays (this has been implicitly answered by saying that cognitive load was reduced, so we free up resources and make graphics a better tool for more people.
 
 - what are the limits of the studies that you have cited, ie is there something that we can do better?
 
 - what advantage do lineups bring to the table?
 }
+
+
+\comment{How do perceptual principles apply to statistical graphics (data displays)? - Lineups help us to isolate different parts of displays and allow in-built quantification of results.}
+
+
+\comment{Why are lineups variable? - Individual variability is big, we want to investigate which abilities individuals help the most in evaluating. - for this reason we need to motivate why lineups are useful. }
+
 
 \comment{We examine 'some demographic characteristics' is a bit lukewarm. I think once the missing paragraph is there, you can sell the rest of the paper a bit more passionately.}
 
