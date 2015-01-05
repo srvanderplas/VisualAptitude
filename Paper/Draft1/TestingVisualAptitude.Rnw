@@ -127,7 +127,7 @@ sanitize <- function(x){
 
 
 \begin{document}
-\title{Spatial Reasoning and Statistical Graphics}
+\title{Spatial Reasoning and Data Displays}
 
 \author{Susan VanderPlas, Heike Hofmann} % , Stephanie De Graaf, Hillary Cheney ??
 
@@ -148,7 +148,9 @@ E-mail: {skoons, hofmann}@iastate.edu}% <-this % stops an unwanted space
 
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-Graphics convey statistical information very efficiently, but rely on a different set of mental processes than tabular displays. This study examines the demographic characteristics and visual skills associated with perception of statistical lineups. We conclude that statistical lineups are essentially a classification test in a visual domain, and that performance on the lineup protocol is associated with general aptitude, rather than specific tasks such as card rotation and spatial manipulation. We also examine the possibility that specific graphical tasks may be associated with certain visual skills and conclude that more research is necessary to understand which visual skills are required in order to understand certain plot types. 
+\comment{Tone down the `statistical' part ... statistical, to the wrong ears sounds complicated. } Graphics convey statistical information very efficiently, but rely on a different set of mental processes than tabular displays. 
+\newtext{}
+This study examines the demographic characteristics and visual skills associated with perception of statistical lineups. We conclude that statistical lineups are essentially a classification test in a visual domain, and that performance on the lineup protocol is associated with general aptitude, rather than specific tasks such as card rotation and spatial manipulation. We also examine the possibility that specific graphical tasks may be associated with certain visual skills and conclude that more research is necessary to understand which visual skills are required in order to understand certain plot types. 
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -187,13 +189,36 @@ Graphics convey statistical information very efficiently, but rely on a differen
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\IEEEPARstart{S}{tatistical} graphics provide quick summaries of data, models, and results, but these displays may not be equally useful to all viewers. Mathematical ability is important, even for the simplest graphs:  mathematical ability, not spatial ability, was shown~\cite{shah1995conceptual} to be associated with accuracy on a simple two-dimensional line graph. 
+\comment{OK, slow down! The intro is still a bit disconnected - I've tried to add the sentences that I think are missing in the first paragraph, but I'm not sure what story you want to tell. What would help is to write a sentence each to summarise a paragraph, and then work on connections between the paragraph. }
+\IEEEPARstart{D}{ata} displays provide quick summaries of data, models, and results, but \newtext{not all displays are equally good, nor is any data display } %these displays may not be 
+equally useful to all viewers. 
 
-Spatial ability becomes more important, however, when more complicated graphical displays are used in comparison tasks: the lower performance of individuals with low spatial ability on tests utilizing diagrams and graphs is attributed ~\cite{mayer1994whom} to the fact that more cognitive resources are required to process the visual stimuli, which leaves fewer resources to make connections and draw conclusions from those stimuli. It is theorized that graphics are a form of ``external cognition"~\cite{scaife1996external} that guide, constrain, and facilitate cognitive behavior\cite{zhang1997nature}. 
-Graphics utilize higher-bandwidth visual pathways to encode information\cite{baddeley1974working}, allowing viewers to quickly and intuitively encode multiple dimensions of numerical relationships; however, this higher-bandwidth approach also depends on the viewer's visual and spatial reasoning ability. Well-designed graphics emphasize and present important features of the data while minimizing  features of lesser importance, guiding the viewer towards conclusions that are meaningful in context and supported by the data while maximizing the information encoded in working memory. Under this framework, well-designed graphics reduce memory load and make more cognitive resources available for other tasks (such as drawing conclusions from the data), at the cost of depending on certain visuospatial reasoning abilities. 
+Graphics utilize higher-bandwidth visual pathways to encode information~\cite{baddeley1974working}, allowing viewers to quickly and intuitively \newtext{relate} multiple dimensions of numerical \newtext{quantities.}%relationships 
+%; however, this higher-bandwidth approach also depends on the viewer's visual and spatial reasoning ability. 
+Well-designed graphics emphasize and present important features of the data while minimizing  features of lesser importance, guiding the viewer towards conclusions that are meaningful in context and supported by the data while maximizing the information encoded in working memory. Under this framework, well-designed graphics reduce memory load and make more cognitive resources available for other tasks (such as drawing conclusions from the data), at the cost of depending on certain visuospatial reasoning abilities. 
 
 Many theories of graphical learning center around the difference between visual and verbal processing: the dual-coding theory emphasizes the utility of complementary information in both domains, while the visual argument hypothesis emphasizes that graphics are more efficient tools for providing data with spatial, temporal, or other implicit ordering, because the spatial dimension can be represented graphically in a more natural manner~\cite{vekiri2002value}. Both of these theories suggest spatial ability would impact a viewer's use of graphics, because spatial ability either influences cognitive resource allocation or affects the processing of spatial relationships between graphical elements. In addition, previous investigations into graphical learning and spatial ability have found relationships between spatial ability and the ability to read information from graphs~\cite{lowrie2007solving}. 
 
+However,  mathematical ability, not spatial ability, was shown~\cite{shah1995conceptual} to be associated with accuracy on a simple two-dimensional line graph. 
+Spatial ability becomes more important, though, when more complicated graphical displays are used in comparison tasks: the lower performance of individuals with low spatial ability on tests utilizing diagrams and graphs is attributed ~\cite{mayer1994whom} to the fact that more cognitive resources are required to process the visual stimuli, which leaves fewer resources to make connections and draw conclusions from those stimuli. It is theorized that graphics are a form of ``external cognition"~\cite{scaife1996external} that guide, constrain, and facilitate cognitive behavior\cite{zhang1997nature}. 
+
+\comment{Here is a paragraph missing, that connects the existing literature to what we are doing in this paper. 
+In particular, we need to answer the questions: 
+
+- why are we interested in evaluating which skills are necessary to evaluate graphical displays (this has been implicitly answered by saying that cognitive load was reduced, so we free up resources and mak graphics a better tool for more people.
+
+- what are the limits of the studies that you have cited, ie is there something that we can do better?
+
+- what advantage do lineups bring to the table?
+}
+
+\comment{We examine 'some demographic characteristics' is a bit lukewarm. I think once the missing paragraph is there, you can sell the rest of the paper a bit more passionately.}
+
+In this paper, we examine some demographic characteristics as well as characteristics such as  spatial and pattern recognition ability with the goal of understanding the skills necessary for accurate lineup performance as well as underlying variation in lineup performance. 
+
+\section{Methods}
+
+\subsection{The Lineup Protocol}
 The lineup protocol~\cite{hofmann2012graphical,wickham2010graphical, buja2009statistical} is a testing framework that allows us to quantify the significance of graphical findings with the same mathematical rigor as conventional hypothesis tests.
 
 Figure \ref{fig:lineup} shows a sample lineup of boxplots; participants are expected to identify the most different among the plots shown. In this example, sub-plot 4 is the target  because of the noticeably different locations of the two boxplot medians.
@@ -207,9 +232,7 @@ Statistical lineups depend on the ability to search for a signal amid distractor
 
 One of the most useful features of the lineup protocol is that it allows researchers to conclusively determine which graphics show certain features more conclusively (providing an experimental protocol for comparing graphics based on the accuracy of user conclusions). In addition, lineups provide researchers with a rigorous framework for determining whether a specific graph shows a real, statistically significant effect by comparing a target plot with plots formed using permutations of the same data, providing a randomization test protocol for graphics. As a result, lineups are a useful and innovative tool for evaluating charts; on an individual level, they can also be used to evaluate a specific participant's perceptual reasoning ability in the context of statistical graphics.
 
-In this paper, we examine some demographic characteristics as well as characteristics such as  spatial and pattern recognition ability with the goal of understanding the skills necessary for accurate lineup performance as well as underlying variation in lineup performance. 
 
-\section{Methods}
 \subsection{Measures of visuospatial ability}
 
 Participants are asked to complete several cognitive tests designed to measure spatial and reasoning ability. Tasks are times such  that participants are under  pressure to complete; participants are not expected to finish all of the problems in each section. This allows for a better discrimination between scores and prevents score compression at the top of the range. 
