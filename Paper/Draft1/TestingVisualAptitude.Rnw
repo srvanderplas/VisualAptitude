@@ -224,7 +224,7 @@ While previous research has examined the link between certain types of graphical
 Exploring the participant characteristics which contribute to successful lineup evaluation allows us to better understand the lineup task and potential sources of variability in the study results. 
 }
 
-\comments{This is going into the right direction, but a few pieces are still missing, 
+\comment{This is going into the right direction, but a few pieces are still missing, 
 you need to still say what this paper is doing: we do a study to compare lineup performance with established tests, also go into a bit of discussion of the tests.}
 % \comment{Here is a paragraph missing, that connects the existing literature to what we are doing in this paper. 
 % In particular, we need to answer the questions: 
@@ -442,7 +442,7 @@ tmp <- tmp[order(tmp$p.value, decreasing=F),]
 lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, levels=unique(tmp$Variable))
 lineup.summary.categorical$value <- factor(lineup.summary.categorical$value, levels=c("0","1", "2","3","4","5","[1, 2)", "[2, 5)", "5+", "18-20", "21+", "TRUE", "FALSE", "Female", "Male"))
 
-qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot", fill=I("grey70")) + 
+qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot", fill=I("grey")) + 
   facet_wrap(~variable, scales="free_x", ncol=4) + xlab("") + 
   ylab("Scaled Lineup Score") + 
   geom_point(aes(x=value, y=lineup), shape=1, size=3) + 
@@ -702,6 +702,7 @@ ggplot()+
 
 In order to examine which lineup tasks are most closely associated with visual abilities tested in the aptitude portions of an experiment, we employ principal component analysis on participant scores averaged across each block of lineups.
 
+
 <<lineupblockpca, echo=F, warning=F, message=F, fig.cap="Lineup block PCA rotation matrix in graphical form.", fig.width=5, fig.height=5>>=
 lineup.block.pca <- prcomp(lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 rotation <- melt(lineup.block.pca$rotation)
@@ -714,6 +715,7 @@ library(grid) # needed for arrow function
 qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotation, arrow=arrow(length=unit(0.1, "cm"))) + facet_wrap(~Var2, ncol=3) + xlab("Contribution to each PC * % Variance in PC") + ggtitle("Lineup Types and Visual Aptitude") + ylab("") + theme_bw()
 @
 
+\comment{First: what is shown in figure 8? THis is a non traditional plot, so you need to explain it first.}
 From figure~\ref{fig:lineupblockpca} we see that again, PC1 accounts for general visual aptitude. 
 % PC2 emphasizes the relationship between figure classification and lineup task 1 (and to a lesser extent, on lineup task 2). PC3 differentiates the lineup task 3 from the visual search task; other tasks do not impact PC3 to a meaningful degree. PC4 separates lineup test 2 from the paper folding and card rotation tests and emphasizes the overlap with the visual search test. PC5 separates lineup test 2 and the figure classification test from the overlap between the other lineup tests and the visual search test. PC6 and PC7 account for a joint total of less than 10\% of the overall variability, and do not display any distinct patterns in the loadings.
 %
@@ -741,6 +743,8 @@ A larger study might not only address the question of which lineup tasks require
 
 
 \section{Discussion and Conclusions}
+\comment{These read like the conclusions from earlier - video games aren't that prominently displayed anymore unless you are referring to figure 5. But if so, I would be cautious about summarising STEM major as 'mathematical training' - use the same names for the variables as in figure 5 and make sure to keep the order, i.e. gender is more impotant than video game hours. also make sure, that to mention that this is on a univariate level and doesn't take the correlation between the variables into account. }
+
 Performance on lineups is strongly related to performance on tests of visual ability; however, this relationship is mediated by factors such as mathematical training, hours of video games played per week, and gender.
 In addition, many facets of intelligence are highly correlated; those who score higher on general aptitude tests may score higher on tests of visual ability (and may also score higher on lineup tests).
 Despite these caveats, we have demonstrated that the general lineup task is most closely related to a classification task, rather than tests of spatial ability.
@@ -816,6 +820,7 @@ For example, in order to account for the fact that ISU students took only part I
 \end{eqnarray*}
 
 \section{Lineup Performance and Demographic Characteristics}\label{app:categoricalresults}
+\comment{'Results' of lineup score - te caption in the table is too generic. give more details. }
 Table~\ref{tab:ttest-demographics} provides the results of a sequence of linear models fit to the lineup data. Each row in the table represents a single model, with one predictor variable (a factor with two or more levels). Due to sample size considerations, multiple testing corrections were not performed; in addition, the independent variables are correlated: in our sample, males are more likely to have completed Calculus 1, but are also more likely to spend time playing video games. As such, a model including two or more of the significant predictor variables shows all included variables to be nonsignificant. To better understand the effects of these variables, a larger study would be required. 
 <<ttests.categ, echo=F, eval=T, results='asis'>>=
 tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
@@ -836,6 +841,7 @@ print(xtable(tmp2, digits=c(1, 1, 0, 3, 2, 3), caption="Results of lineup score 
 
 \section{Principal Component Analysis of Visuo-Spatial Tests}\label{app:pca}
 \subsection{PCA of the Four Cognitive Tests}\label{app:pca4}
+\comment{'Importance of principal components {\it in an analysis} of four tests' -- be more precise: you mean the PCA. Give some details as to how importance is measured. }
 %
 <<pcasummary4,echo=F, results='asis'>>=
 pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
@@ -854,7 +860,7 @@ par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
 biplot(pca2, choices=1:2, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
 biplot(pca2, choices=3:4, pc.biplot=T, cex=c(.5, 1), xlim=c(-3,3), ylim=c(-2.5,2.5))
 @
-
+\comment{figure 9 and 10 are Biplots, say so in the caption - in the discussion of the figures and the tables in the text, please think again of adding the sentence summarising what is shown. }
 \subsection{PCA of Cognitive Tests and Lineups}\label{app:pca5}
 PC1 is essentially an average across all tests representing a general ``visual intelligence" factor.
 Biplots of the remaining principal components are shown in figure~\ref{fig:biplots5}. 
