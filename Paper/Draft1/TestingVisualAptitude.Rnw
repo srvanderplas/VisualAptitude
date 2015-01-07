@@ -195,19 +195,37 @@ Well-designed graphics emphasize and present important features of the data whil
 
 Many theories of graphical learning center around the difference between visual and verbal processing: the dual-coding theory emphasizes the utility of complementary information in both domains, while the visual argument hypothesis emphasizes that graphics are more efficient tools for providing data with spatial, temporal, or other implicit ordering, because the spatial dimension can be represented graphically in a more natural manner~\cite{vekiri2002value}. Both of these theories suggest spatial ability would impact a viewer's use of graphics, because spatial ability either influences cognitive resource allocation or affects the processing of spatial relationships between graphical elements. In addition, previous investigations into graphical learning and spatial ability have found relationships between spatial ability and the ability to read information from graphs~\cite{lowrie2007solving}. 
 However,  mathematical ability, not spatial ability, was shown~\cite{shah1995conceptual} to be associated with accuracy on a simple two-dimensional line graph. 
-Spatial ability becomes more important when more complicated graphical displays are used in comparison tasks: the lower performance of individuals with low spatial ability on tests utilizing diagrams and graphs is attributed ~\cite{mayer1994whom} to the fact that more cognitive resources are required to process the visual stimuli, which leaves fewer resources to make connections and draw conclusions from those stimuli. It is theorized that graphics are a form of ``external cognition"~\cite{scaife1996external} that guide, constrain, and facilitate cognitive behavior\cite{zhang1997nature}. 
+Spatial ability becomes more important when more complicated graphical displays are used in comparison tasks: the lower performance of individuals with low spatial ability on tests utilizing diagrams and graphs is attributed ~\cite{mayer1994whom} to the fact that more cognitive resources are required to process the visual stimuli, which leaves fewer resources to make connections and draw conclusions from those stimuli. It is theorized that graphics are a form of ``external cognition"~\cite{scaife1996external} that guide, constrain, and facilitate cognitive behavior~\cite{zhang1997nature}. 
 
-\newtext{
-"Lineups" are often used to evaluate the effectiveness of different graphical displays \cite{kosara2010mechanical,wickham2010graphical,majumder2013validation}; as the police counterpart, lineups consist of several distractor plots and one target. 
-This method is described in more detail in the next section; here we motivate the importance of understanding the connection between lineups and spatial reasoning. 
-}\newtext{
+\comment{I am not sure what the kosara reference has to do with the lineups - the only thing lineups and kosara have in common are the amazon studies. but you might want to keep the reference around for a discussion of the amazon results }
+``Lineups" have recently been introduced \cite{buja2009statistical, wickham2010graphical, majumder2013validation} as a tool to evaluate the statistical significance of a graphical finding. Lineups are also useful in assessing the effectiveness of different graphical displays \cite{kosara2010mechanical, heike:2012, loy:2015}. Like their police counterpart, lineups consist of several distractor plots (of randomly generated data) and one target (the data plot). 
+
+Figure \ref{fig:lineup} shows a sample lineup of boxplots; participants are expected to identify the most different among the plots shown. In this example, sub-plot 4 is the target  because of the noticeably different locations of the two boxplot medians.
+
+\begin{figure}\centering
+\includegraphics[width=\linewidth]{lineup}
+\caption[Sample Lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 4 is the target plot, because the two groups have a large difference in medians. }\label{fig:lineup}
+\end{figure}
+
+%This method is described in more detail in the next section; here we motivate the importance of understanding the connection between lineups and spatial reasoning. 
+
+
 Lineups provide a quantitative measurement of the effectiveness of a particular plot: if participants consistently identify the target plot rather than the randomly-generated distractors, the plot effectively shows the difference between real data and random noise. 
-This removes some of the subjectivity from user evaluations of display effectiveness, and the procedure is simple enough that it does not generally require familiarity with data-based graphics. 
-}\newtext{
-While previous research has examined the link between certain types of graphical perception and spatial skills, it is important to identify any additional visual skills required by the lineup task, as well as better understand demographic characteristics (math education, research experience, age, gender) which may differentially impact performance\cite{humanfactorslineups}. 
-Exploring the participant characteristics which contribute to successful lineup evaluation allows us to better understand the lineup task and potential sources of variability in the data. 
+This removes a lot of the subjectivity from user evaluations of display effectiveness, and the procedure is simple enough that it does not generally require participants to be very familiar with data-based graphics. 
+
+
+\comment{`While previous research' - which research are you referring to? 
+Yifan's paper with the eyetracking study has looked at the spatial connection \cite{zhao2013mind}. But is that what you mean?
+
+`required by the lineup task' - that makes the lineup task strangely active. Could you rephrase that in terms of the participant?
+}
+\newtext{
+While previous research has examined the link between certain types of graphical perception and spatial skills, it is important to identify any additional visual skills required by the lineup task, as well as better understand demographic characteristics (math education, research experience, age, gender) which may impact performance \cite{humanfactorslineups}. 
+Exploring the participant characteristics which contribute to successful lineup evaluation allows us to better understand the lineup task and potential sources of variability in the study results. 
 }
 
+\comments{This is going into the right direction, but a few pieces are still missing, 
+you need to still say what this paper is doing: we do a study to compare lineup performance with established tests, also go into a bit of discussion of the tests.}
 % \comment{Here is a paragraph missing, that connects the existing literature to what we are doing in this paper. 
 % In particular, we need to answer the questions: 
 % 
@@ -232,23 +250,21 @@ In this paper, we examine some demographic characteristics as well as characteri
 \section{Methods}
 
 \subsection{The Lineup Protocol}
-The lineup protocol~\cite{hofmann2012graphical,wickham2010graphical, buja2009statistical} is a testing framework that allows us to quantify the significance of graphical findings with the same mathematical rigor as conventional hypothesis tests.
+The lineup protocol~\cite{hofmann2012graphical,wickham2010graphical, buja2009statistical} is a testing framework that allows researchers to quantify the statistical significance of a graphical finding with the same mathematical rigor as conventional hypothesis tests.
 
-Figure \ref{fig:lineup} shows a sample lineup of boxplots; participants are expected to identify the most different among the plots shown. In this example, sub-plot 4 is the target  because of the noticeably different locations of the two boxplot medians.
+\comment{you can dare to go into a bit of math here - introduce a bit of the lineup math here.  random variable and approximate distribution, explanation for choosing lineups of size 20. }
 
-Statistical lineups depend on the ability to search for a signal amid distractors (visual search) and the ability to infer patterns from stimuli (pattern recognition). Some lineups (polar coords) also depend on the ability to mentally rotate stimuli (spatial rotation) and mentally manipulate graphs (spatial rotation and manipulation). By breaking the lineup task down into component parts, we may be able to determine which visuospatial factors most strongly correlate with lineup performance, using carefully chosen cognitive tests to assess these aspects of visuospatial ability. Demographic factors are known to impact lineup performance: country, education, and age affected score on lineup tests, and all of those factors plus gender had an effect on the amount of time spent on lineups \cite{humanfactorslineups}. In addition, lineup performance can be partially explained using statistical distance metrics \cite{distancemetriclineups}, but these metrics do not completely succeed in predicting human performance, in part due to the difficulty of representing human visual ability algorithmically.
+Statistical lineups depend on the ability to search for a signal amid a set of distractors (visual search) and the ability to infer patterns from stimuli (pattern recognition). \newtext{Depending on the choice of plot shown in the lineup, the task of identifying the most different plot might require additional abilities from   participants, e.g.~ polar coordinates} depend on the ability to mentally rotate stimuli (spatial rotation) and mentally manipulate graphs (spatial rotation and manipulation). By breaking the lineup task down into its components, we  determine which visuospatial factors most strongly correlate with lineup performance, using carefully chosen cognitive tests to assess these aspects of visuospatial ability. 
 
-\begin{figure}\centering
-\includegraphics[width=\linewidth]{lineup}
-\caption[Sample Lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 4 is the target plot, because the two groups have a large difference in medians. }\label{fig:lineup}
-\end{figure}
+Demographic factors are known to impact lineup performance: country, education, and age affected score on lineup tests, and all of those factors plus gender had an effect on the amount of time spent on lineups \cite{humanfactorslineups}. In addition, lineup performance can be partially explained using statistical distance metrics \cite{distancemetriclineups}, but these metrics do not completely succeed in predicting human performance, in part due to the difficulty of representing human visual ability algorithmically.
 
-One of the most useful features of the lineup protocol is that it allows researchers to conclusively determine which graphics show certain features more conclusively (providing an experimental protocol for comparing graphics based on the accuracy of user conclusions). In addition, lineups provide researchers with a rigorous framework for determining whether a specific graph shows a real, statistically significant effect by comparing a target plot with plots formed using permutations of the same data, providing a randomization test protocol for graphics. As a result, lineups are a useful and innovative tool for evaluating charts; on an individual level, they can also be used to evaluate a specific participant's perceptual reasoning ability in the context of statistical graphics.
+
+One of the most useful features of the lineup protocol is that it allows researchers to conclusively determine which graphics show certain features more conclusively by providing an experimental protocol for comparing graphics based on the accuracy of user conclusions. In addition, lineups provide researchers with a rigorous framework for determining whether a specific graph shows a real, statistically significant effect by comparing a target plot with plots formed using permutations of the same data, providing a randomization test protocol for graphics. As a result, lineups are a useful and innovative tool for evaluating charts; on an individual level, they can also be used to evaluate a specific participant's perceptual reasoning ability in the context of statistical graphics.
 
 
 \subsection{Measures of visuospatial ability}
 
-Participants are asked to complete several cognitive tests designed to measure spatial and reasoning ability. Tasks are times such  that participants are under  pressure to complete; participants are not expected to finish all of the problems in each section. This allows for a better discrimination between scores and prevents score compression at the top of the range. 
+Participants are asked to complete several cognitive tests designed to measure spatial and reasoning ability. Tasks are timed such  that participants are under  pressure to complete; participants are not expected to finish all of the problems in each section. This allows for a better discrimination between scores and prevents score compression at the top of the range. 
 
 The \textbf{visual searching task} (VST), shown in figure~\ref{fig:VST}, is designed to test a participant's ability to find a target stimulus in a field of distractors, thus making the visual search task similar in concept to lineups. Historically, visual search has been used as a measure of brain damage \cite{goldstein1973validity,demita1981validity,moerland1986neuropsychological}; however, similar tasks have been used to measure cognitive performance in a variety of situations, for example under the influence of drugs in~\cite{anderson1983interactive}. The similarity to the lineup protocol as well as the simplicity of the test and its' lack of color justify the slight deviation from forms of visual search tasks typically used in normal populations. 
 \begin{figure}[htp]\centering
@@ -260,6 +276,7 @@ The \textbf{figure classification task} tests a participant's ability to extrapo
 
 The figure classification test requires the same type of reasoning as the lineups: participants must determine the rules from the provided classes, and extrapolate from those rules to classify new figures. In lineups, participants must determine the rules based on the panels appearing in the lineup; they must then identify the plot which does not conform. As such, the figure classification test has content validity in relation to lineup performance: it is measuring similar underlying criteria. 
 
+\comment{Let's put figure \ref{fig:tests} into the appendix - that'll save us quite a bit of space. }
  \begin{figure*}[ht]
   \centering
    \subfloat[Figure Classification Task. Participants classify each figure in the second row as belonging to one of the groups above. Participants complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.\label{fig:figureclassification}]{%
@@ -295,7 +312,7 @@ The \textbf{paper folding test} measures participants' ability to visualize and 
 % \end{figure*}
 Lineups require similar manipulations in two-dimensional space, and also require the ability to perform complex spatial manipulations mentally; for instance, comparing the interquartile range of two boxplots as well as their relative alignment to a similar set of two boxplots in another panel.
 
-Between cognitive tasks, participants will also complete three blocks of 20 lineups each, assembled from previous studies~\cite{hofmann2012graphical,majumder2013validation}. Participants have 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup} shows a sample lineup of box plots. 
+Between cognitive tasks, participants were also asked to complete three blocks of 20 lineups each, assembled from previous studies~\cite{hofmann2012graphical,majumder2013validation}. Participants have 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup} shows a sample lineup of box plots. 
 
 In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. 
 These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
@@ -310,6 +327,9 @@ This allows us to compare each participant's score in light of how many problems
 
 \section{Results}
 Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students at Iowa State University. \Sexpr{round(sum(ans.summary$stem)/nrow(ans.summary)*100)}\% of the participants were in STEM fields, the others were distributed relatively evenly between agriculture, business, and the social sciences. Students were evenly distributed by gender, and were between 18 and 24 years of age with only one exception. This is reasonably representative\footnote{\url{http://www.ir.iastate.edu/PDFfiles/2012-2013\%20Student\%20Profile.pdf}} of the university as a whole; in the fall 2012 semester, 23\% of students were associated with the college of engineering, 23\% were associated with the college of liberal arts and sciences, 23\% were associated with the college of human sciences, 12\% with the business school, and 14\% with the school of agriculture.  
+
+\comment{here are the numbers for Fall 2014: http://www.registrar.iastate.edu/enrollment}
+
 
 \subsection{Comparison of Spatial Tests with Previously Validated Results}
 The card rotation, paper folding, and figure classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students). We compare Iowa State students' unscaled scores in table~\ref{tab:scorecomparison}, adjusting data from other populations to account for subpopulation structure and test length. 
@@ -422,7 +442,7 @@ tmp <- tmp[order(tmp$p.value, decreasing=F),]
 lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, levels=unique(tmp$Variable))
 lineup.summary.categorical$value <- factor(lineup.summary.categorical$value, levels=c("0","1", "2","3","4","5","[1, 2)", "[2, 5)", "5+", "18-20", "21+", "TRUE", "FALSE", "Female", "Male"))
 
-qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot") + 
+qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot", fill=I("grey70")) + 
   facet_wrap(~variable, scales="free_x", ncol=4) + xlab("") + 
   ylab("Scaled Lineup Score") + 
   geom_point(aes(x=value, y=lineup), shape=1, size=3) + 
