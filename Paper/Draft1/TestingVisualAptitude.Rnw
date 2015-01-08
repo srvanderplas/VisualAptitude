@@ -197,8 +197,8 @@ Many theories of graphical learning center around the difference between visual 
 However,  mathematical ability, not spatial ability, was shown~\cite{shah1995conceptual} to be associated with accuracy on a simple two-dimensional line graph. 
 Spatial ability becomes more important when more complicated graphical displays are used in comparison tasks: the lower performance of individuals with low spatial ability on tests utilizing diagrams and graphs is attributed ~\cite{mayer1994whom} to the fact that more cognitive resources are required to process the visual stimuli, which leaves fewer resources to make connections and draw conclusions from those stimuli. It is theorized that graphics are a form of ``external cognition"~\cite{scaife1996external} that guide, constrain, and facilitate cognitive behavior~\cite{zhang1997nature}. 
 
-\comment{I am not sure what the kosara reference has to do with the lineups - the only thing lineups and kosara have in common are the amazon studies. but you might want to keep the reference around for a discussion of the amazon results }
-``Lineups" have recently been introduced \cite{buja2009statistical, wickham2010graphical, majumder2013validation} as a tool to evaluate the statistical significance of a graphical finding. Lineups are also useful in assessing the effectiveness of different graphical displays \cite{kosara2010mechanical, heike:2012, loy:2015}. Like their police counterpart, lineups consist of several distractor plots (of randomly generated data) and one target (the data plot). 
+% \comment{I am not sure what the kosara reference has to do with the lineups - the only thing lineups and kosara have in common are the amazon studies. but you might want to keep the reference around for a discussion of the amazon results }
+``Lineups" have recently been introduced \cite{buja2009statistical, wickham2010graphical, majumder2013validation} as a tool to evaluate the statistical significance of a graphical finding. Lineups are also useful in assessing the effectiveness of different graphical displays \cite{heike:2012, loy:2015}. Like their police counterpart, lineups consist of several distractor plots (of randomly generated data) and one target (the data plot). 
 
 Figure \ref{fig:lineup} shows a sample lineup of boxplots; participants are expected to identify the most different among the plots shown. In this example, sub-plot 4 is the target  because of the noticeably different locations of the two boxplot medians.
 
@@ -211,21 +211,27 @@ Figure \ref{fig:lineup} shows a sample lineup of boxplots; participants are expe
 
 
 Lineups provide a quantitative measurement of the effectiveness of a particular plot: if participants consistently identify the target plot rather than the randomly-generated distractors, the plot effectively shows the difference between real data and random noise. 
-This removes a lot of the subjectivity from user evaluations of display effectiveness, and the procedure is simple enough that it does not generally require participants to be very familiar with data-based graphics. 
+This removes much of the subjectivity from user evaluations of display effectiveness, and the procedure is simple enough that it does not generally require participants to be very familiar with data-based graphics. 
 
-
-\comment{`While previous research' - which research are you referring to? 
-Yifan's paper with the eyetracking study has looked at the spatial connection \cite{zhao2013mind}. But is that what you mean?
-
-`required by the lineup task' - that makes the lineup task strangely active. Could you rephrase that in terms of the participant?
-}
+% 
+% \comment{`While previous research' - which research are you referring to? 
+% Yifan's paper with the eyetracking study has looked at the spatial connection \cite{zhao2013mind}. But is that what you mean?
+% 
+% `required by the lineup task' - that makes the lineup task strangely active. Could you rephrase that in terms of the participant?
+% }
 \newtext{
-While previous research has examined the link between certain types of graphical perception and spatial skills, it is important to identify any additional visual skills required by the lineup task, as well as better understand demographic characteristics (math education, research experience, age, gender) which may impact performance \cite{humanfactorslineups}. 
-Exploring the participant characteristics which contribute to successful lineup evaluation allows us to better understand the lineup task and potential sources of variability in the study results. 
-}
+While previous research~\cite{lowrie2007solving,mayer1994whom} has examined the link between certain types of graphical perception and spatial skills, it is important to identify any additional visual skills participants utilize to complete the lineup task, as well as better understand demographic characteristics (math education, research experience, age, gender) which may impact performance \cite{humanfactorslineups}. 
+% Exploring the participant characteristics which contribute to successful lineup evaluation allows us to better understand the lineup task and potential sources of variability in the study results. 
+} \newtext{
+Our experiment compares lineup performance with established tests, such as the visual search task (VST), paper folding test, card rotation test, and figure classification test. 
+The VST measures visual search speed, the paper folding and card rotation tests measures spatial manipulation ability, and the figure classification test measures inductive reasoning; 
+all of these skills are at least peripherally recruited during the lineup task, but some may dominate in predicting performance on the lineup task. 
+We hope to facilitate comparison of the lineup task to known cognitive tests, inform the design of future studies, and better understand human of the perception of statistical lineups. 
 
-\comment{This is going into the right direction, but a few pieces are still missing, 
-you need to still say what this paper is doing: we do a study to compare lineup performance with established tests, also go into a bit of discussion of the tests.}
+}
+% 
+% \comment{This is going into the right direction, but a few pieces are still missing, 
+% you need to still say what this paper is doing: we do a study to compare lineup performance with established tests, also go into a bit of discussion of the tests.}
 % \comment{Here is a paragraph missing, that connects the existing literature to what we are doing in this paper. 
 % In particular, we need to answer the questions: 
 % 
@@ -244,8 +250,6 @@ you need to still say what this paper is doing: we do a study to compare lineup 
 % 
 % 
 % \comment{We examine 'some demographic characteristics' is a bit lukewarm. I think once the missing paragraph is there, you can sell the rest of the paper a bit more passionately.}
-
-In this paper, we examine some demographic characteristics as well as characteristics such as  spatial and pattern recognition ability with the goal of understanding the skills necessary for accurate lineup performance as well as underlying variation in lineup performance. 
 
 \section{Methods}
 
