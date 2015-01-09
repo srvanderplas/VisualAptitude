@@ -228,8 +228,7 @@ While previous research~\cite{lowrie2007solving,mayer1994whom} has examined the 
 \comment{good discussion, but this is the first time that you mention `our experiment' - include a sentence here, to say what this experiment is about. also: I think we should only say `study' or `experiment', and I'd prefer study, because experiment sounds like it could go BOOM. I don't want to give that impression. }
 
 Our experiment compares lineup performance with established tests, such as the visual search task (VST), paper folding test, card rotation test, and figure classification test. 
-\comment{include citations for the tests}
-The VST measures visual search speed, the paper folding and card rotation tests measures spatial manipulation ability, and the figure classification test measures inductive reasoning; 
+The VST measures visual search speed\cite{goldstein1973validity}, the paper folding and card rotation tests measures spatial manipulation ability, and the figure classification test measures inductive reasoning\cite{ekstrom1976manual}; 
 all of these skills are at least peripherally recruited during the lineup task, but some may dominate in predicting performance on the lineup task. 
 We hope to facilitate comparison of the lineup task to known cognitive tests, inform the design of future studies, and better understand human of the perception of statistical lineups. 
 \comment {something went wrong with the last half sentence ... do you mean the human component in the statistical lineups?}
