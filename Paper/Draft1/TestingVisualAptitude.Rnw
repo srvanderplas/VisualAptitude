@@ -204,7 +204,7 @@ Figure \ref{fig:lineup} shows a sample lineup of boxplots; participants are expe
 
 \begin{figure}\centering
 \includegraphics[width=\linewidth]{lineup}
-\caption[Sample Lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 4 is the target plot, because the two groups have a large difference in medians. }\label{fig:lineup}
+\caption[Sample Lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 4 is the target plot, because the two groups have a large difference in medians.\label{fig:lineup}}
 \end{figure}
 
 %This method is described in more detail in the next section; here we motivate the importance of understanding the connection between lineups and spatial reasoning. 
@@ -214,14 +214,15 @@ Lineups provide a quantitative measurement of the effectiveness of a particular 
 This removes much of the subjectivity from user evaluations of display effectiveness, and the procedure is simple enough that it does not generally require participants to be very familiar with data-based graphics. 
 While previous research~\cite{lowrie2007solving,mayer1994whom} has examined the link between certain types of graphical perception and spatial skills, it is important to identify any additional visual skills participants utilize to complete the lineup task, as well as better understand demographic characteristics (math education, research experience, age, gender) which may impact performance \cite{humanfactorslineups}. 
 
-\newtext{This study is designed to compare lineup performace with visual aptitude and reasoning tests, examining the skills necessary to successfully evaluate lineups. }
+\comment{`This study' - you still have not established that there is a study. Say it. In this paper we discuss the results of a study .... and now describe what this study tests.}
+\newtext{This study is designed to compare lineup performance with visual aptitude and reasoning tests, examining the skills necessary to successfully evaluate lineups. }
 We compare lineup performace to the visual search task (VST), paper folding test, card rotation test, and figure classification test. 
 The VST measures visual search speed\cite{goldstein1973validity}, the paper folding and card rotation tests measures spatial manipulation ability, and the figure classification test measures inductive reasoning\cite{ekstrom1976manual}; 
 all of these skills are at least peripherally recruited during the lineup task, but some may dominate in predicting performance on the lineup task. 
 We hope to facilitate comparison of the lineup task to known cognitive tests, inform the design of future studies, and better understand the perception of statistical lineups. 
 
 \newtext{
-In section \ref{sec:methods}, we introduce the tests used in this study and describe how tests are scored. In section \ref{sec:results}, we discuss the test scores, comparing established tests with previously validated results, examining demographic characteristics associated with test scores. We discuss multicollinearity in the data, and use principal components analysis and linear regression to draw some conclusions about the similarity between lineups and aptitude tests. Finally, in section \ref{sec:discussion}, we discuss the implications of this study for the lineup protocol, and future work which could extend these results. 
+In section \ref{sec:methods}, we introduce the tests used in this study and describe how tests are scored. In section \ref{sec:results}, we discuss the test scores, comparing established tests with previously validated results, examining demographic characteristics associated with test scores. We discuss multi-collinearity in the data, and use principal components analysis and linear regression to draw some conclusions about the similarity between lineups and aptitude tests. Finally, in section \ref{sec:discussion}, we discuss the implications of this study for the lineup protocol, and future work which could extend these results. 
 }
 
 \section{Methods}\label{sec:methods}
