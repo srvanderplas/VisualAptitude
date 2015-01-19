@@ -719,9 +719,9 @@ A larger study might not only address the question of which lineup tasks require
 % \comment{These read like the conclusions from earlier - video games aren't that prominently displayed anymore unless you are referring to figure 5. But if so, I would be cautious about summarising STEM major as 'mathematical training' - use the same names for the variables as in figure 5 and make sure to keep the order, i.e. gender is more impotant than video game hours. also make sure, that to mention that this is on a univariate level and doesn't take the correlation between the variables into account. }
 
 Performance on lineups is strongly related to performance on tests of visual ability; however, this relationship is mediated by demographic factors such as major (STEM or not) and completion of calculus I.
-In addition to these demographic factors, many facets of intelligence are highly correlated; those who score higher on general aptitude tests may score higher on tests of visual ability (and may also score higher on lineup tests).
+In addition to these demographic factors, many facets of intelligence are highly correlated; participants who score higher on general aptitude tests may score higher on tests of visual ability (and may also score higher on lineup tests).
 
-\comment{reference is gone astray `those who score' ... the previous subject were facets of intelligence, and they do not score on tests - what you mean are people, so say that!}
+% \comment{reference is gone astray `those who score' ... the previous subject were facets of intelligence, and they do not score on tests - what you mean are people, so say that!}
 
 Despite these caveats, we have demonstrated that the general lineup task is most closely related to a classification task, rather than tests of spatial ability.
 This is an important verification of a tool that is useful for examining statistical graphics, as it emphasizes the idea that while the testing medium is graphical in nature, the task is in fact a classification task, where the viewer must determine the most important features of each plot and then identify which plot is different.
