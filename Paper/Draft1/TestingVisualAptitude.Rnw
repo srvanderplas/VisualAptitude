@@ -148,9 +148,7 @@ E-mail: {skoons, hofmann}@iastate.edu}% <-this % stops an unwanted space
 
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-\comment{Tone down the `statistical' part ... statistical, to the wrong ears sounds complicated. } Graphics convey numerical information very efficiently, but rely on a different set of mental processes than tabular displays. 
-\newtext{}
-This study examines the demographic characteristics and visual skills associated with perception of graphical lineups. We conclude that lineups are essentially a classification test in a visual domain, and that performance on the lineup protocol is associated with general aptitude, rather than specific tasks such as card rotation and spatial manipulation. We also examine the possibility that specific graphical tasks may be associated with certain visual skills and conclude that more research is necessary to understand which visual skills are required in order to understand certain plot types. 
+Graphics convey numerical information very efficiently, but rely on a different set of mental processes than tabular displays. This study examines the demographic characteristics and visual skills associated with perception of graphical lineups. We conclude that lineups are essentially a classification test in a visual domain, and that performance on the lineup protocol is associated with general aptitude, rather than specific tasks such as card rotation and spatial manipulation. We also examine the possibility that specific graphical tasks may be associated with certain visual skills and conclude that more research is necessary to understand which visual skills are required in order to understand certain plot types. 
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
