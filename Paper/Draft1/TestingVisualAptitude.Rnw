@@ -821,7 +821,7 @@ For example, in order to account for the fact that ISU students took only part I
 \end{eqnarray*}
 
 \section{Lineup Performance and Demographic Characteristics}\label{app:categoricalresults}
-\comment{'Results' of lineup score - te caption in the table is too generic. give more details. }
+% \comment{'Results' of lineup score - the caption in the table is too generic. give more details. }
 Table~\ref{tab:ttest-demographics} provides the results of a sequence of linear models fit to the lineup data. Each row in the table represents a single model, with one predictor variable (a factor with two or more levels). Due to sample size considerations, multiple testing corrections were not performed; in addition, the independent variables are correlated: in our sample, males are more likely to have completed Calculus 1, but are also more likely to spend time playing video games. As such, a model including two or more of the significant predictor variables shows all included variables to be nonsignificant. To better understand the effects of these variables, a larger study would be required. 
 <<ttests.categ, echo=F, eval=T, results='asis'>>=
 tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
@@ -837,7 +837,7 @@ tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
 tmp <- rbind.fill(tmp)
 tmp2 <- tmp[order(tmp$p.val, decreasing=F),-3]
 tmp2$Variable <- gsub("Math/Science", "STEM", gsub(" Experience", "", gsub(" Hrs/Wk", " hrs", tmp2$Variable)), fixed=T)
-print(xtable(tmp2, digits=c(1, 1, 0, 3, 2, 3), caption="Results of lineup score modeled by single demographic variables. \\label{tab:ttest-demographics}"), include.rownames=F, floating.environment="table", caption.placement="top")
+print(xtable(tmp2, digits=c(1, 1, 0, 3, 2, 3), caption="Participant demographics' impact on lineup score. The table below shows each single demographic variable's association with lineup score. STEM major, completion of Calculus I, time spent playing video games, and gender all show some association with score on statistical lineups. \\label{tab:ttest-demographics}"), include.rownames=F, floating.environment="table", caption.placement="top")
 @
 
 \section{Principal Component Analysis of Visuo-Spatial Tests}\label{app:pca}
