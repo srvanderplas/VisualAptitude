@@ -841,27 +841,27 @@ print(xtable(tmp2, digits=c(1, 1, 0, 3, 2, 3), caption="Participant demographics
 @
 
 \section{Principal Component Analysis of Visuo-Spatial Tests}\label{app:pca}
-\subsection{PCA of the Four Cognitive Tests}\label{app:pca4}
-\comment{'Importance of principal components {\it in an analysis} of four tests' -- be more precise: you mean the PCA. Give some details as to how importance is measured. }
+\subsection{Importance of principal components in an analysis of the four cognitive tests}\label{app:pca4}
+% \comment{'Importance of principal components {\it in an analysis} of four tests' -- be more precise: you mean the PCA. Give some details as to how importance is measured. }
 %
 <<pcasummary4,echo=F, results='asis'>>=
 pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 print(xtable(summary(pca2), caption="Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\\label{tab:PCAvariance4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
 @
-Table~\ref{tab:PCAvariance4} contains the importance of each resultant PC and the proportion of the variance each PC represents. 
-
-PC1 accounts for about \Sexpr{round(summary(pca2)$importance[3,1],1)*100}\% of the variance; figure~\ref{fig:biplots4} and table~\ref{tab:PCArotation4} confirm that PC1 is a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test, while PC3 differentiates these two from the paper folding test. PC4 is not particularly significant (it accounts for \Sexpr{round(summary(pca2)$importance[2,4]*100,1)}\% of the variance), but it differentiates the card rotation task from the paper folding task.
+Table~\ref{tab:PCAvariance4} contains the proportion of the variance in the four cognitive tasks represented by each principal component. PC1 accounts for about \Sexpr{round(summary(pca2)$importance[3,1],1)*100}\% of the variance; figure~\ref{fig:biplots4} and table~\ref{tab:PCArotation4} confirm that PC1 is a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test, while PC3 differentiates these two from the paper folding test. PC4 is not particularly significant (it accounts for \Sexpr{round(summary(pca2)$importance[2,4]*100,1)}\% of the variance), but it differentiates the card rotation task from the paper folding task.
 
 <<pcarotation4,echo=F, results='asis'>>=
-print(xtable(pca2$rotation, caption="PCA Rotation matrix for the four cognitive tests.\\label{tab:PCArotation4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
+print(xtable(pca2$rotation, caption="Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\\label{tab:PCArotation4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
 @
 
-<<biplot-pca4, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.7\\linewidth', comment="|", fig.cap="Plots of principal components 1-4 with observations. PCA was performed on the four cognitive tests used to understand the cognitive demands of the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
+<<biplot-pca4, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.7\\linewidth', comment="|", fig.cap="Biplots of principal components 1-4 with observations. Principal component analysis was performed on the four cognitive tests used to understand the association between the cognitive skills required for these tests and the skills required for the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
 par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
 biplot(pca2, choices=1:2, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
 biplot(pca2, choices=3:4, pc.biplot=T, cex=c(.5, 1), xlim=c(-3,3), ylim=c(-2.5,2.5))
 @
-\comment{figure 9 and 10 are Biplots, say so in the caption - in the discussion of the figures and the tables in the text, please think again of adding the sentence summarising what is shown. }
+% \comment{figure 9 and 10 are Biplots, say so in the caption - in the discussion of the figures and the tables in the text, please think again of adding the sentence summarising what is shown. }
+\newtext{Figure \ref{fig:biplots4} shows that the first PC does not differentiate between any of the tasks; it might be best understood as a general aptitude factor. PC2 begins to separate the four cognitive tests; PC3 and PC4 also differentiate the four tests. According to table \ref{tab:PCArotation4}, the first three principal components account for \Sexpr{round(summary(pca2)$importance[3,3]*100,1)}\% of the variance.} 
+
 \subsection{PCA of Cognitive Tests and Lineups}\label{app:pca5}
 PC1 is essentially an average across all tests representing a general ``visual intelligence" factor.
 Biplots of the remaining principal components are shown in figure~\ref{fig:biplots5}. 
