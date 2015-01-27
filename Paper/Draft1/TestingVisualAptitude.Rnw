@@ -886,7 +886,7 @@ PC4 captures the similarity between lineups and the card rotation task and separ
 \subsection{Lineup Set 1}
 The experiment in the first lineup section examined the use of boxplots, density plots, histograms, and dotplots to compare two groups which vary in mean and sample size. The experiment was originally designed to explore the use of lineups to test plots of competing design\cite{hofmann2012graphical}. This set of lineups consists of 20 plots selected from the plots used in the full experiment; each set of data is displayed with each of the four plot types. 
 
-\comment{Describe performance - need to get data from original experiment.}
+% \comment{Describe performance - need to get data from original experiment.}
 \begin{figure}[htbp]
 \includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups1/boxplot_1_15_5_4_13}
 \caption{Boxplots used to compare the two distributions.}
