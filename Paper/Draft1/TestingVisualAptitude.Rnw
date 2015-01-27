@@ -862,9 +862,8 @@ par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
 biplot(pca2, choices=1:2, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
 biplot(pca2, choices=3:4, pc.biplot=T, cex=c(.5, 1), xlim=c(-3,3), ylim=c(-2.5,2.5))
 @
-Figure~\ref{fig:biplots4} shows that the first PC does not differentiate between any of the tasks; it might be best understood as a general aptitude factor. All of the following principal components separate between the cognitive tasks.
-\comment{How do the PCs exactly separate? Quick sentence for each.}
-
+Figure~\ref{fig:biplots4} shows that the first PC does not differentiate between any of the tasks; it might be best understood as a general aptitude factor. All of the remaining principal components distinguish between the cognitive tasks; 
+\newtext{PC2 and PC3 sseparate the paper folding, visual search, and figure classification tasks, while PC4 and PC5 separate lineups, card rotation, figure classification, and visual search. This separation allows us to compare the tasks which are similar from among the principal components. }
 According to Table~\ref{tab:PCArotation4}, the first three principal components account for \Sexpr{round(summary(pca2)$importance[3,3]*100,1)}\% of the variance.
 
 \subsection{PCA of Cognitive Tests and Lineups}\label{app:pca5}
