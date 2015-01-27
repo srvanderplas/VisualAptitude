@@ -510,9 +510,7 @@ What is of more interest to us is how other factors, such as e.g.~general intell
 In order to assess factors contributing to lineup performance, we first examine the separate dimensions measured by the battery of cognitive tests (other than lineups) using principal components analysis on the scaled test scores, then we examine all five tests using the same procedure. 
 
 
-A principal component analysis (PCA) of the four established visuo-spatial tests reveals that they all share a very strong first component, which explains about \Sexpr{round(summary(pca2)$importance[3,1],2)*100}\% of the total variability. 
-
-\comment{You'll have to define the use of PCX still - a quick sentence on the order of the principal components being given by the amount of variance in the data that they explain should do it.}
+A principal component analysis (PCA) of the four established visuo-spatial tests reveals that they all share a very strong first component, which explains about \Sexpr{round(summary(pca2)$importance[3,1],2)*100}\% of the total variability. Principal components (PC-) are ordered by importance (how much variability in the data they contain), and each principal component is uncorrelated with every other principal component. 
 
 PC1 is essentially an average across all tests representing a general ``visual intelligence" factor. The other principal components span another two dimensions, while the last dimension is weak (at \Sexpr{round(summary(pca2)$importance[2,4],2)*100}\%). 
 PC2 differentiates the figure classification test from the visual searching test, whereas PC3 differentiates these two tests from the paper folding test. 
