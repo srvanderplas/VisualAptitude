@@ -675,8 +675,13 @@ ggplot()+
 
 In order to examine which lineup tasks are most closely associated with visual abilities tested in the aptitude portions of an experiment, we employ principal component analysis on participant scores averaged across each block of lineups.
 
-\newtext{Principal component analysis separates multivariate data into orthogonal components using a rotation matrix, which contains information on the contribution of each input variable to the principal component. The importance of a principal component is also evaluated to assess the proportion of the overall variance in the data contained within the component (table \ref{tab:PCAvariance5} shows the importance of each PC for the analysis of the aggregate lineup score and the four aptitude tests).} 
 
+\comment{Susan, sorry, the description of figure 6 is still not working. You write impact at the x axis - so I'm wondering what a negative impact is supposed to be? You are mentioning contribution and importance in the paragraph below, but you don't really define either one of them.
+Be careful about mentioning Table 2 - that table doesn't have anything to do with this PCA - it might be better to include the two tables for this PCA in the appendix and work out there in detail, how the scaling is done. InfoVis does know about signular value composition, so you could start there ... }
+
+\newtext{
+Principal component analysis separates multivariate data into orthogonal components using a rotation matrix, which contains information on the contribution of each input variable to the principal component. The importance of a principal component is also evaluated to assess the proportion of the overall variance in the data contained within the component (Table \ref{tab:PCAvariance5} shows the importance of each PC for the analysis of the aggregate lineup score and the four aptitude tests). 
+}
 <<lineupblockpca, echo=F, warning=F, message=F, fig.cap="Principal Component importance plot, showing each input variable's contribution to the principal component, scaled by the proportion of variability in the data contained in the principal component.", fig.width=5, fig.height=5>>=
 lineup.block.pca <- prcomp(lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 rotation <- melt(lineup.block.pca$rotation)
@@ -811,7 +816,7 @@ Substituting in the provided numbers, we get
 \begin{align*}
 \mu_{\text{all}} &= \left(323\!\cdot\!114.9\! +\! 294\!\cdot\!120.0\right)/(323\!+\!294) \\
 & = \Sexpr{round((120.0*294 + 114.9*323)/617/2, 1)}\\
-\sigma_{\text{all}} &= \sqrt{\left(323(27.8)^2 \!+\! 294(30)^2\right)/(323\!+\!294)} \\
+\sigma_{\text{all}} &= \sqrt{\left(323 \cdot 27.8^2 \!+\! 294 \cdot 30^2\right)/(323\!+\!294)} \\
 & = \Sexpr{round(sqrt((30^2*294 + 27.8^2*323)/617)/2, 1)}.
 \end{align*}
 
@@ -863,7 +868,7 @@ biplot(pca2, choices=1:2, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2
 biplot(pca2, choices=3:4, pc.biplot=T, cex=c(.5, 1), xlim=c(-3,3), ylim=c(-2.5,2.5))
 @
 Figure~\ref{fig:biplots4} shows that the first PC does not differentiate between any of the tasks; it might be best understood as a general aptitude factor. All of the remaining principal components distinguish between the cognitive tasks; 
-\newtext{PC2 and PC3 sseparate the paper folding, visual search, and figure classification tasks, while PC4 and PC5 separate lineups, card rotation, figure classification, and visual search. This separation allows us to compare the tasks which are similar from among the principal components. }
+PC2 and PC3 separate  paper folding from visual search and from the lineup and figure classification tasks, while PC4 and PC5 mainly separate lineups from card rotation and figure classification. This separation allows us to compare the tasks which are similar from among the principal components. 
 According to Table~\ref{tab:PCArotation4}, the first three principal components account for \Sexpr{round(summary(pca2)$importance[3,3]*100,1)}\% of the variance.
 
 \subsection{PCA of Cognitive Tests and Lineups}\label{app:pca5}
