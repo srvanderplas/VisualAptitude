@@ -187,6 +187,11 @@ Graphics convey numerical information very efficiently, but rely on a different 
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
+
+\comment{Susan, there's only a few things left to do, mostly to do with explanations for figures. x-axis, y-axis, ... Have a look at fig 6 again. It is a great chart, but it needs some explanation because it is a non-standard chart that you thought of.
+
+Fig 22 and 23 also need a bit more explanation.}
+
 \IEEEPARstart{D}{ata} displays provide quick summaries of data, models, and results, but not all displays are equally good, nor is any data display equally useful to all viewers. 
 Graphics utilize higher-bandwidth visual pathways to encode information~\cite{baddeley1974working}, allowing viewers to quickly and intuitively relate multiple dimensions of numerical quantities.
 Well-designed graphics emphasize and present important features of the data while minimizing  features of lesser importance, guiding the viewer towards conclusions that are meaningful in context and supported by the data while maximizing the information encoded in working memory. Under this framework, well-designed graphics reduce memory load and make more cognitive resources available for other tasks (such as drawing conclusions from the data), at the cost of depending on certain visuospatial reasoning abilities. 
@@ -809,9 +814,10 @@ This scaling gets slightly more complicated for scores which have two sub-groups
 To get a single unified score with standard deviation, we completed the following calculations: 
 \begin{align}
 \mu_{\text{all}} &= (N_F\mu_{F} + N_M\mu_{M})/(N_F + N_M)\\
-\sigma_{\text{all}} &= \sqrt{\left(N_F\sigma_F^2 + N_M\sigma_M^2\right)/(N_F + N_M)},
+\sigma_{\text{all}} &= \sqrt{\left(N_F\sigma_F^2 + N_M\sigma_M^2\right)/(N_F + N_M)}.
 \end{align}
-where $\mu_F$ and $\mu_M$ are the mean of female and male scores respectively, $N_F$ and $N_M$ are the number of participants in each group, and $\sigma_F^2$ and $\sigma_M^2$ are the variance of each group.
+Here $\mu_F$ and $\mu_M$ are the mean scores for females and males, respectively; $N_F$ and $N_M$ are the number of female and male participants, and $\sigma_F^2$ and $\sigma_M^2$ are the variances in scores for females and males.
+
 Substituting in the provided numbers, we get
 \begin{align*}
 \mu_{\text{all}} &= \left(323\!\cdot\!114.9\! +\! 294\!\cdot\!120.0\right)/(323\!+\!294) \\
@@ -950,8 +956,8 @@ The final lineup section explored QQ-plots from various model simulations, using
 \section{Lineup Plot Types} \label{app:plottypes}
 We can also compare participants' performance on specific types of lineup plots compared with their scores on the visual aptitude tests, for instance, accuracy on lineups which require mental rotation may be related to performance on the card rotation task. 
 
-
-<<lineup-types,echo=F, fig.cap="Plot of scaled scores for different types of lineups\\label{fig:plottypesdensity}", fig.width=4, fig.height=8, out.width=".9\\linewidth", warning=F, message=F>>=
+\comment{For all of these figures: include first, what you are showing: x axis, y axis, ... before you go into an interpretation of the figure.}
+<<lineup-types,echo=F, fig.cap="Density plots of scaled scores for different types of lineups. XXX Main message?\\label{fig:plottypesdensity}", fig.width=4, fig.height=8, out.width=".9\\linewidth", warning=F, message=F>>=
 lineup.type.sum2$plot.type <- str_replace(lineup.type.sum2$plot.type, "rotated", "rot")
 lineup.type.sum2$plot.type <- str_replace(as.character(lineup.type.sum2$plot.type), "error", "err")
 lineup.type.sum2$plot.type <- factor(lineup.type.sum2$plot.type, 
@@ -983,7 +989,7 @@ Figure~\ref{fig:plottypesdensity} compares performance on each different type of
 
 Figure~\ref{fig:scatterplottypes} shows the association between scaled score on each type of lineup and score on the visual reasoning tests. Sample size for each plot type is fairly small - between 5 and 10 plots per individual, so there is low power for systematic inference, but we can establish that the card rotation task is much more significantly associated with the QQ plots tasks compared to the other tasks. In addition, rotated qq plots seem to be much more asssociated with the paper folding task scores than other qq plot tasks; this may be because they require more visual manipulation than other qq plots.
 
-<<lineup-types-scores,echo=F, fig.cap="Plot of scaled lineup scores by aptitude test scores.\\label{fig:scatterplottypes}", fig.width=6, fig.height=12, out.width="\\linewidth", fig.env="figure", warning=F, message=F>>=
+<<lineup-types-scores,echo=F, fig.cap="Scatterplots of scaled lineup scores by aptitude test scores. XXX main message?\\label{fig:scatterplottypes}", fig.width=6, fig.height=12, out.width="\\linewidth", fig.env="figure", warning=F, message=F>>=
 lineup.type.sum3 <- dcast(lineup.type.sum2, id + testtype ~ plot.type, value.var="score", fun.aggregate = mean)
 other.scores <- subset(lineup.type.sum3, testtype!="lineup")[,c(1,2,13)]
 names(other.scores)[3] <- "testscore"
