@@ -680,14 +680,20 @@ ggplot()+
 
 In order to examine which lineup tasks are most closely associated with visual abilities tested in the aptitude portions of an experiment, we employ principal component analysis on participant scores averaged across each block of lineups.
 
-
-\comment{Susan, sorry, the description of figure 6 is still not working. You write impact at the x axis - so I'm wondering what a negative impact is supposed to be? You are mentioning contribution and importance in the paragraph below, but you don't really define either one of them.
-Be careful about mentioning Table 2 - that table doesn't have anything to do with this PCA - it might be better to include the two tables for this PCA in the appendix and work out there in detail, how the scaling is done. InfoVis does know about signular value composition, so you could start there ... }
+% 
+% \comment{Susan, sorry, the description of figure 6 is still not working. You write impact at the x axis - so I'm wondering what a negative impact is supposed to be? You are mentioning contribution and importance in the paragraph below, but you don't really define either one of them.
+% Be careful about mentioning Table 2 - that table doesn't have anything to do with this PCA - it might be better to include the two tables for this PCA in the appendix and work out there in detail, how the scaling is done. InfoVis does know about signular value composition, so you could start there ... }
 
 \newtext{
-Principal component analysis separates multivariate data into orthogonal components using a rotation matrix, which contains information on the contribution of each input variable to the principal component. The importance of a principal component is also evaluated to assess the proportion of the overall variance in the data contained within the component (Table \ref{tab:PCAvariance5} shows the importance of each PC for the analysis of the aggregate lineup score and the four aptitude tests). 
+Principal component analysis separates multivariate data into orthogonal components using a rotation matrix to transform correlated input data into an orthogonal space. The importance of a principal component is also evaluated to assess the proportion of the overall variance in the data contained within the component (Table \ref{tab:PCAvariance5} shows the importance of each PC for the analysis of the aggregate lineup score and the four aptitude tests). For input variables $X_i$, $i=1, ..., K$ and output variables $Y_j$, $j=1, ..., K$, the rotation matrix, $M$ would have dimension $K\times K$ (indexed by $i$ and $j$ respectively), and the importance vector $I$ would have dimension $1\times K$ (indexed by $j$). For each $X_i$ and $Y_j$, we could calculate the influence of variable $X_i$ on component $Y_j$ as follows:
+
+$$\text{Influence of variable} X_i \text{ on PC}_j = M_{ij}\times I_j$$
+
+The influence is a measure of the contribution of an input variable to the principal component, scaled by the importance of that principal component to the overall variability in the data. 
+
+Figure~\ref{fig:lineupblockpca} shows the influence of each input variable on each principal component for a principal component analysis  including each lineup task as a separate input variable. The input variables are shown on the $y$ axis, with the influence of the variable on each PC shown on the $x$ axis. This allows us to consider the rotation matrix visually (while accounting for the importance of each principal component); for instance, we see that again, the first PC accounts for most of the variance and seems to represent general visual aptitude. 
 }
-<<lineupblockpca, echo=F, warning=F, message=F, fig.cap="Principal Component importance plot, showing each input variable's contribution to the principal component, scaled by the proportion of variability in the data contained in the principal component.", fig.width=5, fig.height=5>>=
+<<lineupblockpca, echo=F, warning=F, message=F, fig.cap="Principal Component influence plot, showing each input variable's contribution to the principal component, scaled by the proportion of variability in the data contained in the principal component.", fig.width=5, fig.height=5>>=
 lineup.block.pca <- prcomp(lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 rotation <- melt(lineup.block.pca$rotation)
 importance <- as.data.frame(summary(lineup.block.pca)$importance)[2,]
@@ -702,7 +708,7 @@ qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotat
 
 % \comment{add something about x and y axis in the description of the figure. }
 % \comment{Let's give this plots a name ... how about {\it PC importance plots}? Get rid of the * in the x axis title. Both `realtive contribution' and `importance' are a bit fuzzy terms ... I'm not sure what you are doing until I'm looking at the code. Define importance and each of the items, and yes, that might need a bit of math.}
-Figure~\ref{fig:lineupblockpca} shows the influence of each input variable on each principal component; the arrows are scaled in proportion to the importance of each principal component. The input variables are shown on the $y$ axis, with the influence of the variable on each PC shown on the $x$ axis. This allows us to consider the rotation matrix visually; for instance, we see that again, the first PC accounts for most of the variance and seems to represent general visual aptitude. 
+
 % PC2 emphasizes the relationship between figure classification and lineup task 1 (and to a lesser extent, on lineup task 2). PC3 differentiates the lineup task 3 from the visual search task; other tasks do not impact PC3 to a meaningful degree. PC4 separates lineup test 2 from the paper folding and card rotation tests and emphasizes the overlap with the visual search test. PC5 separates lineup test 2 and the figure classification test from the overlap between the other lineup tests and the visual search test. PC6 and PC7 account for a joint total of less than 10\% of the overall variability, and do not display any distinct patterns in the loadings.
 %
 PC2 emphasizes the overlapping variation in performance on lineup test 1 and the figure classification test. PC3 emphasizes the additional variation in performance on lineup test 3 and the visual search test, while PC4 emphasizes the extra variability in performance on lineup test 2 and the paper folding test. All three lineups, plus the figure classification, paper folding, and visual search tests contribute to PC5. PC6 and PC7 jointly account for less than 10\% of the variance in the data and do not display any distinct patterns in the loadings. 
@@ -881,7 +887,7 @@ According to Table~\ref{tab:PCArotation4}, the first three principal components 
 PC1 is essentially an average across all tests representing a general ``visual intelligence" factor.
 Biplots of the remaining principal components are shown in Figure~\ref{fig:biplots5}. 
 
-<<biplots-pca5, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.7\\linewidth', comment="|", fig.cap="Plots of principal components 2-5 with observations. \\label{fig:biplots5}", echo=F, fig.env="figure">>=
+<<biplots-pca5, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.7\\linewidth', comment="|", fig.cap="Biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.  \\label{fig:biplots5}", echo=F, fig.env="figure">>=
 par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
 biplot(pca, choices=2:3, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
 biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), xlim=c(-2,2), ylim=c(-2,2))
@@ -957,7 +963,7 @@ The final lineup section explored QQ-plots from various model simulations, using
 We can also compare participants' performance on specific types of lineup plots compared with their scores on the visual aptitude tests, for instance, accuracy on lineups which require mental rotation may be related to performance on the card rotation task. 
 
 \comment{For all of these figures: include first, what you are showing: x axis, y axis, ... before you go into an interpretation of the figure.}
-<<lineup-types,echo=F, fig.cap="Density plots of scaled scores for different types of lineups. XXX Main message?\\label{fig:plottypesdensity}", fig.width=4, fig.height=8, out.width=".9\\linewidth", warning=F, message=F>>=
+<<lineup-types,echo=F, fig.cap="Density plots of scaled scores for different types of lineups. For the same experiment (shown by line color), certain types of plots are more difficult to read and are associated with lower participant scores. \\label{fig:plottypesdensity}", fig.width=4, fig.height=8, out.width=".9\\linewidth", warning=F, message=F>>=
 lineup.type.sum2$plot.type <- str_replace(lineup.type.sum2$plot.type, "rotated", "rot")
 lineup.type.sum2$plot.type <- str_replace(as.character(lineup.type.sum2$plot.type), "error", "err")
 lineup.type.sum2$plot.type <- factor(lineup.type.sum2$plot.type, 
@@ -985,11 +991,11 @@ qplot(data=subset(lineup.type.sum2, !is.na(plot.type)& testtype=="lineup"),
         axis.ticks.y=element_blank(), axis.text.y=element_blank())
 @
 
-Figure~\ref{fig:plottypesdensity} compares performance on each different type of plot. As two different lineup tasks utilized boxplots to test different qualities of the distribution of data (outliers vs. difference in medians), different tasks are shown as different colors, so that accuracy on tasks which are shown in blue can be compared to other blue density curves. 
+Figure~\ref{fig:plottypesdensity} compares performance on each different type of plot. The $x$ axis shows scaled score, the $y$ axis shows the density of participant scores. As two different lineup tasks utilized boxplots to test different qualities of the distribution of data (outliers vs. difference in medians), different tasks are shown as different colors, so that accuracy on tasks which are shown in blue can be compared to other blue density curves. 
 
 Figure~\ref{fig:scatterplottypes} shows the association between scaled score on each type of lineup and score on the visual reasoning tests. Sample size for each plot type is fairly small - between 5 and 10 plots per individual, so there is low power for systematic inference, but we can establish that the card rotation task is much more significantly associated with the QQ plots tasks compared to the other tasks. In addition, rotated qq plots seem to be much more asssociated with the paper folding task scores than other qq plot tasks; this may be because they require more visual manipulation than other qq plots.
 
-<<lineup-types-scores,echo=F, fig.cap="Scatterplots of scaled lineup scores by aptitude test scores. XXX main message?\\label{fig:scatterplottypes}", fig.width=6, fig.height=12, out.width="\\linewidth", fig.env="figure", warning=F, message=F>>=
+<<lineup-types-scores,echo=F, fig.cap="Scatterplots of scaled lineup scores by aptitude test scores. There is some indication that different types of lineup tasks may utilize different visual skills; for instance, QQ plots with confidence bands may require more skill at mental rotation than QQ plots without the bands. \\label{fig:scatterplottypes}", fig.width=6, fig.height=12, out.width="\\linewidth", fig.env="figure", warning=F, message=F>>=
 lineup.type.sum3 <- dcast(lineup.type.sum2, id + testtype ~ plot.type, value.var="score", fun.aggregate = mean)
 other.scores <- subset(lineup.type.sum3, testtype!="lineup")[,c(1,2,13)]
 names(other.scores)[3] <- "testscore"
