@@ -673,12 +673,17 @@ In order to examine which lineup tasks are most closely associated with visual a
 
 Principal component analysis separates multivariate data into orthogonal components using a rotation matrix to transform correlated input data into an orthogonal space. The importance of a principal component is also evaluated to assess the proportion of the overall variance in the data contained within the component (Table \ref{tab:PCAvariance5} shows the importance of each PC for the analysis of the aggregate lineup score and the four aptitude tests). 
 
-\newtext{For input variables $X_i$, $i=1, ..., K$ and output components $PC_j$, $j=1, ..., K$, the rotation matrix, $M$ has dimension $K\times K$ (indexed by $i$ and $j$ respectively), and the importance vector $I$ has dimension $1\times K$ (indexed by $j$). For each $X_i$ and $PC_j$, we define the influence of variable $X_i$ on component $PC_j$ as follows:
+\newtext{For variables $X_i$, $i=1, ..., K$ a principal component analysis results in a set of $K$ principal  components $PC_j$, $j=1, ..., K$, given as the rows of the rotation matrix, $M$ (which has dimension $K\times K$, indexed by $i$ and $j$ respectively).
+
+The importance $I_j$ of each component is determined by the amount of variability the data exhibits along each of the principal axis.
+
+The influence of variable $X_i$ on component $PC_j$ is then defined as:
 }
 
 $$\text{Influence of variable} X_i \text{ on PC}_j = M_{ij}\times I_j$$
 
-The influence is a measure of the contribution of an input variable to the principal component, scaled by the importance of that principal component to the overall variability in the data. 
+\comment{Sign of influence? Influence is the smallest, if it is zero. The sign is kept to show separation between variables. You still need to comment on that.}
+Influence is therefore a measure of the contribution of an input variable to the principal component, scaled by the importance of that principal component to the overall variability in the data. 
 
 Figure~\ref{fig:lineupblockpca} shows the influence of each input variable on each principal component for a principal component analysis  including each lineup task as a separate input variable. The input variables are shown on the $y$ axis, with the influence of the variable on each PC shown on the $x$ axis. This allows us to consider the rotation matrix visually (while accounting for the importance of each principal component); for instance, we see that again, the first PC accounts for most of the variance and seems to represent general visual aptitude. 
 <<lineupblockpca, echo=F, warning=F, message=F, fig.cap="Principal Component influence plot, showing each input variable's contribution to the principal component, scaled by the proportion of variability in the data contained in the principal component.", fig.width=5, fig.height=5>>=
