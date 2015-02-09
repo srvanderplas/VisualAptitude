@@ -100,7 +100,7 @@ rm(list=ls())
 wd <- getwd()
 library(extrafont)
 library(knitr)
-opts_chunk$set(fig.path='Figure/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=F, tidy=T, concordance=TRUE, autodep=TRUE, root.dir="../", comment="|")
+opts_chunk$set(fig.path='Figure/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=F, tidy=T, concordance=TRUE, autodep=TRUE, root.dir="../", comment="|", dev="CairoPDF")
 datadir <- "../../Data/"
 imgdir <- "Figure/"
 codedir <- "../../Code/"
