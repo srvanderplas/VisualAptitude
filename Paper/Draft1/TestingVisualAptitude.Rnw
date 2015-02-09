@@ -200,7 +200,7 @@ Spatial ability becomes more important when more complicated graphical displays 
 
 \begin{figure}[htp]
 \centering
-\includegraphics[width=\linewidth,trim=0cm .5cm 0cm .25cm]{lineup}
+\includegraphics[width=\linewidth]{lineup}
 \caption[Sample Lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 4 is the target plot, because the two groups have a large difference in medians.\label{fig:lineup}}
 \end{figure}
 
@@ -344,9 +344,7 @@ Comparison population data was chosen to most closely match ISU undergraduate po
 Applying the grading protocol discussed in section~\ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure~\ref{fig:Scores} shows the range of possible scores and the observed score distribution. 
 Participants' scores on the VST indicate score compression; that is, both participants with medium and high visual search abilities scored at the extremely high end of the spectrum. 
 In future experiments, participants should be given less time (or more questions) to better differentiate participants with medium and high-ability.
-
-\begin{figure}[ht]
-<<ResultsScaledScores, echo=F, include=T, fig.width=4.5, fig.height=4, out.width='.9\\linewidth', warning=F, message=F>>=
+<<ResultsScaledScores, echo=F, include=F, fig.width=4.5, fig.height=4, warning=F, message=F>>=
 loadfonts()
 score.summary <- melt(ans.summary, measure.vars=21:25, value.name = "Score", variable.name = "Test")
 score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
@@ -377,6 +375,9 @@ ggplot() +
   #coord_flip()
 embedFonts("./Figure/fig-ResultsScaledScores-1.pdf")
 @
+
+\begin{figure}[ht]
+\includegraphics[width=.9\linewidth]{Figure/fig-ResultsScaledScores-1}
 \caption{Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \label{fig:Scores}}
 \end{figure}
 % 
@@ -437,8 +438,7 @@ Completion of Calculus I is associated with increased performance on lineups; th
 print(xtable(cor(ans.summary[,c("lineup","card_rot", "fig_class", "folding", "vis_search")]), digits=c(1, rep(2, 5)), caption="Correlation matrix for the five tests.\\label{tab:corrmatrix5}"), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", scalebox=.9, table.placement="htb", caption.placement="top")
 @
 
-\begin{figure}[ht]
-<<VisReasoningSPM,echo=FALSE,fig.pos="ht", include=T, eval=T, fig.width=8,fig.height=8, message=F, warning=F>>=
+<<VisReasoningSPM,echo=FALSE, include=F, eval=T, fig.width=8,fig.height=8, message=F, warning=F>>=
 data <- ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", "folding")]
 grid <- expand.grid(x=1:ncol(data), y=1:ncol(data))
 grid <- subset(grid, x != y & x<y)
@@ -499,6 +499,8 @@ ggplot()+
 rm(list=c("data", "all", "densities"))
 embedFonts("./Figure/fig-VisReasoningSPM-1.pdf")
 @
+\begin{figure}[ht]
+\includegraphics[width=\linewidth]{Figure/fig-VisReasoningSPM-1}
 \caption{Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.\label{fig:scatterplotmatrix}}
 \end{figure}
 
@@ -600,8 +602,8 @@ print(xtable(summary(m1), caption="Estimates and significances of a linear model
 \subsection{Lineup Types}
 Each of the three sets of 20 lineups was taken from previous studies on different designs to investigate which plot type most effectively conveyed important characteristics of the underlying data set. 
 Examples lineups for each experiment and more detailed explanations for each of these experiments are provided in Appendix~\ref{app:lineuptypes}. 
-\begin{figure}[ht]
-<<LineupTypeSPM,echo=FALSE,include=T, eval=T, fig.width=4,fig.height=6.5, message=F, warning=F>>=
+
+<<LineupTypeSPM,echo=FALSE,include=F, eval=T, fig.width=4,fig.height=6.5, message=F, warning=F>>=
 data <- lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3", "vis_search", "fig_class", "card_rot", "folding")]
 grid <- expand.grid(x=1:ncol(data), y=1:ncol(data))
 grid <- subset(grid, x != y & x<y)
@@ -673,6 +675,10 @@ ggplot()+
   theme(axis.title=element_blank())
 embedFonts("./Figure/fig-LineupTypeSPM-1.pdf")
 @
+
+
+\begin{figure}[ht]
+\includegraphics[width=\linewidth]{Figure/fig-LineupTypeSPM-1}
 \caption{Pairwise scatterplots of test scores, with lineups separated into the three lineup tasks. All lineup tasks are moderately correlated with the figure classification task, and while tasks 1 and 2 are most strongly correlated with figure classification, lineup task 3 is most strongly correlated with the card rotation and paper folding tasks. \label{fig:lineuptaskmatrix}}
 \end{figure}
 Figure~\ref{fig:lineuptaskmatrix} shows the correlations between the three lineup tasks and the figure classification, card rotation, and paper folding tasks. The visual search task is only slightly correlated with the three lineup tasks and is therefore omitted from this figure. Performance on lineup tasks 1 and 2, which dealt with the distributuion of two groups of numerical data, is most strongly correlated with the performance on the figure classification task, which measures general reasoning ability.
@@ -682,9 +688,7 @@ Performance on lineup task 3, which investigated the potential to visually ident
 In order to examine which lineup tasks are most closely associated with visual abilities tested in the aptitude portions of an experiment, we employ principal component analysis on participant scores averaged across each block of lineups.
 
 Principal component analysis separates multivariate data into orthogonal components using a rotation matrix to transform correlated input data into an orthogonal space. The importance of a principal component is also evaluated to assess the proportion of the overall variance in the data contained within the component (Table \ref{tab:PCAvariance5} shows the importance of each PC for the analysis of the aggregate lineup score and the four aptitude tests). 
-
-\begin{figure}[ht]
-<<lineupblockpca, echo=F, warning=F, message=F, fig.width=6, fig.height=4>>=
+<<lineupblockpca, echo=F, include=F, warning=F, message=F, fig.width=6, fig.height=4>>=
 lineup.block.pca <- prcomp(lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 rotation <- melt(lineup.block.pca$rotation)
 importance <- as.data.frame(summary(lineup.block.pca)$importance)[2,]
@@ -697,6 +701,9 @@ loadfonts()
 qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotation, arrow=arrow(length=unit(0.1, "cm"))) + facet_wrap(~Var2, ncol=4) + xlab("Influence") + ggtitle("Lineup Types and Visual Aptitude") + ylab("") + theme_bw() 
 embedFonts("./Figure/fig-lineupblockpca-1.pdf")
 @
+
+\begin{figure}[ht]
+\includegraphics[width=\linewidth]{Figure/fig-lineupblockpca-1}
 \caption{Principal Component influence plot, showing each input variable's contribution to the principal component, scaled by the proportion of variability in the data contained in the principal component.\label{fig:influence}}
 \end{figure}
 
@@ -953,8 +960,7 @@ The final lineup section explored QQ-plots from various model simulations, using
 \section{Lineup Plot Types} \label{app:plottypes}
 We can also compare participants' performance on specific types of lineup plots compared with their scores on the visual aptitude tests, for instance, accuracy on lineups which require mental rotation may be related to performance on the card rotation task. 
 
-\begin{figure}[ht]
-<<lineup-types,echo=F, fig.width=4, fig.height=8, out.width=".9\\linewidth", warning=F, message=F>>=
+<<lineup-types,echo=F, fig.width=4, fig.height=8, include=F, warning=F, message=F>>=
 lineup.type.sum2$plot.type <- str_replace(lineup.type.sum2$plot.type, "rotated", "rot")
 lineup.type.sum2$plot.type <- str_replace(as.character(lineup.type.sum2$plot.type), "error", "err")
 lineup.type.sum2$plot.type <- factor(lineup.type.sum2$plot.type, 
@@ -983,6 +989,9 @@ qplot(data=subset(lineup.type.sum2, !is.na(plot.type)& testtype=="lineup"),
         axis.ticks.y=element_blank(), axis.text.y=element_blank())
 embedFonts("./Figure/fig-lineup-types-1.pdf")
 @
+
+\begin{figure}[ht]
+\includegraphics[width=.9\linewidth]{Figure/fig-lineup-types-1}
 \caption{Density plots of scaled scores for different types of lineups. For the same experiment (shown by line color), certain types of plots are more difficult to read and are associated with lower participant scores. \label{fig:plottypesdensity}}
 \end{figure}
 
@@ -990,9 +999,8 @@ Figure~\ref{fig:plottypesdensity} compares performance on each different type of
 
 Figure~\ref{fig:scatterplottypes} shows the association between scaled score on each type of lineup and score on the visual reasoning tests. Sample size for each plot type is fairly small - between 5 and 10 plots per individual, so there is low power for systematic inference, but we can establish that the card rotation task is much more significantly associated with the QQ-plots tasks compared to the other tasks. In addition, rotated QQ-plots seem to be much more asssociated with the paper folding task scores than other QQ-plot tasks; this may be because they require more visual manipulation than other QQ-plots.
 
-\begin{figure}[ht]
 
-<<lineup-types-scores,echo=F,fig.width=6, fig.height=12, out.width="\\linewidth", warning=F, message=F>>=
+<<lineup-types-scores,echo=F,fig.width=6, fig.height=12, include=F, warning=F, message=F>>=
 lineup.type.sum3 <- dcast(lineup.type.sum2, id + testtype ~ plot.type, value.var="score", fun.aggregate = mean)
 other.scores <- subset(lineup.type.sum3, testtype!="lineup")[,c(1,2,13)]
 names(other.scores)[3] <- "testscore"
@@ -1024,6 +1032,8 @@ qplot(data=subset(lineup.type.sum3, testtype!="vis_search"),
         plot.margin=unit(c(0,0,0,0),"mm"))
 embedFonts("./Figure/fig-lineup-types-scores-1.pdf")
 @
+\begin{figure}[ht]
+\includegraphics[width=\linewidth]{Figure/fig-lineup-types-scores-1}
 \caption{Scatterplots of scaled lineup scores by aptitude test scores. There is some indication that different types of lineup tasks may utilize different visual skills; for instance, QQ-plots with confidence bands may require more skill at mental rotation than QQ-plots without the bands. \label{fig:scatterplottypes}}
 \end{figure}
 
