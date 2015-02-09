@@ -98,7 +98,7 @@
 <<VisualAptitude-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE, message=F, warning=F>>=
 rm(list=ls())
 wd <- getwd()
-
+library(extrafont)
 library(knitr)
 opts_chunk$set(fig.path='Figure/fig-', cache.path='cache/', fig.align='center', fig.width=5, fig.height=5, fig.show='hold', par=TRUE, cache=F, tidy=T, concordance=TRUE, autodep=TRUE, root.dir="../", comment="|")
 datadir <- "../../Data/"
@@ -129,7 +129,7 @@ sanitize <- function(x){
 \begin{document}
 \title{Spatial Reasoning and Data Displays}
 
-\author{Susan VanderPlas, Heike Hofmann} % , Stephanie De Graaf, Hillary Cheney ??
+\author{Susan VanderPlas, Heike Hofmann} 
 
 \author{Susan~VanderPlas,
         and~Heike~Hofmann,~\IEEEmembership{Member,~IEEE,}% <-this % stops a space
@@ -347,7 +347,7 @@ In future experiments, participants should be given less time (or more questions
 
 \begin{figure}[ht]
 <<ResultsScaledScores, echo=F, include=T, fig.width=4.5, fig.height=4, out.width='.9\\linewidth', warning=F, message=F>>=
-
+loadfonts()
 score.summary <- melt(ans.summary, measure.vars=21:25, value.name = "Score", variable.name = "Test")
 score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
 qrange$sqrt.k <- sqrt(qrange$k-1)
@@ -375,6 +375,7 @@ ggplot() +
   theme(legend.position=c(.68,.125),  legend.box.just = "left", 
         legend.key.height=unit(6, "mm")) 
   #coord_flip()
+embedFonts("./Figure/fig-ResultsScaledScores-1.pdf")
 @
 \caption{Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \label{fig:Scores}}
 \end{figure}
@@ -386,6 +387,7 @@ ggplot() +
 \subsection{Lineup Performance and Demographic Characteristics}
 
 <<VisReasoningCategorical, echo=F, include=F, eval=T, fig.width=9,fig.height=5.5, message=F, warning=F, fig.pos='ht'>>=
+loadfonts()
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
 lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience", "STEM Major", "Video Game Hrs/Wk"))
@@ -416,6 +418,7 @@ qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot", fill=I
   geom_point(aes(x=value, y=lineup), shape=1, size=3) + 
   theme_bw() + 
   theme(plot.margin=unit(c(0,0,0,0), unit="mm"))
+embedFonts("./Figure/fig-VisReasoningCategorical-1.pdf")
 @
 \begin{figure*}[h!tb]\centering
 \includegraphics[width=.85\linewidth]{fig-VisReasoningCategorical-1}
@@ -482,7 +485,7 @@ fix.names <- function(values){
     str_replace("card_rot", "Card Rotation") %>%
     str_replace("folding", "Paper Folding")
 }
-
+loadfonts()
 require(grid)
 ggplot()+
   geom_point(data=subset(all, points), aes(x=x, y=y)) + 
@@ -494,6 +497,7 @@ ggplot()+
   theme(axis.title=element_blank(),
         plot.margin=unit(c(0,0,0,0), unit="mm"))
 rm(list=c("data", "all", "densities"))
+embedFonts("./Figure/fig-VisReasoningSPM-1.pdf")
 @
 \caption{Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.\label{fig:scatterplotmatrix}}
 \end{figure}
@@ -657,7 +661,7 @@ all2mean <- rbind(
                         hjust=.5, vjust=.5, size=4))
     })
 )
-
+loadfonts()
 ggplot()+
   geom_point(data=subset(all2, points), aes(x=x, y=y)) + 
   geom_smooth(data=subset(all2, points), aes(x=x, y=y), method="lm") + 
@@ -667,6 +671,7 @@ ggplot()+
   facet_grid(xvar~yvar, scales="free", labeller = labeller(xvar=fix.names, yvar=fix.names)) + 
   theme_bw() + 
   theme(axis.title=element_blank())
+embedFonts("./Figure/fig-LineupTypeSPM-1.pdf")
 @
 \caption{Pairwise scatterplots of test scores, with lineups separated into the three lineup tasks. All lineup tasks are moderately correlated with the figure classification task, and while tasks 1 and 2 are most strongly correlated with figure classification, lineup task 3 is most strongly correlated with the card rotation and paper folding tasks. \label{fig:lineuptaskmatrix}}
 \end{figure}
@@ -688,7 +693,9 @@ rotation$Var1 <- factor(rotation$Var1,
                         levels=c("vis_search", "folding", "card_rot", "fig_class", "lineup_3", "lineup_2", "lineup_1"),
                         labels=c("Visual Search", "Paper Folding", "Card Rotation", "Figure Class.", "Lineup Test 3", "Lineup Test 2", "Lineup Test 1"))
 library(grid) # needed for arrow function
+loadfonts()
 qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotation, arrow=arrow(length=unit(0.1, "cm"))) + facet_wrap(~Var2, ncol=4) + xlab("Influence") + ggtitle("Lineup Types and Visual Aptitude") + ylab("") + theme_bw() 
+embedFonts("./Figure/fig-lineupblockpca-1.pdf")
 @
 \caption{Principal Component influence plot, showing each input variable's contribution to the principal component, scaled by the proportion of variability in the data contained in the principal component.\label{fig:influence}}
 \end{figure}
@@ -959,6 +966,7 @@ lineup.type.sum2$plot.type <- factor(lineup.type.sum2$plot.type,
                                               "QQ-plot + Line", "QQ-plot +\nAcceptance Band", 
                                               "Rotated QQ-plot +\nAcceptance Band")
                                      )
+loadfonts()
 qplot(data=subset(lineup.type.sum2, !is.na(plot.type)& testtype=="lineup"), 
       x=score, y=..scaled.., colour=factor(testnum), geom="density", cut=4) + 
   facet_wrap(~plot.type, ncol=2) + 
@@ -973,6 +981,7 @@ qplot(data=subset(lineup.type.sum2, !is.na(plot.type)& testtype=="lineup"),
         axis.text.x=element_text(angle=30, hjust=1),
         plot.margin=unit(c(0,0,0,0),"mm"), 
         axis.ticks.y=element_blank(), axis.text.y=element_blank())
+embedFonts("./Figure/fig-lineup-types-1.pdf")
 @
 \caption{Density plots of scaled scores for different types of lineups. For the same experiment (shown by line color), certain types of plots are more difficult to read and are associated with lower participant scores. \label{fig:plottypesdensity}}
 \end{figure}
@@ -1002,7 +1011,7 @@ lineup.type.sum3$lineup.type <- factor(lineup.type.sum3$lineup.type,
                                      )
 
 cor.labels <- ddply(lineup.type.sum3, .(lineup.type, testtype), summarize, x=min(testscore), y=max(lineup.pct), label=paste0("cor = ", round(cor(testscore, lineup.pct), 2)))
-
+loadfonts()
 qplot(data=subset(lineup.type.sum3, testtype!="vis_search"), 
       x=testscore, y=lineup.pct, geom=c("smooth", "jitter"), colour=I("grey30"), method="lm") + 
   facet_grid(lineup.type~testtype, scales="free_x") + 
@@ -1013,6 +1022,7 @@ qplot(data=subset(lineup.type.sum3, testtype!="vis_search"),
   theme(legend.position="bottom", legend.direction="horizontal", 
         axis.text.x=element_text(angle=30, hjust=1),
         plot.margin=unit(c(0,0,0,0),"mm"))
+embedFonts("./Figure/fig-lineup-types-scores-1.pdf")
 @
 \caption{Scatterplots of scaled lineup scores by aptitude test scores. There is some indication that different types of lineup tasks may utilize different visual skills; for instance, QQ-plots with confidence bands may require more skill at mental rotation than QQ-plots without the bands. \label{fig:scatterplottypes}}
 \end{figure}
