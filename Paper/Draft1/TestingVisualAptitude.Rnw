@@ -200,7 +200,7 @@ Spatial ability becomes more important when more complicated graphical displays 
 
 \begin{figure}[htp]
 \centering
-\includegraphics[width=\linewidth]{lineup}
+\includegraphics[width=\linewidth,trim=0cm .5cm 0cm .25cm]{lineup}
 \caption[Sample Lineup]{Sample lineup of boxplots. Participants are instructed to choose the plot which appears most different from the others. In this lineup, plot 4 is the target plot, because the two groups have a large difference in medians.\label{fig:lineup}}
 \end{figure}
 
@@ -346,7 +346,7 @@ Participants' scores on the VST indicate score compression; that is, both partic
 In future experiments, participants should be given less time (or more questions) to better differentiate participants with medium and high-ability.
 
 \begin{figure}[ht]
-<<ResultsScaledScores, echo=F, include=T, fig.width=4.5, fig.height=4.5, out.width='\\linewidth', warning=F, message=F>>=
+<<ResultsScaledScores, echo=F, include=T, fig.width=4.5, fig.height=4, out.width='.9\\linewidth', warning=F, message=F>>=
 
 score.summary <- melt(ans.summary, measure.vars=21:25, value.name = "Score", variable.name = "Test")
 score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
@@ -385,7 +385,7 @@ ggplot() +
 
 \subsection{Lineup Performance and Demographic Characteristics}
 
-<<VisReasoningCategorical, echo=F, include=F, eval=T, fig.width=9,fig.height=6, message=F, warning=F, fig.pos='ht'>>=
+<<VisReasoningCategorical, echo=F, include=F, eval=T, fig.width=9,fig.height=5.5, message=F, warning=F, fig.pos='ht'>>=
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
 lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience", "STEM Major", "Video Game Hrs/Wk"))
@@ -418,7 +418,7 @@ qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot", fill=I
   theme(plot.margin=unit(c(0,0,0,0), unit="mm"))
 @
 \begin{figure*}[h!tb]\centering
-\includegraphics[width=.9\linewidth]{fig-VisReasoningCategorical-1}
+\includegraphics[width=.85\linewidth]{fig-VisReasoningCategorical-1}
 \caption[Visual Aptitude Study Results]{Demographic characteristics of participants compared with lineup score. Categories are ordered by effect size; majoring in a STEM field, calculus completion, hours spent playing video games per week, and sex are all associated with a significant difference in lineup score. }\label{fig:visualaptitudecat}
 \end{figure*}
 
@@ -673,7 +673,7 @@ In order to examine which lineup tasks are most closely associated with visual a
 
 Principal component analysis separates multivariate data into orthogonal components using a rotation matrix to transform correlated input data into an orthogonal space. The importance of a principal component is also evaluated to assess the proportion of the overall variance in the data contained within the component (Table \ref{tab:PCAvariance5} shows the importance of each PC for the analysis of the aggregate lineup score and the four aptitude tests). 
 
-<<lineupblockpca, echo=F, warning=F, message=F, fig.cap="Principal Component influence plot, showing each input variable's contribution to the principal component, scaled by the proportion of variability in the data contained in the principal component.", fig.width=5, fig.height=5>>=
+<<lineupblockpca, echo=F, warning=F, message=F, fig.cap="Principal Component influence plot, showing each input variable's contribution to the principal component, scaled by the proportion of variability in the data contained in the principal component.", fig.width=6, fig.height=4>>=
 lineup.block.pca <- prcomp(lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 rotation <- melt(lineup.block.pca$rotation)
 importance <- as.data.frame(summary(lineup.block.pca)$importance)[2,]
@@ -682,7 +682,7 @@ rotation$Var1 <- factor(rotation$Var1,
                         levels=c("vis_search", "folding", "card_rot", "fig_class", "lineup_3", "lineup_2", "lineup_1"),
                         labels=c("Visual Search", "Paper Folding", "Card Rotation", "Figure Class.", "Lineup Test 3", "Lineup Test 2", "Lineup Test 1"))
 library(grid) # needed for arrow function
-qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotation, arrow=arrow(length=unit(0.1, "cm"))) + facet_wrap(~Var2, ncol=3) + xlab("Influence") + ggtitle("Lineup Types and Visual Aptitude") + ylab("") + theme_bw()
+qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotation, arrow=arrow(length=unit(0.1, "cm"))) + facet_wrap(~Var2, ncol=4) + xlab("Influence") + ggtitle("Lineup Types and Visual Aptitude") + ylab("") + theme_bw() 
 @
 
 For variables $X_i$, $i=1, ..., K$ a principal component analysis results in a set of $K$ principal  components $PC_j$, $j=1, ..., K$, given as the rows of the rotation matrix, $M$ (which has dimension $K\times K$, indexed by $i$ and $j$ respectively).
