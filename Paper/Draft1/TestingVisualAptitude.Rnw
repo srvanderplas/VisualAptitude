@@ -767,7 +767,7 @@ All results and data shown here were collected and analyzed in accordance with I
 \bibliographystyle{IEEEtran}
 \bibliography{references}
 
-\newpage
+\clearpage
 \appendices
 
 \section{Visuospatial Aptitude Tests}
