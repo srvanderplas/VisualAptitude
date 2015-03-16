@@ -200,7 +200,10 @@ Graphics convey numerical information very efficiently, but rely on a different 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
-
+\setcounter{table}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{A\arabic{figure}}
 
 
 
@@ -221,15 +224,15 @@ Figure~\ref{fig:tests} shows samples from the figure classification task, the ca
  \begin{figure}[ht]
   \centering
    \subfloat[Figure Classification Task. Participants classify each figure in the second row as belonging to one of the groups above. Participants complete up to 14 of these tasks (each consisting of 8 figures to classify) in 8 minutes.\label{fig:figureclassification}]{%
-  \includegraphics[width=.75\linewidth]{figureclassification}
+  \includegraphics[width=.8\linewidth]{figureclassification}
 }
 \hfill
     \subfloat[Card Rotation Task. Participants mark each figure on the right hand side as either the same as or different than the figure on the left hand side of the dividing line. Participants complete up to 20 of these tasks (each consisting of 8 figures) in 6 minutes.\label{fig:cardrotation}]{%
-\includegraphics[width=.75\linewidth]{cardrotation}
+\includegraphics[width=.8\linewidth]{cardrotation}
     }
     \hfill
     \subfloat[Paper Folding Task. Participants are instructed to pick the figure matching the sequence of steps shown on the left-hand side. Participants  complete up to 20 of these tasks in 6 minutes.\label{fig:paperfolding}]{%
-\includegraphics[width=.75\linewidth]{paperfolding}
+\includegraphics[width=.8\linewidth]{paperfolding}
    }
     \caption{Visuospatial tests}
     \label{fig:tests}
@@ -264,29 +267,26 @@ For example, in order to account for the fact that ISU students took only part I
 
 \section{Lineup Performance and Demographic Characteristics}\label{app:categoricalresults}
 Table~\ref{tab:ttest-demographics} provides the results of a sequence of linear models fit to the lineup data. Each row in the table represents a single model, with one predictor variable (a factor with two or more levels). Due to sample size considerations, multiple testing corrections were not performed; in addition, the independent variables are correlated: in our sample, males are more likely to have completed Calculus 1, but are also more likely to spend time playing video games. As such, a model including two or more of the significant predictor variables shows all included variables to be nonsignificant. To better understand the effects of these variables, a larger study is necessary. 
-\begin{kframe}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{| Error in eval(expr, envir, enclos): contrasts can be applied only to factors with 2 or more levels}}\end{kframe}% latex table generated in R 3.1.2 by xtable 1.7-1 package
-% Mon Mar 16 16:58:33 2015
+% latex table generated in R 3.1.2 by xtable 1.7-1 package
+% Mon Mar 16 17:53:53 2015
 \begin{table}[ht]
 \centering
 \caption{Participant demographics' impact on lineup score. The table below shows each single demographic variable's association with lineup score. STEM major, completion of Calculus I, time spent playing video games, and gender all show some association with score on statistical lineups. \label{tab:ttest-demographics}} 
 \begin{tabular}{lrrrr}
   \hline
-Variable & DF & Mean.Squared & F.value & p.value \\ 
+Variable & DF & MeanSq & F & p.val \\ 
   \hline
-stem & 1 & 401.517 & 14.44 & 0.001 \\ 
-  calc\_1 & 1 & 204.569 & 6.15 & 0.018 \\ 
-  vidgame\_hrs\_factor & 3 & 108.847 & 3.44 & 0.028 \\ 
-  sex & 1 & 140.844 & 4.02 & 0.053 \\ 
-  art\_skills & 4 & 75.891 & 2.28 & 0.082 \\ 
-  verbal\_skills & 3 & 60.220 & 1.68 & 0.191 \\ 
-  math\_science\_research & 1 & 59.670 & 1.60 & 0.214 \\ 
+STEM Major & 1 & 401.517 & 14.44 & 0.001 \\ 
+  Calculus 1 & 1 & 204.569 & 6.15 & 0.018 \\ 
+  Video Game Hours & 3 & 108.847 & 3.44 & 0.028 \\ 
+  Sex & 1 & 140.844 & 4.02 & 0.053 \\ 
+  Art Skills & 4 & 75.891 & 2.28 & 0.082 \\ 
+  Verbal Skills & 3 & 60.220 & 1.68 & 0.191 \\ 
+  STEM Research & 1 & 59.670 & 1.60 & 0.214 \\ 
   AutoCAD & 1 & 50.893 & 1.36 & 0.252 \\ 
-  age & 1 & 34.434 & 0.91 & 0.348 \\ 
-  math\_skills & 3 & 37.039 & 0.98 & 0.416 \\ 
-  stats\_class & 1 & 9.062 & 0.23 & 0.631 \\ 
+  Age & 1 & 34.434 & 0.91 & 0.348 \\ 
+  Math Skills & 3 & 37.039 & 0.98 & 0.416 \\ 
+  Statistics Class & 1 & 9.062 & 0.23 & 0.631 \\ 
    \hline
 \end{tabular}
 \end{table}
@@ -296,7 +296,7 @@ stem & 1 & 401.517 & 14.44 & 0.001 \\
 \subsection{Importance of principal components in an analysis of the four cognitive tests}\label{app:pca4}
 
 % latex table generated in R 3.1.2 by xtable 1.7-1 package
-% Mon Mar 16 16:58:33 2015
+% Mon Mar 16 17:53:53 2015
 \begin{table}[htb]
 \centering
 \caption{Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\label{tab:PCAvariance4}} 
@@ -316,7 +316,7 @@ Standard deviation & 1.61 & 0.81 & 0.73 & 0.49 \\
 Table~\ref{tab:PCAvariance4} contains the proportion of the variance in the four cognitive tasks represented by each principal component. PC1 accounts for about 60\% of the variance; Figure~\ref{fig:biplots4} and Table~\ref{tab:PCArotation4} confirm that PC1 is a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test, while PC3 differentiates these two from the paper folding test. PC4 is not particularly significant (it accounts for 5.9\% of the variance), but it differentiates the card rotation task from the paper folding task.
 
 % latex table generated in R 3.1.2 by xtable 1.7-1 package
-% Mon Mar 16 16:58:33 2015
+% Mon Mar 16 17:53:53 2015
 \begin{table}[htb]
 \centering
 \caption{Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\label{tab:PCArotation4}} 
@@ -336,8 +336,8 @@ card.rot & 0.55 & -0.19 & -0.38 & 0.72 \\
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}
 
-{\centering \includegraphics[width=.7\linewidth]{Figure/fig-biplot-pca4-1} 
-\includegraphics[width=.7\linewidth]{Figure/fig-biplot-pca4-2} 
+{\centering \includegraphics[width=.45\linewidth]{Figure/fig-biplot-pca4-1} 
+\includegraphics[width=.45\linewidth]{Figure/fig-biplot-pca4-2} 
 
 }
 
@@ -357,8 +357,8 @@ Biplots of the remaining principal components are shown in Figure~\ref{fig:biplo
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}
 
-{\centering \includegraphics[width=.7\linewidth]{Figure/fig-biplots-pca5-1} 
-\includegraphics[width=.7\linewidth]{Figure/fig-biplots-pca5-2} 
+{\centering \includegraphics[width=.45\linewidth]{Figure/fig-biplots-pca5-1} 
+\includegraphics[width=.45\linewidth]{Figure/fig-biplots-pca5-2} 
 
 }
 
@@ -378,55 +378,55 @@ PC4 captures the similarity between lineups and the card rotation task and separ
 \subsection{Lineup Set 1}
 The experiment in the first lineup section examined the use of boxplots, density plots, histograms, and dotplots to compare two groups which vary in mean and sample size. The experiment was originally designed to explore the use of lineups to test plots of competing design\cite{hofmann2012graphical}. This set of lineups consists of 20 plots selected from the plots used in the full experiment; each set of data is displayed with each of the four plot types. 
 
-\begin{figure}[htbp]
-\includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups1/boxplot_1_15_5_4_13}
+\begin{figure}[htbp]\centering
+\includegraphics[keepaspectratio=T,width=.8\linewidth]{../../Images/Lineups1/boxplot_1_15_5_4_13}
 \caption{Boxplots used to compare the two distributions.}
 \end{figure}
-\begin{figure}[htbp]
-\includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups1/density_1_15_5_4_13}
+\begin{figure}[htbp]\centering
+\includegraphics[keepaspectratio=T,width=.8\linewidth]{../../Images/Lineups1/density_1_15_5_4_13}
 \caption{Density plots used to compare the two distributions.}
 \end{figure}
-\begin{figure}[htbp]
-\includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups1/dotplot_1_15_5_4_13}
+\begin{figure}[htbp]\centering
+\includegraphics[keepaspectratio=T,width=.8\linewidth]{../../Images/Lineups1/dotplot_1_15_5_4_13}
 \caption{Dotplots used to compare the two distributions.}
 \end{figure}
-\begin{figure}[htbp]
-\includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups1/histogram_1_15_5_4_13}
+\begin{figure}[htbp]\centering
+\includegraphics[keepaspectratio=T,width=.8\linewidth]{../../Images/Lineups1/histogram_1_15_5_4_13}
 \caption{Histograms used to compare the two distributions.}
 \end{figure}
-\FloatBarrier
+
 \subsection{Lineup Set 2}
 The second lineup section also explored two groups of data, this time comparing boxplots, bee swarm boxplots, boxplots with overlaid jittered data, and violin plots. Participants were much more accurate in this experiment than in the experiment described previously, because of the types of plots compared as well as the underlying data distributions. 
-\begin{figure}[htbp]
-\includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups2/file147f94f6965d7}
+\begin{figure}[htbp]\centering
+\includegraphics[keepaspectratio=T,width=.8\linewidth]{../../Images/Lineups2/file147f94f6965d7}
 \caption{Boxplots.}
 \end{figure}
-\begin{figure}[htbp]
-\includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups2/file147f9e65f0e4}
+\begin{figure}[htbp]\centering
+\includegraphics[keepaspectratio=T,width=.8\linewidth]{../../Images/Lineups2/file147f9e65f0e4}
 \caption{Boxplots with jittered points.}
 \end{figure}
-\begin{figure}[htbp]
-\includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups2/file147f9fc58d73}
+\begin{figure}[htbp]\centering
+\includegraphics[keepaspectratio=T,width=.8\linewidth]{../../Images/Lineups2/file147f9fc58d73}
 \caption{Bee swarm boxplots.}
 \end{figure}
-\begin{figure}[htbp]
-\includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups2/file147f93acbb7e4}
+\begin{figure}[htbp]\centering
+\includegraphics[keepaspectratio=T,width=.8\linewidth]{../../Images/Lineups2/file147f93acbb7e4}
 \caption{Violin plots.}
 \end{figure}
-\FloatBarrier
+
 \subsection{Lineup Set 3}
 The final lineup section explored QQ-plots from various model simulations, using reference lines, acceptance bands, and rotation to determine which plots allowed participants to most effectively identify violations of normality. Rotated QQ-plots showed lower performance because participants were able to more accurately compare acceptance bands to residuals, and thus could identify that the reference bands were too liberal. As a result, performance was somewhat lower for rotated plots, even though participants were more accurate when comparing the residuals to the reference bands.
 
-\begin{figure}[htbp]
-\includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups3/file13876a225d34-single}
+\begin{figure}[htbp]\centering
+\includegraphics[keepaspectratio=T,width=.8\linewidth]{../../Images/Lineups3/file13876a225d34-single}
 \caption{QQ-plot with guide line.}
 \end{figure}
-\begin{figure}[htbp]
-\includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups3/file13877c93dc78-single}
+\begin{figure}[htbp]\centering
+\includegraphics[keepaspectratio=T,width=.8\linewidth]{../../Images/Lineups3/file13877c93dc78-single}
 \caption{QQ-plot with acceptance bands.}
 \end{figure}
-\begin{figure}[htbp]
-\includegraphics[keepaspectratio=T,width=.9\linewidth]{../../Images/Lineups3/file13878e5c92f-single}
+\begin{figure}[htbp]\centering
+\includegraphics[keepaspectratio=T,width=.8\linewidth]{../../Images/Lineups3/file13878e5c92f-single}
 \caption{QQ-plot rotated 45 degrees.}
 \end{figure}
 
@@ -436,8 +436,8 @@ We can also compare participants' performance on specific types of lineup plots 
 
 
 
-\begin{figure}[ht]
-\includegraphics[width=.9\linewidth]{Figure/fig-lineup-types-1}
+\begin{figure}[ht]\centering
+\includegraphics[width=.8\linewidth]{Figure/fig-lineup-types-1}
 \caption{Density plots of scaled scores for different types of lineups. For the same experiment (shown by line color), certain types of plots are more difficult to read and are associated with lower participant scores. \label{fig:plottypesdensity}}
 \end{figure}
 
@@ -447,10 +447,10 @@ Figure~\ref{fig:scatterplottypes} shows the association between scaled score on 
 
 
 
-\begin{figure}[ht]
+\begin{figure*}[ht]\centering
 \includegraphics[width=\linewidth]{Figure/fig-lineup-types-scores-1}
 \caption{Scatterplots of scaled lineup scores by aptitude test scores. There is some indication that different types of lineup tasks may utilize different visual skills; for instance, QQ-plots with confidence bands may require more skill at mental rotation than QQ-plots without the bands. \label{fig:scatterplottypes}}
-\end{figure}
+\end{figure*}
 
 For comparison, the correlation between general lineup score (non-subdivided) and the card rotation test score was 0.505, the correlation between general lineup score and the figure classification test was 0.512, and the correlation between lineup score and the paper folding test was 0.471.While we can compare the correlation strength between tasks, it is clear that the correlation between the score on any single lineup type and a particular visual aptitude score is lower than the overall relationship that we attribute to visual ability. Additional data is imperative to understand the reasoning required for specific types of plots - it is likely that the 5-10 trials per participant presented in each chart in Figure~\ref{fig:scatterplottypes} are simply not sufficient to uncover any specific relationship between reasoning ability and lineup task. 
 
