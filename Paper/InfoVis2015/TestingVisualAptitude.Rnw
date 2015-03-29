@@ -135,10 +135,17 @@ Graphics convey numerical information very efficiently, but rely on a different 
 %% Uncomment below to include a teaser figure.
    \teaser{
     \centering
-    \includegraphics[width=.4\linewidth]{lineup}
+\begin{minipage}[c]{.5\textwidth}
+\includegraphics[width=\textwidth]{lineup}
+\end{minipage}
+\begin{minipage}[c]{.3\textwidth}
+    \includegraphics[height=.8\textwidth]{Figure/fig-biplots-pca5-1}
+    \includegraphics[height=.8\textwidth]{Figure/fig-biplots-pca5-2}
+\end{minipage}
     \caption[Sample Lineup]{``Which of these plots is the most different from the others?"\newline
     This is the question participants are asked to answer for each of the lineups in the study. In the figure, a sample lineup of boxplots is shown. %Participants are instructed to choose the plot which appears most different from the others. 
-    Panel 4 is the target plot, because the two groups have a large difference in medians.\label{fig:lineup}}
+    Panel 4 is the target plot, because the two groups have a large difference in medians.\label{fig:lineup}
+    The plots on the right show biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.}
   }
 
 <<VisualAptitude-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE, message=F, warning=F>>=
@@ -200,7 +207,7 @@ Many theories of graphical learning center around the difference between visual 
 However,  mathematical ability, not spatial ability, was shown~\cite{shah1995conceptual} to be associated with accuracy on a simple two-dimensional line graph. 
 Spatial ability becomes more important when more complicated graphical displays are used in comparison tasks: the lower performance of individuals with low spatial ability on tests utilizing diagrams and graphs is attributed ~\cite{mayer1994whom} to the fact that more cognitive resources are required to process the visual stimuli, which leaves fewer resources to make connections and draw conclusions from those stimuli. It is theorized that graphics are a form of ``external cognition"~\cite{scaife1996external} that guide, constrain, and facilitate cognitive behavior~\cite{zhang1997nature}. 
 
-In this paper we investigate the extent to which observers make use of spatial ability in their evaluation of and reasoning about statistical graphics. As a quantitative measure of how successful an evaluation is, we are making use of the lineup protocol  \cite{buja2009statistical, wickham2010graphical, majumder2013validation}. 
+Here, we want to investigate the extent to which observers make use of spatial ability in their evaluation of and reasoning about statistical graphics. As a quantitative measure of how successful an evaluation is, we are making use of the lineup protocol  \cite{buja2009statistical, wickham2010graphical, majumder2013validation}. 
 
 ``Lineups" have recently been introduced as a tool to evaluate the statistical significance of a graphical finding. Lineups are also useful in assessing the effectiveness of different graphical displays \cite{hofmann2012graphical, loy:2015}. Like their police counterpart, lineups consist of several distractor plots (of randomly generated data) and one target (the data plot). 
 % 
@@ -386,18 +393,19 @@ embedFonts("./Figure/fig-ResultsScaledScores-1.pdf")
 @
 
 \begin{figure}[ht]
+\centering
 \includegraphics[width=.9\linewidth]{Figure/fig-ResultsScaledScores-1}
 \caption{Test scores for lineups and visuospatial tests. As none of the participants scored at or below zero, we can conclude that there is little evidence of random guessing. We also note the score compression that occurs on the Visual Search test; this indicates that most participants scored extremely high, and thus, participants' scores are not entirely representative of their ability. \label{fig:Scores}}
 \end{figure}
 % 
-\afterpage{\clearpage}
+%\afterpage{\clearpage}
 
 % Applying the grading protocol discussed in section~\ref{sec:scaling}, we see that the ranges of lineup and visuospatial test scores do not include zero; this indicates that we do not see random guessing from participants in any task. Figure~\ref{fig:Scores} shows the range of possible scores and the observed score distribution. 
 
 
 \subsection{Lineup Performance and Demographic Characteristics}
 
-<<VisReasoningCategorical, echo=F, include=F, eval=T, fig.width=9,fig.height=5.5, message=F, warning=F, fig.pos='ht'>>=
+<<VisReasoningCategorical, echo=F, include=F, eval=T, fig.width=8.75,fig.height=6, message=F, warning=F, fig.pos='ht'>>=
 loadfonts()
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
@@ -423,10 +431,11 @@ tmp <- tmp[order(tmp$p.value, decreasing=F),]
 lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, levels=unique(tmp$Variable))
 lineup.summary.categorical$value <- factor(lineup.summary.categorical$value, levels=c("0","1", "2","3","4","5","[1, 2)", "[2, 5)", "5+", "18-20", "21+", "TRUE", "FALSE", "Female", "Male"))
 
-qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot", fill=I("grey")) + 
+qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="blank") +
+  geom_boxplot(fill="grey", outlier.size=1.5) + 
   facet_wrap(~variable, scales="free_x", ncol=4) + xlab("") + 
   ylab("Scaled Lineup Score") + 
-  geom_point(aes(x=value, y=lineup), shape=1, size=3) + 
+  geom_point(aes(x=value, y=lineup), shape=1, size=2.5) + 
   theme_bw() + 
   theme(plot.margin=unit(c(0,0,0,0), unit="mm"))
 embedFonts("./Figure/fig-VisReasoningCategorical-1.pdf")
@@ -435,7 +444,7 @@ embedFonts("./Figure/fig-VisReasoningCategorical-1.pdf")
 \includegraphics[width=.85\linewidth]{fig-VisReasoningCategorical-1}
 \caption[Visual Aptitude Study Results]{Demographic characteristics of participants compared with lineup score. Categories are ordered by effect size; majoring in a STEM field, calculus completion, hours spent playing video games per week, and sex are all associated with a significant difference in lineup score. }\label{fig:visualaptitudecat}
 \end{figure*}
-\afterpage{\clearpage}
+%\afterpage{\clearpage}
 
 %Next, we examine the effect of demographic factors on lineup performance. 
 Previous work found a relationship between lineup performance and demographic factors such as education level, country of origin, and age \cite{humanfactorslineups}; our participant population is very homogeneous, which allows us to explore factors such as educational background and skills on performance in lineup tests. 
@@ -511,10 +520,11 @@ rm(list=c("data", "all", "densities"))
 embedFonts("./Figure/fig-VisReasoningSPM-1.pdf")
 @
 \begin{figure}[ht]
-\includegraphics[width=\linewidth]{Figure/fig-VisReasoningSPM-1}
+\centering
+\includegraphics[width=.9\linewidth]{Figure/fig-VisReasoningSPM-1}
 \caption{Pairwise scatterplots of test scores. Lineup scores are most highly correlated with figure classification scores, and are also highly correlated with card rotation scores. Paper folding and card rotation scores are also highly correlated.\label{fig:scatterplotmatrix}}
 \end{figure}
-\afterpage{\clearpage}
+%\afterpage{\clearpage}
 
 <<pca,echo=F, warning=F, message=F>>=
 pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
@@ -631,7 +641,7 @@ We fit a linear model of lineup scores in the thus modified demographic variable
 library(xtable)
 print(xtable(summary(m1), caption="Estimates and significances of a linear model of lineup scores.", label="tab:m1"), caption.placement="top")
 @
-\afterpage{\clearpage}
+%\afterpage{\clearpage}
 %
 \subsection{Lineup Types}
 Each of the three sets of 20 lineups was taken from previous experiments examining which type of plot most effectively conveyed important characteristics of the underlying data set. 
@@ -745,6 +755,7 @@ embedFonts("./Figure/fig-LineupTypeSPM-1.pdf")
 @
 
 \begin{figure}[ht]
+\centering
 \includegraphics[width=\linewidth]{Figure/fig-LineupTypeSPM-1}
 \caption{Pairwise scatterplots of test scores, with lineups separated into the three lineup tasks. All lineup tasks are moderately correlated with the figure classification task, and while tasks 1 and 2 are most strongly correlated with figure classification, lineup task 3 is most strongly correlated with the card rotation and paper folding tasks. \label{fig:lineuptaskmatrix}}
 \end{figure}
