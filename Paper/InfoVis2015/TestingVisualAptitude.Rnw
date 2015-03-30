@@ -175,6 +175,23 @@ sanitize <- function(x){
   str_replace(gsub("_", ".", x, fixed=T), "Pr\\((.{1,}))", "Pr$(\\1)$")
 }
 
+ggbiplot <- function(pca, choices, segColor="black") {
+  u <- pca$x[,choices]
+  v <- pca$rotation[,choices]
+  u <- data.frame(sweep(u, MARGIN=2, 1/pca$sdev[choices], FUN="*"))
+  v <- data.frame(sweep(v, MARGIN=2, 1/sqrt(rowSums(v^2))[choices], FUN="*"))
+  v$label <- row.names(v)
+  
+  segColor <- rep(segColor, length=nrow(v))
+
+  qplot(u[,1], u[,2], data=u, colour=I("grey50"), shape=I(1), size=I(3)) + theme_bw() + 
+    theme(aspect.ratio=1) + coord_equal() + 
+  geom_segment(aes(x=0, y=0, xend=v[,1], yend=v[,2], colour=segColor), data=v, arrow=arrow(length = unit(0.3, "cm"))) + 
+    xlab(sprintf("PC%d",choices[1])) + ylab(sprintf("PC%d",choices[2])) +
+    geom_text(aes(x=v[,1], y=v[,2], label=label, colour=segColor, 
+                  hjust=0.15*(0.5-sign(v[,1])), vjust=0.5-sign(v[,2])), data=v) +
+    scale_colour_identity()
+}
 @
 
 
@@ -554,9 +571,11 @@ print(xtable(pca2$rotation, caption="Rotation matrix for principal component ana
 @
 
 <<biplot-pca4, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 1-4 with observations. Principal component analysis was performed on the four cognitive tests used to understand the association between the cognitive skills required for these tests and the skills required for the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
-par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
-biplot(pca2, choices=1:2, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
-biplot(pca2, choices=3:4, pc.biplot=T, cex=c(.5, 1), xlim=c(-3,3), ylim=c(-2.5,2.5))
+#par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+dimnames(pca2$rotation)[[1]] <- c("card rotation", "figure classification", "paper folding", "visual search")
+
+ggbiplot(pca2, choices=1:2) + xlim(c(-2.5,2.5)) +  ylim(c(-2.5,2.5))
+ggbiplot(pca2, choices=3:4) + xlim(c(-3,3)) + ylim(c(-2.5,2.5))
 @
 Figure~\ref{fig:biplots4} shows that the first PC does not differentiate between any of the tasks; it might be best understood as a general aptitude factor. All of the remaining principal components distinguish between the cognitive tasks; we can utilize this separation by incorporating the lineup task and examining changes in the principal components. 
 
@@ -572,34 +591,18 @@ print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests. The 
 From the rotation matrix (see Table~\ref{tab:PCArotation5}) we see that  
 the first principal component, PC1, is again essentially an average across all tests and accounts for \Sexpr{round(summary(pca)$importance[3,1]*100,1)}\% of the variance in the data. 
 
+% <<biplots-pca5, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.  \\label{fig:biplots5}", echo=F, fig.env="figure">>=
+% par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
+% biplot(pca, choices=2:3, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
+% biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), xlim=c(-2,2), ylim=c(-2,2))
+% @
+
 <<biplots-pca5, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.  \\label{fig:biplots5}", echo=F, fig.env="figure">>=
-par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
-biplot(pca, choices=2:3, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
-biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), xlim=c(-2,2), ylim=c(-2,2))
-@
 
-<<ggbiplots-pca5, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.  \\label{fig:biplots5}", echo=F, fig.env="figure">>=
-ggbiplot <- function(pca, choices, segColor="black") {
-  u <- pca$x[,choices]
-  v <- pca$rotation[,choices]
-  u <- data.frame(sweep(u, MARGIN=2, 1/pca$sdev[choices], FUN="*"))
-  v <- data.frame(sweep(v, MARGIN=2, 1/sqrt(rowSums(v^2))[choices], FUN="*"))
-  v$label <- row.names(v)
-  
-  segColor <- rep(segColor, length=nrow(v))
-
-  qplot(u[,1], u[,2], data=u, colour=I("grey50"), shape=I(1), size=I(3)) + theme_bw() + 
-    theme(aspect.ratio=1) + coord_equal() + 
-  geom_segment(aes(x=0, y=0, xend=v[,1], yend=v[,2], colour=segColor), data=v, arrow=arrow(length = unit(0.3, "cm"))) + 
-    xlab(sprintf("PC%d",choices[1])) + ylab(sprintf("PC%d",choices[2])) +
-    geom_text(aes(x=v[,1], y=v[,2], label=label, colour=segColor, 
-                  hjust=0.15*(0.5-sign(v[,1])), vjust=0.5-sign(v[,2])), data=v) +
-    scale_colour_identity()
-}
 
 dimnames(pca$rotation)[[1]] <- c("lineup", "card rotation", "figure classification", "folding", "visual search")
-ggbiplot(pca, choices=2:3, segColor=c("darkred", rep("black", 4))) + xlim(c(-2.6,2.6)) +  ylim(c(-2.6,2.6))
-ggbiplot(pca, choices=3:4, segColor=c("darkred", rep("black", 4)))
+ggbiplot(pca, choices=2:3, segColor=c("red", rep("black", 4))) + xlim(c(-2.6,2.6)) +  ylim(c(-2.6,2.6))
+ggbiplot(pca, choices=4:5, segColor=c("#FF3333", rep("black", 4)))
 @
 Biplots \cite{biplots:gabriel} of the remaining components are provided in figure~\ref{fig:biplots5}. Figure classification is strongly related to lineups (PC2, PC3). Performance on the visual search task  is also related to lineup performance (PC3). These two components highlight the shared demands of the lineup task and the figure classification task: participants must establish categories from provided stimuli and then classify the stimuli accordingly. 
 
