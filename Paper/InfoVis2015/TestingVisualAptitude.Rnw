@@ -178,8 +178,9 @@ sanitize <- function(x){
 ggbiplot <- function(pca, choices, segColor="black") {
   u <- pca$x[,choices]
   v <- pca$rotation[,choices]
-  u <- data.frame(sweep(u, MARGIN=2, 1/pca$sdev[choices], FUN="*"))
-  v <- data.frame(sweep(v, MARGIN=2, 1/sqrt(rowSums(v^2))[choices], FUN="*"))
+  n <- nrow(u)
+  u <- data.frame(sweep(u, MARGIN=2, 1/(pca$sdev[choices]), FUN="*"))
+  v <- data.frame(sweep(v, MARGIN=2, 3 * (pca$sdev[choices]), FUN="*"))
   v$label <- row.names(v)
   
   segColor <- rep(segColor, length=nrow(v))
@@ -190,7 +191,7 @@ ggbiplot <- function(pca, choices, segColor="black") {
     xlab(sprintf("PC%d",choices[1])) + ylab(sprintf("PC%d",choices[2])) +
     geom_text(aes(x=v[,1], y=v[,2], label=label, colour=segColor, 
                   hjust=0.15*(0.5-sign(v[,1])), vjust=0.5-sign(v[,2])), data=v) +
-    scale_colour_identity()
+    scale_colour_identity() + theme(aspect.ratio=1)
 }
 @
 
