@@ -579,21 +579,27 @@ biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), xlim=c(-2,2), ylim=c(-2,2))
 @
 
 <<ggbiplots-pca5, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.  \\label{fig:biplots5}", echo=F, fig.env="figure">>=
-ggbiplot <- function(pca, choices) {
+ggbiplot <- function(pca, choices, segColor="black") {
   u <- pca$x[,choices]
   v <- pca$rotation[,choices]
   u <- data.frame(sweep(u, MARGIN=2, 1/pca$sdev[choices], FUN="*"))
   v <- data.frame(sweep(v, MARGIN=2, 1/sqrt(rowSums(v^2))[choices], FUN="*"))
   v$label <- row.names(v)
+  
+  segColor <- rep(segColor, length=nrow(v))
 
-  qplot(u[,1], u[,2], data=u, colour=I("grey50"), shape=I(1), size=I(3)) + theme_bw() + theme(aspect.ratio=1) + coord_equal() + 
-  geom_segment(aes(x=0, y=0, xend=v[,1], yend=v[,2]), data=v, arrow=arrow(length = unit(0.3, "cm"))) + 
+  qplot(u[,1], u[,2], data=u, colour=I("grey50"), shape=I(1), size=I(3)) + theme_bw() + 
+    theme(aspect.ratio=1) + coord_equal() + 
+  geom_segment(aes(x=0, y=0, xend=v[,1], yend=v[,2], colour=segColor), data=v, arrow=arrow(length = unit(0.3, "cm"))) + 
     xlab(sprintf("PC%d",choices[1])) + ylab(sprintf("PC%d",choices[2])) +
-    geom_text(aes(x=v[,1], y=v[,2], label=label, hjust=0.5*(0.5-sign(v[,1])), vjust=0.5-sign(v[,2])), data=v)
+    geom_text(aes(x=v[,1], y=v[,2], label=label, colour=segColor, 
+                  hjust=0.15*(0.5-sign(v[,1])), vjust=0.5-sign(v[,2])), data=v) +
+    scale_colour_identity()
 }
 
-ggbiplot(pca, choices=2:3) + xlim(c(-2.6,2.6)) +  ylim(c(-2.6,2.6))
-ggbiplot(pca, choices=3:4)
+dimnames(pca$rotation)[[1]] <- c("lineup", "card rotation", "figure classification", "folding", "visual search")
+ggbiplot(pca, choices=2:3, segColor=c("darkred", rep("black", 4))) + xlim(c(-2.6,2.6)) +  ylim(c(-2.6,2.6))
+ggbiplot(pca, choices=3:4, segColor=c("darkred", rep("black", 4)))
 @
 Biplots \cite{biplots:gabriel} of the remaining components are provided in figure~\ref{fig:biplots5}. Figure classification is strongly related to lineups (PC2, PC3). Performance on the visual search task  is also related to lineup performance (PC3). These two components highlight the shared demands of the lineup task and the figure classification task: participants must establish categories from provided stimuli and then classify the stimuli accordingly. 
 
