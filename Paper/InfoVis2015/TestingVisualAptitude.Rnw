@@ -232,7 +232,7 @@ Here, we want to investigate the extent to which observers make use of spatial a
 % 
 % \end{figure}
 
-Figure~\ref{fig:lineup} shows a sample lineup of boxplots; participants are expected to identify the most different among the plots shown. In this example, sub-plot 4 is the target  because of the noticeably different locations of the two boxplot medians.
+Figure~\ref{fig:lineup}(a) shows a sample lineup of boxplots; participants are expected to identify the most different among the plots shown. In this example, sub-plot 4 is the target  because of the noticeably different locations of the two boxplot medians.
 
 
 %This method is described in more detail in the next section; here we motivate the importance of understanding the connection between lineups and spatial reasoning. 
@@ -570,7 +570,7 @@ Table~\ref{tab:PCAvariance4} contains the proportion of the variance in the four
 print(xtable(pca2$rotation, caption="Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\\label{tab:PCArotation4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
 @
 
-<<biplot-pca4, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 1-4 with observations. Principal component analysis was performed on the four cognitive tests used to understand the association between the cognitive skills required for these tests and the skills required for the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
+<<biplot-pca4, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 1-4 with observations (same as figure 1(b)). Principal component analysis was performed on the four cognitive tests used to understand the association between the cognitive skills required for these tests and the skills required for the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
 #par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
 dimnames(pca2$rotation)[[1]] <- c("card rotation", "figure classification", "paper folding", "visual search")
 
