@@ -135,7 +135,6 @@ Graphics convey numerical information very efficiently, but rely on a different 
 %% Uncomment below to include a teaser figure.
    \teaser{
       \centering
-      \hfill
       \begin{minipage}[c]{0.4\textwidth}
           \includegraphics[height=\textwidth]{lineup.png}
           (a) ``Which of these plots is the most different from the others?"
@@ -144,14 +143,12 @@ Graphics convey numerical information very efficiently, but rely on a different 
       %  \hfill
         \begin{minipage}[c]{.4\textwidth}
         \centering
-          \includegraphics[height=.5\textwidth]{Figure/fig-biplots-pca5-1}\hfill\newline
-          \includegraphics[height=.5\textwidth]{Figure/fig-biplots-pca5-2}\hfill\newline
-        
+          \includegraphics[height=.5\textwidth]{Figure/fig-biplots-pca5-1}\\
+          \includegraphics[height=.5\textwidth]{Figure/fig-biplots-pca5-2}\\
         (b) Biplots of visuo-spatial tests and lineup task.
-\end{minipage}
-\hfill
-    \caption{\label{fig:lineup}On the left a sample lineup of boxplots is shown. Participants are asked to identify the most different plot.  %Participants are instructed to choose the plot which appears most different from the others. 
-    Panel 4 is the target plot, because the two groups have a large difference in medians.\\
+        \end{minipage}
+    \caption{\protect\label{fig:lineup}On the left a sample lineup of boxplots is shown. Participants are asked to identify the most different plot.  %Participants are instructed to choose the plot which appears most different from the others. 
+    Panel 4 is the target plot, because the two groups have a large difference in medians.
     The biplots on the right show principal components 2-5 with observations from the user study. The lineup task appears to be most similar to the figure classification task.}
   }
 
