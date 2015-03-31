@@ -135,19 +135,24 @@ Graphics convey numerical information very efficiently, but rely on a different 
 %% Uncomment below to include a teaser figure.
    \teaser{
       \centering
+      \hfill
       \begin{minipage}[c]{0.4\textwidth}
-         \subfloat[][``Which of these plots is the most different from the others?"]{\label{fig:lineup} \includegraphics[height=\textwidth]{lineup.png}}
+          \includegraphics[height=\textwidth]{lineup.png}
+          (a) ``Which of these plots is the most different from the others?"
         %
         \end{minipage}
+      %  \hfill
         \begin{minipage}[c]{.4\textwidth}
-         \subfloat[][Biplots]{\label{fig:biplots}
-          \includegraphics[height=.8\textwidth]{Figure/fig-biplots-pca5-1}\hfill\newline
-          \includegraphics[height=.8\textwidth]{Figure/fig-biplots-pca5-2}
-         }
-          \end{minipage}
-    \caption{On the left a sample lineup of boxplots is shown. Participants are asked to identify the most different plot.  %Participants are instructed to choose the plot which appears most different from the others. 
-    Here, panel 4 is the target plot, because the two groups have a large difference in medians.\\
-    The plots on the right show biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.}
+        \centering
+          \includegraphics[height=.5\textwidth]{Figure/fig-biplots-pca5-1}\hfill\newline
+          \includegraphics[height=.5\textwidth]{Figure/fig-biplots-pca5-2}\hfill\newline
+        
+        (b) Biplots of visuo-spatial tests and lineup task.
+\end{minipage}
+\hfill
+    \caption{\label{fig:lineup}On the left a sample lineup of boxplots is shown. Participants are asked to identify the most different plot.  %Participants are instructed to choose the plot which appears most different from the others. 
+    Panel 4 is the target plot, because the two groups have a large difference in medians.\\
+    The biplots on the right show principal components 2-5 with observations from the user study. The lineup task appears to be most similar to the figure classification task.}
   }
 
 <<VisualAptitude-setup, fig.keep='all', cache=FALSE, echo=FALSE, eval=TRUE, message=F, warning=F>>=
@@ -192,7 +197,7 @@ ggbiplot <- function(pca, choices, segColor="black") {
   geom_segment(aes(x=0, y=0, xend=v[,1], yend=v[,2], colour=segColor), data=v, arrow=arrow(length = unit(0.3, "cm"))) + 
     xlab(sprintf("PC%d",choices[1])) + ylab(sprintf("PC%d",choices[2])) +
     geom_text(aes(x=v[,1], y=v[,2], label=label, colour=segColor, 
-                  hjust=0.15*(0.5-sign(v[,1])), vjust=0.5-sign(v[,2])), data=v) +
+                  hjust=(0.5-sign(v[,1])/2), vjust=(0.5-sign(v[,2])/2) ), data=v) +
     scale_colour_identity() + theme(aspect.ratio=1)
 }
 @
@@ -327,7 +332,7 @@ The \textbf{paper folding test} measures participants' ability to visualize and 
 
 Lineups require similar manipulations in two-dimensional space, and also require the ability to perform complex spatial manipulations mentally; for instance, comparing the interquartile range of two boxplots as well as their relative alignment to a similar set of two boxplots in another panel.
 
-Between cognitive tasks, participants were also asked to complete three blocks of 20 lineups each, assembled from previous studies~\cite{hofmann2012graphical,majumder2013validation}. Participants were given 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup} shows a sample lineup of box plots. 
+Between cognitive tasks, participants were also asked to complete three blocks of 20 lineups each, assembled from previous studies~\cite{hofmann2012graphical,majumder2013validation}. Participants were given 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup}(a) shows a sample lineup of box plots. 
 
 In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. 
 These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
@@ -573,12 +578,12 @@ Table~\ref{tab:PCAvariance4} contains the proportion of the variance in the four
 print(xtable(pca2$rotation, caption="Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\\label{tab:PCArotation4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
 @
 
-<<biplot-pca4, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 1-4 with observations (same as figure 1(b)). Principal component analysis was performed on the four cognitive tests used to understand the association between the cognitive skills required for these tests and the skills required for the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
+<<biplot-pca4, fig.cap="", fig.width=5.5, fig.height=5.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 1-4 with observations (same as figure 1(b)). Principal component analysis was performed on the four cognitive tests used to understand the association between the cognitive skills required for these tests and the skills required for the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
 #par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
-dimnames(pca2$rotation)[[1]] <- c("card rotation", "figure classification", "paper folding", "visual search")
+dimnames(pca2$rotation)[[1]] <- c("card\nrotation", "figure\nclassification", "paper\nfolding", "visual\nsearch")
 
-ggbiplot(pca2, choices=1:2) + xlim(c(-2.5,2.5)) +  ylim(c(-2.5,2.5))
-ggbiplot(pca2, choices=3:4) + xlim(c(-3,3)) + ylim(c(-2.5,2.5))
+ggbiplot(pca2, choices=1:2) + xlim(c(-2.5,4.1)) +  ylim(c(-2.5,2.5))
+ggbiplot(pca2, choices=3:4) + xlim(c(-3,3.5)) + ylim(c(-3,3))
 @
 Figure~\ref{fig:biplots4} shows that the first PC does not differentiate between any of the tasks; it might be best understood as a general aptitude factor. All of the remaining principal components distinguish between the cognitive tasks; we can utilize this separation by incorporating the lineup task and examining changes in the principal components. 
 
@@ -594,18 +599,13 @@ print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests. The 
 From the rotation matrix (see Table~\ref{tab:PCArotation5}) we see that  
 the first principal component, PC1, is again essentially an average across all tests and accounts for \Sexpr{round(summary(pca)$importance[3,1]*100,1)}\% of the variance in the data. 
 
-% <<biplots-pca5, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.  \\label{fig:biplots5}", echo=F, fig.env="figure">>=
-% par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
-% biplot(pca, choices=2:3, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
-% biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), xlim=c(-2,2), ylim=c(-2,2))
-% @
 
-<<biplots-pca5, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.  \\label{fig:biplots5}", echo=F, fig.env="figure">>=
+<<biplots-pca5, fig.cap="", fig.width=5.5, fig.height=5.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3. (These are the same biplots as shown in figure \\ref{fig:lineup}b)  \\label{fig:biplots5}", echo=F, fig.env="figure">>=
 
 
-dimnames(pca$rotation)[[1]] <- c("lineup", "card rotation", "figure classification", "folding", "visual search")
-ggbiplot(pca, choices=2:3, segColor=c("#CC3333", rep("black", 4))) + xlim(c(-2.6,2.6)) +  ylim(c(-2.6,2.6))
-ggbiplot(pca, choices=4:5, segColor=c("#CC3333", rep("black", 4)))
+dimnames(pca$rotation)[[1]] <- c("lineup", "card\nrotation", "figure\nclassification", "paper\nfolding", "visual\nsearch")
+ggbiplot(pca, choices=2:3, segColor=c("#CC3333", rep("black", 4))) + xlim(c(-2.4,2.8)) +  ylim(c(-2.6,2.6))
+ggbiplot(pca, choices=4:5, segColor=c("#CC3333", rep("black", 4))) + xlim(c(-2.8,2.8)) + ylim(c(-2.8,2.8))
 @
 Biplots \cite{biplots:gabriel} of the remaining components are provided in figure~\ref{fig:biplots5}. Figure classification is strongly related to lineups (PC2, PC3). Performance on the visual search task  is also related to lineup performance (PC3). These two components highlight the shared demands of the lineup task and the figure classification task: participants must establish categories from provided stimuli and then classify the stimuli accordingly. 
 

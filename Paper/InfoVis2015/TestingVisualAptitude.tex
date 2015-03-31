@@ -184,19 +184,24 @@ Graphics convey numerical information very efficiently, but rely on a different 
 %% Uncomment below to include a teaser figure.
    \teaser{
       \centering
+      \hfill
       \begin{minipage}[c]{0.4\textwidth}
-         \subfloat[][``Which of these plots is the most different from the others?"]{\label{fig:lineup} \includegraphics[height=\textwidth]{lineup.png}}
+          \includegraphics[height=\textwidth]{lineup.png}
+          (a) ``Which of these plots is the most different from the others?"
         %
         \end{minipage}
-        \begin{minipage}[c]{.1\textwidth}
-         \subfloat[][Biplots]{\label{fig:biplots}
-          \includegraphics[height=.8\textwidth]{Figure/fig-biplots-pca5-1}\hfill\newline
-          \includegraphics[height=.8\textwidth]{Figure/fig-biplots-pca5-2}
-         }
-          \end{minipage}
-    \caption{On the left a sample lineup of boxplots is shown. Participants are asked to identify the most different plot.  %Participants are instructed to choose the plot which appears most different from the others. 
-    Here, panel 4 is the target plot, because the two groups have a large difference in medians.\\
-    The plots on the right show biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.}
+      %  \hfill
+        \begin{minipage}[c]{.4\textwidth}
+        \centering
+          \includegraphics[height=.5\textwidth]{Figure/fig-biplots-pca5-1}\hfill\newline
+          \includegraphics[height=.5\textwidth]{Figure/fig-biplots-pca5-2}\hfill\newline
+        
+        (b) Biplots of visuo-spatial tests and lineup task.
+\end{minipage}
+\hfill
+    \caption{\label{fig:lineup}On the left a sample lineup of boxplots is shown. Participants are asked to identify the most different plot.  %Participants are instructed to choose the plot which appears most different from the others. 
+    Panel 4 is the target plot, because the two groups have a large difference in medians.\\
+    The biplots on the right show principal components 2-5 with observations from the user study. The lineup task appears to be most similar to the figure classification task.}
   }
 
 
@@ -239,7 +244,7 @@ Here, we want to investigate the extent to which observers make use of spatial a
 % 
 % \end{figure}
 
-Figure~\ref{fig:lineup} shows a sample lineup of boxplots; participants are expected to identify the most different among the plots shown. In this example, sub-plot 4 is the target  because of the noticeably different locations of the two boxplot medians.
+Figure~\ref{fig:lineup}(a) shows a sample lineup of boxplots; participants are expected to identify the most different among the plots shown. In this example, sub-plot 4 is the target  because of the noticeably different locations of the two boxplot medians.
 
 
 %This method is described in more detail in the next section; here we motivate the importance of understanding the connection between lineups and spatial reasoning. 
@@ -331,7 +336,7 @@ The \textbf{paper folding test} measures participants' ability to visualize and 
 
 Lineups require similar manipulations in two-dimensional space, and also require the ability to perform complex spatial manipulations mentally; for instance, comparing the interquartile range of two boxplots as well as their relative alignment to a similar set of two boxplots in another panel.
 
-Between cognitive tasks, participants were also asked to complete three blocks of 20 lineups each, assembled from previous studies~\cite{hofmann2012graphical,majumder2013validation}. Participants were given 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup} shows a sample lineup of box plots. 
+Between cognitive tasks, participants were also asked to complete three blocks of 20 lineups each, assembled from previous studies~\cite{hofmann2012graphical,majumder2013validation}. Participants were given 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup}(a) shows a sample lineup of box plots. 
 
 In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. 
 These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
@@ -438,7 +443,7 @@ PC2 differentiates the figure classification test from the visual searching test
 % More detailed results from the 4-test analysis are provided in Appendix~\ref{app:pca}.
 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Mon Mar 30 19:13:11 2015
+% Mon Mar 30 23:08:34 2015
 \begin{table}[htb]
 \centering
 \caption{Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\label{tab:PCAvariance4}} 
@@ -458,7 +463,7 @@ Standard deviation & 1.61 & 0.81 & 0.73 & 0.49 \\
 Table~\ref{tab:PCAvariance4} contains the proportion of the variance in the four cognitive tasks represented by each principal component. PC1 accounts for about 60\% of the variance; Figure~\ref{fig:biplots4} and Table~\ref{tab:PCArotation4} confirm that PC1 is a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test, while PC3 differentiates these two from the paper folding test. PC4 is not particularly significant (it accounts for 5.9\% of the variance), but it differentiates the card rotation task from the paper folding task.
 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Mon Mar 30 19:13:11 2015
+% Mon Mar 30 23:08:34 2015
 \begin{table}[htb]
 \centering
 \caption{Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\label{tab:PCArotation4}} 
@@ -484,7 +489,7 @@ card.rot & 0.55 & -0.19 & -0.38 & 0.72 \\
 
 }
 
-\caption{Biplots of principal components 1-4 with observations. Principal component analysis was performed on the four cognitive tests used to understand the association between the cognitive skills required for these tests and the skills required for the lineup protocol.  \label{fig:biplots4}\label{fig:biplot-pca4}}
+\caption{Biplots of principal components 1-4 with observations (same as figure 1(b)). Principal component analysis was performed on the four cognitive tests used to understand the association between the cognitive skills required for these tests and the skills required for the lineup protocol.  \label{fig:biplots4}\label{fig:biplot-pca4}}
 \end{figure}
 
 
@@ -493,7 +498,7 @@ Figure~\ref{fig:biplots4} shows that the first PC does not differentiate between
 
 Next, we add the lineup results to our principal components analysis. The results of the principal component analysis of the four cognitive tests and lineup results are similar to the results of the cognitive tests alone; this suggests that lineups require at least some of the skills measured by the other cognitive tests. Table~\ref{tab:PCAvariance5} shows the importance of each principal component; from the distribution of the variance components, we see that the lineup test spans an additional dimension within the space of the four established tests. 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Mon Mar 30 19:13:11 2015
+% Mon Mar 30 23:08:35 2015
 \begin{table}[ht]
 \centering
 \caption{Importance of principal components, analyzing all five tests.\label{tab:PCAvariance5}} 
@@ -512,7 +517,7 @@ Standard deviation & 1.73 & 0.84 & 0.75 & 0.70 & 0.48 \\
 
 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Mon Mar 30 19:13:11 2015
+% Mon Mar 30 23:08:35 2015
 \begin{table}[ht]
 \centering
 \caption{PCA Rotation matrix for all five tests. The first principal component is essentially an average of all five tests. 
@@ -533,11 +538,6 @@ lineup & 0.42 & 0.49 & -0.46 & 0.60 & -0.10 \\
 From the rotation matrix (see Table~\ref{tab:PCArotation5}) we see that  
 the first principal component, PC1, is again essentially an average across all tests and accounts for 60.1\% of the variance in the data. 
 
-% <<biplots-pca5, fig.cap="", fig.width=4.5, fig.height=4.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.  \\label{fig:biplots5}", echo=F, fig.env="figure">>=
-% par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)
-% biplot(pca, choices=2:3, pc.biplot=T, cex=c(.5, 1), xlim=c(-2.5,2.5), ylim=c(-2.5,2.5))
-% biplot(pca, choices=4:5, pc.biplot=T, cex=c(.5, 1), xlim=c(-2,2), ylim=c(-2,2))
-% @
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}[]
@@ -548,7 +548,7 @@ the first principal component, PC1, is again essentially an average across all t
 
 }
 
-\caption{Biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.  \label{fig:biplots5}\label{fig:biplots-pca5}}
+\caption{Biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3. (These are the same biplots as shown in figure \ref{fig:lineup}b)  \label{fig:biplots5}\label{fig:biplots-pca5}}
 \end{figure}
 
 
@@ -572,7 +572,7 @@ A principal component of the five math/stats questions splits the variables into
 We fit a linear model of lineup scores in the thus modified demographic variables and the test scores from the visuo-spatial tests, selecting the best model using AIC and stepwise backwards selection. The result is shown in Table~\ref{tab:m1}. Only two covariates stay in the model: PC1 and MATH, reflecting two dimensions of what affects lineup scores. We can think of PC1 as a measure of innate visual or intellectual ability, while the MATH score is a matter of both ability and training. The remaining principal components were not sufficiently associated with lineup score to be included in the model.
 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Mon Mar 30 19:13:12 2015
+% Mon Mar 30 23:08:36 2015
 \begin{table}[ht]
 \centering
 \caption{Estimates and significances of a linear model of lineup scores.} 
