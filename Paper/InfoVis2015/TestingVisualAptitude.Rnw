@@ -34,7 +34,7 @@
 %% with other math-related packages, you may want to disable it.
 
 % declare the path(s) where your graphic files are
-\graphicspath{{Figure/}{Images/}{../../Images/}}
+\graphicspath{{Figure/}{Images/}}
 % and their extensions so you won't have to specify these with
 % every instance of \includegraphics
 \DeclareGraphicsExtensions{.pdf,.jpg,.png}
@@ -134,17 +134,19 @@ Graphics convey numerical information very efficiently, but rely on a different 
 
 %% Uncomment below to include a teaser figure.
    \teaser{
-    \centering
-\begin{minipage}[c]{.5\textwidth}
-\includegraphics[width=\textwidth]{lineup}
-\end{minipage}
-\begin{minipage}[c]{.3\textwidth}
-    \includegraphics[height=.8\textwidth]{Figure/fig-biplots-pca5-1}
-    \includegraphics[height=.8\textwidth]{Figure/fig-biplots-pca5-2}
-\end{minipage}
-    \caption[Sample Lineup]{``Which of these plots is the most different from the others?"\newline
-    This is the question participants are asked to answer for each of the lineups in the study. In the figure, a sample lineup of boxplots is shown. %Participants are instructed to choose the plot which appears most different from the others. 
-    Panel 4 is the target plot, because the two groups have a large difference in medians.\label{fig:lineup}
+      \centering
+      \begin{minipage}[c]{0.4\textwidth}
+         \subfloat[][``Which of these plots is the most different from the others?"]{\label{fig:lineup} \includegraphics[height=\textwidth]{lineup.png}}
+        %
+        \end{minipage}
+        \begin{minipage}[c]{.4\textwidth}
+         \subfloat[][Biplots]{\label{fig:biplots}
+          \includegraphics[height=.8\textwidth]{Figure/fig-biplots-pca5-1}\hfill\newline
+          \includegraphics[height=.8\textwidth]{Figure/fig-biplots-pca5-2}
+         }
+          \end{minipage}
+    \caption{On the left a sample lineup of boxplots is shown. Participants are asked to identify the most different plot.  %Participants are instructed to choose the plot which appears most different from the others. 
+    Here, panel 4 is the target plot, because the two groups have a large difference in medians.\\
     The plots on the right show biplots of principal components 2-5 with observations. The lineup task appears to be most similar to the figure classification task, based on the plot of PC2 vs. PC3.}
   }
 
@@ -602,8 +604,8 @@ the first principal component, PC1, is again essentially an average across all t
 
 
 dimnames(pca$rotation)[[1]] <- c("lineup", "card rotation", "figure classification", "folding", "visual search")
-ggbiplot(pca, choices=2:3, segColor=c("red", rep("black", 4))) + xlim(c(-2.6,2.6)) +  ylim(c(-2.6,2.6))
-ggbiplot(pca, choices=4:5, segColor=c("#FF3333", rep("black", 4)))
+ggbiplot(pca, choices=2:3, segColor=c("#CC3333", rep("black", 4))) + xlim(c(-2.6,2.6)) +  ylim(c(-2.6,2.6))
+ggbiplot(pca, choices=4:5, segColor=c("#CC3333", rep("black", 4)))
 @
 Biplots \cite{biplots:gabriel} of the remaining components are provided in figure~\ref{fig:biplots5}. Figure classification is strongly related to lineups (PC2, PC3). Performance on the visual search task  is also related to lineup performance (PC3). These two components highlight the shared demands of the lineup task and the figure classification task: participants must establish categories from provided stimuli and then classify the stimuli accordingly. 
 
