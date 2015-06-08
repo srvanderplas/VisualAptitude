@@ -176,7 +176,7 @@ library(magrittr)
 source(paste(codedir, "Analysis.R", sep=""))
 
 sanitize <- function(x){
-  str_replace(gsub("_", ".", x, fixed=T), "Pr\\((.{1,}))", "Pr$(\\1)$")
+  str_replace(gsub("_", ".", x, fixed=T), "Pr\\((.{1,})\\)", "Pr$(\\1)$")
 }
 
 ggbiplot <- function(pca, choices, segColor="black") {
