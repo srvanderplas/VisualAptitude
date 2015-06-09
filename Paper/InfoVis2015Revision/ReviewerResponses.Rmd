@@ -1,0 +1,518 @@
+---
+title: "ReviewerResponses"
+author: "Susan VanderPlas"
+date: "June 8, 2015"
+output: html_document
+---
+
+# Summary Rating
+
+   4  (Accept) The paper should be accepted with some minor revisions. Once these have been completed it will meet the quality standard.
+
+## The Summary Review
+
+### Overview
+
+   The paper attempts to solve a quite interesting problem, which is
+   understanding the relationship between demographic characteristics /
+   visual skills and perception of graphical lineups. Reviewers agree that
+   this topic is quite interesting, and the authors did conduct a quite
+   extensive study. R4, particularly, is strongly supportive for this paper,
+   saying "The work represented here may be the most important recent
+   advance in methodology for evaluating the effectiveness of visual
+   displays." However, other reviewers listed several concerns in
+   experimental design, data analysis, and conclusions.
+
+### Strengths
+
+   - The topic of this study is very interesting. (R3, R4)
+   - The paper is well presented. (R1, R2, R3, R4)
+   - The study is extensively evaluated. (R1)
+   - Supplementary materials provide additional details on methodologies
+   used. (R2)
+   - A groundbreaking methodological contribution is made. (R4)
+   - Deal with important issues in spatial reasoning on graphics. (R1)
+
+### Weaknesses
+
+   - A clearer motivation of certain experimental design choices is
+   necessary. (R1)
+   - Experiment procedures should have more proper control and be more
+   detailed. (R1, R3)
+   - The statistical analysis is of questionable validity. (R2, R3)
+   - Results are not conclusive and open to interpretation. (R1, R2)
+   - A lack of discussion on visualization design in general. (R3)
+   - A separate related work section is necessary. (R3)
+
+   However, these concerns, especially regarding statistical analysis, are
+   rather critical. The reviewers recommended to accept this paper in the
+   condition that these weaknesses are properly handled within the revision
+   cycle. Thus, as the primary reviewer of this paper, I will review the
+   revision of the paper and ask the following questions, and if the answers
+   to all the questions are "yes", I will recommend to accept this paper.
+
+1. Are all the experimental design choices properly motivated? (refer to
+   the first concern of R1).
+2. Are the experimental procedure sufficiently detailed? (refer to the
+   second concern of R1 and )
+3. The results of statistical analysis do not seem to be conclusive, are
+   the interpretations of these results properly revised? (refer to the
+   third concern of R1)
+4. Does the revision contain additional discussion of why PCA is a
+   proper approach to interpret the data for the VIS community members who
+   do not have sufficient statistics background? (refer to the concern of
+   R2)
+5. Does the revision has the clear description of "most different"?
+   (refer to the first concern of R3)
+6. Does the revision has the proper discussion of visualization design
+   (refer to the second concern of R3)
+7. Does the revision resolve a potential concern of confounding factors
+   (refer to the conern of R3)
+8. Does the revision have an explicit related works section? (refer to
+   the last concern of R3)
+9. Does the revision handle all the minor issues raised by reviewers?
+
+Second round comments (public)
+
+Second round supplementary materials check
+
+Second round supplementary materials comments
+
+# Review 2
+Title: Spatial Reasoning and Data Displays
+
+_Reviewer_: primary
+
+_Paper type_   Evaluation
+
+_Expertise_ 2  (Knowledgeable)
+
+_Overall Rating_ 3.5 - Between Possible Accept and Accept
+
+_Supplemental Materials_ Acceptable
+
+## Justification
+
+   Overall, the study appears to be meticulously conducted, and the research
+   question of "what kinds of factors really influence on visual tasks" is a
+   very needed to be scientifically answered. However, I have a concern
+   whether PCA is a proper inferencing tool (I think it as a more
+   dimensionality reduction tool) and the resulting take-home messages are
+   rather unclear.
+
+## The Review
+
+   Overall, various statistical methods (e.g., scaling scores) appeared to
+   be meticulously used, and the authors even provided supplementary
+   materials to detail such processes, which shows a great practice. Using a
+   previously tested approach, line-ups, to investigate which factors will
+   impact on visualization task performances is also an interesting idea. I
+   believe that our community needs more work like this.
+
+   However, I have a concern. The authors largely rely on principal
+   component analysis (PCA) to infer what kinds of cognitive abilities are
+   relevant with the line-up tasks. However, I wonder if that is a
+   statistically sound approach. I am not a statistician, so I cannot make a
+   definitive claim that this is a right or wrong approach (I hope that
+   other reviewers have a stronger background on this approach).
+
+   However, I found the following page
+   (http://www.alglib.net/dataanalysis/principalcomponentsanalysis.php)
+   describing the underlying assumptions of PCA:
+
+   "It may be noted that the PCA is based on the following assumptions:
+
+   The assumption that the dimensionality of data can be efficiently reduced
+   by linear transformation
+   The assumption that most information is contained in those directions
+   where input data variance is maximum.
+   As it is evident, these conditions are by no means always met. For
+   example, if points of an input set are positioned on the surface of a
+   hypersphere, no linear transformation can reduce dimension (nonlinear
+   transformation, however, can easily cope with this task). This
+   disadvantage is equally attributable to all linear algorithms, and it can
+   be eliminated due to the use of complementary dummy variables that are
+   nonlinear functions of the input data set elements (the so-called "kernel
+   trick").
+
+   The second disadvantage of the PCA consists in the fact that the
+   directions maximizing variance do not always maximize information. The
+   page of the LDA subroutines gives an example of such a task, wherein the
+   maximum-variance variable affords almost no information, whilst the
+   minimum-variance variable permits classes to be wholly separated. In this
+   case, the PCA will give preference to the first (less informative)
+   variable. This drawback is closely connected to the fact that the PCA
+   does not perform linear separation of classes, linear regression or other
+   similar operations, but it merely permits the input vector to be best
+   restored on the basis of the partial information about it. All additional
+   information pertaining to the vector (such as the identification of an
+   image with one of the classes) is ignored."
+
+   Based on this description, and if this description is correct, I believe
+   that the authors should provide more concrete evidence showing that such
+   assumptions are met in their analysis, so that the authors can make some
+   inferences from the PCA results. However, it is unclear to me based on
+   the current manuscript.
+
+   In addition, I found that it is unclear what are the take-home messages
+   from the current analysis. It sounds that more research should be done.
+   If that is the case, this study sounds like a quite exploratory at this
+   stage.
+
+   * page 2
+   “speed[9]”
+
+   Put a space right before a citation throughout this paper.
+
+   * page 3
+   "Lineups require similar manipulations in two-dimensional space, and also
+   require the ability to perform complex spatial manipulations mentally;
+   for instance, comparing the interquartile range of two box- plots as well
+   as their relative alignment to a similar set of two boxplots in another
+   panel."
+
+   I understand that the experiment follows the line-up protocols, but it is
+   unclear how it was conducted in detail. What are the visualizations used
+   for the three blocks of 20 lineups. What are tasks? (Task examples are
+   shown in Figure 1(a), but not sure if the same task was used for all
+   lineups). I later found that more examples of line-up tasks are described
+   in Section 3.6, but the detailed descriptions of tasks are still
+   necessary.
+
+   * page 6
+   "3.5 Lineup Types"
+
+   This should be go to the Methods section, not the result section.
+
+   ---
+
+   Regarding the concern regarding PCA, a reviewer who had the sufficient
+   statistics background mentioned that my concern is irrelevant to the
+   application in the paper. I hope that the authors clarify potential
+   questions from readers by clarifying why PCA would be an appropriate
+   approach for the people who do not have sufficient statistical
+   background.
+
+
+
+# Review 1
+
+_Title_: Spatial Reasoning and Data Displays
+
+_Reviewer_:           external
+
+_Paper type_   Evaluation
+
+_Expertise_ 2  (Knowledgeable)
+
+_Overall Rating_ 3.5 - Between Possible Accept and Accept
+
+_Supplemental Materials_  Not applicable (no supplemental materials were submitted with the paper)
+
+## Justification
+
+The paper addresses an important issue in spatial reasoning on graphics.
+   While the paper is well presented and the study is extensively evaluated,
+   I find that the paper could benefit from stronger motivation of certain
+   design choices, better explanation of experimental procedures, and more
+   conclusive evaluation of the results.
+
+## The Review
+
+   The paper addresses an important issue in spatial reasoning on graphics
+   that I believe is highly valuable to the InfoVis community. The paper is
+   well presented and the study is extensively evaluated.
+
+   My main concerns about the paper are threefold.
+
+   Firstly, the paper could benefit from stronger motivation of certain
+   design choices. For instance, it is not fully clear how the measures of
+   visuospatial ability were chosen from a much larger set of tests in the
+   given reference. How are these related to spatial and reasoning ability
+   and what were the hypotheses about their relation to the graphics
+   presented in the lineup tasks?
+
+   Secondly, the descriptions of the experimental procedures is lacking
+   detail. In 2.2 the different tests are explained but it is not clear in
+   which order these were presented. Was it a randomised or counterbalanced
+   design? Also, what was contained in the 20 line ups presented between
+   each session in relation to the different plot types presented in Fig 9?
+   Why were the lineups interleaved with the other four tests? What was the
+   experimental setup: screen used, viewing distance, lab environment? What
+   were the instructions for each of the experimental sessions? What was the
+   total experiment time and were breaks included? Beware that such studies
+   can be influenced by many factors, such as order effects, fatigue, and
+   learning effects, for which reason it is really important to provide
+   sufficient details on the experimental design.
+
+   Lastly, while the evaluation appears to be very extensive, I find the
+   results not as conclusive as they are interpreted by the authors. Some
+   rather low correlations around 0.3-0.4 are interpreted by the authors as
+   being high, which I would not agree with. For instance, in Fig 10
+   differences in correlation between 0.2 and 0.3 are interpreted to be
+   significant while the respective scatter plots do not suggest for one or
+   the other to be significantly better. Such small differences in low
+   correlation regimes can often be misleading and should not be
+   overinterpreted. I appreciate the authors' effort to also draw strong
+   conclusions on the results of the PCA, but also these appear to be not
+   overly convincing. For instance, at the end of 3.5 the author state that
+   lineup 3 is different from lineup 1 and 2. I agree with that from visual
+   observation in Fig 9, but I would be hesitant to infer that from the PCA
+   results.
+
+   Some more detailed and minor comments:
+   - In 2.2, Wolfe's work on visual search should be mentioned in relation
+   to the VST.
+   - Equation (2) states the same as equation (1).
+   - In section 3, you mention one exception in relation to the
+   participants' age, please be more specific.
+   - In section 3, I suppose you mean that the demographics are
+   representative for the student population and not for the whole
+   university incl staff.
+   - With regard to your assessment of the correlation in Fig 6. I would
+   discriminate more between the individual results rather than stating that
+   they are all highly correlated.
+   - It would be good to move Table 1 to the previous page.
+   - Concerning Fig 5: I am not surprised that there is no difference for
+   age, as the difference is minimal and the groups would probably be put
+   into the same group would there be a wider spread of age in the
+   participant population.
+   - In the last paragraph of section 3.3: There is a typo "... is
+   ultimately are a classification... ".
+   - Beginning of 3.4: you mention that all demographic variables are highly
+   correlated. Really all? Please be more specific.
+   - Task for lineup 3 is given. What were the tasks given for the
+   evaluation of lineups 1 and 2?
+   - The VST task is excluded from Fig 10 due to its low correlation. Please
+   include it for completeness.
+   - PCA is explained in detail in 3.5 although it has been used extensively
+   earlier. Please put the explanation before the first use.
+   - Section 4: I don't agree with the initial statement that lineups are
+   strongly related to the performance on tests of visual ability. There is
+   certainly evidence provided for that in the paper, but I would not refer
+   to it as strong evidence.
+   - I propose to put Appendix C into the main body of the paper.
+   - In Appendix C: I don't agree with the statement that the card rotation
+   task is much more associated with the QQ plots. The correlations are
+   actually higher for the first four plot types on the left in the figure.
+
+
+
+
+
+
+
+
+
+
+# Review 3
+
+_Title_: Spatial Reasoning and Data Displays
+
+_Reviewer_:           external
+
+_Paper type_  Evaluation
+
+_Expertise_ 2  (Knowledgeable)
+
+_Overall Rating_ 2.5 - Between Reject and Possible Accept
+
+_Supplemental Materials_ Acceptable
+
+## Justification
+
+   This paper pairs visualization judgments with cognitive tests to try to
+   disentangle cognitive strategies for asserting the "most different" plot
+   in a set. The paper asks an interesting question and is very well
+   written. However, it is unclear from the manuscript what the experimental
+   task is and how it's controlled for, and the analysis is of questionable
+   validity as it aggregates results across a wide breadth of individual
+   designs without consideration for how different visualization designs
+   might lead to different cognitive strategies. As a result, the paper is a
+   near-miss: it asks an interesting question, but makes a few very critical
+   oversights that make its results both questionable and of little utility
+   for the visualization community.
+
+## The Review
+
+   The goal of this paper is to measure the role of different forms of
+   spatial reasoning in interpreting visualizations, with the ultimate goal
+   of understanding the visual strategies underlying judgments made using a
+   visualization. Turning to cognition to try to illuminate different
+   strategies for interpreting visualizations is an extremely interesting
+   idea. However, there are several elements of the experimental design and
+   analysis that are concerning. Of particular concern are the ambiguity of
+   the lineup task and the lack of consideration of different design
+   elements within the analysis. While I believe that the paper in its
+   current form is unsuitable for InfoVis, the manuscript is headed in the
+   right direction and could be a significant contribution to the community
+   in the future.
+
+   It is unclear in the experimental task what “most different” means.
+   From the text, it seems as if its intended to measure distributional
+   variation. However, “most different” can (and likely will) be
+   interpreted by participants in different ways (e.g. largest difference in
+   variance, largest difference in mean or median). Was this communicated to
+   the participants? Were they given a tutorial? How was the difficulty of
+   this judgment controlled? How were other potentially related statistics
+   controlled for (e.g. how can we verify that participants were actually
+   performing the requested task and not a related proxy task)? What
+   information was available to participants for each visualization design
+   to make this judgment? In a box plot, for example, we’re only getting
+   distributional characteristics, it’s possible that the box plot is
+   insufficient to characterize the distribution effectively (e.g.
+   Anscombe’s quartet).
+
+   A larger issue related to this point is that the manuscript lacks a
+   discussion of visualization design in general. For example, the
+   manuscript clearly indicates that  there is a difference in the reported
+   correlations across different sets of visualizations (e.g. lineup one,
+   two, and three). This directly suggests that the different visualization
+   design components , which is well-explored in the graphical perception
+   literature (e.g. Cleveland & McGill, 1984, Heer, Kong, & Agrawala, 2009,
+   Fuchs et al, 2013, Albers, Correll, & Gleicher, 2014 among many others).
+   This would also imply that the findings as reported are biased by the
+   sampling of visualization types used in the experiment. Further, the
+   comparison within lineups seems somewhat unprincipled. For example,
+   it’s unclear how a dot-plot is more similar to set one than set two.
+
+   This will likely be a significant confound in the comparisons with the
+   more traditional  cognitive tests. Assuming the tests use exactly the
+   same form of stimuli founding figures 2 and 3, these stimuli are uniform
+   in design elements across all of the visualization designs. As a result,
+   it’s difficult to tell if the results are a by-product of similarity in
+   visual features or in visual strategy. This analysis feels like it might
+   be comparing apples to oranges--I am not convinced that it makes sense to
+   compare the lineup results to performance on these tests in aggregate due
+   to complications in visual design. Given this confound, it is unclear how
+   a visualization designer could use these results in practice.
+
+   For example, the lineup test is an example of a more free-form visual
+   search task: participants are actively searching for the “most
+   different” element. As a result, deviations from these two tasks might
+   be a function of difference in strategy (as suggested in the paper) or
+   due to difference in stimuli (e.g. detecting configurations vs. box
+   plots) or both. The figure classification test may provide the most
+   similar results for many visualization designs simply because the visual
+   hull of the data (the “cloud” in a scatterplot, the box in a boxplot)
+   is the most salient global feature for making similarity comparisons,
+   which aligns well with the "form" of a figure. This would lead to
+   correlation between the tests, but the actual strategy may not be
+   rule-based.
+
+   To make these comparisons more compelling, these same experimental
+   procedures can be conducted with the stimuli in each of these tests
+   adapted to more closely mirror the tested visualization type. I would
+   encourage the authors to consider restructuring these tests to use
+   stimuli more relevant to each respective visualization lineup condition
+   or, at a minimum, to at least break down the results with respect to each
+   individual visualization design and compare strategies across visual
+   feature. Aggregating across all visualizations is an oversimplification
+   of the task—different visualization may require different strategies,
+   and, in fact, graphical perception suggests that they do.
+
+   I would also recommend that a revised manuscript include an explicit
+   related works section. Traditionally in this community, the related work
+   is separate from the introduction. While I think this paper reads well
+   without that structure, the authors may wish to consider revising their
+   structure to accommodate a more thorough discussion of related work. Part
+   of this recommendation is that there is a good breadth of relevant work
+   that is not considered in this manuscript. For example, “The lineup
+   protocol [12, 25, 3] is a testing framework that allows researchers to
+   quantify the statistical significance of a graphical finding with the
+   same mathematical rigor as conventional hypothesis tests” is a very
+   contentious claim. In particular, recent work in visualization, such as
+   (Pak, Hutchinson, & Turk-Brown, 2014, Talbot, Setlur, & Anand, 2014 (more
+   distant comparison is harder), Correll & Gleicher, 2014, and a myriad of
+   papers on limitations in interpreting boxplots), suggest that people are
+   not good at performing visual significance testing. Visual search is
+   among the most commonly used tasks in graphical perception experiments.
+   For example, Fuchs et al, 2014 includes experiments that explicitly
+   involve visual search tasks in small multiple (lineup) conditions.
+
+   Minor Issues:
+   Additional experimental details about the type of visualizations tested
+   (e.g. Figure 9) should be presented in the Methods section. A pointer to
+   another set of papers with large numbers of potential designs is
+   insufficient to understand the experiment. Additionally, explanations of
+   the baseline cognitive tests should be presented up front to ground the
+   analysis: while many in the visualization community may have seen the
+   compared tests (visual search task (VST), paper folding test, card
+   rotation test, and figure classification test), especially the visual
+   search task, many other have not. Give the necessary grounding and
+   explain why these particular tasks were chosen as a baseline.
+
+
+## Spelling & Grammar:
+
+   Overall this paper is very well written. However, throughout the paper,
+   the term “graphics” is used instead of “visualization”.
+   “Graphics” has a much broader possible meaning and
+   “visualization” is conventional for the InfoVis audience.
+
+   speed[9]  -> speed [9]
+   reasoning[6] -> reasoning [6]
+
+
+# Review 4
+
+_Title_: Spatial Reasoning and Data Displays
+
+_Reviewer_:           secondary
+
+_Paper type_   Theory / Model
+
+_Expertise_   3  (Expert)
+
+_Overall Rating_ 5 - Strong Accept    
+The paper is an excellent contribution and should certainly be accepted, possibly with some minor revisions.    
+It more than meets the quality standard.
+
+_Supplemental Materials_ Acceptable
+
+## Justification
+
+   Nothing that I haven't listed in the review. I think this is an
+   extraordinary paper because the authors have taken a fundamentally
+   important contribution and extended it to an area where nobody has
+   thought about it so far.
+
+## The Review
+
+   The work represented here may be the most important recent advance in
+   methodology for evaluating the effectiveness of visual displays. It
+   appears to be, as well, the most powerful method for evaluating
+   individual differences in graph reading ability. What is remarkable is
+   that such a simple paradigm can be coupled with a formal statistical
+   distribution (the binomial) for quantifying these results. Instead of
+   separating graph reading into subtasks that may be highly correlated (and
+   therefore not highly informative taken as a whole set) this team has
+   devised a method for dealing with highly complex displays (probability
+   plots, billets, etc.) as well as simple ones.
+
+   Moreover, this team has implemented a methodology that fits perfectly
+   into a tradition of careful psychological measurement. Instead of
+   requesting subjects to rate things numerically (as Cleveland did, for
+   example), these researchers simply ask for the point of a finger, so to
+   speak. The response is similar in nature to that of classical perceptual
+   direct scaling studies going back almost a century.
+
+   Sometimes authors or teams milk a simple idea by generating minor
+   variations and submitting them to a bunch of journals. What's remarkable
+   here is that the collection of their publications given in the references
+   ranges from a formal statistical article with proofs etc. to several
+   visualization articles having very different focuses. The same is true
+   for this article. I have seen presentations of this research and I never
+   thought of the possibility that it could be used in the context of the
+   present article.
+
+   This paper is very well organized and written. I have few considerations
+   for revision and plan to nominate it for best paper.
+
+
+### Details:
+
+   I'd suggest a mention of the groundbreaking mental rotation research of
+   Shepard & Metzler. This was 3D rotation, but it did stimulate thinking by
+   later psychologists on the rotation problem. What's more, their results
+   were confirmed by subsequent neurological research in Science magazine.
