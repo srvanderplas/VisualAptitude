@@ -414,7 +414,8 @@ ggplot() +
   theme(legend.position=c(.68,.125),  legend.box.just = "left", 
         legend.key.height=unit(6, "mm")) 
   #coord_flip()
-embedFonts("./Figure/fig-ResultsScaledScores-1.pdf")
+if (file.exists("./Figure/fig-ResultsScaledScores-1.pdf")) 
+  embedFonts("./Figure/fig-ResultsScaledScores-1.pdf")
 @
 
 \begin{figure}[ht]
@@ -463,7 +464,8 @@ qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="blank") +
   geom_point(aes(x=value, y=lineup), shape=1, size=2.5) + 
   theme_bw() + 
   theme(plot.margin=unit(c(0,0,0,0), unit="mm"))
-embedFonts("./Figure/fig-VisReasoningCategorical-1.pdf")
+if (file.exists("./Figure/fig-VisReasoningCategorical-1.pdf"))
+  embedFonts("./Figure/fig-VisReasoningCategorical-1.pdf")
 @
 \begin{figure*}[h!tb]\centering
 \includegraphics[width=.85\linewidth]{fig-VisReasoningCategorical-1}
@@ -542,7 +544,7 @@ ggplot()+
   theme(axis.title=element_blank(),
         plot.margin=unit(c(0,0,0,0), unit="mm"))
 rm(list=c("data", "all", "densities"))
-embedFonts("./Figure/fig-VisReasoningSPM-1.pdf")
+if (file.exists("./Figure/fig-VisReasoningSPM-1.pdf")) embedFonts("./Figure/fig-VisReasoningSPM-1.pdf")
 @
 \begin{figure}[ht]
 \centering
@@ -785,7 +787,7 @@ ggplot()+
   facet_grid(xvar~yvar, scales="free", labeller = labeller(xvar=fix.names, yvar=fix.names)) + 
   theme_bw() + 
   theme(axis.title=element_blank())
-embedFonts("./Figure/fig-LineupTypeSPM-1.pdf")
+if (file.exists("./Figure/fig-LineupTypeSPM-1.pdf")) embedFonts("./Figure/fig-LineupTypeSPM-1.pdf")
 @
 
 \begin{figure}[ht]
@@ -811,7 +813,7 @@ rotation$Var1 <- factor(rotation$Var1,
 library(grid) # needed for arrow function
 loadfonts()
 qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotation, arrow=arrow(length=unit(0.1, "cm"))) + facet_wrap(~Var2, ncol=4) + xlab("Influence") + ggtitle("Lineup Types and Visual Aptitude") + ylab("") + theme_bw() 
-embedFonts("./Figure/fig-lineupblockpca-1.pdf")
+if (file.exists("./Figure/fig-lineupblockpca-1.pdf")) embedFonts("./Figure/fig-lineupblockpca-1.pdf")
 @
 
 \begin{figure}[ht]
