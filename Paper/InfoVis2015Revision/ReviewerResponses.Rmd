@@ -261,38 +261,39 @@ The paper addresses an important issue in spatial reasoning on graphics.
    results.
 
    Some more detailed and minor comments:
-   - In 2.2, Wolfe's work on visual search should be mentioned in relation
+   
+- In 2.2, Wolfe's work on visual search should be mentioned in relation
    to the VST.
-   - Equation (2) states the same as equation (1).
-   - In section 3, you mention one exception in relation to the
+- Equation (2) states the same as equation (1).
+- In section 3, you mention one exception in relation to the
    participants' age, please be more specific.
-   - In section 3, I suppose you mean that the demographics are
+- In section 3, I suppose you mean that the demographics are
    representative for the student population and not for the whole
    university incl staff.
-   - With regard to your assessment of the correlation in Fig 6. I would
+- With regard to your assessment of the correlation in Fig 6. I would
    discriminate more between the individual results rather than stating that
    they are all highly correlated.
-   - It would be good to move Table 1 to the previous page.
-   - Concerning Fig 5: I am not surprised that there is no difference for
+- It would be good to move Table 1 to the previous page.
+- Concerning Fig 5: I am not surprised that there is no difference for
    age, as the difference is minimal and the groups would probably be put
    into the same group would there be a wider spread of age in the
    participant population.
-   - In the last paragraph of section 3.3: There is a typo "... is
+- In the last paragraph of section 3.3: There is a typo "... is
    ultimately are a classification... ".
-   - Beginning of 3.4: you mention that all demographic variables are highly
+- Beginning of 3.4: you mention that all demographic variables are highly
    correlated. Really all? Please be more specific.
-   - Task for lineup 3 is given. What were the tasks given for the
+- Task for lineup 3 is given. What were the tasks given for the
    evaluation of lineups 1 and 2?
-   - The VST task is excluded from Fig 10 due to its low correlation. Please
+- The VST task is excluded from Fig 10 due to its low correlation. Please
    include it for completeness.
-   - PCA is explained in detail in 3.5 although it has been used extensively
+- PCA is explained in detail in 3.5 although it has been used extensively
    earlier. Please put the explanation before the first use.
-   - Section 4: I don't agree with the initial statement that lineups are
+- Section 4: I don't agree with the initial statement that lineups are
    strongly related to the performance on tests of visual ability. There is
    certainly evidence provided for that in the paper, but I would not refer
    to it as strong evidence.
-   - I propose to put Appendix C into the main body of the paper.
-   - In Appendix C: I don't agree with the statement that the card rotation
+- I propose to put Appendix C into the main body of the paper.
+- In Appendix C: I don't agree with the statement that the card rotation
    task is much more associated with the QQ plots. The correlations are
    actually higher for the first four plot types on the left in the figure.
 
