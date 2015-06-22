@@ -222,6 +222,8 @@ ggbiplot <- function(pca, choices, segColor="black") {
 
 \maketitle
 
+\hhnote{XXX Still missing: we need to extend the discussion a little bit that we want to extract the common core from lineups rather than investigate the relationship between individual designs and the  tasks. I believe, that the lineup commonalities are stronger than the design differences - but we might need to get some statistical backup for that. ... didn't we run those PCAs as well? }
+
 \label{sec:introduction}Data displays provide quick summaries of data, models, and results, but not all displays are equally good, nor is any data display equally useful to all viewers. 
 Graphics utilize higher-bandwidth visual pathways to encode information~~\cite{baddeley1974working}, allowing viewers to quickly and intuitively relate multiple dimensions of numerical quantities.
 Well-designed graphics emphasize and present important features of the data while minimizing  features of lesser importance, guiding the viewer towards conclusions that are meaningful in context and supported by the data while maximizing the information encoded in working memory. Under this framework, well-designed graphics reduce memory load and make more cognitive resources available for other tasks (such as drawing conclusions from the data), at the cost of depending on certain visuospatial reasoning abilities. 
@@ -234,7 +236,7 @@ Here, we want to investigate the extent to which observers make use of spatial a
 \comment{Not sure where to add the Related Work section; the introduction is really the most similar thing, but adding another sub-section in would really kill the flow of the paragraph, in my opinion.}
 \hhnote{I agree, it'll disrupt the flow, but we'll have to add a related work section nevertheless. We could add a bit of discussion on separating lineups from plots judging significance.}
 
-\hhnote{ these are the references we are supposed to discuss (not sure, how to add the talbot one - that is a study extending cleveland and then heer's). first attempt: It has been shown~\cite{pak2014} that visualizations do not necessarily reflect statistical properties well or are even misleading viewers~\cite{correll2013}. Lineup tests are different as they do not ask participants to judge significances directly but are only based on comparisons. Statistical properties are then derived from this assessment.  This has been shown to be similarly powerful to standard statistical tests in situations where these classical tests hold, and more powerful in situations where conditions of classical tests are not met~\cite{majumder2013validation}. The difference between statistical properties and visualizations is very easy to explain, as statistical significance of, e.g. a correlation coefficient is based on only a few summary statistics, whereas e.g. a corresponding  scatterplot is showing a lot more details of the data which might lead participants to a different evaluation. This, however, is not a drawback of the visualization but only shows that summary statistics might not be enough to come to an appropriate conclusion \cite{anscombe:1973}. }
+
 ``Lineups" were introduced as a tool to evaluate the statistical significance of a graphical finding~\cite{wickham2010graphical}. Lineups are also useful in assessing the effectiveness of different graphical displays~\cite{hofmann2012graphical, loy:2015}. Like their police counterpart, lineups consist of several distractor plots (of randomly generated data) and one target (the data plot). 
 % 
 % \begin{figure}[htp]
@@ -263,6 +265,10 @@ We hope to facilitate comparison of the lineup task to known cognitive tests, in
 
 In section \ref{sec:methods} we introduce the tests used in the study and describe how the tests are scored. In section \ref{sec:results} we discuss the study results and compare them with scores previously established test, that also take  demographic characteristics associated with test scores into account. We discuss multi-collinearity in the study results, and use principal components analysis and linear models to draw some conclusions about the similarity between lineups and aptitude tests. Finally, in section \ref{sec:discussion}, we discuss the implications of the study results for the lineup protocol and  possible extensions. 
 
+\paragraph{Related Work}
+
+\hhnote{First attempt: It has been shown~\cite{pak2014} that visualizations do not necessarily reflect statistical properties well or are even misleading viewers~\cite{correll2013}. Lineup tests are different as they do not ask participants to judge significances directly but are only based on comparisons. Statistical properties are then derived from this assessment.  This has been shown to be similarly powerful to standard statistical tests in situations where these classical tests hold, and more powerful in situations where conditions of classical tests are not met~\cite{majumder2013validation}. The difference between statistical properties and visualizations is very easy to explain, as statistical significance of, e.g. a correlation coefficient is based on only a few summary statistics, whereas e.g. a corresponding  scatterplot is showing a lot more details of the data which might lead participants to a different evaluation. This, however, is not a drawback of the visualization but only shows that summary statistics might not be enough to come to an appropriate conclusion \cite{anscombe:1973}. }
+\hhnote{XXX still missing: talbot reference; not sure, how to add the talbot one - it is a really nice study  extending cleveland's and then heer's, but not directly related.}
 
 \section{Methods}\label{sec:methods}
 
