@@ -224,6 +224,8 @@ ggbiplot <- function(pca, choices, segColor="black") {
 
 \hhnote{XXX Still missing: we need to extend the discussion a little bit that we want to extract the common core from lineups rather than investigate the relationship between individual designs and the  tasks. I believe, that the lineup commonalities are stronger than the design differences - but we might need to get some statistical backup for that. ... one way to do that would be to do a PCA on the three lineups and investigate whether anything beyond the first dimension is significant. I don't think so.  }
 
+\hhnote{XXX we should add: the lineups come from three different lineup experiments that discuss and compare the design choices (cite papers). This is NOT what we are doing here. Regardless of design choices, we want to find out, what visual skills are necessary for dealing with lineups. }
+
 \label{sec:introduction}Data displays provide quick summaries of data, models, and results, but not all displays are equally good, nor is any data display equally useful to all viewers. 
 Graphics utilize higher-bandwidth visual pathways to encode information~~\cite{baddeley1974working}, allowing viewers to quickly and intuitively relate multiple dimensions of numerical quantities.
 Well-designed graphics emphasize and present important features of the data while minimizing  features of lesser importance, guiding the viewer towards conclusions that are meaningful in context and supported by the data while maximizing the information encoded in working memory. Under this framework, well-designed graphics reduce memory load and make more cognitive resources available for other tasks (such as drawing conclusions from the data), at the cost of depending on certain visuospatial reasoning abilities. 
