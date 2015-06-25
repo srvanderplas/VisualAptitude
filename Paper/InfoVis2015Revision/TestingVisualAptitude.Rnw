@@ -247,9 +247,8 @@ This removes much of the subjectivity from user evaluations of display effective
 While previous research~~\cite{lowrie2007solving,mayer1994whom} has examined the link between certain types of graphical perception and spatial skills, it is important to identify any additional visual skills participants utilize to complete the lineup task, as well as better understand demographic characteristics (math education, research experience, age, gender) which may impact performance~\cite{humanfactorslineups}. 
 
 In this paper, we present the results of a study designed to compare lineup performance with visual aptitude and reasoning tests, examining the skills necessary to successfully evaluate lineups. 
-\newtext{
 Our goal in this study is not to evaluate the statistical significance of particular plots or visualization designs, but rather, to consider the cognitive demands that we require of participants in lineup studies. 
-}
+
 We compare lineup performace to the visual search task (VST), paper folding test, card rotation test, and figure classification test. 
 The VST measures visual search speed~\cite{goldstein1973validity}, the paper folding and card rotation tests measures spatial manipulation ability, and the figure classification test measures inductive reasoning~\cite{ekstrom1976manual}; 
 all of these skills are at least peripherally recruited during the lineup task, but some may dominate in predicting performance on the lineup task. 
@@ -260,9 +259,7 @@ We hope to facilitate comparison of the lineup task to known cognitive tests, in
 In section \ref{sec:methods} we introduce the tests used in the study and describe how the tests are scored. In section \ref{sec:results} we discuss the study results and compare them with scores on previously established tests, accounting for demographic characteristics associated with test scores. We discuss multi-collinearity in the study results, and use principal components analysis and linear models to draw some conclusions about the similarity between lineups and aptitude tests. Finally, in section \ref{sec:discussion}, we discuss the implications of the study results for the lineup protocol and  possible extensions. 
 
 \paragraph{Related Work}
-\newtext{
-It has been shown~\cite{pak2014} that visualizations do not necessarily reflect statistical properties well and may even mislead viewers~\cite{correll2013}. Lineup tests approach the evaluation of statistical visualizations differently; they do not ask participants to judge significances or estimate numerical differences directly (as in \cite{cleveland:1985, fuchs, talbot}) but are only based on comparisons. Statistical properties are then derived from this assessment using results aggregated across individual participants.  This has been shown to be similarly powerful to standard statistical tests in situations where these classical tests hold, and more powerful in situations where conditions of classical tests are not met~\cite{majumder2013validation}. The difference between statistical properties and visualizations is very easy to explain, as statistical significance of, e.g. a correlation coefficient is based on only a few summary statistics, whereas e.g. a corresponding scatterplot shows the data in more detail, perhaps leading participants to a different evaluation. This, however, is not a drawback of the visualization but only shows that summary statistics might not be enough to come to an appropriate conclusion \cite{anscombe:1973}. }
-% \hhnote{XXX still missing: talbot reference; not sure, how to add the talbot one - it is a really nice study  extending cleveland's and then heer's, but not directly related.}
+It has been shown~\cite{pak2014} that visualizations do not necessarily reflect statistical properties well and may even mislead viewers~\cite{correll2013}. Lineup tests approach the evaluation of statistical visualizations differently; they do not ask participants to judge significances or estimate numerical differences directly (as in \cite{cleveland:1985, fuchs, talbot}) but are only based on comparisons. Statistical properties are then derived from this assessment using results aggregated across individual participants.  This has been shown to be similarly powerful to standard statistical tests in situations where these classical tests hold, and more powerful in situations where conditions of classical tests are not met~\cite{majumder2013validation}. The difference between statistical properties and visualizations is very easy to explain, as statistical significance of, e.g. a correlation coefficient is based on only a few summary statistics, whereas e.g. a corresponding scatterplot shows the data in more detail, perhaps leading participants to a different evaluation. This, however, is not a drawback of the visualization but only shows that summary statistics might not be enough to come to an appropriate conclusion \cite{anscombe:1973}. 
 
 \section{Methods}\label{sec:methods}
 
@@ -270,20 +267,20 @@ It has been shown~\cite{pak2014} that visualizations do not necessarily reflect 
 The lineup protocol~~\cite{hofmann2012graphical,wickham2010graphical, buja2009statistical} is a testing framework that allows researchers to quantify the statistical significance of a graphical finding with the same mathematical rigor as conventional hypothesis tests.
 
 In a lineup test, the plot of the data is placed randomly among a set of, generally 19, distractor plots (or {\it null plots}) that are rendered from data generated by a model, without a signal (a null model). This sheet of charts is then shown to human observers, who are asked to identify the display that is ``the most different" 
-\newtext{This phrasing is intentionally ambiguous to prevent biasing participants and is commonly used in other studies employing lineups~\cite{wickham2010graphical, majumder2013validation}.}
+This phrasing is intentionally ambiguous to prevent biasing participants and is commonly used in other studies employing lineups~\cite{wickham2010graphical, majumder2013validation}.
 If an observer identifies the plot drawn from the actual data, this can be reasonably taken as evidence that the data it shows is different from the data of other plots.
 Let $X$ be the number of observers (out of $n$) who identify the data plot from the lineup. Under the null hypothesis that the data plot is not different from the other plots, $X$ has approximately a Binomial distribution~\cite{wickham2010graphical, majumder2013validation}. If $k$ of the observers identify the data plot from the lineup, the probability $P(X \ge k)$ is the $p$-value of the corresponding visual test. 
 %
 By aggregating responses from different individuals the lineup protocol therefore allows an objective evaluation of a graphical finding. 
 Additionally, however, we can aggregate the scores from the same individual on several lineups to objectively assess an individual's performance on the lineup task. 
-\newtext{In this experiment, we are interested in individual skill at evaluating lineups rather than the data displayed in a single lineup, so we will consider an individual's aggregate lineup score. 
-}
+In this experiment, we are interested in individual skill at evaluating lineups rather than the data displayed in a single lineup, so we will consider an individual's aggregate lineup score. 
+
 For this approach, we derive a score for an individual as follows:
 
 Assume that an observer has evaluated $K$ lineups of size $m$ (consisting of $m-1$ decoy plots and 1 target), and successfully identified the target in $n_c$ of these plots, while missing the target in $n_w$ of them. 
 The score for this individual is then given as:
 \begin{eqnarray}\label{eq.scoring1}
-n_c - \frac{n_w}{m-1}.
+n_c - \textstyle\frac{n_w}{m-1}.
 \end{eqnarray}
 Note that the sum of answers, $n_c + n_w$, is at most $K$, but may be less, if an observer chooses to not answer one of the lineup tasks or runs out of time.
 
@@ -294,11 +291,11 @@ Statistical lineups depend on the ability to search for a signal amid a set of d
 Demographic factors are known to impact lineup performance: country, education, and age affected score on lineup tests, and all of those factors plus gender had an effect on the amount of time spent on lineups~\cite{humanfactorslineups}. In addition, lineup performance can be partially explained using statistical distance metrics~\cite{distancemetriclineups}, but these metrics do not completely succeed in predicting human performance, in part due to the difficulty of representing human visual ability algorithmically.
 
 One of the most useful features of the lineup protocol is that it allows researchers to determine which visualizations show certain features more conclusively by providing an experimental protocol for comparing different visualization methods based on the accuracy of user conclusions. In addition, lineups provide researchers with a rigorous framework for determining whether a specific graph shows a real, statistically significant effect by comparing a target plot with plots formed using permutations of the same data, providing a randomization test protocol for graphics. As a result, lineups are a useful and innovative tool for evaluating charts; on an individual level, they can also be used to evaluate a specific participant's perceptual reasoning ability in the context of statistical graphics.
-\newtext{This study uses the lineup protocol to examine differences in individual performance, rather than using aggregate scores to determine the effectiveness of a single visualization. }
+This study uses the lineup protocol to examine differences in individual performance, rather than using aggregate scores to determine the effectiveness of a single visualization. 
 
-\newtext{Statistical lineup experiments may include the same set of data and distractor plots, visualized using different plot types. This allows researchers to examine whether, for instance, a box plot is more effective than a dot plot at presenting a certain distributional characteristic; this examination utilizes data aggregated over all participants who evaluated a specific lineup image. 
+Statistical lineup experiments may include the same set of data and distractor plots, visualized using different plot types. This allows researchers to examine whether, for instance, a box plot is more effective than a dot plot at presenting a certain distributional characteristic; this examination utilizes data aggregated over all participants who evaluated a specific lineup image. 
 
-In this study, we utilize three blocks of statistical lineups; each block consists of 5-7 datasets, each displayed using three or four types of plots (examples of the visualization types presented in each block of lineups are shown in figure \ref{fig:lineups}). For example, in lineup set 1, the same five datasets are displayed as a dot plot, density plot, box plot, and histogram. Each block of lineups are a subset of stimuli used in experiments designed to compare the visual significance of different plot types, however, our purpose in this study is not to determine the efficacy of different types of plots. Rather, our goal is to compare the cognitive demands required to successfully evaluate these lineups, which display variance difference, mean difference, or violations of normality using common statistical plots.}
+In this study, we utilize three blocks of statistical lineups; each block consists of 5-7 datasets, each displayed using three or four types of plots (examples of the visualization types presented in each block of lineups are shown in figure \ref{fig:lineups}). For example, in lineup set 1, the same five datasets are displayed as a dot plot, density plot, box plot, and histogram. Each block of lineups are a subset of stimuli used in experiments designed to compare the visual significance of different plot types, however, our purpose in this study is not to determine the efficacy of different types of plots. Rather, our goal is to compare the cognitive demands required to successfully evaluate these lineups, which display variance difference, mean difference, or violations of normality using common statistical plots.
 
 Each of the three sets of 20 lineups was taken from previous experiments examining which type of plot most effectively conveyed important characteristics of the underlying data set. 
 \begin{figure*}[htbp]\centering
@@ -324,7 +321,7 @@ Each of the three sets of 20 lineups was taken from previous experiments examini
   \includegraphics[keepaspectratio=T,width=.245\linewidth]{../../Images/Lineups3/file13877c93dc78-single}}
 \subfloat[Set 3: QQ-plot rotated 45 degrees.]{
   \includegraphics[keepaspectratio=T,width=.245\linewidth]{../../Images/Lineups3/file13878e5c92f-single}}
-\protect\caption{Lineup plot types used in the experiment. \label{fig:lineups} \newtext{Each set of plots is representative of the plot types shown in a block of lineups in the experiment, and each block represents a subset of plots from a traditional lineup experiment to determine which visualization method facilitates identification of the plot with the strongest visual signal. Set 1 manipulates group means and variance, set 2 manipulates group means, and set 3 examines violations of normality. These tasks were chosen as common statistical visualization tasks, and while not exhaustive, should provide a broad basis for interpreting the results of this experiment.}}
+\protect\caption{Lineup plot types used in the experiment. \label{fig:lineups} Each set of plots is representative of the plot types shown in a block of lineups in the experiment, and each block represents a subset of plots from a traditional lineup experiment to determine which visualization method facilitates identification of the plot with the strongest visual signal. Set 1 manipulates group means and variance, set 2 manipulates group means, and set 3 examines violations of normality. These tasks were chosen as common statistical visualization tasks, and while not exhaustive, should provide a broad basis for interpreting the results of this experiment.}
 \end{figure*}
 
 \paragraph{Lineup Set 1}
@@ -342,16 +339,14 @@ Lineups in the final set are taken from an experiment which examined modificatio
 Participants are asked to complete several cognitive tests designed to measure spatial and reasoning ability. Tasks are timed such  that participants are under pressure; participants are not expected to finish all of the problems in each section. This allows for better discrimination between scores and reduces score compression at the top of the range. 
 
 The \textbf{visual searching task} (VST), shown in figure~\ref{fig:VST}, is designed to test a participant's ability to find a target stimulus in a field of distractors, thus making the visual search task similar in concept to lineups. Historically, this visual search task has been used as a measure of brain damage~\cite{goldstein1973validity,demita1981validity,moerland1986neuropsychological}; however, similar tasks have been used to measure cognitive performance in a variety of situations, for example under the influence of drugs in~~\cite{anderson1983interactive}. The similarity to the lineup protocol as well as the simplicity of the test and its' lack of color justify the slight deviation from forms of visual search tasks typically used in normal populations, such as those in~\cite{wolfe1990limitations,treisman1980feature}. 
-\newtext{We have included visual search in the cognitive testing battery for this experiment because it is the most simple of the tasks required to successfully evaluate a lineup; if participants cannot complete visual search tasks successfully, they will not be able to accurately identify which lineup plot is different. }
+We have included visual search in the cognitive testing battery for this experiment because it is the most simple of the tasks required to successfully evaluate a lineup; if participants cannot complete visual search tasks successfully, they will not be able to accurately identify which lineup plot is different. 
 
 \begin{figure}[htp]\centering
 \includegraphics[width=.8\linewidth]{VisualSearch}
 \caption[Visual Search Task]{Visual Search Task (VST). Participants are instructed to find the plot numbered 1-24 which matches the plot labeled ``Target". Participants will complete up to 25 of these tasks in 5 minutes.}\label{fig:VST}
 \end{figure}
 
-\newtext{
 The remaining cognitive tests are adapted from \cite{ekstrom1976manual} and are highly validated tests that have been constructed to measure specific cognitive factors, such as inductive reasoning and spatial rotation.
-}
 
 The \textbf{figure classification task} tests a participant's ability to extrapolate rules from provided figures. This task is associated with inductive reasoning abilities (factor I  in~~\cite{ekstrom1976manual}). An example is shown in figure~\ref{fig:figureclassification}. 
 
@@ -361,13 +356,11 @@ The \textbf{card rotation test} measures a participant's ability to rotate objec
 The card rotation test is often used in studies investigating the effect of visual ability on the use of visual aids~\cite{mayer1994whom} and statistical graphs~\cite{lowrie2007solving} in education.
 
 Two-dimensional comparisons are an important component of lineup performance. In some lineup situations, these comparisons sometimes involve translation, but in other lineups, rotation is required. Lineups also require visual short-term memory, so the additional factor measured implicitly by this test does not reduce its potential relevance to lineup performance. 
-\newtext{Three-dimensional rotation is somewhat less relevant to most statistical graphics, which are typically two-dimensional in nature. While \cite{ekstrom1976manual} includes three-dimensional rotation tasks similar to \cite{shepard1971mental}, these three-dimensional tasks were not included in this experiment due to time constraints and limited face validity.}
+Three-dimensional rotation is somewhat less relevant to most statistical graphics, which are typically two-dimensional in nature. While \cite{ekstrom1976manual} includes three-dimensional rotation tasks similar to \cite{shepard1971mental}, these three-dimensional tasks were not included in this experiment due to time constraints and limited face validity.
 
 The \textbf{paper folding test} measures participants' ability to visualize and mentally manipulate figures in three dimensions. A sample question from the test is shown in figure~\ref{fig:paperfolding}. It is classified as part of the visualization factor in~~\cite{ekstrom1976manual}, which differs from the spatial orientation factor because it requires participants to visualize, manipulate, and transform the figure~mentally, which makes it a more complex and demanding task than simple rotation. The paper folding test is associated with the ability to extrapolate symmetry and reflection.
 
-\newtext{
 Tests in the Kit of Factor-Referenced Cognitive tests are classified according to the reasoning required to complete the test; in this way, we can be reasonably sure that the paper folding test, card rotation test, and figure classification test have construct validity.
-}
 
 \begin{figure}[ht]
   \centering
@@ -388,22 +381,19 @@ Tests in the Kit of Factor-Referenced Cognitive tests are classified according t
 
 Lineups require similar manipulations in two-dimensional space, and also require the ability to perform complex spatial manipulations mentally; for instance, comparing the interquartile range of two boxplots as well as their relative alignment to a similar set of two boxplots in another panel.
 
-\newtext{All tasks (cognitive and lineups) were provided to participants on paper, to conform to the procedure used in~\cite{ekstrom1976manual}. The order of tasks was the same for each participant due to the constraints of in-person testing; pilot tests did not indicate an effect of task order. }
+All tasks (cognitive and lineups) were provided to participants on paper, to conform to the procedure used in~\cite{ekstrom1976manual}. The order of tasks was the same for each participant due to the constraints of in-person testing; internal pilot tests did not indicate an effect of task order.
 
 Between cognitive tasks, participants were also asked to complete three blocks of 20 lineups each, assembled from previous studies~~\cite{hofmann2012graphical,majumder2013validation}. Participants were given 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup}(a) shows a sample lineup of box plots. 
 
 In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. 
 These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
 
-\newtext{After each test or block of lineups, participants were given 1-2 minutes to rest and recover; the order of tests was designed to prevent fatigue on a single task. The duration of testing for each participant was approximately 1 hour. }
+After each test or block of lineups, participants were given 1-2 minutes to rest and recover; the order of tests was designed to prevent fatigue on a single task. The duration of testing for each participant was approximately 1 hour.
 
 \subsection{Test Scoring}\label{sec:scaling}
 
-All test results were scored so that random guessing produces an expected value of 0; therefore each question answered correctly contributes to the score by 1, while a wrong answer is scored by $-1/(k-1)$, where $k$ is the total number of possible answers to the question. Thus, for a test consisting of multiple choice questions with $k$ suggested answers with a single correct answer each, the score is calculated as
-\begin{eqnarray}\label{eq.scoring}
-\# \text{correct answers } - 1/(k-1) \cdot \# \text{wrong answers}
-\end{eqnarray}
-\newtext{Equation \ref{eq.scoring} is a restatement of equation \ref{eq.scoring1} provided for convenience.}
+All test results were scored so that random guessing produces an expected value of 0; therefore each question answered correctly contributes to the score by 1, while a wrong answer is scored by $-1/(m-1)$, where $m$ is the total number of possible answers to the question. Thus, for a test consisting of multiple choice questions with $m$ distinct answers with a single correct answer each, the score is calculated as in equation \ref{eq.scoring1}.
+
 This allows us to compare each participant's score in light of how many problems were attempted as well as the number of correct responses. Combining accuracy and speed into a single number does not only make a comparison of test scores easier,  this scoring mechanism is also used on many standardized tests, such as the SAT and the battery of psychological tests~~\cite{diamond1973correction, ekstrom1976manual} from which parts of this test are drawn. The advantage of using tests from the Kit of Factor Referenced Cognitive tests~~\cite{ekstrom1976manual} is that the tests are extremely well studied (including an extensive meta-analysis in~~\cite{voyer1995magnitude} of the spatial tests we are using in this study) and comparison data are available from the validation of these factors~~\cite{schaie1998longitudinal,hampson1990variations,mayer1994whom} and previous versions of the kit~~\cite{educational1963kit}.
 
 \section{Results}\label{sec:results}
@@ -623,14 +613,11 @@ pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")]
 @
 
 Results from the visuospatial tests used in this experiment are highly correlated, as shown in Figure~\ref{fig:scatterplotmatrix}; this is to be expected given that all of these tests are in some way measuring individuals' visual ability. 
-\newtext{While test scores are correlated, the relationships between test scores appear to be linear, with sufficient variability around the trend line to merit further investigation. The correlations are to be expected, as all of the tests in this experiment are conducted in a visual domain, and require general reasoning, intelligence, and other factors. }
-What is of more interest to us is 
-\newtext{whether lineups recruit specific cognitive abilities, such as visual search, reasoning and categorization ability, mental rotation.} 
+While test scores are correlated, the relationships between test scores appear to be linear, with sufficient variability around the trend line to merit further investigation. The correlations are to be expected, as all of the tests in this experiment are conducted in a visual domain, and require general reasoning, intelligence, and other factors. 
+What is of more interest to us is whether lineups recruit specific cognitive abilities, such as visual search, reasoning and categorization ability, mental rotation.
 In order to assess factors contributing to lineup performance, we first examine the separate dimensions measured by the battery of cognitive tests (other than lineups) using principal components analysis on the scaled test scores, then we examine all five tests (four cognitive tests, and additionally lineups) using the same procedure. 
 
-\newtext{
 Principal component analysis (PCA) is a statistical technique to transform the coordinate system of correlated data, producing orthogonal components in a new coordinate space (see~\cite{pcaReference} for more information). The most stringent assumption required for PCA is that of linearity, which is reasonable given Figure \ref{fig:scatterplotmatrix}. Additionally, PCA assumes that the interesting portion of the data is the variance between any two variables (a perfectly linear relationship between two variables would be uninteresting, as the variables contain the same information). As a result, PCA can be used to examine which variables contain similar information (i.e. which variables are represented in each principal component). It is this feature of principal components which we utilize in this paper. 
-}
 
 A principal component analysis of the four established visuo-spatial tests reveals that they all share a very strong first component, which explains about \Sexpr{round(summary(pca2)$importance[3,1],2)*100}\% of the total variability. Principal components (PC-) are ordered by importance (how much variability in the data they contain), and each principal component is uncorrelated with every other principal component. 
 
@@ -746,7 +733,7 @@ print(xtable(summary(m1), caption="Estimates and significances of a linear model
 Figure~\ref{fig:lineuptaskmatrix} shows the correlations between the three lineup tasks and the figure classification, card rotation, and paper folding tasks. 
 %The visual search task is only slightly correlated with the three lineup tasks and is therefore omitted from this figure.
 Performance on lineup tasks 1 and 2, which dealt with the distributuion of two groups of numerical data, is most strongly correlated with the performance on the figure classification task, which measures general reasoning ability.
-Performance on lineup task 3, which investigated the potential to visually identify nonnormality in residual QQ-plots, is more associated with the card rotation and paper folding tests, which measure visuospatial ability. This suggests that certain lineup tasks may require more visual ability than others; in the case of the QQ-lineups a successful evaluation  needed  participants to mentally rotate plots to compare vertical distances, requiring more mental manipulation than the first two lineup tasks, \newtext{which required participants to examine categorical data.}
+Performance on lineup task 3, which investigated the potential to visually identify nonnormality in residual QQ-plots, is more associated with the card rotation and paper folding tests, which measure visuospatial ability. This suggests that certain lineup tasks may require more visual ability than others; in the case of the QQ-lineups a successful evaluation  needed  participants to mentally rotate plots to compare vertical distances, requiring more mental manipulation than the first two lineup tasks, which required participants to examine categorical data.
 
 <<LineupTypeSPM,echo=FALSE,include=F, eval=T, fig.width=6,fig.height=9.75, message=F, warning=F>>=
 data <- lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3", "vis_search", "fig_class", "card_rot", "folding")]
@@ -824,7 +811,7 @@ if (file.exists("./Figure/fig-LineupTypeSPM-1.pdf")) embedFonts("./Figure/fig-Li
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{Figure/fig-LineupTypeSPM-1}
-\caption{Pairwise scatterplots of test scores, with lineups separated into the three lineup tasks. All lineup tasks are moderately correlated with the figure classification task, and while tasks 1 and 2 are most strongly correlated with figure classification, lineup task 3 is most strongly correlated with the card rotation and paper folding tasks. \label{fig:lineuptaskmatrix} \newtext{While the correlations shown in this graph are all less than 0.60, there are some surprisingly strong relationships for human subjects data.}}
+\caption{Pairwise scatterplots of test scores, with lineups separated into the three lineup tasks. All lineup tasks are moderately correlated with the figure classification task, and while tasks 1 and 2 are most strongly correlated with figure classification, lineup task 3 is most strongly correlated with the card rotation and paper folding tasks. \label{fig:lineuptaskmatrix} While the correlations shown in this graph are all less than 0.60, there are some surprisingly strong relationships for human subjects data.}
 \end{figure}
 
 
@@ -851,9 +838,7 @@ if (file.exists("./Figure/fig-lineupblockpca-1.pdf")) embedFonts("./Figure/fig-l
 \end{figure}
 
 For variables $X_i$, $i=1, ..., K$ a principal component analysis results in a set of $K$ principal  components $PC_j$, $j=1, ..., K$, given as the rows of the rotation matrix, $M$ (which has dimension $K\times K$, indexed by $i$ and $j$ respectively).
-
 The importance $I_j$ of each component is determined by the amount of variability the data exhibits along each of the principal axis.
-
 The influence of variable $X_i$ on component $PC_j$ is then defined as:
 %
 $$\text{Influence of variable } X_i \text{ on PC}_j = M_{ij}\times I_j$$
@@ -884,12 +869,10 @@ A larger study might not only address the question of which lineup tasks require
 
 
 \section{Discussion and Conclusions}\label{sec:discussion}
-
-Performance on lineups is related to performance on tests of visual ability; however, this relationship is mediated by demographic factors such as major (STEM or not) and completion of calculus I. \newtext{Additionally, due to the nature of observational studies, our results cannot be interpreted causally; students with a higher overall aptitude likely have strong visual abilities, but these same students may be more likely to choose STEM majors and score well on lineup tests.}
+Performance on lineups is related to performance on tests of visual ability; however, this relationship is mediated by demographic factors such as major (STEM or not) and completion of calculus I. Additionally, due to the nature of observational studies, our results cannot be interpreted causally; students with a higher overall aptitude likely have strong visual abilities, but these same students may be more likely to choose STEM majors and score well on lineup tests.
 
 Despite these caveats, we have demonstrated that the general lineup task is most closely related to a classification task, rather than to tests of spatial ability.
 This is an important verification of a tool that is useful for examining statistical graphics, as it emphasizes the idea that while the testing medium is graphical in nature, the task is in fact a classification task, where the viewer must determine the most important features of each plot and then identify which plot is different.
-
 When lineup tasks designed to examine different statistical features are viewed separately, there is some indication that different tasks are associated with different visual abilities.
 Lineup tasks 1 and 2 are quite similar, and are more associated with the figure classification task; lineup task 3, while still moderately correlated with the figure classification task, is also moderately correlated with the visuospatial ability tests (paper folding, card rotation).
 Future studies testing larger sets of lineups may be useful to understand which types of plots require additional visuospatial skills, as plots which appeal to a wider audience may be more successful when conveying important information.
@@ -902,7 +885,6 @@ As the figure classification test is different from the lineup task, this will n
 The demographic results from this study also indicate that in future lineup studies, it may be important to record information about participants' mathematical training, so that studies can be compared across participant pools with more reliability. 
 
 All results and data shown here were collected and analyzed in accordance with IRB \# 13-581.
-
 \bibliographystyle{abbrv}
 %%use following if all content of bibtex file should be shown
 %\nocite{*}
