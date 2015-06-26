@@ -4,14 +4,23 @@ author: "Susan VanderPlas & Heike Hofmann"
 output: word_document
 ---
 
+We would like to thank the reviewers for the detailed comments. We hope to have addressed all of the questions. 
+
+We are detailing our response below:
+
+
 # Major Concerns
 1. **Are all the experimental design choices properly motivated?**    
 **(refer to the first concern of R1).**    
-*The purpose of each of the cognitive tests is described in section 2.2. In summary, the paper-folding, card rotation, and figure classification tasks are part of the kit of factor-referenced cognitive tests (and are thus extremely well-studied); additionally, the authors chose the specific visual searching task (VST) because of its similarity of form to statistical lineups and its' compatibility with the written form of the other cognitive tests and lineup tests.*    
+
+*We have extended the discussion of the choice of cognitive tests; the purpose of each of the cognitive tests is described in section 2.2. In summary, the paper-folding, card rotation, and figure classification tasks are part of the kit of factor-referenced cognitive tests (and are thus extremely well-studied); additionally, we included a visual searching task (VST) because of its similarity of form to statistical lineups and its' compatibility with the written form of the other cognitive tests and lineup tests.*    
 *As mentioned in the paper, the paper folding and card rotation tests have been used in many previous studies of statistical graphics and data displays. The figure-classification task examines inductive reasoning, which is another component of the lineup task (determining the dimension on which the lineup components differ, then applying that to answer the question successfully).*
+*XXX hypotheses about the relationship with lineups? XXX*
+
+
 2. **Are the experimental procedure sufficiently detailed?**    
 **(refer to the second concern of R1 and )**    
-*We have added additional detail about the experimental procedures, and have included the testing materials as supplementary documents (with the factor-referenced kit tests redacted due to copyright issues; in these cases only the instruction page is shown). The testing documents are comprehensive, and oral instructions mirror the instructions on the introduction page of each task (students are familiar with this format as it is commonly used on standardized tests, such as the SAT and ACT).*
+*We have added additional detail about the experimental procedures, and have included the testing materials as supplementary documents (with the factor-referenced kit tests redacted due to copyright issues; in these cases only the instruction page is shown; however, there are various sources online, that -illegally- provide access to parts of the actual test sets, e.g. http://spatiallearning.org/resource-info/Spatial_Ability_Tests/Paper_Folding_Test.pdf ). The testing documents are comprehensive, and oral instructions mirror the instructions on the introduction page of each task (students are familiar with this format as it is commonly used on standardized tests, such as the SAT and ACT).*
 3. **The results of statistical analysis do not seem to be conclusive, are the interpretations of these results properly revised?**    
 **(refer to the third concern of R1)**    
 *The results of the statistical analysis are as conclusive as the nature of the study allows. While correlations of 0.3-0.4 are low compared to the absolute range of 0 - 1, they are strong for human subjects data (which is how we have interpreted them here). Because so many different factors influence human behavior, we generally do not see correlations above 0.5 on distinct tasks.*

@@ -165,7 +165,7 @@
 
 %% Abstract section.
 \abstract{
-Graphics convey numerical information very efficiently, but rely on a different set of mental processes than tabular displays. This study examines the demographic characteristics and visual skills associated with perception of graphical lineups. We conclude that lineups are essentially a classification test in a visual domain, and that performance on the lineup protocol is associated with general aptitude, rather than specific tasks such as card rotation and spatial manipulation. We also examine the possibility that specific graphical tasks may be associated with certain visual skills and conclude that more research is necessary to understand which visual skills are required in order to understand certain plot types. 
+Graphics convey numerical information very efficiently, but rely on a different set of mental processes than tabular displays. here, we present a study relating demographic characteristics and visual skills to perception of graphical lineups. We conclude that lineups are essentially a classification test in a visual domain, and that performance on the lineup protocol is associated with general aptitude, rather than specific tasks such as card rotation and spatial manipulation. We also examine the possibility that specific graphical tasks may be associated with certain visual skills and conclude that more research is necessary to understand which visual skills are required in order to understand certain plot types. 
 } % end of abstract
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
@@ -226,9 +226,7 @@ Graphics convey numerical information very efficiently, but rely on a different 
 
 \maketitle
 
-% \hhnote{XXX Still missing: we need to extend the discussion a little bit that we want to extract the common core from lineups rather than investigate the relationship between individual designs and the  tasks. I believe, that the lineup commonalities are stronger than the design differences - but we might need to get some statistical backup for that. ... one way to do that would be to do a PCA on the three lineups and investigate whether anything beyond the first dimension is significant. I don't think so.  }
 
-% \hhnote{XXX we should add: the lineups come from three different lineup experiments that discuss and compare the design choices (cite papers). This is NOT what we are doing here. Regardless of design choices, we want to find out, what visual skills are necessary for dealing with lineups. }
 
 \label{sec:introduction}Data displays provide quick summaries of data, models, and results, but not all displays are equally good, nor is any data display equally useful to all viewers. 
 Graphics utilize higher-bandwidth visual pathways to encode information~\cite{baddeley1974working}, allowing viewers to quickly and intuitively relate multiple dimensions of numerical quantities.
@@ -254,10 +252,13 @@ In this paper, we present the results of a study designed to compare lineup perf
 Our goal in this study is not to evaluate the statistical significance of particular plots or visualization designs, but rather, to consider the cognitive demands that we require of participants in lineup studies. 
 
 
-We compare lineup performace to the visual search task (VST), paper folding test, card rotation test, and figure classification test. 
+We compare lineup performace to the visual search task (VST), paper folding test, card rotation test, and figure classification test. \newtext{The last three tests are part of the Kit of Factor-Referenced Cognitive Tests~}\cite{educational1963kit, ekstrom1976manual}. \newtext{These tests measure three separate dimensions of visuospatial ability and have been virtually unchanged in use  since the 1960s, and are thus extremely well-studied. } 
 
-The VST measures visual search speed~\cite{goldstein1973validity}, the paper folding and card rotation tests measures spatial manipulation ability, and the figure classification test measures inductive reasoning~\cite{ekstrom1976manual}; 
-all of these skills are at least peripherally recruited during the lineup task, but some may dominate in predicting performance on the lineup task. 
+The VST measures visual search speed~\cite{goldstein1973validity}; \newtext{we considered visual search as the basis of a lineup evaluation and included this test mainly to identify potential problems in the results, if participants were unable to perform this task.} 
+Both  card rotation and paper folding tests measure spatial manipulation ability in \newtext{two- and three dimensions}, while the figure classification test measures inductive reasoning~\cite{ekstrom1976manual}; 
+\newtext{we hypothesized that} all of these skills are %at least peripherally
+recruited during the lineup task, but \newtext{are interested which of these dominate} in predicting performance on the lineup task. 
+
 
 We hope to facilitate comparison of the lineup task to known cognitive tests, inform the design of future studies, and better understand the perception of statistical lineups. 
 
@@ -279,7 +280,7 @@ Let $X$ be the number of observers (out of $n$) who identify the data plot from 
 %
 By aggregating responses from different individuals the lineup protocol therefore allows an objective evaluation of a graphical finding. 
 Additionally, however, we can aggregate the scores from the same individual on several lineups to objectively assess an individual's performance on the lineup task. 
-<<<<<<< HEAD
+
 In this experiment, we are interested in individual skill at evaluating lineups rather than the data displayed in a single lineup, so we will consider an individual's aggregate lineup score, derived as follows:
 
 %For this approach, we derive a score for an individual as follows:
@@ -504,7 +505,7 @@ PC2 differentiates the figure classification test from the visual searching test
 % More detailed results from the 4-test analysis are provided in Appendix~\ref{app:pca}.
 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Thu Jun 25 21:53:53 2015
+% Fri Jun 26 14:46:58 2015
 \begin{table}[htb]
 \centering
 \caption{Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\label{tab:PCAvariance4}} 
@@ -524,7 +525,7 @@ Standard deviation & 1.61 & 0.81 & 0.73 & 0.49 \\
 Table~\ref{tab:PCAvariance4} contains the proportion of the variance in the four cognitive tasks represented by each principal component. PC1 accounts for about 60\% of the variance; Figure~\ref{fig:biplots4} and Table~\ref{tab:PCArotation4} confirm that PC1 is a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test, while PC3 differentiates these two from the paper folding test. PC4 is not particularly significant (it accounts for 5.9\% of the variance), but it differentiates the card rotation task from the paper folding task.
 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Thu Jun 25 21:53:53 2015
+% Fri Jun 26 14:46:59 2015
 \begin{table}[htb]
 \centering
 \caption{Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\label{tab:PCArotation4}} 
@@ -558,7 +559,7 @@ Figure~\ref{fig:biplots4} shows that the first PC does not differentiate between
 
 Next, we add the lineup results to our principal components analysis. The results of the principal component analysis of the four cognitive tests and lineup results are similar to the results of the cognitive tests alone; this suggests that lineups require at least some of the skills measured by the other cognitive tests. Table~\ref{tab:PCAvariance5} shows the importance of each principal component; from the distribution of the variance components, we see that the lineup test spans an additional dimension within the space of the four established tests. 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Thu Jun 25 21:53:54 2015
+% Fri Jun 26 14:46:59 2015
 \begin{table}[ht]
 \centering
 \caption{Importance of principal components, analyzing all five tests.\label{tab:PCAvariance5}} 
@@ -577,7 +578,7 @@ Standard deviation & 1.73 & 0.84 & 0.75 & 0.70 & 0.48 \\
 
 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Thu Jun 25 21:53:54 2015
+% Fri Jun 26 14:46:59 2015
 \begin{table}[ht]
 \centering
 \caption{PCA Rotation matrix for all five tests. The first principal component is essentially an average of all five tests. 
@@ -630,7 +631,7 @@ A principal component of the five math/stats questions splits the variables into
 We fit a linear model of lineup scores in the thus modified demographic variables and the test scores from the visuo-spatial tests, selecting the best model using AIC and stepwise backwards selection. The result is shown in Table~\ref{tab:m1}. Only two covariates stay in the model: PC1 and MATH, reflecting two dimensions of what affects lineup scores. We can think of PC1 as a measure of innate visual or intellectual ability, while the MATH score is a matter of both ability and training. The remaining principal components were not sufficiently associated with lineup score to be included in the model.
 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Thu Jun 25 21:53:54 2015
+% Fri Jun 26 14:46:59 2015
 \begin{table}[ht]
 \centering
 \caption{Estimates and significances of a linear model of lineup scores.} 
