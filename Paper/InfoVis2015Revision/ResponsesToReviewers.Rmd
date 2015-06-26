@@ -18,8 +18,10 @@ We are detailing our response below:
 
 
 2. **Are the experimental procedure sufficiently detailed?**    
-**(refer to the second concern of R1 and )**    
+**(refer to the second concern of R1 and )**
+
 *We have added additional detail about the experimental procedures, and have included the testing materials as supplementary documents (with the factor-referenced kit tests redacted due to copyright issues; in these cases only the instruction page is shown; however, there are various sources online, that -illegally- provide access to parts of the actual test sets, e.g. http://spatiallearning.org/resource-info/Spatial_Ability_Tests/Paper_Folding_Test.pdf ). The testing documents are comprehensive, and oral instructions mirror the instructions on the introduction page of each task (students are familiar with this format as it is commonly used on standardized tests, such as the SAT and ACT).*
+
 3. **The results of statistical analysis do not seem to be conclusive, are the interpretations of these results properly revised?**    
 **(refer to the third concern of R1)**    
 *The results of the statistical analysis are as conclusive as the nature of the study allows. While correlations of 0.3-0.4 are low compared to the absolute range of 0 - 1, they are strong for human subjects data (which is how we have interpreted them here). Because so many different factors influence human behavior, we generally do not see correlations above 0.5 on distinct tasks.*
