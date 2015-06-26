@@ -15,7 +15,7 @@ We are detailing our response below:
 
 *We have extended the discussion of the choice of cognitive tests; the purpose of each of the cognitive tests is described in section 2.2. In summary, the paper-folding, card rotation, and figure classification tasks are part of the kit of factor-referenced cognitive tests (and are thus extremely well-studied); additionally, we included a visual searching task (VST) because of its similarity of form to statistical lineups and its' compatibility with the written form of the other cognitive tests and lineup tests.*    
 *As mentioned in the paper, the paper folding and card rotation tests have been used in many previous studies of statistical graphics and data displays. The figure-classification task examines inductive reasoning, which is another component of the lineup task (determining the dimension on which the lineup components differ, then applying that to answer the question successfully).*
-*XXX hypotheses about the relationship with lineups? XXX*
+*Regarding our hypotheses about the relationship of the visuospatial tests and lineups: we extended the discussion in the introduction; in summary we hypothesize that visual search is the basis for any lineup evaluation. We are further intrested in whether the spatial component (measured in 2d by the card rotation test or in 3d by the paper folding test) dominates lineup performance or inductive reasoning (as measured by the figure classification test).*
 
 
 2. **Are the experimental procedure sufficiently detailed?**    
