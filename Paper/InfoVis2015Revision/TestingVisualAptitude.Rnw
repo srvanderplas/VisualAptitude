@@ -283,12 +283,10 @@ In this experiment, we are interested in individual skill at evaluating lineups 
 
 Assume that an observer has evaluated $K$ lineups of size $m$ (consisting of $m-1$ decoy plots and 1 target), and successfully identified the target in $n_c$ of these plots, while missing the target in $n_w$ of them. 
 The score for this individual is then given as:
-\begin{eqnarray}\label{eq.scoring1}
-n_c - \textstyle\frac{n_w}{m-1}.
-\end{eqnarray}
-Note that the sum of answers, $n_c + n_w$, is at most $K$, but may be less, if an observer chooses to not answer one of the lineup tasks or runs out of time.
-
-The scoring scheme as given in (\ref{eq.scoring1}) is chosen so that if participants are guessing, the expected score is 0. 
+\begin{equation}\label{eq.scoring1}
+n_c - n_w/(m-1)
+\end{equation}
+Note that the sum of answers, $n_c + n_w$, is at most $K$, but may be less, if an observer chooses to not answer one of the lineup tasks or runs out of time. The scoring scheme as given in (\ref{eq.scoring1}) is chosen so that if participants are guessing, the expected score is 0. 
 
 Statistical lineups depend on the ability to search for a signal amid a set of distractors (visual search) and the ability to infer patterns from stimuli (pattern recognition). Depending on the choice of plot shown in the lineup, the task of identifying the most different plot might require additional abilities from participants, e.g.~polar coordinates depend on the ability to mentally rotate stimuli (spatial rotation) and mentally manipulate graphs (spatial rotation and manipulation). By breaking the lineup task down into its components, we  determine which visuospatial factors most strongly correlate with lineup performance, using carefully chosen\newtext{, externally validated,} cognitive tests to assess these aspects of visuospatial ability. 
 
@@ -328,8 +326,36 @@ Each of the three sets of 20 lineups was taken from previous experiments examini
 \protect\caption{Lineup plot types used in the experiment. \label{fig:lineups} Each set of plots is representative of the plot types shown in a block of lineups in the experiment, and each block represents a subset of plots from a traditional lineup experiment to determine which visualization method facilitates identification of the plot with the strongest visual signal. Set 1 manipulates group means and variance, set 2 manipulates group means, and set 3 examines violations of normality. These tasks were chosen as common statistical visualization tasks, and while not exhaustive, should provide a broad basis for interpreting the results of this experiment.}
 \end{figure*}
 
+
+
+\begin{table*}[htbp]\centering
+\begin{tabular}{rlllc}
+\hline
+  & Card Rotation & Paper Folding & Figure Classification & Visual Search  \\\hline
+ISU Students & \Sexpr{round(mean(ans.summary$card_rot), 1)} (\Sexpr{round(sd(ans.summary$card_rot), 1)}) 
+             & \Sexpr{round(mean(ans.summary$folding), 1)} (\Sexpr{round(sd(ans.summary$folding), 1)})
+             & \Sexpr{sprintf("%.1f", mean(ans.summary$fig_class))} (\Sexpr{round(sd(ans.summary$fig_class), 1)})\footnotemark[1]
+             & \Sexpr{round(mean(ans.summary$vis_search), 1)} (\Sexpr{round(sd(ans.summary$vis_search), 1)})\\
+Scaled Scores & 88.0 (\Sexpr{round(sqrt((24.6^2)*2), 1)})
+              & 13.8 (4.5)
+              & \Sexpr{round((120.0*294 + 114.9*323)/617/2, 1)} (\Sexpr{round(sqrt((30^2*294 + 27.8^2*323)/617)/2, 1)})\footnotemark[2]
+              & -- \\
+Unscaled Scores & 44.0 (24.6)\footnotemark[3]
+                & 13.8 (4.5)
+                & \parbox[c]{.2\linewidth}{M:~120.0~(30.0)\\ F:~114.9~(27.8)}
+                & --\\\hline
+{\footnotesize Population}    
+              & \parbox[t]{.15\linewidth}{\footnotesize approx.\ 550 male\\ naval recruits} 
+              & \parbox[t]{.17\linewidth}{\footnotesize 46 college students\\(1963~version)}
+              & \parbox[t]{.2\linewidth}{\footnotesize suburban 11th \& 12th \\ grade students\\(288-300 M, 317-329 F)}
+              & \\\hline
+\end{tabular}
+\caption[Comparison of scores for cognitive tasks.]{Comparison of scores from Iowa State students and scores reported in~\protect~\cite{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available. The visual search task~\protect~\cite{goldstein1973validity,demita1981validity,moerland1986neuropsychological} is not part of the Kit of Factor Referenced Cognitive Test data, and thus we do not have comparison data for the form used in this experiment.
+\label{tab:scorecomparison}}
+\end{table*}
+
 \paragraph{Lineup Set 1}
-The lineups in this set are taken from an experiment which examined the use of boxplots, density plots, histograms, and dotplots to compare two groups which vary in mean and sample size. This set of lineups consists of 20 plots selected from the plots used in the full experiment; each set of data is displayed with each of the four plot types. Figure \ref{fig:lineups} (a)-(d) provides an example of the four plot types displaying the same data.
+The lineups in this set are taken from an experiment which examined the use of boxplots, density plots, histograms, and dotplots to compare two groups which vary in mean and sample size. This set of lineups consists of 20 plots selected from the plots used in the full experiment; each set of data is displayed with each of the four plot types. Figure \ref{fig:lineups} (a)-(d) provides an example of the four plot types displaying the same data.\hphantom{\ref{tab:scorecomparison}}
 
 
 \paragraph{Lineup Set 2}
@@ -410,33 +436,6 @@ Results are based on an evaluation of \Sexpr{nrow(ans)} undergraduate students a
 
 \subsection{Comparison of Spatial Tests with Validated Results}
 The card rotation, paper folding, and figure classification tests have been validated using different populations, many of which are demographically similar to Iowa State students (naval recruits, college students, late high-school students, and 9th grade students). We compare Iowa State students' unscaled scores in Table~\ref{tab:scorecomparison}, adjusting data from other populations to account for subpopulation structure and test length. 
-
-
-\begin{table*}[htb]\centering
-\begin{tabular}{rlllc}
-\hline
-  & Card Rotation & Paper Folding & Figure Classification & Visual Search  \\\hline
-ISU Students & \Sexpr{round(mean(ans.summary$card_rot), 1)} (\Sexpr{round(sd(ans.summary$card_rot), 1)}) 
-             & \Sexpr{round(mean(ans.summary$folding), 1)} (\Sexpr{round(sd(ans.summary$folding), 1)})
-             & \Sexpr{sprintf("%.1f", mean(ans.summary$fig_class))} (\Sexpr{round(sd(ans.summary$fig_class), 1)})\footnotemark[1]
-             & \Sexpr{round(mean(ans.summary$vis_search), 1)} (\Sexpr{round(sd(ans.summary$vis_search), 1)})\\
-Scaled Scores & 88.0 (\Sexpr{round(sqrt((24.6^2)*2), 1)})
-              & 13.8 (4.5)
-              & \Sexpr{round((120.0*294 + 114.9*323)/617/2, 1)} (\Sexpr{round(sqrt((30^2*294 + 27.8^2*323)/617)/2, 1)})\footnotemark[2]
-              & -- \\
-Unscaled Scores & 44.0 (24.6)\footnotemark[3]
-                & 13.8 (4.5)
-                & \parbox[c]{.2\linewidth}{M:~120.0~(30.0)\\ F:~114.9~(27.8)}
-                & --\\\hline
-{\footnotesize Population}    
-              & \parbox[t]{.15\linewidth}{\footnotesize approx.\ 550 male\\ naval recruits} 
-              & \parbox[t]{.17\linewidth}{\footnotesize 46 college students\\(1963~version)}
-              & \parbox[t]{.2\linewidth}{\footnotesize suburban 11th \& 12th \\ grade students\\(288-300 M, 317-329 F)}
-              & \\\hline
-\end{tabular}
-\caption[Comparison of scores for cognitive tasks.]{Comparison of scores from Iowa State students and scores reported in~\protect~\cite{ekstrom1976manual}. Scaled scores are calculated based on information reported in the manual, scaled to account for differences in the number of questions answered during this experiment. Data shown are from the population most similar to ISU students, out of the data available. The visual search task~\protect~\cite{goldstein1973validity,demita1981validity,moerland1986neuropsychological} is not part of the Kit of Factor Referenced Cognitive Test data, and thus we do not have comparison data for the form used in this experiment.
-\label{tab:scorecomparison}}
-\end{table*}
 
 Table~\ref{tab:scorecomparison} shows mean scores and standard deviation for ISU students and other populations. Values have been adjusted to accommodate for differences in test procedures and sub-population structure; for instance,  some data is reported for a single part of a two-part test, or results are reported for each gender separately (adjustment procedure is described in more detail in Appendix~\ref{app:ScoreAdj}). Once adjusted, it is evident that Iowa State undergraduates scored at about the same level as other similar demographics. In fact, both means and standard deviations of ISU students' scores are similar to the comparison groups, which were chosen from available demographic groups based on population similarity. 
 
@@ -642,7 +641,7 @@ Table~\ref{tab:PCAvariance4} contains the proportion of the variance in the four
 
 <<pcarotation4,echo=F, results='asis'>>=
 row.names(pca2$rotation) <- c("Card Rot", "Fig Class", "Folding", "VST")
-print(xtable(pca2$rotation, caption="Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\\label{tab:PCArotation4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="htb", caption.placement="top")
+print(xtable(pca2$rotation, caption="Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\\label{tab:PCArotation4}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, size="footnotesize", table.placement="htb", caption.placement="top")
 @
 
 <<biplot-pca4, fig.cap="", fig.width=5.5, fig.height=5.5, warning=F, message=F, out.width='.45\\linewidth', comment="|", fig.cap="Biplots of principal components 1-4 with observations (same as figure 1(b)). Principal component analysis was performed on the four cognitive tests used to understand the association between the cognitive skills required for these tests and the skills required for the lineup protocol.  \\label{fig:biplots4}", echo=F, fig.env="figure">>=
@@ -660,8 +659,16 @@ print(xtable(summary(pca), caption="Importance of principal components, analyzin
 @
 
 <<pcarotation5,echo=F, results='asis'>>=
-print(xtable(pca$rotation, caption="PCA Rotation matrix for all five tests. The first principal component is essentially an average of all five tests. 
-             \\label{tab:PCArotation5}",digits=2), sanitize.text.function=sanitize, sanitize.rownames.function=sanitize, sanitize.colnames.function=sanitize, table.placement="ht", caption.placement="top")
+row.names(pca$rotation) <- c("Lineup", "Card Rot", "Fig Class", "Folding", "VST")
+print(
+  xtable(
+    pca$rotation, 
+    caption="PCA Rotation matrix for all five tests. The first principal component is essentially an average of performance on all five tests. \\label{tab:PCArotation5}", 
+    digits=2), 
+  sanitize.text.function=sanitize, 
+  sanitize.rownames.function=sanitize, 
+  sanitize.colnames.function=sanitize, 
+  table.placement="ht", caption.placement="top")
 @
 From the rotation matrix (see Table~\ref{tab:PCArotation5}) we see that  
 the first principal component, PC1, is again essentially an average across all tests and accounts for \Sexpr{round(summary(pca)$importance[3,1]*100,1)}\% of the variance in the data. 
