@@ -116,7 +116,7 @@
 
 %% Abstract section.
 \abstract{
-Graphics convey numerical information very efficiently, but rely on a different set of mental processes than tabular displays. here, we present a study relating demographic characteristics and visual skills to perception of graphical lineups. We conclude that lineups are essentially a classification test in a visual domain, and that performance on the lineup protocol is associated with general aptitude, rather than specific tasks such as card rotation and spatial manipulation. We also examine the possibility that specific graphical tasks may be associated with certain visual skills and conclude that more research is necessary to understand which visual skills are required in order to understand certain plot types. 
+Graphics convey numerical information very efficiently, but rely on a different set of mental processes than tabular displays. Here, we present a study relating demographic characteristics and visual skills to perception of graphical lineups. We conclude that lineups are essentially a classification test in a visual domain, and that performance on the lineup protocol is associated with general aptitude, rather than specific tasks such as card rotation and spatial manipulation. We also examine the possibility that specific graphical tasks may be associated with certain visual skills and conclude that more research is necessary to understand which visual skills are required in order to understand certain plot types. 
 } % end of abstract
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
@@ -416,10 +416,9 @@ All tasks (cognitive and lineups) were provided to participants on paper, to con
 
 Between cognitive tasks, participants were also asked to complete three blocks of 20 lineups each, assembled from previous studies~\cite{hofmann2012graphical,majumder2013validation}. Participants were given 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup}(a) shows a sample lineup of box plots. 
 
-In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. 
-These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
+In addition to these tests, participants were asked to complete a questionnaire which includes questions about colorblindness, mathematical background, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
 
-After each test or block of lineups, participants were given 1-2 minutes to rest and recover; the order of tests was designed to prevent fatigue on a single task. The duration of testing for each participant was approximately 1 hour.
+After each test or block of lineups, participants were given 1-2 minutes to rest and recover; the order of tests was designed to prevent fatigue on a single task. The duration of testing for each participant was approximately 1 hour. All test documents (with redacted copyrighted material) are available as supplemental materials. 
 
 \subsection{Test Scoring}\label{sec:scaling}
 %
