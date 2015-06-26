@@ -11,7 +11,8 @@ We are detailing our response below:
 
 # Major Concerns
 1. **Are all the experimental design choices properly motivated?**    
-**(refer to the first concern of R1).**    
+**(refer to the first concern of R1).**   
+
 *We have extended the discussion of the choice of cognitive tests; the purpose of each of the cognitive tests is described in section 2.2. In summary, the paper-folding, card rotation, and figure classification tasks are part of the kit of factor-referenced cognitive tests (and are thus extremely well-studied); additionally, we included a visual searching task (VST) because of its similarity of form to statistical lineups and its' compatibility with the written form of the other cognitive tests and lineup tests.*    
 *As mentioned in the paper, the paper folding and card rotation tests have been used in many previous studies of statistical graphics and data displays. The figure-classification task examines inductive reasoning, which is another component of the lineup task (determining the dimension on which the lineup components differ, then applying that to answer the question successfully).*
 *Regarding our hypotheses about the relationship of the visuospatial tests and lineups: we extended the discussion in the introduction; in summary we hypothesize that visual search is the basis for any lineup evaluation. We are further intrested in whether the spatial component (measured in 2d by the card rotation test or in 3d by the paper folding test) dominates lineup performance or inductive reasoning (as measured by the figure classification test).*
@@ -20,30 +21,45 @@ We are detailing our response below:
 2. **Are the experimental procedure sufficiently detailed?**    
 **(refer to the second concern of R1 and )**
 
-*We have added additional detail about the experimental procedures, and have included the testing materials as supplementary documents (with the factor-referenced kit tests redacted due to copyright issues; in these cases only the instruction page is shown; however, there are various sources online, that -illegally- provide access to parts of the actual test sets, e.g. http://spatiallearning.org/resource-info/Spatial_Ability_Tests/Paper_Folding_Test.pdf ). The testing documents are comprehensive, and oral instructions mirror the instructions on the introduction page of each task (students are familiar with this format as it is commonly used on standardized tests, such as the SAT and ACT).*
+*We have added additional detail about the experimental procedures, and have included the testing materials as supplementary documents (with the factor-referenced kit tests redacted due to copyright issues; in these cases only the instruction page is shown; however, there are various sources online, that  provide access to parts of the actual test sets, e.g. http://spatiallearning.org/resource-info/Spatial_Ability_Tests/Paper_Folding_Test.pdf ). The testing documents are comprehensive, and oral instructions mirror the instructions on the introduction page of each task (students are familiar with this format as it is commonly used on standardized tests, such as the SAT and ACT).*
 
 3. **The results of statistical analysis do not seem to be conclusive, are the interpretations of these results properly revised?**    
 **(refer to the third concern of R1)**    
-*The results of the statistical analysis are as conclusive as the nature of the study allows. While correlations of 0.3-0.4 are low compared to the absolute range of 0 - 1, they are strong for human subjects data (which is how we have interpreted them here). Because so many different factors influence human behavior, we generally do not see correlations above 0.5 on distinct tasks.*
+
+*While correlations of 0.3-0.4 are low compared to the absolute range of 0 - 1, they are fairly strong for human subjects studies. Because so many different factors influence human behavior, we generally do not see correlations above 0.5 on distinct tasks.*
+*This makes the results of the statistical analysis about as conclusive as the nature of the study allows - we have to keep in mind that this study setup only allows to show associations but no causality, and therefore the results allow for multiple interpretations in the same way as any such statistical analysis.* 
 *We have provided both graphics and PCA results in order to demonstrate our results in more than one way; while these results are preliminary, the cost involved in designing and executing a study which would enable multivariate hypothesis testing (given the multiple correlations between dependent variables) is prohibitive. This study is the first to examine the visual and cognitive skills necessary to evaluate statistical lineups; follow-up studies may provide more statistically precise results.*
+
 4. **Does the revision contain additional discussion of why PCA is a proper approach to interpret the data for the VIS community members who do not have sufficient statistics background?**    
 **(refer to the concern of R2)**    
+
 *The revision includes a reference to a PCA tutorial (for those unfamiliar with the procedure) and explains the rationale for utilizing PCA in some additional detail. Section 3.3 - Visual Abilities and Lineup Performance has been modified extensively to provide additional details about PCA.* 
+
 5. **Does the revision has the clear description of "most different"?**    
 **(refer to the first concern of R3)**    
-*The use of 'most different' is a feature of the lineup protocol, and does not bias the participants to examine specific distributional characteristics. While participants may choose different distributional features to identify the 'most different' plot, this mirrors how we perceive graphics (we cue in to different features). In addition, many statistical tests react to different features of the data - a t-test may not produce significant results even with a truly significant difference in means if the two distributions have wildly different variances. Finally, the use of 'most different' allows the lineup protocol to be used even in populations which do not have mathematical training and might not understand the use of terms such as mean and variance.*
+
+*The use of 'most different' is a feature of the lineup protocol, and does not bias the participants to examine specific distributional characteristics. While participants may choose different distributional features to identify the 'most different' plot, this mirrors our perception of perceive graphics (viewers are bound to cue in to different features). In addition, many statistical tests react to different features of the data - a t-test may not produce significant results even with a truly significant difference in means if the two distributions have wildly different variances. Moreover, the use of 'most different' allows the lineup protocol to be used even in populations which do not have mathematical training and might not understand the use of terms such as mean and variance.*
 *We have added additional language in Section 2.1 to emphasize that the phrasing is a standard part of the lineup protocol.*
+
 6. **Does the revision has the proper discussion of visualization design**    
 **(refer to the second concern of R3)**    
-*This study was not designed to directly impact visualization design recommendations. While the lineup protocol can easily be used to compare many different visualization designs, the goal of this experiment was to examine the cognitive requirements of lineup evaluation at the participant level. As such, it would not be appropriate to discuss visualization design in detail.*
+
+*This study was not designed to directly impact visualization design recommendations. While the lineup protocol can easily be used to compare many different visualization designs, the goal of this experiment was to examine the cognitive requirements of lineup evaluation at the participant level. As such, it would not be appropriate to discuss visualization design in detail. Each of the sets of lineups shown, were part of studies to compare the designs. We have cited the corresponding papers accordingly. *
 *While there are differences in the correlation of scores on lineup sets 1, 2, and 3 with the cognitive tests, this does not provide any additional information about whether designs in lineup set 1 are superior to those in lineup set 2 and lineup set 3, and in fact, the sets of lineups are not comparable in this way. Each set of lineups was taken from an experiment which did aim to rank designs by effectiveness, but in this study we are instead examining individual differences in cognitive abilities and lineup performance.*
+
 7. **Does the revision resolve a potential concern of confounding factors**    
 **(refer to the conern of R3)**    
+
 *The issue of confounding factors is related to the issue raised in #6, that is, that we have not discussed visualization design in this paper. As explained above, our goal was not to compare types of visualizations, but rather to examine individual differences in cognitive abilities and performance on lineup tasks. The tasks which underlie each set of lineups (as described in the caption of Fig. 2 in the revision) are common tasks in statistical graphics. In addition, the similarity in test protocol between the VST, the tests from the factor-referenced kit of cognitive tests, and the lineup protocol was intentional; by controlling the experimental protocol, we could reduce participant confusion and the corresponding variability. As our goal was not to examine the elements of visualization design experimentally, controlling those elements adheres to good experimental design principles.*
+
 8. **Does the revision have an explicit related works section?**    
 **(refer to the last concern of R3)**    
+
 *An explicit related works section has been added at the conclusion of Sec. 1.*
+
 9. **Does the revision handle all the minor issues raised by reviewers?**
+
+We have detailed responses to all minor issues below.
 
 # Minor Issues
 **Minor issues raised by Reviewer 1:**
@@ -51,11 +67,11 @@ We are detailing our response below:
 - In 2.2, Wolfe’s work on visual search should be mentioned in relation to the VST.    
 *A citation has been added, but Wolfe's work on visual search differs from the VST used in this study; while the underlying cognitive mechanisms may be the same, a detailed explanation of the feature integration component of visual search seems extraneous to the study described in this paper.*
 - Equation (2) states the same as equation (1).    
-*The repetition has been removed due to space constraints.*
+*The repetition has been removed.*
 - In section 3, you mention one exception in relation to the participants’ age, please be more specific.    
 *This wording has been modified to provide more detail*
 - In section 3, I suppose you mean that the demographics are representative for the student population and not for the whole university incl staff.    
-*Indeed, though the wording has been modified for clarity in the revised draft.*
+*Indeed, we have modified the wording for clarity in the revision.*
 - With regard to your assessment of the correlation in Fig 6. I would discriminate more between the individual results rather than stating that they are all highly correlated.    
 *Additional wording has been added to this effect.* 
 - It would be good to move Table 1 to the previous page.    
