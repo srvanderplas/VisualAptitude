@@ -299,7 +299,11 @@ This study uses the lineup protocol to examine differences in individual perform
 
 In this study, we utilize three blocks of statistical lineups; each of these blocks consists of 5-7 datasets, that are displayed in three or four types of plots (examples of the visualization types presented in each block of lineups are shown in figure \ref{fig:lineups}). For example, in the lineups of set 1, the same five datasets are displayed as a dot plot, density plot, box plot, and histogram. Each block of lineups are a subset of stimuli used in experiments designed to compare the visual significance of different plot types, however, our purpose in this study is not to determine the efficacy of different types of plots. Rather, our goal is to compare the cognitive demands required to successfully evaluate these lineups, which display variance difference, mean difference, or violations of normality using common statistical plots.
 
+<<<<<<< HEAD
 Each of the three sets of 20 lineups was taken from previous experiments \cite{loy:2015, roy2011visual} examining which type of plot most effectively conveyed important characteristics of the underlying data set. %\hhnote{citations?}
+=======
+Each of the three sets of 20 lineups was taken from previous experiments examining which type of plot most effectively conveyed important characteristics of the underlying data set. 
+>>>>>>> last changes from my side
 \begin{figure*}[htbp]\centering
 \subfloat[Set 1: Boxplot]{
   \includegraphics[keepaspectratio=T,width=.245\linewidth]{../../Images/Lineups1/boxplot_1_15_5_4_13}}
@@ -420,7 +424,8 @@ Between cognitive tasks, participants were asked to complete three blocks of 20 
 
 In addition to these tests, participants completed a questionnaire on personal background and demographics, including questions about colorblindness, mathematical training, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
 
-After each test or block of lineups, participants were given 1-2 minutes to rest and recover; the order of tests was designed to prevent fatigue on a single task \newtext{(which led us to interweave lineup evaluations)}. The duration of testing for each participant was approximately 1 hour. \newtext{None of the participants who showed up for their scheduled session asked to leave early.} A set of test documents (with copyrighted material redacted) is available as supplemental materials. 
+After each test or block of lineups, participants were given 1-2 minutes to rest and recover; the order of tests was designed to prevent fatigue on a single task \newtext{(which led us to interweave lineup evaluations)}. The duration of testing for each participant was approximately 1 hour. \newtext{None of the participants who showed up for their scheduled session asked to leave early.} A complete set of test documents (with copyrighted material redacted) is available as supplemental materials. 
+
 
 \subsection{Test Scoring}\label{sec:scaling}
 %
@@ -501,7 +506,7 @@ PC2 differentiates the figure classification test from the visual searching test
 % More detailed results from the 4-test analysis are provided in Appendix~\ref{app:pca}.
 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Sat Jun 27 22:48:32 2015
+% Sat Jun 27 22:50:13 2015
 \begin{table}[htb]
 \centering
 \caption{Importance of principal components in an analysis of four tests of spatial ability: figure classification, paper folding, card rotation, and visual search.\label{tab:PCAvariance4}} 
@@ -521,7 +526,7 @@ Standard deviation & 1.61 & 0.81 & 0.73 & 0.49 \\
 Table~\ref{tab:PCAvariance4} contains the proportion of the variance in the four cognitive tasks represented by each principal component. PC1 accounts for about 60\% of the variance; Figure~\ref{fig:biplots4} and Table~\ref{tab:PCArotation4} confirm that PC1 is a measure of the similarity between all 4 tests; that is, a participant's general (or visual) aptitude. PC2 differentiates the figure classification test from the visual searching test, while PC3 differentiates these two from the paper folding test. PC4 is not particularly significant (it accounts for 5.9\% of the variance), but it differentiates the card rotation task from the paper folding task.
 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Sat Jun 27 22:48:32 2015
+% Sat Jun 27 22:50:13 2015
 \begin{table}[htb]
 \centering
 \caption{Rotation matrix for principal component analysis of the four cognitive tests (visual search, paper folding, card rotation, figure classification).\label{tab:PCArotation4}} 
@@ -557,7 +562,7 @@ Figure~\ref{fig:biplots4} shows that the first PC does not differentiate between
 
 Next, we add the lineup results to our principal components analysis. The results of the principal component analysis of the four cognitive tests and lineup results are similar to the results of the cognitive tests alone; this suggests that lineups require at least some of the skills measured by the other cognitive tests. Table~\ref{tab:PCAvariance5} shows the importance of each principal component; from the distribution of the variance components, we see that the lineup test spans an additional dimension within the space of the four established tests. 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Sat Jun 27 22:48:33 2015
+% Sat Jun 27 22:50:13 2015
 \begin{table}[ht]
 \centering
 \caption{Importance of principal components, analyzing all five tests.\label{tab:PCAvariance5}} 
@@ -576,7 +581,7 @@ Standard deviation & 1.73 & 0.84 & 0.75 & 0.70 & 0.48 \\
 
 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Sat Jun 27 22:48:33 2015
+% Sat Jun 27 22:50:13 2015
 \begin{table}[ht]
 \centering
 \caption{PCA Rotation matrix for all five tests. The first principal component is essentially an average of performance on all five tests. \label{tab:PCArotation5}} 
@@ -628,7 +633,7 @@ A principal component of the five math/stats questions splits the variables into
 We fit a linear model of lineup scores in the thus modified demographic variables and the test scores from the visuo-spatial tests, selecting the best model using AIC and stepwise backwards selection. The result is shown in Table~\ref{tab:m1}. Only two covariates stay in the model: PC1 and MATH, reflecting two dimensions of what affects lineup scores. We can think of PC1 as a measure of innate visual or intellectual ability, while the MATH score is a matter of both ability and training. The remaining principal components were not sufficiently associated with lineup score to be included in the model.
 
 % latex table generated in R 3.1.1 by xtable 1.7-3 package
-% Sat Jun 27 22:48:33 2015
+% Sat Jun 27 22:50:14 2015
 \begin{table}[ht]
 \centering
 \caption{Estimates and significances of a linear model of lineup scores.} 
