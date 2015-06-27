@@ -295,11 +295,8 @@ This study uses the lineup protocol to examine differences in individual perform
 
 In this study, we utilize three blocks of statistical lineups; each of these blocks consists of 5-7 datasets, that are displayed in three or four types of plots (examples of the visualization types presented in each block of lineups are shown in figure \ref{fig:lineups}). For example, in the lineups of set 1, the same five datasets are displayed as a dot plot, density plot, box plot, and histogram. Each block of lineups are a subset of stimuli used in experiments designed to compare the visual significance of different plot types, however, our purpose in this study is not to determine the efficacy of different types of plots. Rather, our goal is to compare the cognitive demands required to successfully evaluate these lineups, which display variance difference, mean difference, or violations of normality using common statistical plots.
 
-<<<<<<< HEAD
 Each of the three sets of 20 lineups was taken from previous experiments \cite{loy:2015, roy2011visual} examining which type of plot most effectively conveyed important characteristics of the underlying data set. %\hhnote{citations?}
-=======
-Each of the three sets of 20 lineups was taken from previous experiments examining which type of plot most effectively conveyed important characteristics of the underlying data set. 
->>>>>>> last changes from my side
+
 \begin{figure*}[htbp]\centering
 \subfloat[Set 1: Boxplot]{
   \includegraphics[keepaspectratio=T,width=.245\linewidth]{../../Images/Lineups1/boxplot_1_15_5_4_13}}
@@ -413,14 +410,14 @@ Tests in the Kit of Factor-Referenced Cognitive tests are classified according t
 Lineups require similar manipulations in two-dimensional space, and also require the ability to perform complex spatial manipulations mentally; for instance, comparing the interquartile range of two boxplots as well as their relative alignment to a similar set of two boxplots in another panel.
 
 \paragraph{Experimental Procedure}
-All tasks (cognitive and lineups) were provided to participants on paper \newtext{in a supervised lab setting}, to conform to the procedure used in~\cite{ekstrom1976manual}. The order of tasks was the same for each participant due to the constraints of in-person testing; an internal pilot study did not indicate an effect of task order, \newtext{nor did the pilot results suggest an interaction/learning effect from one task to the next.}
+All tasks (cognitive and lineups) were provided to participants on paper in a supervised lab setting, to conform to the procedure used in~\cite{ekstrom1976manual}. The order of tasks was the same for each participant due to the constraints of in-person testing; an internal pilot study did not indicate an effect of task order, nor did the pilot results suggest an interaction/learning effect from one task to the next.
 
 
 Between cognitive tasks, participants were asked to complete three blocks of 20 lineups each, assembled from previous studies~\cite{hofmann2012graphical,majumder2013validation}. Participants were given 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup}(a) shows a sample lineup of box plots. 
 
 In addition to these tests, participants completed a questionnaire on personal background and demographics, including questions about colorblindness, mathematical training, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
 
-After each test or block of lineups, participants were given 1-2 minutes to rest and recover; the order of tests was designed to prevent fatigue on a single task \newtext{(which led us to interweave lineup evaluations)}. The duration of testing for each participant was approximately 1 hour. \newtext{None of the participants who showed up for their scheduled session asked to leave early.} A complete set of test documents (with copyrighted material redacted) is available as supplemental materials. 
+After each test or block of lineups, participants were given 1-2 minutes to rest and recover; the order of tests was designed to prevent fatigue on a single task (which led us to interweave lineup evaluations). The duration of testing for each participant was approximately 1 hour. None of the participants who showed up for their scheduled session asked to leave early. A complete set of test documents (with copyrighted material redacted) is available as supplemental materials. 
 
 
 \subsection{Test Scoring}\label{sec:scaling}
