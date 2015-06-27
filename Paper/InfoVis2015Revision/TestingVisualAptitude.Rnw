@@ -409,9 +409,10 @@ Tests in the Kit of Factor-Referenced Cognitive tests are classified according t
 Lineups require similar manipulations in two-dimensional space, and also require the ability to perform complex spatial manipulations mentally; for instance, comparing the interquartile range of two boxplots as well as their relative alignment to a similar set of two boxplots in another panel.
 
 \paragraph{Experimental Procedure}
-All tasks (cognitive and lineups) were provided to participants on paper \newtext{in a supervised lab setting}, to conform to the procedure used in~\cite{ekstrom1976manual}. The order of tasks was the same for each participant due to the constraints of in-person testing; results from an internal pilot tests with a counterbalanced design did not indicate an effect of task order, nor was there any indication in the results of an interaction/learning effect from one task to the next.
+All tasks (cognitive and lineups) were provided to participants on paper \newtext{in a supervised lab setting}, to conform to the procedure used in~\cite{ekstrom1976manual}. The order of tasks was the same for each participant due to the constraints of in-person testing; an internal pilot study did not indicate an effect of task order, \newtext{nor did the pilot results suggest an interaction/learning effect from one task to the next.}
 
-Between cognitive tasks, participants were also asked to complete three blocks of 20 lineups each, assembled from previous studies~\cite{hofmann2012graphical,majumder2013validation}. Participants were given 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup}(a) shows a sample lineup of box plots. 
+
+Between cognitive tasks, participants were asked to complete three blocks of 20 lineups each, assembled from previous studies~\cite{hofmann2012graphical,majumder2013validation}. Participants were given 5 minutes to complete each block of 20 lineups. Figure~\ref{fig:lineup}(a) shows a sample lineup of box plots. 
 
 In addition to these tests, participants completed a questionnaire on personal background and demographics, including questions about colorblindness, mathematical training, self-perceived verbal/mathematical/artistic skills, time spent playing video games, and undergraduate major. These questions are designed to assess different factors which may influence a participant's skill at reading graphs and performing spatial tasks. 
 
