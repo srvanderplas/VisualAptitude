@@ -130,7 +130,7 @@ $(MAINTEXFILE) : $(SUBTEXFILES) $(BIBFILES)
 	"-dColorImageFilter$E/FlateEncode" \
 	"-dGrayImageFilter$E/FlateEncode" \
 	"-dMonoImageFilter$E/FlateEncode" \
-	$< TestingVisualAptitude.pdf
+	$< template.pdf
 
 #				$(PDFLATEX) $<
 
@@ -146,12 +146,12 @@ $(MAINTEXFILE) : $(SUBTEXFILES) $(BIBFILES)
 	"-dMonoImageFilter=/FlateEncode" \
 	"-dDownsampleGrayImages=false" \
 	"-dDownsampleColorImages=false" \
-	$< TestingVisualAptitude.pdf
+	$< template.pdf
 #                               $(PDFLATEX) $<
 
 # cleans anything that can be re-generated automatically, plus emacs backups
 clean: 
-				rm -f *.log *.bbl *.blg *.brf *.cb *.ind *.idx *.ilg	\
-				*.inx *.toc *.out $(DVIFILES) $(PSFILES) TestingVisualAptitude.pdf *~
+				rm -f *.aux *.log *.bbl *.blg *.brf *.cb *.ind *.idx *.ilg	\
+				*.inx *.toc *.out $(DVIFILES) $(PSFILES) template.pdf *~
 
 .PHONY : all pdf ps dvi clean $(MAINTEXFILE)

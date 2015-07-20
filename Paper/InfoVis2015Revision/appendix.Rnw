@@ -312,7 +312,7 @@ lineup.type.sum2$plot.type <- factor(lineup.type.sum2$plot.type,
                                               "Rotated QQ-plot +\nAcceptance Band")
                                      )
 lineup.type.sum2$testnum <- paste0("Set ", lineup.type.sum2$testnum)
-loadfonts()
+# loadfonts()
 qplot(data=subset(lineup.type.sum2, !is.na(plot.type)& testtype=="lineup"), 
       x=score, y=..scaled.., colour=factor(testnum), geom="density", cut=2, adjust=1.25) + 
   facet_wrap(~testnum+plot.type, ncol=4) + 
@@ -327,7 +327,7 @@ qplot(data=subset(lineup.type.sum2, !is.na(plot.type)& testtype=="lineup"),
         axis.text.x=element_text(angle=30, hjust=1),
         plot.margin=unit(c(0,0,0,0),"mm"), 
         axis.ticks.y=element_blank(), axis.text.y=element_blank())
-embedFonts("./Figure/fig-lineup-types-1.pdf")
+# embedFonts("./Figure/fig-lineup-types-1.pdf")
 @
 
 \begin{figure}[ht]\centering
@@ -358,7 +358,7 @@ lineup.type.sum3 <- ddply(lineup.type.sum3, .(testtype), transform, scaled.tests
 lineup.type.sum3$testtype <- factor(lineup.type.sum3$testtype, levels=c("vis_search", "card_rot", "fig_class", "folding"),
                                     labels=c("vis_search", "Card Rot.", "Fig. Class.", "Paper Folding"))
 cor.labels <- ddply(lineup.type.sum3, .(lineup.type, testtype), summarize, x=min(scaled.testscore), y=max(lineup.pct), label=paste0("cor = ", round(cor(testscore, lineup.pct), 2)))
-loadfonts()
+# loadfonts()
 qplot(data=subset(lineup.type.sum3, testtype!="vis_search"), 
       x=scaled.testscore, y=lineup.pct, geom=c("smooth", "jitter"), colour=I("grey30"), method="lm") + 
   facet_grid(testtype~lineup.type, scales="free") + 

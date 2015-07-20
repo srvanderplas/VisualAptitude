@@ -177,7 +177,9 @@ library(magrittr)
 source(paste(codedir, "Analysis.R", sep=""))
 
 sanitize <- function(x){
-  str_replace(gsub("_", ".", x, fixed=T), "Pr\\((.{1,})\\)", "Pr$(\\1)$")
+  x %>% 
+    gsub(pattern="_", replacement=".", fixed=T) %>%
+    gsub(pattern="Pr\\((.*)\\)", replacement="Pr$(\\1)$")
 }
 
 ggbiplot <- function(pca, choices, segColor="black") {
@@ -444,7 +446,7 @@ Applying the grading protocol discussed in section~\ref{sec:scaling}, we see tha
 Participants' scores on the VST indicate score compression; that is, both participants with medium and high visual search abilities scored at the extremely high end of the spectrum. 
 In future experiments, participants should be given less time (or more questions) to better differentiate participants with medium and high-ability.
 <<ResultsScaledScores, echo=F, include=F, fig.width=4.5, fig.height=4, warning=F, message=F>>=
-loadfonts()
+#loadfonts()
 score.summary <- melt(ans.summary, measure.vars=21:25, value.name = "Score", variable.name = "Test")
 score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
 qrange$sqrt.k <- sqrt(qrange$k-1)
@@ -472,8 +474,8 @@ ggplot() +
   theme(legend.position=c(.68,.125),  legend.box.just = "left", 
         legend.key.height=unit(6, "mm")) 
   #coord_flip()
-if (file.exists("./Figure/fig-ResultsScaledScores-1.pdf")) 
-  embedFonts("./Figure/fig-ResultsScaledScores-1.pdf")
+# if (file.exists("./Figure/fig-ResultsScaledScores-1.pdf")) 
+  #embedFonts("./Figure/fig-ResultsScaledScores-1.pdf")
 @
 
 \begin{figure}[ht]
@@ -490,7 +492,7 @@ if (file.exists("./Figure/fig-ResultsScaledScores-1.pdf"))
 \subsection{Lineup Performance and Demographic Characteristics}
 
 <<VisReasoningCategorical, echo=F, include=F, eval=T, fig.width=6,fig.height=5, message=F, warning=F, fig.pos='ht'>>=
-loadfonts()
+#loadfonts()
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
 lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
 lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience", "STEM Major", "Video Game Hrs/Wk"))
@@ -524,8 +526,8 @@ qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="blank") +
   geom_point(aes(x=value, y=lineup), shape=1, size=2.5) + 
   theme_bw() + 
   theme(plot.margin=unit(c(0,0,0,0), unit="mm"))
-if (file.exists("./Figure/fig-VisReasoningCategorical-1.pdf"))
-  embedFonts("./Figure/fig-VisReasoningCategorical-1.pdf")
+# if (file.exists("./Figure/fig-VisReasoningCategorical-1.pdf"))
+  #embedFonts("./Figure/fig-VisReasoningCategorical-1.pdf")
 @
 \begin{figure}[h!tb]\centering
 \includegraphics[width=.95\linewidth]{fig-VisReasoningCategorical-1}
@@ -592,7 +594,7 @@ fix.names <- function(values){
     str_replace("card_rot", "Card Rotation") %>%
     str_replace("folding", "Paper Folding")
 }
-loadfonts()
+#loadfonts()
 require(grid)
 ggplot()+
   geom_point(data=subset(all, points), aes(x=x, y=y), shape=1) + 
@@ -604,7 +606,8 @@ ggplot()+
   theme(axis.title=element_blank(),
         plot.margin=unit(c(0,0,0,0), unit="mm"))
 rm(list=c("data", "all", "densities"))
-if (file.exists("./Figure/fig-VisReasoningSPM-1.pdf")) embedFonts("./Figure/fig-VisReasoningSPM-1.pdf")
+# if (file.exists("./Figure/fig-VisReasoningSPM-1.pdf")) 
+  #embedFonts("./Figure/fig-VisReasoningSPM-1.pdf")
 @
 \begin{figure}[ht]
 \centering
@@ -811,7 +814,7 @@ all2mean <- rbind(
                         hjust=.5, vjust=.5, size=4))
     })
 )
-loadfonts()
+#loadfonts()
 ggplot()+
   geom_point(data=subset(all2, points), aes(x=x, y=y), shape=1) + 
   geom_smooth(data=subset(all2, points), aes(x=x, y=y), method="lm") + 
@@ -821,7 +824,8 @@ ggplot()+
   facet_grid(xvar~yvar, scales="free", labeller = labeller(xvar=fix.names, yvar=fix.names)) + 
   theme_bw() + 
   theme(axis.title=element_blank())
-if (file.exists("./Figure/fig-LineupTypeSPM-1.pdf")) embedFonts("./Figure/fig-LineupTypeSPM-1.pdf")
+# if (file.exists("./Figure/fig-LineupTypeSPM-1.pdf")) 
+  # embedFonts("./Figure/fig-LineupTypeSPM-1.pdf")
 @
 
 \begin{figure}[ht]
@@ -835,22 +839,22 @@ In order to examine which lineup tasks are most closely associated with visual a
 
 Principal component analysis separates multivariate data into orthogonal components using a rotation matrix to transform correlated input data into an orthogonal space. The importance of a principal component is also evaluated to assess the proportion of the overall variance in the data contained within the component (Table \ref{tab:PCAvariance5} shows the importance of each PC for the analysis of the aggregate lineup score and the four aptitude tests). 
 <<lineupblockpca, echo=F, include=F, warning=F, message=F, fig.width=6, fig.height=4>>=
-
 lineup.block.pca <- prcomp(lineup.section.summary[,c("lineup_1", "lineup_2", "lineup_3", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
 rotation <- melt(lineup.block.pca$rotation)
 importance <- as.data.frame(summary(lineup.block.pca)$importance)[2,]
 rotation <- merge(rotation, melt(importance, variable.name="Var2", value.name="importance"))
-rotation$Var1 <- factor(rotation$Var1, 
-                        levels=c("vis_search", "folding", "card_rot", "fig_class", "Lineup-Core"),
-                        labels=c("Visual Search", "Paper Folding", "Card Rotation", "Figure Class.", "Lineup Core"))
+# rotation$Var3 <- str_replace(rotation$Var1, pattern="lineup_\\d", replacement="Lineup-Core")
+# rotation$Var3 <- factor(rotation$Var3, 
+#                         levels=c("vis_search", "folding", "card_rot", "fig_class", "Lineup-Core"),
+#                         labels=c("Visual Search", "Paper Folding", "Card Rotation", "Figure Class", "Lineup Core"))
 
-#rotation$Var1 <- factor(rotation$Var1, 
-#                        levels=c("vis_search", "folding", "card_rot", "fig_class", #"lineup_3", "lineup_2", "lineup_1"),
-#                        labels=c("Visual Search", "Paper Folding", "Card Rotation", #"Figure Class.", "Lineup Test 3", "Lineup Test 2", "Lineup Test 1"))
+rotation$Var1 <- factor(rotation$Var1, 
+                       levels=c("vis_search", "folding", "card_rot", "fig_class", "lineup_3", "lineup_2", "lineup_1"),
+                       labels=c("Visual Search", "Paper Folding", "Card Rotation", "Figure Class.", "Lineup Test 3", "Lineup Test 2", "Lineup Test 1"))
 library(grid) # needed for arrow function
-loadfonts()
 qplot(x=0,  y=Var1, xend=value*importance, yend=Var1, geom="segment", data=rotation, arrow=arrow(length=unit(0.1, "cm"))) + facet_wrap(~Var2, ncol=4) + xlab("Influence") + ggtitle("Lineup Types and Visual Aptitude") + ylab("") + theme_bw() 
-if (file.exists("./Figure/fig-lineupblockpca-1.pdf")) embedFonts("./Figure/fig-lineupblockpca-1.pdf")
+# if (file.exists("./Figure/fig-lineupblockpca-1.pdf")) 
+  # embedFonts("./Figure/fig-lineupblockpca-1.pdf")
 @
 
 \begin{figure}[ht]

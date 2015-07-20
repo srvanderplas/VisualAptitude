@@ -253,7 +253,7 @@
 
 %%Comment from here
 \newcommand{\manuscriptnotetxt}{
-Manuscript received 31 Mar. 2014; accepted 1 Aug. 2014; date of publication xx xxx 2014; date of current version xx xxx 2014.\par
+Manuscript received 31 Mar. 2015; accepted 1 Aug. 2015; date of publication xx Aug. 2015; date of current version 25 Oct. 2015.\par
 For information on obtaining reprints of this article, please send \par
 e-mail to: tvcg@computer.org.
 }
