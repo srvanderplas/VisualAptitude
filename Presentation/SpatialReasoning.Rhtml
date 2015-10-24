@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Hierarchy of Visual Features</title>
+
+	<meta name="description" content="Departmental Seminar (Thesis Work) slides">
+	<meta name="author" content="Susan VanderPlas">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, minimal-ui">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/simple.css" id="theme">
+	<link rel="stylesheet" href="css/Presentation.css">
+
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+	<!-- Any section element inside of this container is displayed as a slide -->
+	<div class="slides">
+
+
+<section>
+  <!-- Introduction -->
+
+  <h1>Spatial Reasoning and Data Displays</h1>
+
+  <h3>Susan VanderPlas & Heike Hofmann</h3>
+
+  <h4>October 28, 2015</h4>
+</section>
+
+<!-- begin.rcode setup, echo=FALSE, include=FALSE
+	library(knitr)
+	library(stringr)
+	library(lubridate)
+	
+	library(reshape2)
+	suppressMessages(library(plyr))
+	suppressMessages(library(dplyr))
+	library(magrittr)
+	
+	suppressMessages(library(ggplot2))
+	library(grid)
+	suppressMessages(library(gridExtra))
+	library(RColorBrewer)
+	
+	library(nullabor)
+	library(digest)
+	library(Cairo)
+	
+	library(lme4)
+	library(xtable)
+	suppressMessages(require(multcomp))
+	
+	library(RefManageR)
+	bib <- ReadBib("mybib.bib", check=FALSE)
+	
+	c0 <- knitr::knit_hooks$get('chunk')
+	
+	knitr::knit_hooks$set(
+	  list(
+		chunk=function(x,options){
+		  if(is.null(options$class) & is.null(options$fragIndex)){
+			c0(x, options)
+		  } else if(is.null(options$fragIndex)) {
+			classidx <- which(names(options)=="class")
+			paste0(
+			  paste0("<span class='", options$class, "'>"),
+			  c0(x, options[-classidx]),
+			  '</span>\n'
+			)
+		  }
+		  else if(length(options$fragIndex)==1) {
+			classidx <- which(names(options)%in%c("class", "fragIndex"))
+			str_replace(
+			  paste0(
+				paste0("<span class='", options$class, "' data-fragment-index=", options$fragIndex,">"),
+				c0(x, options[-classidx]),
+				'</span>\n'
+			  ),
+			  "<div class=\"chunk\" id=\"(.*?)\">\\s*<div class=\"rimage default\">(.*)</div>\\s*</div>",
+			  "\\2"
+			)
+		  } else {
+			classidx <- which(names(options)%in%c("class", "fragIndex"))
+			str_replace(
+			  paste0(
+				paste0("<span class='", options$class, " fade-in' data-fragment-index=", options$fragIndex[1],">"),
+				paste0(
+				  paste0("<span class='", options$class, " fade-out' data-fragment-index=", options$fragIndex[2],">"),
+				  c0(x, options[-classidx]),
+				  '</span>\n'
+				  ),
+				'</span>\n'
+				),
+			  "<div class=\"chunk\" id=\"(.*?)\">\\s*<div class=\"rimage default\">(.*)</div>\\s*</div>",
+			  "\\2"
+			)
+		  }
+		}
+	  )
+	)
+	
+	opts_chunk$set(cache.path='cache/', cache=T, autodep=T, 
+				   fig.align='center', fig.width=6, fig.height=6, fig.show='hold', 
+				   echo=F, message=F, warning=F, error=F, 
+				   root.dir="../", dpi=300)
+	
+	theme_transparent <- function(){
+		theme(panel.grid.major=element_blank(), 
+					plot.background = element_rect(fill = "transparent", colour = NA))
+	}
+	
+	
+ggbiplot <- function(pca, choices, segColor="black") {
+  u <- pca$x[,choices]
+  v <- pca$rotation[,choices]
+  n <- nrow(u)
+  u <- data.frame(sweep(u, MARGIN=2, 1/(pca$sdev[choices]), FUN="*"))
+  v <- data.frame(sweep(v, MARGIN=2, 3 * (pca$sdev[choices]), FUN="*"))
+  v$label <- row.names(v)
+  
+  segColor <- rep(segColor, length=nrow(v))
+
+  qplot(u[,1], u[,2], data=u, colour=I("grey50"), shape=I(1), size=I(3)) + theme_bw() + 
+    theme(aspect.ratio=1) + coord_equal() + 
+  geom_segment(aes(x=0, y=0, xend=v[,1], yend=v[,2], colour=segColor), data=v, arrow=arrow(length = unit(0.3, "cm"))) + 
+    xlab(sprintf("PC%d",choices[1])) + ylab(sprintf("PC%d",choices[2])) +
+    geom_text(aes(x=v[,1], y=v[,2], label=label, colour=segColor, 
+                  hjust=(0.5-sign(v[,1])/2), vjust=(0.5-sign(v[,2])/2) ), data=v) +
+    scale_colour_identity() + theme(aspect.ratio=1)
+}
+end.rcode-->
+<!--begin.rcode visualAptitude-setup, echo=FALSE, include=FALSE 
+datadir <- "../Data/"
+codedir <- "../Code/"
+
+source(paste(codedir, "Analysis.R", sep=""))
+
+sanitize <- function(x){
+  str_replace(gsub("_", ".", x, fixed=T), "Pr\\((.{1,}))", "Pr$(\\1)$")
+}
+
+opts_chunk$set(dev="CairoPDF")
+end.rcode-->
+
+<section>
+	<h2> Outline </h2>
+	<ul>
+		<li><a href="#/lineups"><b>Statistical Lineups</b> A method for evaluating graphics</a></li>
+		
+		<li><a href="#/cogtests"><b>Cognitive Tests</b> </a></li>
+		
+		<li><a href="#/design"><b>Experiment Design</b> </a></li>
+		
+		<li><a href="#/experiment"><b>Results</b> </a></li>
+		
+		<li><a href="#/conclusion"><b>Conclusion</b> </a></li>
+	</ul>
+</section>
+
+
+<section>
+  <section class="center" id="lineups">
+    <h2 style="padding-bottom:30px"> Statistical Lineups </h2>
+    <br/>
+    
+		<p style="padding:20px"> Method to compare the effectiveness of different types of statistical graphics</p>
+  </section>
+
+	<section>
+	  <h3> Statistical Lineups </h3>
+		<table><tr><td width="60%">
+<!--begin.rcode lineup-ex, echo=F, out.width="83%", out.height="auto", fig.cap = "Target: Plot 7"
+N <- 200
+data <- rbind(data.frame(x=rexp(N, rate=.5), .sample=7), data.frame(x=rnorm(19*N, mean=2, sd=2.15), .sample=rep(c(1:6,8:20), each=100)))
+
+ggplot(data=data, aes(x=x, group=.sample)) + 
+	geom_density() + 
+	facet_wrap(~.sample, ncol=5) + 
+	theme_bw() +
+	theme(axis.text=element_blank(), axis.ticks=element_blank()) + 
+	xlab(NULL) + ylab(NULL)
+
+end.rcode-->
+		</td><td style="vertical-align:middle;">
+			<ul>
+				<li class = "fragment"  data-fragment-index=2> A data plot is inserted among decoys </li>
+				<li class = "fragment"  data-fragment-index=3> If the observer picks out the data plot, this is evidence that the data plot differs from the decoys </li>
+			</ul>
+		</td></tr></table>
+	</section>
+	
+	<section>
+		<h3> Statistical Lineup Methodology </h3>
+		
+		<ul>
+			<li> Hypothesis Test: All plots created under $H_0$ <br> If data is identifiable, we reject $H_0$ for the data </li>
+			<li class = "fragment"  data-fragment-index=2> Suppose for $K$ participants, $k$ identify the data plot. <br>
+					 Visual p-value: <span style="padding-left:50px">$P(X\geq k | H_0)$ </span></li>
+			<li class = "fragment"  data-fragment-index=3> For the previous lineup, <br/>
+			Lineup p-values for 5 participants, when $k$ identify plot 7: 
+<!--begin.rcode pvals,eval=T,echo=F,results='asis', message=F, warning=F, class="small"
+library(vinference)
+kable(data.frame(t(c("p-value" , sprintf("&nbsp;&nbsp;%.4f&nbsp;&nbsp;", pV(0:5,K=5,m=20, scenario=1))))), col.names=c("$k$", 0:5), format='html', digits=c(0, 5), row.names=FALSE, align="c", escape=FALSE)
+end.rcode-->
+			</li>
+			<li class = "fragment"  data-fragment-index=4> Objective test of whether we see structure in the data display </li>
+		</ul>
+	</section>
+	
+	<section id="lineupex">
+	  <h3>Sample Lineup Experiment</h3>
+	  <br>
+	  <ol>
+	    <li> Generate many datasets where the target plot differs from the null plots due to a specific feature <br>
+	      <p style = "font-size:75%;"> e.g. group means differ, linear relationship, non-normal residuals...</p></li>
+	    <li> Render each dataset using several types of plots 
+	      <p style = "font-size:75%;"> Each lineup is one plot type $\times$ dataset combination </p></li>
+	    <li> Each participant evaluates many lineups </li>
+	    <li> Compare target identification rates for each plot type 
+	      <p style = "font-size:75%;"> Participant-level effects generally not of interest </p></li>
+    </ol>
+	</section>
+	
+	<section>
+	  <h3>Which one is not like the others?</h3>
+    <img src="figure/dotplot_1_15_5_10_6.png" width='45%' height='auto' title="Target Plot: 6. The mean of group 1 is different than the mean of group 2."/>
+	</section>
+	
+  <section>
+	  <h3>Which one is not like the others?</h3>
+    <img src="figure/density_1_15_5_10_6.png" width='45%' height='auto' title="Target Plot: 6. The mean of group 1 is different than the mean of group 2."/>
+	</section>
+	  
+  <section>
+  	<h2> Purpose </h2>
+  	<h3 style="text-align:center;padding-top:5%;padding-bottom:5%;padding-left:5%;padding-right:5%;" class = "fragment"> 
+  		What <b>visual</b> or <b>cognitive</b> skills are necessary for statistical lineups?
+  	</h3>
+  	
+  	<h3 style="text-align:center;padding-top:5%;padding-bottom:5%;padding-left:5%;padding-right:5%;" class = "fragment"> 
+  	  How important are visual skills for using statistical graphics?
+  	</h3>
+  </section>
+  
+	<section>
+	  <h3> This Experiment </h3>
+	  <div class="center" style="width:75%;">
+  	  <ul>
+  	    <li> Some people appear to be much better at identifying the target plots than others 
+  	      <p style="text-align:center;" class = "fragment">...Why?</p> </li>
+  	    <li class = "fragment"> <b> Methodology Difference: </b> 
+  	    <div style="text-align:center;">
+  	    <p style="text-align:left;" class = "fragment"> Examine an <i>individual's</i> accuracy </p>
+  	    <p style="text-align:left;" class = "fragment"> by correlating visuospatial skills and lineup score </p>
+  	    </div>
+  	    </li> 
+  	  </ul>
+  	</div>
+  </section>
+
+	<section>
+		<h2> Lineups </h2>
+		<table>
+			<tr>
+				<td width="45%">
+					<img src="figure/boxplot_1_15_5_10_6.png" width="100%"  title="Target Plot: 6. The mean of group 1 is different than the mean of group 2."/>
+				</td>
+				<td style="vertical-align:middle;"> 
+					3 blocks of 20 lineups each <br><br>
+					Each set of lineups is from a different study with different plot types<br><br>
+					Participants have 5 minutes to complete each block of 20 lineups <br>
+					<div class="small">
+<!--begin.rcode, echo=F, results='asis'
+ print(bib[["majumder2013validation"]], .opts=list(style="html", bib.style="authortitle"))
+end.rcode-->
+          </div>
+				</td>
+			</tr>
+		</table>
+	</section>
+</section>
+
+<section>
+  <section class="center" id="cogtests">
+    <h2 style="padding-bottom:30px"> Cognitive Tests </h2>
+  </section>
+  
+	<section>
+		<h2> Visual Search Test </h2>
+		<table>
+			<tr>
+				<td width="45%">
+					<img src="figure/VisualSearch.png" width="100%" title = "Visual Search Task. Solution: 23"/>
+				</td>
+				<td style="vertical-align:middle;"> 
+				<ul>
+  				<li> Measures ability to locate a target in a field of distractors </li>
+  				<li> Similar in form to lineups </li>
+  				<li> Participants complete up to 20 questions in 5 minutes </li>
+  				<li class="small">
+<!--begin.rcode, echo=F, results='asis'
+print(bib[["goldstein1973validity"]], .opts=list(style="html", bib.style="authortitle"))
+end.rcode-->
+				  </li> 
+				</ul>
+				</td>
+			</tr>
+		</table>
+	</section>
+	
+	<section>
+		<h2> Figure Classification Test </h2>
+		<img src="figure/figureclassification.jpg" width="70%" title = "Figure Classification Example. Groups are distinguished by whether line segments are straight, curved, or mixed."/>
+		<ul class="halfwidth smpadding">
+		  <li> Measures ability to classify images according to ambiguous or unknown rules </li>
+		  <li> Participants complete up to 14 questions (each with 8 figures) in 8 minutes </li>
+		  <li class="small">
+<!--begin.rcode, echo=F, results='asis'
+print(bib[["educational1963kit"]], .opts=list(style="html", bib.style="authortitle"))
+end.rcode-->
+      </li> 
+    </ul>
+	</section>
+	
+	<section>
+		<h2> Card Rotation Test </h2>
+		<img src="figure/cardrotation.jpg" width="80%" title="Card Rotation Test. If the figure on the left can be rotated (not flipped) to match the figure on the right, it is the same."/>
+		<ul class="halfwidth">
+		  <li> Measures ability to rotate objects (2D) </li>
+		  <li> Participants complete up to 20 questions (each with 8 figures) in 6 minutes </li>
+		  <li class="small">
+<!--begin.rcode, echo=F, results='asis'
+print(bib[["educational1963kit"]], .opts=list(style="html", bib.style="authortitle"))
+end.rcode-->
+      </li> 
+    </ul>
+	</section>
+	
+	<section>
+		<h2> Paper Folding Test </h2>
+		<img src="figure/paperfolding.png" width="80%" title = "Paper Folding Test Example. Answer: C"/>
+		<ul class="halfwidth">
+		  <li> Measures ability to visualize and manipulate objects (3D) </li>
+		  <li> Participants complete up to 20 questions in 6 minutes </li>
+		  <li class="small">
+<!--begin.rcode, echo=F, results='asis'
+print(bib[["educational1963kit"]], .opts=list(style="html", bib.style="authortitle"))
+end.rcode-->
+      </li> 
+    </ul>
+	</section>
+</section>
+
+<section>
+  <section class="center" id="design">
+    <h2 style="padding-bottom:30px"> Experiment Design </h2>
+  </section>
+  
+  <section>
+    <h3><b> Study Setup </b></h3>
+    <table><tr><td width="50%" style="vertical-align:top;">
+    <ul>
+    	<li> <b>3 blocks of 20 lineups</b> <p style="font-size:80%">Boxplots and alternatives, qq plot modifications </p></li>
+    	
+    	<li> <b>4 tests of visuospatial ability</b> <p style="font-size:80%"> Figure Classification, Card Rotation, Paper Folding, Visual Search Test </p></li>
+    	<li> Demographic Information </li>
+    </ul>
+    </td><td width="50%" style="vertical-align:top;">
+    <ul>
+    	<li> Participants: 38 ISU Undergraduates </li>
+    	<li> 1 hour test </li>
+    	<li> Students' scores on validated cognitive tests were similar to other populations </li>
+    </ul>
+    </td></tr></table>
+  </section>
+  
+  <section>
+		<h2> Scores </h2>	
+		<table class="nopadding">
+			<tr>
+				<td  class="nopadding" width="50%">
+<!--begin.rcode scaledscores, eval=T, echo=F, fig.width=5.5, fig.height=4, out.width="100%", dev.args = list(bg = 'transparent')
+
+score.summary <- melt(ans.summary, measure.vars=21:25, value.name = "Score", variable.name = "Test")
+score.summary$Test <- factor(score.summary$Test, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
+qrange$sqrt.k <- sqrt(qrange$k-1)
+qrange$Test <- factor(qrange$testtype, levels=c("lineup", "card_rot", "fig_class", "folding", "vis_search"), labels=c("Lineups", "Card Rotation", "Figure Class.", "Paper Folding", "Visual Search"))
+
+qr1 <- qrange
+qr1$Type <- "Theoretical Range"
+qr2 <- qrange
+qr2$Type <- "Scores indicating guessing"
+qr2$n <- with(qr2, -n/(k-1))
+
+qrange <- rbind(qr1, qr2)
+qrange$Type <- factor(qrange$Type)
+qrange$Type <- factor(qrange$Type, levels=levels(qrange$Type)[2:1])
+
+ggplot() + 
+  geom_bar(data=qrange, aes(width=.9, x=Test, y=n, fill=Type), 
+  				 stat="identity", position="identity", colour="#4F91A0", inherit.aes=F) +
+  scale_fill_manual("", values=c(NA, "#4F91A0")) + 
+  geom_boxplot(data=score.summary, aes(x=factor(Test), y=Score), inherit.aes=F, fill="#7DBAC8") +
+  theme_bw()  + 
+  ylab("Test Scores") + 
+  xlab("") +
+  theme(legend.position=c(.68,.125),  legend.box.just = "left", 
+        legend.key.height=unit(6, "mm"), 
+  			panel.grid.major=element_line(color=NA),
+  			panel.grid.minor=element_line(color="grey"),
+  			legend.key=element_rect(fill="transparent"),
+  			legend.background=element_rect(fill="transparent", color=NA),
+  			legend.title=element_blank(),
+  			panel.background=element_rect(fill="transparent", color=NA),
+  			plot.background=element_rect(fill="transparent", color=NA)) 
+
+end.rcode-->
+				</td>
+				<td  class="nopadding" style="vertical-align:middle;"> 
+					<ul>
+					  <li> Expected score w/ guessing is 0 
+					  $$\#\text{ correct } - \frac{1}{k-1} \cdot \# \text{ incorrect }$$</li>
+						<li> No evidence of guessing: <br>Scores do not contain 0 </li>
+						<li> Score compression for Visual Search: too much time allotted </li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+  </section>
+</section>
+
+<section>
+  <section class="center" id="experiment">
+    <h2 style="padding-bottom:30px"> Results </h2>
+  </section>
+  
+  <section class="visualaptitude">
+		<h2> Lineups & Demographics </h2>
+<!--begin.rcode VisReasoningCategorical, echo=F, fig.width=9, fig.height=5, message=F, warning=F, out.width="80%", dev.args = list(bg = 'transparent'), fig.cap = "STEM, Calculus 1, and Video Game hrs are significant predictors."
+# lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="verbal_skills", value=1))
+lineup.summary.categorical <- rbind(lineup.summary.categorical, data.frame(id=1, lineup=NA, variable="math_skills", value=1))
+lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, labels=c("Age", "Sex", "Math/Science Research", "Statistics Class", "Calculus 1", "Verbal Skills", "Math Skills", "Art Skills", "AutoCAD Experience", "STEM Major", "Video Game Hrs/Wk"))
+lineup.summary.categorical$value[lineup.summary.categorical$value=="f"] <- "Female"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="m"] <- "Male"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="y"] <- "TRUE"
+lineup.summary.categorical$value[lineup.summary.categorical$value=="n"] <- "FALSE"
+
+tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
+    tmp <- anova(lm(lineup~factor(value, ordered=F), data=df))
+    coefs <- as.data.frame(tmp)[1,]
+    coefs$level <- gsub("factor(value, ordered = F)", unique(df$variable), rownames(coefs), fixed=T)
+    rownames(coefs) <- NULL
+    coefs <- coefs[,c(6, 1:5)]
+    names(coefs) <- c("Variable", "DF", "Sum.of.Squares", "Mean.Squared", "F.value", "p.value")
+    coefs
+})
+
+tmp <- rbind.fill(tmp)
+tmp <- tmp[order(tmp$p.value, decreasing=F),]
+
+lineup.summary.categorical$variable <- factor(lineup.summary.categorical$variable, levels=unique(tmp$Variable))
+lineup.summary.categorical$value <- factor(lineup.summary.categorical$value, levels=c("0","1", "2","3","4","5","[1, 2)", "[2, 5)", "5+", "18-20", "21+", "TRUE", "FALSE", "Female", "Male"))
+
+qplot(data=lineup.summary.categorical, x=value, y=lineup, geom="boxplot", fill=I("grey")) + 
+  facet_wrap(~variable, scales="free_x", ncol=4) + xlab("") + 
+  ylab("Scaled Lineup Score") + 
+  geom_point(aes(x=value, y=lineup), shape=1, size=3) + 
+  theme(panel.grid.major=element_line(color=NA),
+  			panel.grid.minor=element_line(color="grey"),
+  			axis.text = element_text(color = "black"),
+  			axis.ticks = element_line(color = "black"),
+  			panel.background=element_rect(fill="white", color=NA),
+  			plot.background=element_rect(fill="transparent", color=NA)) 
+end.rcode-->
+	</section>
+	
+  <section class="visualaptitude">
+		<h2> Lineups & Demographics </h2>
+<!--begin.rcode ttests, echo=F, results='asis', eval=T, fig.width=9, fig.height=5.5, message=F, warning=F, out.width="80%"
+tmp <- dlply(lineup.summary.categorical, .(variable), function(df){
+    tmp <- anova(lm(lineup~factor(value, ordered=F), data=df))
+    coefs <- as.data.frame(tmp)[1,]
+    coefs$level <- gsub("factor(value, ordered = F)", unique(df$variable), rownames(coefs), fixed=T)
+    rownames(coefs) <- NULL
+    coefs <- coefs[,c(6, 1:5)]
+    names(coefs) <- c("Variable", "DF", "Sum.of.Squares", "MeanSq", "F", "p.val")
+    coefs
+})
+
+tmp <- rbind.fill(tmp)
+tmp2 <- tmp[order(tmp$p.val, decreasing=F),-3]
+tmp2$Variable <- gsub("Math/Science", "STEM", gsub(" Experience", "", gsub(" Hrs/Wk", " hrs", tmp2$Variable)), fixed=T)
+print(xtable(tmp2, digits=c(1, 1, 0, 3, 2, 3)), type="html", include.rownames=F, html.table.attributes="style='font-size:75%;' width='100%' class='categoricalRes'")
+end.rcode-->
+		<p> Results are for single-variable regressions </p>
+	</section>
+  	
+	 <section>
+		<h3> Lineups & Visual Aptitude </h2>
+<!--begin.rcode VisReasoningSPM, echo=F, fig.width=5, fig.height=5, message=F, warning=F, out.width="45%", dev.args = list(bg = 'transparent')
+data <- ans.summary[,c("lineup", "vis_search", "fig_class", "card_rot", "folding")]
+grid <- expand.grid(x=1:ncol(data), y=1:ncol(data))
+grid <- subset(grid, x != y & x<y)
+
+all <- do.call("rbind", lapply(1:nrow(grid), function(i) {
+  xcol <- grid[i, "x"]
+  ycol <- grid[i, "y"]
+
+  rbind.fill(
+    data.frame(
+      xvar = names(data)[ycol], 
+      yvar = names(data)[xcol],
+      x = data[, xcol], 
+      y = data[, ycol], 
+      points = T,
+      data
+    ),
+    data.frame(
+      yvar = names(data)[ycol], 
+      xvar = names(data)[xcol],
+      x = mean(range(data[, ycol])), 
+      y = mean(range(data[, xcol])),
+      label = round(cor(data[,xcol], data[,ycol]), 3),
+      points = F
+    )
+  )
+}))
+all$xvar <- factor(all$xvar, levels=names(data))
+all$yvar <- factor(all$yvar, levels=names(data))
+densities <- do.call("rbind", lapply(1:ncol(data), function(i) {
+    tmp <- density(data[,i], cut = 1, adjust=.75)
+    data.frame(
+      xvar = names(data)[i], 
+      yvar = names(data)[i],
+      x = tmp$x, 
+      y = tmp$y/max(tmp$y)* diff(range(tmp$x)) + min(tmp$x)
+    )
+  }))
+fix.names <- function(values){
+  values %>% 
+    str_replace("lineup", "Lineups") %>% 
+    str_replace("vis_search", "Vis. Search") %>%
+    str_replace("fig_class", "Fig. Class.") %>% 
+    str_replace("card_rot", "Card Rot.") %>%
+    str_replace("folding", "Paper Fold.")
+}
+
+ggplot()+
+  geom_point(data=subset(all, points), aes(x=x, y=y), shape=1) + 
+  geom_smooth(data=subset(all, points), aes(x=x, y=y), method="lm") + 
+  geom_text(data=subset(all, !points), aes(x=x, y=y, label=paste0("Corr. = \n", label))) + 
+  geom_line(data=densities, aes(x=x, y=y)) + 
+  facet_grid(xvar~yvar, scales="free", labeller = labeller(xvar=fix.names, yvar=fix.names)) + 
+  theme_bw() + 
+  theme(axis.title=element_blank(),
+        plot.margin=unit(c(0,0,0,0), unit="mm"),
+        axis.text = element_text(color = "black"),
+        axis.ticks = element_line(color = "black"),
+        panel.background=element_rect(fill="white", color=NA),
+        plot.background=element_rect(fill="transparent", color=NA))
+end.rcode-->
+	</section>
+	
+	 <section>
+		<h3> Lineups & Visual Aptitude </h3>
+				<table class="nopadding">
+			<tr>
+				<td  class="nopadding" width="60%">
+		<h4 style="text-align:center;"> Principal Components Analysis </h4>
+<!--begin.rcode pca, eval=T, echo=F, fig.width=8, fig.height=4, out.width="100%", dev.args = list(bg = 'transparent'), fig.cap="Biplots of PC1 and PC2 from PCA with and without lineups. Lineups are most similar to figure classification."
+pca <- prcomp(ans.summary[,c("lineup", "card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
+pca2 <- prcomp(ans.summary[,c("card_rot", "fig_class", "folding", "vis_search")], scale=T, retx=T)
+# dimnames(pca2$rotation)[[1]] <- c("card\nrotation", "figure\nclassification", "paper\nfolding", "visual\nsearch")
+
+p1 <- ggbiplot(pca, choices=1:2) + xlim(c(-2.5,4.1)) +  ylim(c(-2.5,2.5)) + ggtitle("5 test PCA")  +
+  theme(plot.background=element_rect(fill="transparent", color=NA)) + xlim(c(-2.5, 4.5))
+p2 <- ggbiplot(pca, choices=3:4) + xlim(c(-3,3.5)) + ylim(c(-3,3)) + ggtitle("5 test PCA")  +
+  theme(plot.background=element_rect(fill="transparent", color=NA))  
+p3 <- ggbiplot(pca2, choices=1:2) + xlim(c(-2.5,4.1)) +  ylim(c(-2.5,2.5)) + ggtitle("4 test PCA")  +
+  theme(plot.background=element_rect(fill="transparent", color=NA)) + xlim(c(-2.5, 4.5))
+p4 <- ggbiplot(pca2, choices=3:4) + xlim(c(-3,3.5)) + ylim(c(-3,3)) + ggtitle("4 test PCA")  +
+  theme(plot.background=element_rect(fill="transparent", color=NA))  
+library(gridExtra)
+grid.arrange(p1, p3, ncol = 2, clip = T)
+end.rcode-->
+				</td>
+				<td  class="nopadding" style="vertical-align:middle;"> 
+      		<ul> 
+      		<li> Lineups are most similar to the figure class. task in PC space </li>
+      		<li> The first PC is always a measure of "general aptitude" and is the only statistically significant linear predictor of lineup performance </li>
+      		</ul>
+				</td>
+			</tr>
+		</table>
+	</section>
+</section>
+
+<section id="conclusion">
+    <h3><b> Conclusions </b></h3>
+    <table><tr><td>
+    <ul> 
+    	<li> <b>Lineups:</b> a classification task in a visual domain </li> 
+    	<li> Specific visuospatial skills (outside of overall aptitude) are not required </li> 
+    	<li> Demographic factors such as completion of Calculus I and STEM training are also important </li> 
+    </ul>
+    </td><td width="40%" style="text-align:center;">
+<!--begin.rcode pca2, eval=T, echo=F, fig.width=4, fig.height=4, out.width="100%", dev.args = list(bg = 'transparent'), fig.cap = "PC1 shows general aptitude; on PC2, lineups are most similar to figure classification."
+p1
+end.rcode-->
+    <p style="text-align:center;font-size:75%">PC1 shows general aptitude </p>
+    </td></tr></table>
+</section>
+
+<section class="center" id = "questions">
+<h2>Questions?</h2>
+</section>
+
+</div> <!-- slides -->
+</div> <!-- reveal -->
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+<script>
+	// Full list of configuration options available at:
+	// https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: true,
+		center: false,
+		slideNumber: true,
+		width: 1216,
+		height: 768,
+		margin: 0.05,
+		transition: 'fade', // none/fade/slide/convex/concave/zoom
+		// Optional reveal.js plugins
+		dependencies: [
+			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: 'plugin/zoom-js/zoom.js', async: true },
+			{ src: 'plugin/notes/notes.js', async: true },
+			{ src: 'plugin/math/math.js', async: true }
+		]
+	});
+</script>
+</body>
+</html>

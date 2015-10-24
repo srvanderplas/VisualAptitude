@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+	<meta charset="utf-8">
+
+	<title>Hierarchy of Visual Features</title>
+
+	<meta name="description" content="Departmental Seminar (Thesis Work) slides">
+	<meta name="author" content="Susan VanderPlas">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, minimal-ui">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/simple.css" id="theme">
+	<link rel="stylesheet" href="css/Presentation.css">
+
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+	<!-- Any section element inside of this container is displayed as a slide -->
+	<div class="slides">
+
+
+<section>
+  <!-- Introduction -->
+
+  <h1>Spatial Reasoning and Data Displays</h1>
+
+  <h3>Susan VanderPlas & Heike Hofmann</h3>
+
+  <h4>October 28, 2015</h4>
+</section>
+
+
+
+
+<section>
+	<h2> Outline </h2>
+	<ul>
+		<li><a href="#/lineups"><b>Statistical Lineups</b> A method for evaluating graphics</a></li>
+		
+		<li><a href="#/cogtests"><b>Cognitive Tests</b> </a></li>
+		
+		<li><a href="#/design"><b>Experiment Design</b> </a></li>
+		
+		<li><a href="#/experiment"><b>Results</b> </a></li>
+		
+		<li><a href="#/conclusion"><b>Conclusion</b> </a></li>
+	</ul>
+</section>
+
+
+<section>
+  <section class="center" id="lineups">
+    <h2 style="padding-bottom:30px"> Statistical Lineups </h2>
+    <br/>
+    
+		<p style="padding:20px"> Method to compare the effectiveness of different types of statistical graphics</p>
+  </section>
+
+	<section>
+	  <h3> Statistical Lineups </h3>
+		<table><tr><td width="60%">
+<div class="chunk" id="lineup-ex"><div class="rimage center"><img src="figure/lineup-ex-1.png" title="Target: Plot 7" alt="Target: Plot 7" width="83%" height="auto" class="plot" /></div></div>
+		</td><td style="vertical-align:middle;">
+			<ul>
+				<li class = "fragment"  data-fragment-index=2> A data plot is inserted among decoys </li>
+				<li class = "fragment"  data-fragment-index=3> If the observer picks out the data plot, this is evidence that the data plot differs from the decoys </li>
+			</ul>
+		</td></tr></table>
+	</section>
+	
+	<section>
+		<h3> Statistical Lineup Methodology </h3>
+		
+		<ul>
+			<li> Hypothesis Test: All plots created under $H_0$ <br> If data is identifiable, we reject $H_0$ for the data </li>
+			<li class = "fragment"  data-fragment-index=2> Suppose for $K$ participants, $k$ identify the data plot. <br>
+					 Visual p-value: <span style="padding-left:50px">$P(X\geq k | H_0)$ </span></li>
+			<li class = "fragment"  data-fragment-index=3> For the previous lineup, <br/>
+			Lineup p-values for 5 participants, when $k$ identify plot 7: 
+<span class='small'><table>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> $k$ </th>
+   <th style="text-align:center;"> 0 </th>
+   <th style="text-align:center;"> 1 </th>
+   <th style="text-align:center;"> 2 </th>
+   <th style="text-align:center;"> 3 </th>
+   <th style="text-align:center;"> 4 </th>
+   <th style="text-align:center;"> 5 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> p-value </td>
+   <td style="text-align:center;"> &nbsp;&nbsp;1.0000&nbsp;&nbsp; </td>
+   <td style="text-align:center;"> &nbsp;&nbsp;0.2262&nbsp;&nbsp; </td>
+   <td style="text-align:center;"> &nbsp;&nbsp;0.0226&nbsp;&nbsp; </td>
+   <td style="text-align:center;"> &nbsp;&nbsp;0.0012&nbsp;&nbsp; </td>
+   <td style="text-align:center;"> &nbsp;&nbsp;0.0000&nbsp;&nbsp; </td>
+   <td style="text-align:center;"> &nbsp;&nbsp;0.0000&nbsp;&nbsp; </td>
+  </tr>
+</tbody>
+</table>
+
+</span>
+
+			</li>
+			<li class = "fragment"  data-fragment-index=4> Objective test of whether we see structure in the data display </li>
+		</ul>
+	</section>
+	
+	<section id="lineupex">
+	  <h3>Sample Lineup Experiment</h3>
+	  <br>
+	  <ol>
+	    <li> Generate many datasets where the target plot differs from the null plots due to a specific feature <br>
+	      <p style = "font-size:75%;"> e.g. group means differ, linear relationship, non-normal residuals...</p></li>
+	    <li> Render each dataset using several types of plots 
+	      <p style = "font-size:75%;"> Each lineup is one plot type $\times$ dataset combination </p></li>
+	    <li> Each participant evaluates many lineups </li>
+	    <li> Compare target identification rates for each plot type 
+	      <p style = "font-size:75%;"> Participant-level effects generally not of interest </p></li>
+    </ol>
+	</section>
+	
+	<section>
+	  <h3>Which one is not like the others?</h3>
+    <img src="figure/dotplot_1_15_5_10_6.png" width='45%' height='auto' title="Target Plot: 6. The mean of group 1 is different than the mean of group 2."/>
+	</section>
+	
+  <section>
+	  <h3>Which one is not like the others?</h3>
+    <img src="figure/density_1_15_5_10_6.png" width='45%' height='auto' title="Target Plot: 6. The mean of group 1 is different than the mean of group 2."/>
+	</section>
+	  
+  <section>
+  	<h2> Purpose </h2>
+  	<h3 style="text-align:center;padding-top:5%;padding-bottom:5%;padding-left:5%;padding-right:5%;" class = "fragment"> 
+  		What <b>visual</b> or <b>cognitive</b> skills are necessary for statistical lineups?
+  	</h3>
+  	
+  	<h3 style="text-align:center;padding-top:5%;padding-bottom:5%;padding-left:5%;padding-right:5%;" class = "fragment"> 
+  	  How important are visual skills for using statistical graphics?
+  	</h3>
+  </section>
+  
+	<section>
+	  <h3> This Experiment </h3>
+	  <div class="center" style="width:75%;">
+  	  <ul>
+  	    <li> Some people appear to be much better at identifying the target plots than others 
+  	      <p style="text-align:center;" class = "fragment">...Why?</p> </li>
+  	    <li class = "fragment"> <b> Methodology Difference: </b> 
+  	    <div style="text-align:center;">
+  	    <p style="text-align:left;" class = "fragment"> Examine an <i>individual's</i> accuracy </p>
+  	    <p style="text-align:left;" class = "fragment"> by correlating visuospatial skills and lineup score </p>
+  	    </div>
+  	    </li> 
+  	  </ul>
+  	</div>
+  </section>
+
+	<section>
+		<h2> Lineups </h2>
+		<table>
+			<tr>
+				<td width="45%">
+					<img src="figure/boxplot_1_15_5_10_6.png" width="100%"  title="Target Plot: 6. The mean of group 1 is different than the mean of group 2."/>
+				</td>
+				<td style="vertical-align:middle;"> 
+					3 blocks of 20 lineups each <br><br>
+					Each set of lineups is from a different study with different plot types<br><br>
+					Participants have 5 minutes to complete each block of 20 lineups <br>
+					<div class="small">
+<p><cite>Majumder, M., H. Hofmann and D. Cook.
+&ldquo;Validation of visual statistical inference, applied to linear models&rdquo;.
+In: <em>Journal of the American Statistical Association</em> 108.503 (2013), pp. 942&ndash;956.</cite></p>
+
+          </div>
+				</td>
+			</tr>
+		</table>
+	</section>
+</section>
+
+<section>
+  <section class="center" id="cogtests">
+    <h2 style="padding-bottom:30px"> Cognitive Tests </h2>
+  </section>
+  
+	<section>
+		<h2> Visual Search Test </h2>
+		<table>
+			<tr>
+				<td width="45%">
+					<img src="figure/VisualSearch.png" width="100%" title = "Visual Search Task. Solution: 23"/>
+				</td>
+				<td style="vertical-align:middle;"> 
+				<ul>
+  				<li> Measures ability to locate a target in a field of distractors </li>
+  				<li> Similar in form to lineups </li>
+  				<li> Participants complete up to 20 questions in 5 minutes </li>
+  				<li class="small">
+<p><cite>Goldstein, G., R. B. Welch, P. M. Rennick, et al.
+&ldquo;The validity of a visual searching task as an indicator of brain damage.&rdquo;
+In: <em>Journal of consulting and clinical psychology</em> 41.3 (1973), p. 434.</cite></p>
+
+				  </li> 
+				</ul>
+				</td>
+			</tr>
+		</table>
+	</section>
+	
+	<section>
+		<h2> Figure Classification Test </h2>
+		<img src="figure/figureclassification.jpg" width="70%" title = "Figure Classification Example. Groups are distinguished by whether line segments are straight, curved, or mixed."/>
+		<ul class="halfwidth smpadding">
+		  <li> Measures ability to classify images according to ambiguous or unknown rules </li>
+		  <li> Participants complete up to 14 questions (each with 8 figures) in 8 minutes </li>
+		  <li class="small">
+<p><cite>French, J. W., R. B. Ekstrom and L. A. Price.
+<em>Kit of reference tests for cognitive factors</em>.
+Educational Testing Service.
+Princeton, NJ, 1963.</cite></p>
+
+      </li> 
+    </ul>
+	</section>
+	
+	<section>
+		<h2> Card Rotation Test </h2>
+		<img src="figure/cardrotation.jpg" width="80%" title="Card Rotation Test. If the figure on the left can be rotated (not flipped) to match the figure on the right, it is the same."/>
+		<ul class="halfwidth">
+		  <li> Measures ability to rotate objects (2D) </li>
+		  <li> Participants complete up to 20 questions (each with 8 figures) in 6 minutes </li>
+		  <li class="small">
+<p><cite>French, J. W., R. B. Ekstrom and L. A. Price.
+<em>Kit of reference tests for cognitive factors</em>.
+Educational Testing Service.
+Princeton, NJ, 1963.</cite></p>
+
+      </li> 
+    </ul>
+	</section>
+	
+	<section>
+		<h2> Paper Folding Test </h2>
+		<img src="figure/paperfolding.png" width="80%" title = "Paper Folding Test Example. Answer: C"/>
+		<ul class="halfwidth">
+		  <li> Measures ability to visualize and manipulate objects (3D) </li>
+		  <li> Participants complete up to 20 questions in 6 minutes </li>
+		  <li class="small">
+<p><cite>French, J. W., R. B. Ekstrom and L. A. Price.
+<em>Kit of reference tests for cognitive factors</em>.
+Educational Testing Service.
+Princeton, NJ, 1963.</cite></p>
+
+      </li> 
+    </ul>
+	</section>
+</section>
+
+<section>
+  <section class="center" id="design">
+    <h2 style="padding-bottom:30px"> Experiment Design </h2>
+  </section>
+  
+  <section>
+    <h3><b> Study Setup </b></h3>
+    <table><tr><td width="50%" style="vertical-align:top;">
+    <ul>
+    	<li> <b>3 blocks of 20 lineups</b> <p style="font-size:80%">Boxplots and alternatives, qq plot modifications </p></li>
+    	
+    	<li> <b>4 tests of visuospatial ability</b> <p style="font-size:80%"> Figure Classification, Card Rotation, Paper Folding, Visual Search Test </p></li>
+    	<li> Demographic Information </li>
+    </ul>
+    </td><td width="50%" style="vertical-align:top;">
+    <ul>
+    	<li> Participants: 38 ISU Undergraduates </li>
+    	<li> 1 hour test </li>
+    	<li> Students' scores on validated cognitive tests were similar to other populations </li>
+    </ul>
+    </td></tr></table>
+  </section>
+  
+  <section>
+		<h2> Scores </h2>	
+		<table class="nopadding">
+			<tr>
+				<td  class="nopadding" width="50%">
+<div class="chunk" id="scaledscores"><div class="rimage center"><img src="figure/scaledscores-1.png" title="plot of chunk scaledscores" alt="plot of chunk scaledscores" width="100%" class="plot" /></div></div>
+				</td>
+				<td  class="nopadding" style="vertical-align:middle;"> 
+					<ul>
+					  <li> Expected score w/ guessing is 0 
+					  $$\#\text{ correct } - \frac{1}{k-1} \cdot \# \text{ incorrect }$$</li>
+						<li> No evidence of guessing: <br>Scores do not contain 0 </li>
+						<li> Score compression for Visual Search: too much time allotted </li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+  </section>
+</section>
+
+<section>
+  <section class="center" id="experiment">
+    <h2 style="padding-bottom:30px"> Results </h2>
+  </section>
+  
+  <section class="visualaptitude">
+		<h2> Lineups & Demographics </h2>
+<div class="chunk" id="VisReasoningCategorical"><div class="rimage center"><img src="figure/VisReasoningCategorical-1.png" title="STEM, Calculus 1, and Video Game hrs are significant predictors." alt="STEM, Calculus 1, and Video Game hrs are significant predictors." width="80%" class="plot" /></div></div>
+	</section>
+	
+  <section class="visualaptitude">
+		<h2> Lineups & Demographics </h2>
+<!-- html table generated in R 3.2.2 by xtable 1.7-4 package -->
+<!-- Sat Oct 24 13:38:49 2015 -->
+<table style='font-size:75%;' width='100%' class='categoricalRes'>
+<tr> <th> Variable </th> <th> DF </th> <th> MeanSq </th> <th> F </th> <th> p.val </th>  </tr>
+  <tr> <td> STEM Major </td> <td align="right"> 1 </td> <td align="right"> 401.517 </td> <td align="right"> 14.44 </td> <td align="right"> 0.001 </td> </tr>
+  <tr> <td> Calculus 1 </td> <td align="right"> 1 </td> <td align="right"> 204.569 </td> <td align="right"> 6.15 </td> <td align="right"> 0.018 </td> </tr>
+  <tr> <td> Video Game hrs </td> <td align="right"> 3 </td> <td align="right"> 108.847 </td> <td align="right"> 3.44 </td> <td align="right"> 0.028 </td> </tr>
+  <tr> <td> Sex </td> <td align="right"> 1 </td> <td align="right"> 140.844 </td> <td align="right"> 4.02 </td> <td align="right"> 0.053 </td> </tr>
+  <tr> <td> Art Skills </td> <td align="right"> 4 </td> <td align="right"> 75.891 </td> <td align="right"> 2.28 </td> <td align="right"> 0.082 </td> </tr>
+  <tr> <td> Verbal Skills </td> <td align="right"> 3 </td> <td align="right"> 60.220 </td> <td align="right"> 1.68 </td> <td align="right"> 0.191 </td> </tr>
+  <tr> <td> STEM Research </td> <td align="right"> 1 </td> <td align="right"> 59.670 </td> <td align="right"> 1.60 </td> <td align="right"> 0.214 </td> </tr>
+  <tr> <td> AutoCAD </td> <td align="right"> 1 </td> <td align="right"> 50.893 </td> <td align="right"> 1.36 </td> <td align="right"> 0.252 </td> </tr>
+  <tr> <td> Age </td> <td align="right"> 1 </td> <td align="right"> 34.434 </td> <td align="right"> 0.91 </td> <td align="right"> 0.348 </td> </tr>
+  <tr> <td> Math Skills </td> <td align="right"> 3 </td> <td align="right"> 37.039 </td> <td align="right"> 0.98 </td> <td align="right"> 0.416 </td> </tr>
+  <tr> <td> Statistics Class </td> <td align="right"> 1 </td> <td align="right"> 9.062 </td> <td align="right"> 0.23 </td> <td align="right"> 0.631 </td> </tr>
+   </table>
+
+		<p> Results are for single-variable regressions </p>
+	</section>
+  	
+	 <section>
+		<h3> Lineups & Visual Aptitude </h2>
+<div class="chunk" id="VisReasoningSPM"><div class="rimage center"><img src="figure/VisReasoningSPM-1.png" title="plot of chunk VisReasoningSPM" alt="plot of chunk VisReasoningSPM" width="45%" class="plot" /></div></div>
+	</section>
+	
+	 <section>
+		<h3> Lineups & Visual Aptitude </h3>
+				<table class="nopadding">
+			<tr>
+				<td  class="nopadding" width="60%">
+		<h4 style="text-align:center;"> Principal Components Analysis </h4>
+<div class="chunk" id="pca"><div class="rimage center"><img src="figure/pca-1.png" title="Biplots of PC1 and PC2 from PCA with and without lineups. Lineups are most similar to figure classification." alt="Biplots of PC1 and PC2 from PCA with and without lineups. Lineups are most similar to figure classification." width="100%" class="plot" /></div></div>
+				</td>
+				<td  class="nopadding" style="vertical-align:middle;"> 
+      		<ul> 
+      		<li> Lineups are most similar to the figure class. task in PC space </li>
+      		<li> The first PC is always a measure of "general aptitude" and is the only statistically significant linear predictor of lineup performance </li>
+      		</ul>
+				</td>
+			</tr>
+		</table>
+	</section>
+</section>
+
+<section id="conclusion">
+    <h3><b> Conclusions </b></h3>
+    <table><tr><td>
+    <ul> 
+    	<li> <b>Lineups:</b> a classification task in a visual domain </li> 
+    	<li> Specific visuospatial skills (outside of overall aptitude) are not required </li> 
+    	<li> Demographic factors such as completion of Calculus I and STEM training are also important </li> 
+    </ul>
+    </td><td width="40%" style="text-align:center;">
+<div class="chunk" id="pca2"><div class="rimage center"><img src="figure/pca2-1.png" title="PC1 shows general aptitude; on PC2, lineups are most similar to figure classification." alt="PC1 shows general aptitude; on PC2, lineups are most similar to figure classification." width="100%" class="plot" /></div></div>
+    <p style="text-align:center;font-size:75%">PC1 shows general aptitude </p>
+    </td></tr></table>
+</section>
+
+<section class="center" id = "questions">
+<h2>Questions?</h2>
+</section>
+
+</div> <!-- slides -->
+</div> <!-- reveal -->
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+<script>
+	// Full list of configuration options available at:
+	// https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: true,
+		center: false,
+		slideNumber: true,
+		width: 1216,
+		height: 768,
+		margin: 0.05,
+		transition: 'fade', // none/fade/slide/convex/concave/zoom
+		// Optional reveal.js plugins
+		dependencies: [
+			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: 'plugin/zoom-js/zoom.js', async: true },
+			{ src: 'plugin/notes/notes.js', async: true },
+			{ src: 'plugin/math/math.js', async: true }
+		]
+	});
+</script>
+</body>
+</html>

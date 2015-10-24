@@ -1,0 +1,158 @@
+
+/*********************************************
+ * HIDDEN BULLETS
+ *********************************************/
+.hide { list-style-type: none; }
+
+/*********************************************
+ * FONTS
+ *********************************************/
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: "Open Sans", sans-serif;
+  }
+
+body {
+  background: #add9e4;
+}
+
+.knitr.inline {
+  border: none;
+  background-color: #add9e4;
+}
+
+.reveal section img,
+.rimage {
+   border: none;
+}
+
+.reveal table:optional {
+  width: 100%;
+}
+
+.reveal table.nowidth:required {
+}
+
+.reveal div.center {
+  padding-right:15%;
+  padding-left:15%;
+  border: none;
+}
+
+.reveal div.rimage.center {
+  padding-right:0%;
+  padding-left:0%;
+  border: none;
+}
+
+.reveal .noborder {
+  text-align: left;
+  vertical-align: middle;
+  border: none;
+}
+
+.reveal .nopadding td , .reveal .nopadding img{
+  padding:0em;
+  margin:0em;
+}
+.reveal table.nopadding {
+	padding:.5em;
+  margin:0em;
+}
+
+
+.reveal .br {
+  border-right:1px solid;
+  border-right-width:1px;
+  border-right-color:#000000;
+}
+.reveal .bl {
+  border-left:1px solid;
+  border-left-width:1px;
+  border-left-color:#000000;
+}
+.reveal .bt {
+  border-top:1px solid;
+  border-top-width:1px;
+  border-top-color:#000000;
+}
+.reveal .bb, .reveal table tr:last-child .bb {
+  border-bottom:1px solid;
+  border-bottom-width:1px;
+  border-right-color:#000000;
+}
+.reveal table td {
+  text-align: left;
+  vertical-align: middle;
+  border: none;
+  padding:.1em;
+  padding-top:.15em;
+  padding-bottom:.15em;
+}
+
+li.smalleqns span.MathJax{
+  font-size:75%;
+}
+
+span.MathJax{
+  font-size:75%;
+}
+
+.reveal ol li ol {
+  list-style-type: lower-alpha;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+.reveal a:hover {
+  color:#023B48;
+}
+
+.reveal a {
+  color:#000000;
+}
+
+.reveal p > a[id*="bib"], .reveal p > a[href*="#cite"] {
+	display:'none';
+}
+
+.reveal ul ul li {
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+.reveal ul ul {
+	margin-bottom:10px;	
+}
+
+.reveal ul li {
+	margin:30px;
+}
+
+.reveal ol li {
+	margin:40px;
+}
+.reveal .small {
+	font-size:75%;
+}
+
+.reveal .halfwidth{
+  margin-left:10%;
+  margin-right:10%;
+}
+
+.reveal ul.smpadding li{
+  margin-bottom:15px;
+  margin-top:15px;
+  margin-left:30px;
+  margin-right:30px;
+}
+
+.reveal p.vpad {
+  padding-top:5px;
+  padding-bottom:5px;
+}
